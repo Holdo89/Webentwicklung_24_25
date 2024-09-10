@@ -1,0 +1,84 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling Example</title>
+    <style>
+        div {
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="parent">
+        <p style="border: 1px solid">Click me!</p>
+    </div>
+
+    <script>
+        // Get references to the parent and child elements
+        var parentElement = document.getElementById('parent');
+        var childElement = document.querySelector('p');
+
+        // Add click event listeners to both elements
+        parentElement.addEventListener('click', function(event) {
+            alert('Parent Element Clicked!');
+            //this.style.backgroundColor="blue"
+            //console.log(this)
+        });
+
+        childElement.addEventListener('click', function(event) {
+            alert('Child Element Clicked!');
+            //this.style.backgroundColor="red"
+            //event.stopPropagation();
+        });
+    </script>
+
+</body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling Example</title>
+    <style>
+        div {
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="parent">
+        <p style="border: 1px solid">Click me!</p>
+    </div>
+
+    <script>
+        // Get references to the parent and child elements
+        var parentElement = document.getElementById('parent');
+        var childElement = document.querySelector('p');
+
+        // Add click event listeners to both elements
+        parentElement.addEventListener('click', function(event) {
+            alert('Parent Element Clicked!');
+            //this.style.backgroundColor="blue"
+            //console.log(this)
+        });
+
+        childElement.addEventListener('click', function(event) {
+            alert('Child Element Clicked!');
+            //this.style.backgroundColor="red"
+            //event.stopPropagation();
+        });
+    </script>
+
+</body>
+>>>>>>> 5035c211a284295ab1ae80c6f48d55efd43f6298
+</html>

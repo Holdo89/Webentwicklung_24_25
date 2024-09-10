@@ -1,0 +1,62 @@
+body {
+  overflow: hidden;
+  background-image: url("./tenniscourt.png");
+  background-size: 90vw;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+.ball {
+  width: 30px;
+  height: 30px;
+  top: 42%;
+  left: 7%;
+  background-color: #b3bc0d;
+  border-radius: 50%;
+  position: absolute;
+  animation: bounce 2s infinite;
+}
+
+.racket {
+  position:absolute;
+  animation: smash 2s infinite;
+  left: 0;
+  top: 40%;
+  width: 200px;
+}
+
+.racket-right {
+  position:absolute;
+  animation: smash-right 2s infinite;
+  right: 0;
+  top: 40%;
+  width: 200px;
+  transform: rotateY(180deg);
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateX(83vw);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes smash {
+  50% {
+    transform: translateX(-40px);
+  }
+  90% {
+    transform: rotateY(110deg) rotateZ(50deg);
+  }
+}
+
+@keyframes smash-right {
+  44% {
+    transform: translateX(-40px) rotateY(70deg) rotateZ(50deg);
+  }
+  70% {
+    transform: rotateY(180deg) translateX(40px);
+  }
+}

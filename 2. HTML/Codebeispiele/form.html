@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample Form</title>
+    <style>
+      .personal *{
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contact Us</h1>
+
+    <form action="./process.php" method="post">
+      <section class="personal">
+        <!-- Text Input for Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <!-- Email Input for Email Address -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <!-- Textarea for Message -->
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </section>
+      <!-- Radio Buttons for Gender -->
+      <label>Gender:</label>
+      <input type="radio" id="male" name="gender" value="male" />
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female"/>
+      <label for="female">Female</label>
+      <input type="radio" id="other" name="gender" value="other" />
+      <label for="other">Other</label>
+      <br>
+      <!-- Checkboxes for Interests -->
+      <label>Interests:</label>
+      <input
+        type="checkbox"
+        id="programming"
+        name="interests[]"
+        value="programming"
+      />
+      <label for="programming">Programming</label>
+      <input type="checkbox" id="design" name="interests[]" value="design" />
+      <label for="design">Design</label>
+      <input type="checkbox" id="gaming" name="interests[]" value="gaming" />
+      <label for="gaming">Gaming</label>
+      <br>
+      <!-- Submit Button -->
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

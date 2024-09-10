@@ -1,0 +1,12 @@
+.container {
+  background-color: white;
+  margin-top: 10px;
+}
+
+.row {
+  border: solid 1px;
+}
+
+body {
+  background-color: lightgrey;
+}
