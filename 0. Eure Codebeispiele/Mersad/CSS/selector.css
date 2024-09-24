@@ -1,0 +1,15 @@
+li {
+    color: blue;
+}
+.nachbar{
+    color: green;
+}
+#wels{
+    color: black;
+}
+:nth-child(4){
+    color: brown;
+}
+*{
+    text-decoration: underline;
+}
