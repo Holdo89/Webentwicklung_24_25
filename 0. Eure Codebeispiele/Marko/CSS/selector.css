@@ -1,0 +1,15 @@
+li {
+  color: red;
+}
+.lorem {
+  color: green;
+}
+#demo {
+  color: blue;
+}
+li[placeholder="color"] {
+  color: aqua;
+}
+* {
+  color: black;
+}
