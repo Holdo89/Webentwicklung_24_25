@@ -4,10 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contact us</title>
 </head>
 
 <body>
+    <form action="./process.php" method="post"">
+        <h1>Contact us</h1>
+        <label for=" name">Name:</label>
+        </br>
+        <input type="text" id="name" name="name" required>
+        </br>
+
+        <label for="email">Email:</label>
+        </br>
+        <input type="email" required></input>
+        </br>
+
+        <label for="area">Message:</label>
+        </br>
+        <textarea type="text" name="area" required></textarea>
+        </br>
+
+        <a>Gender:</a>
+        <input type="radio" name="choose" value="male" required>Male</input>
+        <label for="male"></label>
+        <input type="radio" name="choose" value="female">Female</input>
+        <label for="female"></label>
+        <input type="radio" name="choose" value="other">Other</input>
+        <label for="other"></label>
+        </br>
+
+        <a>Interests:</a>
+        <input type="checkbox" name="interests" value="Programming">Programming</input>
+        <label for="Programming"></label>
+        <input type="checkbox" name="interests" value="Design">Design</input>
+        <label for="Design"></label>
+        <input type="checkbox" name="interests" value="Gaming">Gaming</input>
+        <label for="Gaming"></label>
+
+        <p></p>
+        <input type="submit">
+
+    </form>
 
 </body>
 
