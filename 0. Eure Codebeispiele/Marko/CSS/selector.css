@@ -7,7 +7,7 @@ li {
 #demo {
   color: blue;
 }
-li[placeholder="color"] {
+li[type="color"] {
   color: aqua;
 }
 * {
