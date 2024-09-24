@@ -7,7 +7,7 @@ li {
 #wels{
     color: black;
 }
-:nth-child(4){
+li[type = "text"]{
     color: brown;
 }
 *{
