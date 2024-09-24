@@ -19,3 +19,6 @@ li{
 li[aria-placeholder="5"]{
     color: black;
 }
+*{
+    font-size:larger;
+}
