@@ -1,0 +1,21 @@
+p,h1{
+    color: rgb(255, 196, 0);
+    text-align: center;
+}
+li{
+    color: brown;
+    text-align: center;
+    font-weight: bold;
+}
+.html{
+    color: black;
+}
+#s3{
+    color: green;
+}
+:nth-child(4){
+    color: blue;
+}
+li[aria-placeholder="5"]{
+    color: black;
+}
