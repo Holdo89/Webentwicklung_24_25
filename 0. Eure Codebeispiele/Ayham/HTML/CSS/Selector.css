@@ -1,11 +1,5 @@
-p,h1{
-    color: rgb(255, 196, 0);
-    text-align: center;
-}
 li{
     color: brown;
-    text-align: center;
-    font-weight: bold;
 }
 .html{
     color: black;
@@ -21,4 +15,6 @@ li[aria-placeholder="5"]{
 }
 *{
     font-size:larger;
+    text-align: center;
+    font-weight: bold;
 }
