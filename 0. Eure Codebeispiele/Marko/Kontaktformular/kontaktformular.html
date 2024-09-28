@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form action="./process.php" method="post">
+      <section class="personal">
+        <h1>Contact Us</h1>
+        <label for="Name">Name:</label>
+        <br />
+        <input type="text" id="name" name="name" required />
+        <br />
+        <br />
+        <label for="Email">Email:</label>
+        <br />
+        <input type="email" id="email" name="email" required />
+        <br />
+        <br />
+        <label for="message">Message:</label>
+        <br />
+        <textarea type="text" rows="10" id="message" name="message"> </textarea>
+        <br />
+        <br /> 
+        <label for="gender">Gender:</label>
+        <input type="radio" id="Gender1" value="male" name="gender" required />
+        <label for="male">Male</label>
+        <input type="radio" id="Gender2" value="female" name="gender" />
+        <label for="male">Female</label>
+        <input type="radio" id="Gender3" value="other" name="gender" />
+        <label for="male">Other</label>
+        <br />
+        <br />
+        <label for="interests">Interests:</label>
+        <input type="checkbox" id="Interests1" name="interests" />
+        <label for="interests">Programming</label>
+        <input type="checkbox" id="Interests2" name="interests" />
+        <label for="interests">Design</label>
+        <input type="checkbox" id="Interests3" name="interests" />
+        <label for="interests">Gaming</label>
+        <br />
+        <br />
+        <input type="submit" />
+      </section>
+    </form>
+  </body>
+</html>

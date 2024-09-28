@@ -1,0 +1,15 @@
+li {
+    color: blue;
+}
+.nachbar{
+    color: green;
+}
+#wels{
+    color: black;
+}
+li[type = "text"]{
+    color: brown;
+}
+*{
+    text-decoration: underline;
+}

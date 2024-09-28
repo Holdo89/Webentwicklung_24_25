@@ -1,0 +1,9 @@
+li{
+    color:aliceblue;
+}
+.oebb{color:red}
+#linz{
+    color:purple
+}
+li[type="text"]{color:blue}
+*{color:black}
