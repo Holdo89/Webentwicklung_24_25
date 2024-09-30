@@ -1,0 +1,20 @@
+li{
+    color: brown;
+}
+.html{
+    color: black;
+}
+#s3{
+    color: green;
+}
+:nth-child(4){
+    color: blue;
+}
+li[aria-placeholder="5"]{
+    color: black;
+}
+*{
+    font-size:larger;
+    text-align: center;
+    font-weight: bold;
+}
