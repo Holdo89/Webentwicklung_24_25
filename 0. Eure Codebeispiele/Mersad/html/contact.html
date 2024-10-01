@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact us</title>
+  </head>
+
+  <body>
+    <form action="./process.php" method="post">
+      <h1>Contact us</h1>
+      <label for=" name">Name:</label>
+      <br />
+      <input type="text" name="name" required />
+      <br />
+
+      <label for="email">Email:</label>
+      <br />
+      <input type="email" required />
+      <br />
+
+      <label for="area">Message:</label>
+      <br />
+      <textarea type="text" rows="10" name="area" required></textarea>
+      <br />
+
+      <a>Gender:</a>
+      <input type="radio" name="choose" value="male" checked required />Male
+      <label for="male"></label>
+      <input type="radio" name="choose" value="female" />Female
+      <label for="female"></label>
+      <input type="radio" name="choose" value="other" />Other
+      <label for="other"></label>
+      <br />
+
+      <a>Interests:</a>
+      <input type="checkbox" name="interests" value="Programming" />Programming
+      <label for="Programming"></label>
+      <input type="checkbox" name="interests" value="Design" />Design
+      <label for="Design"></label>
+      <input type="checkbox" name="interests" value="Gaming" />Gaming
+      <label for="Gaming"></label>
+
+      <p></p>
+      <input type="submit" />
+    </form>
+  </body>
+</html>
