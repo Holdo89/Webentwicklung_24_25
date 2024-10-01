@@ -7,8 +7,59 @@
   <style>
     /* Write your CSS code here */
 
+    html{
+      background-color: bisque;
+    }
+  .di1{
+    background-color: cadetblue;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    border: 10px solid ;
+  }
+  p{
+    margin: 0px;
+  }
+  #di2{
+    background-color: gold;
+    width: 200px;
+    height: 200px;
+    border: 20px solid ;
+    border-left: 10px solid ;
+    border-right: 10px solid ;
+    margin-left: 259px;
+    animation: an1 3s infinite;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+
+  }
+  @keyframes an1 {
+    100%{
+      rotate: 360deg;
+  }}
+   
+  .di3{
+    background-color: indianred;
+    width: 200px;
+    height: 200px;
+    border: 10px solid ;
+    margin-left: 40px;
+    animation: an1 3s infinite;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+  }
+
+ 
+
+
   </style>
 </head>
+<div class="di1"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at sapien porttitor urna elementum lacinia. In
+  id magna pulvinar, ultricies lorem id, vehicula elit. Aliquam eu luctus nisl, vitae pellentesque magna. Phasellus
+  dolor metus, laoreet ac convallis sit amet, efficitur sed dolor.</p></div>
+<div id="di2"></div>
+<div class="di3"></div>
+<div></div>
 
 <body>
 

@@ -4,48 +4,47 @@
     <meta charset="UTF-8" />
     <title>CSS Box Model</title>
     <style>
-      div {
+      .box1 {
         width: 200px;
         height: 200px;
-      }
-      p {
-        margin: 0;
-      }
-      #first {
         background-color: cadetblue;
         padding: 20px;
-        border: 10px solid;
+        border: 10px solid black;
       }
-      #second {
+      .box2 {
+        width: 200px;
+        height: 200px;
         background-color: gold;
-        border: 20px solid;
-        border-bottom: 20px solid;
-        border-left: 10px solid;
-        border-right: 10px solid;
+        border-top: 20px solid black;
+        border-bottom: 20px solid black;
+        border-left: 10px solid black;
+        border-right: 10px solid black;
         margin-left: 260px;
       }
-      #third {
+      .box3 {
+        width: 200px;
+        height: 200px;
         background-color: indianred;
-        border: 10px solid;
+        border: 10px solid black;
         margin-left: 40px;
       }
-      /* Write your CSS code here */
+      p {
+        margin: 0px;
+      }
     </style>
   </head>
 
   <body>
-    <div id="first">
+    <div class="box1">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at
-        sapien porttitor urna elementum lacinia. In id magna pulvinar, ultricies
-        lorem id, vehicula elit. Aliquam eu luctus nisl, vitae pellentesque
-        magna. Phasellus dolor metus, laoreet ac convallis sit amet, efficitur
-        sed dolor
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aut
+        atque fugiat similique, iure dolore inventore quod in voluptatum nulla
+        maiores molestias autem modi accusantium vel pariatur. Beatae,
+        laboriosam iure.
       </p>
     </div>
-    <div id="second"></div>
-    <div id="third"></div>
-
+    <div class="box2"></div>
+    <div class="box3"></div>
     <!-- TODOs:
 1. Create 3 Boxes using the div element.
 2. Set their sizes to 200px heigh by 200px wide.
