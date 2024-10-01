@@ -1,14 +1,20 @@
 
 h1 {
     color: rgb(49, 32, 200);
-    text-align: center;
+    text-align: center;font-family: fantasy;
   }
 li{color: blueviolet;}
 .Selector{color: green;}
 #ID{color: red;}
 :nth-child(4){color: blue;}
+li[type ="text"]{color: brown;}
 
 *{color: aquamarine;}
+
+.ipsum{color: blueviolet;}
+
+
+
 
   
 

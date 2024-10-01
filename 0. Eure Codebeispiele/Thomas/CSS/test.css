@@ -1,0 +1,11 @@
+h1{font-family: serif ;color: red; text-align: center;text-decoration: line-through;}
+.class{color: blueviolet;}
+.Apfel{color: blue;font-size: xx-large;}
+#demo{color: green;text-align: right;text-shadow: 5cm;}
+:nth-child(7){color: greenyellow;font-size: 100px;}
+li :hover{color: blueviolet;}
+p::after{content: '€';}
+input[placeholder= "email"]{background-color: blue;}
+:nth-child(8){font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+:nth-child(9){font-weight: 100;color: blue;font-family: Arial, Helvetica, sans-serif;}
+#mark{color: chocolate;}
