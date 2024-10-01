@@ -1,26 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Properties</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: aqua;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <title>CSS Properties</title>
-  <style>
+      h1:hover {
+        color: darkred;
+      }
+      * {
+        color: white;
+      }
+      h1 {
+        color: chartreuse;
+      }
+      #Color {
+        color: darkblue;
+      }
+      .Font {
+        font-size: 1201%;
+        color: brown;
+      }
+      body {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfdD1J_zoStf_KQUKdV-3fSQfrowVQ-OoAqQ&s);
+        background-size: cover;
+      }
+      #X {
+        font-family: Caveat,'Times New Roman', Times, serif;
+        font-size: 400%;
+        font-weight: 400;
+      }
+    </style>
+  </head>
 
-    /* Write your CSS Code here */
+  <body>
+    <h1>Important CSS Properties</h1>
+    <p id="Color">Color</p>
+    <p class="Font">Font Size</p>
+    <p style="font-weight: 900">Font Weight</p>
+    <p id="X">Font Family</p>
+    <p style="text-align: right">Right Align</p>
 
-    
-  </style>
-</head>
-
-<body>
-  <h1>Important CSS Properties</h1>
-  <p>Color</p>
-  <p>Font Size</p>
-  <p>Font Weight</p>
-  <p>Font Family</p>
-  <p>Text Align</p>
-
-  <!-- TODOs
+    <!-- TODOs
   0. Change the body background color = cornflowerblue, the font-color = white and the font-size = 18px
   1. Change the color of <p>Color</p> to "coral" color.
   2. Change the font size of <p>Font Size</p> to 2X the size of the root font size.
@@ -30,6 +60,5 @@
   5. Change the <p>Text Align</p> to right align.
   6. Change the the root (html element) font size to 30px 
   7. When hovered over the h1 tag the color should change to red-->
-</body>
-
+  </body>
 </html>
