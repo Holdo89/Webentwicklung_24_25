@@ -5,20 +5,91 @@
   <meta charset="UTF-8">
   <title>CSS Properties</title>
   <style>
-
     /* Write your CSS Code here */
-
+    div{
+      position: absolute;
+      width: 2500px;
+      height: 5px;
+      border-radius: 20px;
+      animation: na1 5s infinite;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
     
+    }
+    @keyframes na1 {
+      0%{
+        background-color: aqua;
+        top: 1%;
+      }
+      25%{
+        background-color: blueviolet;
+        top: 25%;
+
+      }
+      50%{
+        background-color: bisque;
+        top: 50%;
+
+      }
+      75%{
+        background-color: brown;
+        top: 75%;
+
+      }
+      100%{
+        background-color: blue;
+        top: 99%;
+
+      }
+    }
+    html{
+      font-size: 30px;
+    }
+    body{
+        background-color: cornflowerblue;
+        background-image: url(https://api.ayamkoding.com/wp-content/uploads/2017/02/css.jpg);
+        background-size: cover;
+    }
+    *{
+      color: white;
+    }
+    .pa{
+      color: coral;
+    }
+    #pa1{
+      font-size: xx-large;
+    }
+    .pa2{
+      font-weight: 900;
+    }
+    #pa3{
+      font-family: "Caveat" ;
+      font-weight:400;
+      
+    }
+    .pa4{
+      text-align: right;
+    }
+    h1:hover{
+      color: brown;
+    }
+
   </style>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  
 </head>
 
 <body>
   <h1>Important CSS Properties</h1>
-  <p>Color</p>
-  <p>Font Size</p>
-  <p>Font Weight</p>
-  <p>Font Family</p>
-  <p>Text Align</p>
+  <p class="pa">Color</p>
+  <p id="pa1">Font Size</p>
+  <p class="pa2">Font Weight</p>
+  <p id="pa3">Font Family</p>
+  <p class="pa4">Text Align</p>
+  <div></div>
 
   <!-- TODOs
   0. Change the body background color = cornflowerblue, the font-color = white and the font-size = 18px
