@@ -1,0 +1,35 @@
+.farbe1 {
+  color: coral;
+}
+.font1 {
+  font-size: 2rem;
+}
+.font2 {
+  font-weight: 900;
+}
+.caveat-option1 {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.align {
+  text-align: right;
+}
+html {
+  font-size: 30px;
+  color: white;
+}
+
+h1:hover {
+  color: red;
+}
+.bg-image {
+  background-image: url("https://img.freepik.com/fotos-premium/abstract-futuristische-technologie-hintergrund-mit-sechseck-muster_605022-139789.jpg");
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  position: absolute;
+}
