@@ -1,0 +1,17 @@
+
+h1 {
+    color: rgb(49, 32, 200);
+    text-align: center;
+  }
+li{color: blueviolet;}
+.Selector{color: green;}
+#ID{color: red;}
+:nth-child(4){color: blue;}
+
+*{color: aquamarine;}
+
+  
+
+
+
+
