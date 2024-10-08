@@ -5,6 +5,35 @@
   <title>CSS Positioning Exercise</title>
   <style>
     /* Write your code here */
+    .blue-box{
+      position: relative;
+      width: 500px;
+      height: 300px;
+      background-color: rgba(0, 0, 255, 0.322) ;
+      top: 200px;
+      left: 200px;
+        
+    }
+    .red-circle{
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: red;
+      position: relative;
+      top: 150px;
+      left: 250px;
+      z-index: -3;
+    }
+    #tes{
+      width: 150px;
+      height: 150px;
+      background-color: yellowgreen;
+      border-radius: 50%;
+      position: absolute;
+      translate: 400px;
+      z-index: -1;
+    }
+
   </style>
 </head>
 
@@ -13,6 +42,7 @@
     <div class="red-circle">
     </div>
   </div>
+  <div id="tes"></div>
 
 </body>
 
