@@ -1,1 +1,21 @@
 /* Write your code here: */
+h1,
+h2 {
+  color: blueviolet;
+}
+.box p {
+  color: rgb(175, 32, 32);
+}
+li {
+  color: blue;
+}
+li.done {
+  color: rgb(41, 206, 41);
+}
+
+ul > p {
+  font-size: x-small;
+}
+p {
+  font-size: large;
+}

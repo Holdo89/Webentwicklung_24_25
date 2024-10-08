@@ -1,1 +1,17 @@
 /* Write your code here: */
+h1, h2 {
+    color:blueviolet
+}
+div p.done {
+    color: red;
+}
+.list {
+    color: blue;
+}
+li.done {
+    color: green;
+}
+ul p {
+    color: black;
+    font-size: smaller;
+}
