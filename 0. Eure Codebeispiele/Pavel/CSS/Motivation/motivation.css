@@ -1,55 +1,49 @@
 body {
-    background-color: black;
-    
+  background-color: black;
+  background-size: cover;
+  margin: 10;
+  height: 50vh;
+  width: 100vw;
 }
 h1 {
-font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 900;
   color: white;
   text-transform: uppercase;
   margin: 0;
   text-align: center;
-  
-font-size: 2rem;
-  
+
+  font-size: 2rem;
 }
 div {
-    
-    width: 100px;
-    height: 100px;
-    background: rgb(8, 5, 5);
-    position: relative;
-   
+  width: 100px;
+  height: 100px;
+  background: rgb(8, 5, 5);
+  position: relative;
+  background-position: center;
+  background-size: cover;
 }
 
 #kocka1 {
-
-    border: solid white 10px;
-    height: 500px;
-    width:900px;
-   background-image: url(https://i.pinimg.com/originals/99/e5/07/99e507acbee7be7a0cb565178d3e86a2.jpg);
-   background-size: 900px;
-   margin-left: 480px;
-
-   
-   
-   
+  border: solid white 10px;
+  height: 500px;
+  width: 900px;
+  background-image: url(https://i.pinimg.com/originals/99/e5/07/99e507acbee7be7a0cb565178d3e86a2.jpg);
+  background-size: 900px;
+  text-align: center;
+  margin: auto;
 }
 
 p {
-    color: aliceblue;
-    font-size: large;
-   text-align: center;
-   font-family: 'Courier New', Courier, monospace;
-   font-weight: 700;
-   
-  
-
-
+  color: aliceblue;
+  font-size: large;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
 }
-h2{
-    color: white;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
+h2 {
+  color: white;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
 }
