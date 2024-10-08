@@ -1,1 +1,16 @@
-/* Write your code here: */
+h1,h2{color: blueviolet;}
+
+li.done{color: green;}
+ul li{color: blue;}
+.box p{color: brown ;font-size: 30px;}
+h1{font-size: 100px;}
+h2{font-size: 50px;}
+li{font-size: 30px;}
+ul>p{
+    font-size: x-small;
+    
+}
+
+
+
+
