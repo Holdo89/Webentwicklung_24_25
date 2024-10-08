@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+    background-size: cover;
+
+}
+div {
+    width: 100px;
+    height: 100px;
+    background: rgb(8, 5, 5);
+    position: relative;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  #kocka1 {
+    border: solid white 10px;
+    height: 500px;
+    width: 900px;
+    background-image: url(https://www.shutterstock.com/image-photo/retired-older-adult-man-thug-600nw-1971996923.jpg);
+background-size: 900px;
+    text-align: center;
+    margin: auto;
+  }
+  h1 {
+    color: black;
+ text-align: center;
+ font-family: sans-serif;
+ margin: 20px;
+ font-size: xx-large;
+ text-transform: uppercase;
+
+
+  }
+  p {
+  color: whitesmoke;
+  font-size: xx-large;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+  position: relative;
+  font-family: cursive;
+  text-align: center;
+  text-transform: uppercase;
+
+  }
