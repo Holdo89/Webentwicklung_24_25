@@ -1,0 +1,31 @@
+html {
+    background-color: black;
+}
+.memetext {
+    color: white;
+    font-size: 50px;
+    font-weight: 200;
+    text-align: center;
+    font-family: fantasy;
+}
+img {
+    border: 1px solid white;
+    border-radius: 50px;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    
+  }
+.text1 {
+    color: orangered;
+    font-family: cursive;
+    text-align: center;
+    font-size: 60px;
+}
+
+body {
+    margin: auto;
+    text-align: center;
+  }
