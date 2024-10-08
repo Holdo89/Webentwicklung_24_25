@@ -12,10 +12,30 @@
     width: 200px;
     
     
-    
+  background-image: url(https://i.pinimg.com/736x/cb/55/79/cb5579baef44a7e269c73b185bbe6741.jpg); 
+  background-blend-mode: color-burn; 
+  background-repeat: no-repeat;
+  background-size: 40cm;
   }
+  @keyframes mymove {
+  0%   {top: 0px;}
+  25%  {top: 200px;}
+  75%  {top: 50px}
+  100% {top: 50px;}
+}
+  div {
+    
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+  animation: mymove 5s infinite;
+}
+
+
   p{
-    margin: 0px;
+    margin:0px;
+    
   }
 #kocka1 {
 
@@ -25,13 +45,14 @@
    background-color: cadetblue;
    padding: 20px;
    margin-bottom: -20px;
-   margin-inline-start: -9px;
+   margin-inline-start: 0px;
 
    
 
 }
 
 #kocka2 {
+ 
   
     border-top: 20px solid black;
     border-left: 10px solid black;
@@ -40,7 +61,7 @@
     height: 200px;
     width: 200px;
     background-color: gold;
-    margin-left: 250px;
+    margin-left: 255px;
     
 }
 
@@ -49,7 +70,7 @@
     height: 200px;
     width: 200px;
     background-color: indianred;
-    margin-inline-start: 31px;
+    margin-inline-start: 35px;
     margin-top: -20px;
     
 
