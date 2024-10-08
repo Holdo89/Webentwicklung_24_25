@@ -1,18 +1,18 @@
 h1 {
-    color: blueviolet;
+  color: blueviolet;
 }
 h2 {
-    color: blueviolet;
+  color: blueviolet;
 }
 div.box {
-    color: brown;
+  color: brown;
 }
 li.done {
-    color: green;
+  color: green;
 }
 li {
-    color: blue;
+  color: blue;
 }
 ul p {
-    font-size: x-small;
+  font-size: x-small;
 }
