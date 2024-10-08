@@ -1,9 +1,7 @@
 body {
   background-color: black;
   background-size: cover;
-  margin: 10;
-  height: 50vh;
-  width: 100vw;
+ 
 }
 h1 {
   font-family: "Roboto", sans-serif;
