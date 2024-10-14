@@ -18,10 +18,12 @@
         color: white;
       }
       div > div {
+        
         width: 900px;
         height: 250px;
         background-color: #002860;
         position: absolute;
+        z-index: 1;
       }
       div > div > p {
         width: 200px;
@@ -32,14 +34,30 @@
         font-size: 5rem;
         position: absolute;
         translate: 350px -55px;
+        transition: transform 1s;
+        -webkit-backface-visibility: hidden;
+        z-index: 3;
       }
       div > div > p:hover {
         transform: rotateX(180deg);
+        
       }
+      div>div::after{
+        content:"";
+        text-align: center;
+        width: 200px;
+        height: 200px;
+        background-image: url(https://hermes.dio.me/articles/cover/8baa0855-4bd5-4abf-a007-48527a7c5859.png);
+        background-size: 300px;
+        border-radius: 50%;
+        position: absolute;
+        translate: 350px 25px;
+      }
+      
     </style>
   </head>
 
-  <!-- 
+  <!--
 WICHTIG! Ändere nicht das HTML. Füge keine Klassen/IDs/Elemente hinzu. Nutze dein Wissen über das Kombinieren von Selektoren und die Spezifität von CSS stattdessen.
 
 Hinweis 1: Die Flagge hat Abmessungen von 900px x 600px, und der Kreis ist 200px x 200px groß.
