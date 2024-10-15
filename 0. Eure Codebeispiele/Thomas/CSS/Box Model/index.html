@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Box Model</title>
+    <style>
+      body{
+        background-color: midnightblue;
 
-<head>
-  <meta charset="UTF-8">
-  <title>CSS Box Model</title>
-  <style>
-    .div1{
-        width:200px;
-        height:200px;
-        padding:20px;
+      }
+      .div1 {
+        width: 210px;
+        height: 200px;
+        padding: 20px;
         background-color: rgb(25, 0, 255);
-        border: 10px solid;color: black;
+        border: 10px solid;
+        color: black;
+      }
+      p {
+        text-align: center;
+        text-transform: uppercase;
+        text
+      }
 
-        
-    }
-    p{margin:0px;}
-
-    #div2{
-      width:200px;
-        height:200px;
+      #div2 {
+        width: 200px;
+        height: 210px;
         background-color: rgb(149, 255, 0);
-        border: 20px solid;color: black;
+        border: 20px solid;
+        color: black;
         border-left: 10px solid;
         border-right: 10px solid;
         margin-left: 260px;
-        
-
-
-
-        
-
-    }
-    .div3{
-      width:200px;
-        height:200px;
+      }
+      
+      .div3 {
+        width: 220px;
+        height: 200px;
         background-color: rgb(255, 217, 0);
-        border: 10px solid;color: black;
-        margin-left: 10px;
+        border: 20px solid;
+
+        color: black;
+        margin-left: 20px;
+        shape{
+          transform: rotate(45deg);
+        }
+
         /* margin-top: 100px; */
+        p {
+          margin: 90px 80px 80px 10px;
+          text-align: center;
+          text-decoration: line-through;
+          font-size: xx-large;
+          color: blueviolet;
+          width: auto;
+
+          box-shadow: inset 20px 20px 20px rgba(1, 1, 1, 1.0);
+          border-top: 20px;
+          border-bottom: 20px;
+          border:10px;
+          text-shadow: 3px 3px 5px;
+          
 
 
-    }
-    
-    
+        }
+      }
+      
+    </style>
+  </head>
 
-  
+  <body>
+    <div class="div1">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ex animi
+        sapiente hic repellat inventore assumenda nam qui quam? Ea, dolore sunt.
+        Sit exercitationem qui odit iure facilis beatae nam.
+      </p>
+    </div>
+    <div ></div>
+    <div id="div2" Name="div2">asdfdasf</div>
+    <div class="div3" name="div3"><p>asdafsggg</p></div>
 
-  </style>
-</head>
-
-<body>
-
-
-  <div class="div1"p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ex animi sapiente hic repellat inventore assumenda nam qui quam? Ea, dolore sunt. Sit exercitationem qui odit iure facilis beatae nam.</p>>
-  <div id="div2"Name=div2></div>
-  <div class="div3"name=div3></div>
-
-  
-
-
-  <!-- TODOs:
+    <!-- TODOs:
 1. Create 3 Boxes using the div element.
 2. Set their sizes to 200px heigh by 200px wide.
 3. Set different background colors for each of the boxes (I used cadetblue, gold and indianred).
@@ -73,7 +94,5 @@
 8. Set the 3rd div to have a 10px border 
 9. Set the margins for the divs so that each box corner touches the other. (See the goal image)
 -->
-
-</body>
-
+  </body>
 </html>

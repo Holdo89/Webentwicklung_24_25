@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Flag Project</title>
+    <style>
+      .flag {
+        background-color: #ce1126;
+        width: 900px;
+        height: 600px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <title>CSS Flag Project</title>
-  <style>
-    /* Write your CSS Code here */
-    
-  </style>
-</head>
+      .flag > p {
+        color: white;
+        text-align: center;
+        font-size: 80px;
+        margin-top: 15px;
+      }
 
-<!-- 
+      .flag div {
+        text-align: center;
+        background-color: #002868;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 900px;
+        height: 330px;
+        position: absolute;
+        top: 140px;
+        font-size: 60px;
+      }
+      .flag div div {
+        position: absolute;
+        border-radius: 50%;
+        background-color: white;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 200px;
+        width: 200px;
+      }
+      .flag div div p {
+        font-size: 70px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin-top: 50px;
+        display: block;
+      }
+      
+     
+      
+
+
+      /* .flag div div p::before{
+          content: "of";
+          text-align: center;
+          font-size: 40px;
+          display: block;
+         }
+        
+         .flag div div p::after{
+          content: "Laos";
+          text-align: center;
+          display: block;
+          font-size: 40px;
+         }
+         
+       
+      
+      
+      /* Write your CSS Code here */
+    </style>
+  </head>
+
+  <!-- 
 WICHTIG! Ändere nicht das HTML. Füge keine Klassen/IDs/Elemente hinzu. Nutze dein Wissen über das Kombinieren von Selektoren und die Spezifität von CSS stattdessen.
 
 Hinweis 1: Die Flagge hat Abmessungen von 900px x 600px, und der Kreis ist 200px x 200px groß.
@@ -18,15 +84,17 @@ Hinweis 1: Die Flagge hat Abmessungen von 900px x 600px, und der Kreis ist 200px
 Hinweis 2: Du kannst folgende Farben verwenden #CE1126, #002868
 -->
 
-<body>
-  <div class="flag">
-    <p>The Flag</p>
-    <div>
+  <body>
+    <div class="flag">
+      <p>The Flag</p>
       <div>
-        <p>of Laos</p>
+        <div>
+          <p>
+            of 
+            Laos
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

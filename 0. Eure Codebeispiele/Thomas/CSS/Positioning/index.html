@@ -4,16 +4,60 @@
 <head>
   <title>CSS Positioning Exercise</title>
   <style>
+    div.blue-box{
+      height: 300px;
+      width:500px;
+      border-color: blue;
+      background: blue;
+      position: relative;
+      top: 200px;
+      left: 200px;
+
+
+    }
+    .red-circle{
+      
+      background: red;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: relative;
+      top: 150px;
+      left: 250px;
+      z-index: -
+    
+
+      
+    
+      
+
+    }
+    .smiley{
+      font-size: xx-large;
+      position: absolute;
+      left: 500px;
+      top: 400px;
+
+
+    }
+
+    p{
+      position: absolute;
+      top: 100px;
+      left: 50px;
+      font-size: large;
+    }
+
     /* Write your code here */
   </style>
 </head>
-
 <body>
   <div class="blue-box">
-    <div class="red-circle">
+    <div class="red-circle"><p>Hallo das ist <br>thomas
+    </p>
     </div>
   </div>
-
+<div class="smiley">😁</div>
 </body>
 
 </html>
