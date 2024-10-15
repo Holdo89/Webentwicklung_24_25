@@ -23,6 +23,7 @@
         height: 250px;
         background-color: #002860;
         position: absolute;
+        transition: 3s;
         z-index: 1;
       }
       div > div > p {
@@ -41,6 +42,9 @@
       transform-origin: top;
       transform: rotateX(88deg);
         
+      }
+      .flag > p:hover ~div{
+        transform:rotateZ(180deg);
       }
       div>div::after{
         content:"";
