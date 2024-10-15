@@ -1,8 +1,12 @@
 <html>
   <head>
     <style>
-      p ~ ul {
+      div ul {
         background-color: gold;
+        border: 1px solid gray;
+      }      
+      div ul {
+        background-color: red;
         border: 1px solid gray;
       }
     </style>
@@ -15,7 +19,16 @@
       <li>Milk</li>
     </ul>
     <div>
-      <p>The first paragraph.</p>
+      <span>
+        <ul style="background-color:green">
+          <li>Coffee</li>
+          <li>Tea</li>
+          <li>Milk</li>
+        </ul>
+      </span>
+      The first paragraph.
+    </div>
+    <div>
       <ul>
         <li>Coffee</li>
         <li>Tea</li>
@@ -24,10 +37,5 @@
     </div>
 
     <h2>Another list</h2>
-    <ul>
-      <li>Coffee</li>
-      <li>Tea</li>
-      <li>Milk</li>
-    </ul>
   </body>
 </html>
