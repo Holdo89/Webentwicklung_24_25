@@ -4,13 +4,36 @@
 <head>
   <title>CSS Positioning Exercise</title>
   <style>
-    /* Write your code here */
+    .blue-box {
+      background-color: blue;
+      width: 500px;
+      height: 300px;
+      position: relative;
+      top: 200px;
+      left: 200px;
+    }
+    .red-circle {
+      background-color: red;
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+      position: absolute;
+      top: 150px;
+      left: 250px;
+      /* z-index: -1; */
+      text-align: center;
+      
+
+    }
+    .test{
+      margin-top: 45%;
+    }
   </style>
 </head>
 
 <body>
   <div class="blue-box">
-    <div class="red-circle">
+    <div class="red-circle"><div class="test">BlaBla</div>
     </div>
   </div>
 
