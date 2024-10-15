@@ -5,7 +5,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 95vh;
+<<<<<<< HEAD
   
+=======
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
 }
 .main {
   flex: 1;
@@ -20,6 +23,7 @@ footer {
   color: midnightblue;
 }
 
+<<<<<<< HEAD
 span{
   color: blue;
 
@@ -51,3 +55,5 @@ img.logo{
   width: 8%;
 }
 
+=======
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
