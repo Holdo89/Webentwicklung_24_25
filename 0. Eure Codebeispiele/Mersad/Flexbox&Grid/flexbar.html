@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
+  </head>
+  <style>
+    /*css code hier einfügen und HTML sonst nicht ändern*/
 
-/*css code hier einfügen und HTML sonst nicht ändern*/
-
-</style>
-<body>
+    body {
+      background-color: white;
+      margin: 0;
+    }
+    .navbar {
+      padding: 10px;
+      background-color: black;
+    }
+    .nav-list {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      justify-content: center;
+    }
+    .nav-item {
+      color: white;
+      background-color: grey;
+      padding: 15px 25px;
+      border-radius: 4px;
+    }
+    .nav-item:hover {
+      background-color: rgb(86, 86, 31);
+    }
+    @media (max-width: 600px) {
+      .nav-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-item {
+        margin: 5px 0;
+      }
+    }
+  </style>
+  <body>
     <nav class="navbar">
-        <ul class="nav-list">
-            <li class="nav-item">Home</li>
-            <li class="nav-item">About</li>
-            <li class="nav-item">Services</li>
-            <li class="nav-item">Contact</li>
-        </ul>
+      <ul class="nav-list">
+        <li class="nav-item">Home</li>
+        <li class="nav-item">About</li>
+        <li class="nav-item">Services</li>
+        <li class="nav-item">Contact</li>
+      </ul>
     </nav>
-    
-</body>
-
+  </body>
 </html>
