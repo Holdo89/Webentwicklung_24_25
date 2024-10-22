@@ -7,6 +7,7 @@ body {
   min-height: 95vh;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .main {
   flex: 1;
 }
@@ -19,12 +20,16 @@ h1 {
 span{
   color: midnightblue;
 }
+=======
+>>>>>>> 952d3a5ef7f40dcd18daa0c2b63ba2bb9dffd62a
 .main {
   flex: 1;
 }
+
 h1 {
   font-size: 5rem;
 }
+<<<<<<< HEAD
 .tile-image{
   margin: 10px;
   width: 200px;
@@ -40,10 +45,14 @@ h1 {
   float: left;
 }
 >>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
+=======
+
+>>>>>>> 952d3a5ef7f40dcd18daa0c2b63ba2bb9dffd62a
 footer {
   text-align: right;
   color: midnightblue;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -61,3 +70,6 @@ footer {
 }
 }
 >>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
+=======
+
+>>>>>>> 952d3a5ef7f40dcd18daa0c2b63ba2bb9dffd62a
