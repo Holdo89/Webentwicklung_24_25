@@ -5,6 +5,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 95vh;
+<<<<<<< HEAD
+  
+=======
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
 }
 .main {
   flex: 1;
@@ -19,3 +23,37 @@ footer {
   color: midnightblue;
 }
 
+<<<<<<< HEAD
+span{
+  color: blue;
+
+
+}
+
+div .leftcard{
+  float:left;
+ width: 45%;
+
+}
+div .rightcard {
+text-align: center;
+  float: right;
+width: 45%;
+text-align: left;
+
+
+}
+footer {
+  color: blue;
+}
+img{
+  width: 40%;
+  float: left;
+  margin-right: 50px;
+}
+img.logo{
+  width: 8%;
+}
+
+=======
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45

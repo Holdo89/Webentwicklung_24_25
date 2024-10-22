@@ -18,6 +18,8 @@ footer {
   text-align: right;
   color: midnightblue;
 }
+<<<<<<< HEAD
+=======
 p.footer{
   color: blue;
 }
@@ -55,7 +57,7 @@ h1 p{
   display: inline;
   object-fit: cover;
 }
-@media(max: width ){
+@media(max: width 680px){
   logo{
     width: 100px;
   }
@@ -73,4 +75,5 @@ h1 p{
 
 
 
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
 
