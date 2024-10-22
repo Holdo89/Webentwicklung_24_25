@@ -1,0 +1,142 @@
+body {
+  background-image: url("https://cdn.flixy.cz/user-uploads/clpo1t7qs002l5bk7moll4qbd/czcxjgy4t/N_vrh_bez_n_zvu_5");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll; /* Pozadie zostane fixné pri scrollovaní */
+  min-height: 100vh; /* Zaberá minimálne výšku obrazovky */
+  margin: 0;
+}
+h1 {
+  color: black;
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    
+}
+h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: xx-large;
+  margin: 25px;
+  position: relative;
+  top: 20px;
+}
+
+.scroll-container {
+  /* sizing and layout */
+  --itemHeight: 60px;
+  --itemGap: 10px;
+
+  width: 400px;
+  height: var(--containerHeight);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: var(--itemGap);
+  border-radius: 4px;
+  /* scrolling */
+
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: none;
+  /* paint */
+  --topBit: calc((var(--containerHeight) - var(--itemHeight)) / 2);
+  --footBit: calc((var(--containerHeight) + var(--itemHeight)) / 2);
+
+  
+  .scroll-items {
+    
+    width: 90%;
+    flex: 0 0 var(--itemHeight);
+    box-sizing: border-box;
+    padding-inline: 20px;
+    border-radius: inherit;
+    &:first-of-type {
+      margin-block-start: var(--topBit);
+    }
+    &:last-of-type {
+      margin-block-end: var(--topBit);
+    }
+
+    background: linear-gradient(to right, rgb(242 194 66), rgb(235 122 51));
+    box-shadow: 0 0 4px rgb(235 122 51);
+    font: 16pt / var(--itemHeight) "poppins";
+    color: white;
+
+    scroll-snap-align: center;
+    pointer-events: none;
+
+    input {
+      appearance: none;
+    }
+    span {
+      
+      float: right;
+    }
+
+    &:has(:checked) {
+      
+      background: rgb(229 50 34);
+    }
+  }
+}
+.login-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  float: right;
+}
+
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #131111;
+}
+
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #8f8282;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+.login-container button {
+  width: 100%;
+  padding: 15px;
+  background-color: #e07f2f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-container button:hover {
+  background-color: #8a3e0c94;
+}
+
+
+.login-container .register-link {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+  color: #333;
+}
+
+.login-container .register-link a {
+  color: #b81111;
+  text-decoration: none;
+
+}
+
+.login-container .register-link a:hover {
+  text-decoration: underline;
+}
+

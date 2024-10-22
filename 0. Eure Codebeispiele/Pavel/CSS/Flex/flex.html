@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .flex-container {
+    display: flex;         
+    justify-content: space-between; 
+    align-items: center;    
+    background-color: #1411d1c9;
+    padding: 20px;
+}
+
+/* Flex items */
+.flex-item {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 5px;
+    flex: 1; /* Items will grow equally */
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+</body>
+</html>
