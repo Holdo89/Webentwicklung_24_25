@@ -18,4 +18,31 @@ footer {
   text-align: right;
   color: midnightblue;
 }
+.left-card{
+  float: left;
+  width: 45%;
+
+}
+.right-card {
+  float: right;
+  width: 45%;
+}
+
+.tile-image {
+  float: left;
+  width: 200px;
+  margin-right: 50px;
+}
+
+@media (max-width:800px) {
+  .right-card,.left-card {
+    float: none;
+    display: block;
+    width: 100%;
+  }
+
+}
+.creative {
+  color: midnightblue;
+}
 

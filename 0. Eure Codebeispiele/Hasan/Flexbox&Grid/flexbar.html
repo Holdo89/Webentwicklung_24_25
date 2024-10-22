@@ -7,6 +7,48 @@
     <title>Document</title>
 </head>
 <style>
+    
+body {
+    margin: 0;
+    font-family: Arial, sans serif;
+    background-color: #f4f4f4;
+}
+
+    li {
+        list-style: none;
+    }
+    .navbar {
+       background-color: #333;
+       padding: 10px;
+        
+    }
+    .nav-list {
+       display: flex;
+       gap: 10px;
+       list-style: none;
+       justify-content: center;
+    }
+    .nav-item {
+        color: white;
+        padding: 15px 20px;
+        background-color: #444;
+        border-radius: 4px;
+    }
+    .nav-item:hover { 
+        background-color: #555; /* Der Hintergrund ändert sich, wenn ich mit der Maus drauf fahre */
+    }
+    @media (max-width: 600px) {
+        nav.list {
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-item {
+            margin: 5px 0;
+        }
+
+    }
+
+
 
 /*css code hier einfügen und HTML sonst nicht ändern*/
 
