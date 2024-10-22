@@ -6,6 +6,8 @@ body {
   flex-direction: column;
   min-height: 95vh;
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
 .main {
   flex: 1;
 }
@@ -14,8 +16,60 @@ h1 {
   font-size: 5rem;
 }
 
+=======
+span{
+  color: midnightblue;
+}
+=======
+>>>>>>> 952d3a5ef7f40dcd18daa0c2b63ba2bb9dffd62a
+.main {
+  flex: 1;
+}
+
+h1 {
+  font-size: 5rem;
+}
+<<<<<<< HEAD
+.tile-image{
+  margin: 10px;
+  width: 200px;
+  float: left;
+  margin-right: 30px;
+}
+.left-card{
+  width: 45%;
+  float: right;
+}
+.right-card{
+  width: 45%;
+  float: left;
+}
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
+=======
+
+>>>>>>> 952d3a5ef7f40dcd18daa0c2b63ba2bb9dffd62a
 footer {
   text-align: right;
   color: midnightblue;
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+@media (max-width: 680px){
+.left-card, .right-card{
+  width: 100%;
+  float: none;
+  display: block;
+}
+.tile-image{
+  width: 100%;
+}
+.logo{
+  width: 100px;
+}
+}
+>>>>>>> 14ecbe57ebecec45343ddf83dc62145060ad8a45
+=======
+
+>>>>>>> 952d3a5ef7f40dcd18daa0c2b63ba2bb9dffd62a

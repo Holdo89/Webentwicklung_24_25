@@ -1,27 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Column Layout Methods</title>
+    <style>
+      /* Style hier definieren, HTML weiter unten nicht verändern*/
+      .container {
+        display: flex;
+        background-color: yellow;
+        gap: 20px;
+        outline: 3px solid red;
+      }
+      li {
+        list-style: none;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Column Layout Methods</title>
-  <style>
-/* Style hier definieren, HTML weiter unten nicht verändern*/
+      .container p {
+        font-weight: bold;
+      }
+      li {
+        display: flex;
+        align-items: center;
+      }
+      #Farben {
+        font-size: xx-large;
+        background-color: aqua;
+      }
 
-  </style>
-</head>
+      .flex-container{
+        display: grid;
+        background-color: dodgerblue;
+        height: 330px;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+        text-align: center;
+      }
+      .flex-container >div{
+        background-color: blueviolet;
+        margin: 20px;
+        font-size: 80px;
+      
+     
 
-<body>
-  <div class="container">
-    <p>Page Layout Methods</p>
 
-    <li><a href="./html-table.html">HTML Table</a></li>
-    <li><a href="./inline-block.html">Inline-Block</a></li>
-    <li><a href="./absolute-position.html">Absolute Positioning</a></li>
-    <li><a href="./float.html">Float</a></li>
-    <li><a href="./flex.html">Flexbox</a></li>
+      }
+      .flex-container:hover{
+        background-color: brown;
+        backg
+      }
+     
+    </style>
+  </head>
 
-  </div>
-</body>
+  <body>
+    <div class="container">
+      <p>Page Layout Methods</p>
 
+      <li><a href="./html-table.html">HTML Table</a></li>
+      <li><a href="./inline-block.html">Inline-Block</a></li>
+      <li><a href="./absolute-position.html">Absolute Positioning</a></li>
+      <li><a href="./float.html">Float</a></li>
+      <li><a href="./flex.html">Flexbox</a></li>
+    
+      <select id="Farben">
+        <option style="background-color: blueviolet" ="Rot">Rot</option>
+        <option value="Grün">Grün</option>
+        <option style="color: red" value="Lila">Lila</option>
+      </select>
+    </div>
+
+    <div class="flex-container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>6</div>
+      <div>9</div>
+
+
+
+
+    </div>
+    
+
+  </body>
 </html>

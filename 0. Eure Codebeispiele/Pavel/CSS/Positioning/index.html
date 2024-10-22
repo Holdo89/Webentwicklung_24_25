@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>CSS Positioning Exercise</title>
+    <style>
+      /* Write your code here */
+      .blue-box {
+        width: 500px;
+        height: 300px;
+        background: rgb(0, 0, 255);
+        position: relative;
+        top: 200px;
+        left: 200px;
+      }
 
-<head>
-  <title>CSS Positioning Exercise</title>
-  <style>
-    /* Write your code here */
-  </style>
-</head>
+      .red-circle {
+        width: 200px;
+        height: 200px;
+        background: red;
+        border-radius: 50%;
+        position: relative;
+        top: 150px;
+        left: 250px;
+        z-index: -1;
+        opacity: 70%;
+      }
+    </style>
+  </head>
 
-<body>
-  <div class="blue-box">
-    <div class="red-circle">
+  <body>
+    <div class="blue-box">
+      <div class="red-circle"></div>
     </div>
-  </div>
-
-</body>
-
+  </body>
 </html>
