@@ -7,13 +7,9 @@
     <title>Document</title>
 </head>
 <style>
-* {
-    box-sizing: border-box;
-}
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
 }
 
@@ -24,20 +20,17 @@ body {
 
 .nav-list {
     display: flex; /* Enable flexbox */
-    padding: 0;
-    margin: 0;
-    list-style-type: none; /* Remove default list styles */
+    flex-direction: row;
+    gap:15px;
+    list-style: none; /* Remove default list styles */
     justify-content: center; /* Center the nav items */
 }
 
 .nav-item {
     color: white;
-    text-decoration: none;
-    padding: 15px 20px; /* Add padding for clickable area */
-    margin: 0 10px; /* Space between items */
+    padding: 20px; /* Add padding for clickable area */
     background-color: #444; /* Background color for items */
     border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth hover effect */
 }
 
 .nav-item:hover {
@@ -50,9 +43,6 @@ body {
         align-items: center; /* Center items */
     }
 
-    .nav-item {
-        margin: 5px 0; /* Adjust margin for vertical spacing */
-    }
 }
 
 </style>
