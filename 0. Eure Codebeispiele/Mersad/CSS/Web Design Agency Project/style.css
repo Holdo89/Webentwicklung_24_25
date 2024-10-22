@@ -6,43 +6,16 @@ body {
   flex-direction: column;
   min-height: 95vh;
 }
-span{
-  color: midnightblue;
-}
 .main {
   flex: 1;
 }
+
 h1 {
   font-size: 5rem;
 }
-.tile-image{
-  margin: 10px;
-  width: 200px;
-  float: left;
-  margin-right: 30px;
-}
-.left-card{
-  width: 45%;
-  float: right;
-}
-.right-card{
-  width: 45%;
-  float: left;
-}
+
 footer {
   text-align: right;
   color: midnightblue;
 }
-@media (max-width: 680px){
-.left-card, .right-card{
-  width: 100%;
-  float: none;
-  display: block;
-}
-.tile-image{
-  width: 100%;
-}
-.logo{
-  width: 100px;
-}
-}
+
