@@ -10,11 +10,25 @@
       }
       .container {
         height: 100vh; /* Höhe des Containers auf gesamte Bildschirmhöhe setzen */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-evenly;
       }
 
       .box {
         background-color: #007bff;
         color: white;
+        padding: 30px;
+        border-radius: 5px;
+        border: double;
+      }
+      @media(max-width: 600px){
+        .container{
+          flex-direction: column-reverse ;
+          justify-content: flex-end;
+          gap: 10px;
+        }
       }
     </style>
   </head>
