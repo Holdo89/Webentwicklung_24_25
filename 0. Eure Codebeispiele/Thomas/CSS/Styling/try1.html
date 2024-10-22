@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.Elemente  {
+    display: flex;
+    gap: 0px;
+    margin: 140px;
+    
+}
+.Red{
+    background-color: red;
+    width: 100px;
+    color: white;
+}
+.Yellow{
+    width: 100px;
+    color: white;
+}
+.Orange{
+    width: 100px;
+    color: aliceblue;
+}
+h1{
+   position: relative;
+   top: 120px;
+   left: 150px;
+   
+    
+}
+p{
+    display:inline-flex;
+    text-align: center;
+    padding: 30px;
+    font-size: 10px;
+    position: absolute;
+    bottom: 10px;
+    gap: 30px;
+    
+
+    
+    
+}
+.Rahmen{
+    border:2px solid rgb(100, 128, 0);
+    padding: 120px;
+    display: flex;
+    position: relative;
+    bottom: 160px;
+    left: 140px;
+    
+
+}   
+input {
+    font-size: 20px;
+    height: 5px;
+    width: 50px;
+}
+.Link{
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+}
+.nr1{
+    font-size: 20px;
+    padding: 5px;
+    position: absolute;
+    left: 150px;
+    
+}
+.nr2{
+    font-size: 20px;
+    display: inline;
+    position: absolute;
+    top: 390px;
+    left: 400px;
+}
+.ok{
+    justify-content: center;
+    gap: 5px;
+    
+}
+
+
+    </style>
+</head>
+<body>
+    <h1>CSS Flexbox:Container Layout</h1>
+    
+
+    <div class="Elemente">
+        <div class="Red">Red</div>
+        <div style="background-color: yellow; color: white;" class="Orange">Orange</div>
+        <div style="background-color: orange;" class="Yellow or blue">Yellow</div>
+        <div style="background-color: green;" class= "Green">Green</div>
+        <div  style="background-color: blue;" class="Blue">Blue</div>
+        <div style="background-color: indigo;" class="Indigo">Indigo</div>
+        <div style="background-color: purple;" class="Purple">Purlple</div>
+
+
+
+
+
+    </div>
+    <div class="Rahmen"></div>
+
+    
+    <div class="ok">
+<p class="nr1">Justify Content:<select > <input type="text" placeholder="Flex Start"></select></p>
+<p class="nr2">Flex Wrap:<select > <input type="text" placeholder="Flex Wrap"></select></p>
+<p>Align Items</p>
+<p>Align Content</p>
+<a class="Link" href ="www.google.at">Hier der Link</a>
+</div>
+</body>
+</html>
