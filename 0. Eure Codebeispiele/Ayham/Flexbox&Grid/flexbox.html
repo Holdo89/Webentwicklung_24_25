@@ -11,7 +11,6 @@
       .container {
         height: 100vh; /* Höhe des Containers auf gesamte Bildschirmhöhe setzen */
         display: flex;
-        justify-content: center;
         align-items: center;
         justify-content: space-evenly;
       }
@@ -26,7 +25,7 @@
       @media(max-width: 600px){
         .container{
           flex-direction: column-reverse ;
-          justify-content: flex-end;
+          justify-content: start;
           gap: 10px;
         }
       }
