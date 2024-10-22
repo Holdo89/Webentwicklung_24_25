@@ -9,7 +9,6 @@ body {
 .main {
   flex: 1;
 }
-
 h1 {
   font-size: 5rem;
 }
@@ -19,3 +18,34 @@ footer {
   color: midnightblue;
 }
 
+.tile-image {
+  height: 200px;
+  float: left;
+  margin-right: 50px;
+}
+
+.card {
+  width: 45%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+span {
+  color: midnightblue;
+}
+
+@media (max-width: 600px) {
+  body{
+    background: red;
+  }
+  .card img {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}

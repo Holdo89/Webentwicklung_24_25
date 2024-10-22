@@ -34,7 +34,7 @@ footer {
   float: right;
 }
 
-.creative {
+.spcreative {
   color: midnightblue;
 }
 
@@ -52,6 +52,7 @@ footer {
     width: 100%;
     display: block;
     margin-bottom: 30px;
+    text-align: justify;
   }
 
   .card img {
