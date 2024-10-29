@@ -7,15 +7,36 @@
     <style>
       body {
         margin: 0px;
+        font-family: arial, sans-serif;
+        
+
       }
       .container {
-        height: 100vh; /* Höhe des Containers auf gesamte Bildschirmhöhe setzen */
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100vh;
+
       }
 
       .box {
+       
         background-color: #007bff;
         color: white;
+        justify-content: center;
+        padding: 20px 20px;
+        
       }
+      @media (max-width: 600px) {
+        .container { 
+          justify-content: start;
+          gap: 10px;
+          flex-direction: column-reverse;
+          align-items: center;
+        align-content: center;}
+
+      }
+
     </style>
   </head>
   <body>
