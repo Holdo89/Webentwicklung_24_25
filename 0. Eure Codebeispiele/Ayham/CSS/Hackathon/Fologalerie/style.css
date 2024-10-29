@@ -1,4 +1,7 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* hier noch nicht vollständig */
 
     height: 100vh;
@@ -7,3 +10,18 @@ body {
 }
 
     /* hier noch nicht vollständig */
+img{
+    border-radius: 10px;
+}
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+img{
+    width: 400px;
+    height: 400px;
+}
+img[alt~="bild 1"]{
+    display: grid
+}

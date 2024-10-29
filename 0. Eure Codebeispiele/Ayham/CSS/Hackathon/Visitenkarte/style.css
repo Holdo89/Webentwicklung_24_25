@@ -1,4 +1,7 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -7,4 +10,12 @@ body {
 }
 
 /* hier noch nicht vollständig */
-
+.visit{
+    display: flex;
+    width: 350px;
+    flex-flow: column wrap;
+    align-items: center;
+    background-color: aliceblue;
+    border-radius: 20px;
+    box-shadow: gray 5px 5px 4px 2px;
+}

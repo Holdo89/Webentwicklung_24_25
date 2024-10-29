@@ -1,0 +1,21 @@
+
+h1{
+    display: flex;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px;
+    
+}
+p {
+    padding-left: 100px;
+}
+h1 + p { 
+    font: bold 20px  sans-serif ;  
+}
+#max{
+    color: grey;
+}
+#max ~ p {
+    margin: 30px 0;
+    width: 550px;
+    font:  15px sans-serif;
+}
