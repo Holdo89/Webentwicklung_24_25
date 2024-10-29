@@ -1,0 +1,13 @@
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+        /* hier noch nicht vollständig */
+
+}
+    /* hier noch nicht vollständig */
+
+.buy-button:hover {
+    background-color: #218838;
+}
