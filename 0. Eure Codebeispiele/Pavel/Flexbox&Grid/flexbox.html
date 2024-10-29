@@ -5,24 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flexbox Beispiel</title>
     <style>
-      body {
-        margin: 0px;
-      }
-      .container {
-        height: 100vh; /* Höhe des Containers auf gesamte Bildschirmhöhe setzen */
-      }
-
-      .box {
-        background-color: #007bff;
+     .grid-container{
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(5, 100px);
+      gap: 10px;
+      background-color: white;
+      padding: 10px;
+      max-width: 850px;
+   
+ 
+ 
+     }
+     .box {
+        background-color: white;
+        text-align: center;
+        font-weight: 900;
+        border: 2px solid white;
+        background-color: red;
         color: white;
+        border-radius: 10%;
+        padding: 42px;
+         }
+    
+    
+    .box1 {
+      text-align: center;
+      background-color: black;
+      color:white;
+      font-weight: 900;
+      border-radius: 10%;
+      padding: 42px;
+      
+    }
+    @media (max-width: 800px) {
+        .grid-container {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 10px;
+        
+        }
       }
+   
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="box">Box 1</div>
-      <div class="box">Box 2</div>
-      <div class="box">Box 3</div>
+    <div class="grid-container">
+  
+    
+      <div class="box">1</div>
+      <div class="box1"> 2</div>
+      <div class="box"> 3</div>
+      <div class="box1"> 4</div>
+      <div class="box"> 5</div>
+      <div class="box1"> 6</div>
+      <div class="box"> 7</div>
+      <div class="box1"> 8</div>
+      <div class="box"> 7</div>
+      <div class="box1"> 8</div>
+      <div class="box"> 9</div>
+      <div class="box1"> 10</div>
+      <div class="box">11</div>
+      <div class="box1"> 12</div>
+      <div class="box"> 13</div>
+      <div class="box1"> 14</div>
+      <div class="box"> 15</div>
+      <div class="box1"> 16</div>
+      <div class="box"> 17</div>
+      <div class="box1"> 18</div>
+      <div class="box"> 19</div>
+      <div class="box1"> 20</div>
+      <div class="box"> 21</div>
+      <div class="box1"> 22</div>
+      <div class="box"> 23</div>
+      <div class="box1"> 24</div>
+      <div class="box"> 25</div>
+      <div class="box1"> 26</div>
+      <div class="box"> 27</div>
+      <div class="box1"> 28</div>
+      <div class="box"> 29</div>
+      <div class="box1"> 30</div>
     </div>
   </body>
 </html>
