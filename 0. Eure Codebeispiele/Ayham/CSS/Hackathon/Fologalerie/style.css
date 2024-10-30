@@ -19,8 +19,8 @@ img{
     gap: 5px;
 }
 img{
-    width: 400px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
 }
 img[alt~="bild 1"]{
     display: grid

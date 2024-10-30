@@ -8,35 +8,35 @@ body {
         /* hier noch nicht vollständig */
 
 }
-
-    /* hier noch nicht vollständig */
-p{
-    margin: 5px;
-    color: rgb(68, 66, 66);
-    font-size: small;
+button {
+    width: 115%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
 }
-.anmeld{
-    background-color: rgb(18, 154, 245);
-    width: 220px;
-    height: 30px;
-    color: aliceblue;
-    border-radius: 5px;
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 0.5px gray;
+    border-radius: 10px;
+    width: 300px;
+    height: 270px;
 }
 form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-}
-div{
-    border: solid 1px ;
-    border-radius: 10px;
-    width: 300px;
-    height: 250px;
-    text-align: center;
 }
 input{
-    width: 200px;
-    height: 20px;
-    border-radius: 5px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
 }

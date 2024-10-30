@@ -1,4 +1,7 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -7,7 +10,31 @@ body {
 
 }
     /* hier noch nicht vollständig */
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px;
+    border-radius: 10px;
+    border: gray solid 0.5px;
+    box-shadow: gray 3px 3px 3px;
+}
+button{
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 0.1px solid;
+    border-radius: 5px;
+}
 
 .buy-button:hover {
     background-color: #218838;
+    color: #f4f4f4;
+
+}
+p{
+    width: 400px;
+    text-align: center;
+    color: rgb(93, 91, 91);
 }
