@@ -2,7 +2,35 @@ body {
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
         /* hier noch nicht vollständig */
+
+}
+.todo-list {
+    text-align: center;
+
+}
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    
+    
+}
+li {
+    background-color: rgb(162, 222, 230);
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 10px;
+    
 }
 
     /* hier noch nicht vollständig */

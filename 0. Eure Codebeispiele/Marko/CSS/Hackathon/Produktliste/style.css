@@ -3,8 +3,31 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+
         /* hier noch nicht vollständig */
 
+} .card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    
+} .card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+    width: 250px;
+    background-color: white;
+    border-radius: 10px;
+} p {
+    display: flex;
+    text-align: center;
+    
 }
 
     /* hier noch nicht vollständig */

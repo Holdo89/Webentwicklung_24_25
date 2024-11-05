@@ -4,6 +4,24 @@ body {
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+} .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto ;
+    justify-content: center;
+    align-items: center;
+    gap:  10px;
+    
+}
+img {
+    width: 200px;
+    max-height: 250px;
+    border-radius: 10px;
 }
 
     /* hier noch nicht vollständig */
