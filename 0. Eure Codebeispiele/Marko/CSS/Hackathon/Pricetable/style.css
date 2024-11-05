@@ -3,6 +3,34 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* hier noch nicht vollständig */
+} .pricing {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+} .plan {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 200px;
+    height: 300px;
+} li {
+    list-style: none;
+
+
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
 }
 /* hier noch nicht vollständig */
