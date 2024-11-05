@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 150px;
+  background-color: rgb(7, 7, 7);
+  border-radius: 10px;
+  width: 100px;
+  height: 260px;
+
+}
+.red {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color:gray;
+    margin: 2px;
+    opacity: 0.3;
+  }
+  @keyframes red  {
+    0% { background-color: red; opacity: 2; }           
+    50% { background-color: red; opacity: 1; }
+    60% { background-color: gray; opacity: 0.3; }
+    100% { background-color: gray; opacity: 0.3; }
+  }
+  
+  .red {
+    animation: red 12s infinite;
+  }
+  .gelb {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color:gray;
+    margin: 2px;
+    opacity: 0.3;
+  }
+  
+  @keyframes gelb  {
+    0% { background-color: orange; opacity: 2; }           
+    50% { background-color: orange; opacity: 1; }
+    60% { background-color: orange; opacity: 0.3; }
+    100% { background-color: gray; opacity: 0.3; }
+  }
+  .gelb{
+    animation: gelb 9s infinite;
+    animation-delay: 2s;
+
+  }
+  .green {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: gray;
+    margin: 2px;
+    opacity: 0.3;
+  }
+  @keyframes green  {
+    0% { background-color: green; opacity: 2; }           
+    50% { background-color: green; opacity: 0.3; }
+    60% { background-color: green; opacity: 1; }
+    65% { background-color: green; opacity: 0.3; }
+    85% { background-color: gray; opacity: 1; }
+    100% { background-color: gray; opacity: 0.3; }
+  }
+  .green{
+    animation: green 8s infinite;
+    animation-delay: 6s;
+  }
+ 
+</style>
+</head>
+
+<body>
+    <div class="traffic-light">
+        <div class="red"></div>
+        <div class="gelb"></div>
+        <div class="green"></div>
+</body>
+</html>

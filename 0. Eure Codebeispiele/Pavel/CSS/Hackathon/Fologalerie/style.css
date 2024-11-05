@@ -1,9 +1,25 @@
 body {
-    /* hier noch nicht vollständig */
-
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+   
 }
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; 
+    
+    }
+
+.gallery img {
+    width: 200px; 
+    max-height: 250px; 
+    object-fit: cover; 
+    border-radius: 10%;
+}
+
 
     /* hier noch nicht vollständig */
