@@ -1,0 +1,36 @@
+body {
+  overflow: hidden;
+  background-image: url("./tenniscourt.png");
+  background-size: 90vw;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+.ball {
+  width: 30px;
+  height: 30px;
+  background-color: #b3bc0d;
+  border-radius: 50%;
+  /* hier fehlt zusätzlicher CSS Code */
+}
+
+.racket-left {
+  /* hier fehlt zusätzlicher CSS Code */
+}
+
+.racket-right {
+  /* hier fehlt zusätzlicher CSS Code */
+}
+
+@keyframes bounce {
+  /* hier fehlt zusätzlicher CSS Code */
+}
+
+@keyframes smash-left {
+  /* hier fehlt zusätzlicher CSS Code */
+}
+
+@keyframes smash-right {
+  /* hier fehlt zusätzlicher CSS Code */
+
+}
