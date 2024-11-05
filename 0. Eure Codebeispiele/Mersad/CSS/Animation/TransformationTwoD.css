@@ -1,0 +1,25 @@
+div{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    margin: 50px;
+    text-align: center;
+    align-content: center;
+    color: white;
+}
+#type:hover{
+    transform: translate(200px,200px);
+    transition-duration: 1s;
+}
+#type2:hover{
+    transform: rotate(45deg);
+    transition-duration: 1s;
+}
+#type3:hover{
+    transform: scale(2, 2);
+    transition-duration: 1s;
+}
+#type4:hover{
+    transform: skew(15deg, 15deg);
+    transition-duration: 1s;
+}
