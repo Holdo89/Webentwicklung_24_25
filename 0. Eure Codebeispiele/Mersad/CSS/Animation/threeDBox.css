@@ -1,0 +1,12 @@
+div{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    transition: width 2s linear, height 2s linear, background-color 2s;
+    transition-delay: 1s;
+}
+div:hover{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}

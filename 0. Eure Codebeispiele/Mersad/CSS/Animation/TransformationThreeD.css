@@ -1,0 +1,28 @@
+body{
+    display: flex;
+    height: 100vh;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+div{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    text-align: center;
+    align-content: center;
+    color: white;
+}
+#rotateX:hover{
+    transform: rotateX(45deg);
+    transition-duration: 1s;
+}
+#rotateY:hover{
+    transform: rotateY(45deg);
+    transition-duration: 1s;
+}
+#rotateZ:hover{
+    transform: rotateZ(45deg);
+    transition-duration: 1s;
+}
