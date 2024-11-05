@@ -13,7 +13,7 @@
   /* Verschiebung, Drehung, Skalierung und Verzerrung */
   .translate:hover {
     transform: translate(100px, 200px);
-    transition-duration: 1s;
+    /* transition-duration: 1s; */
   }
 
   .rotate:hover {
