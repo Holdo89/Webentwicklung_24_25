@@ -19,11 +19,11 @@ section{
 }
 ul{
     list-style: none;
+    padding: 0px;
 }
 li {
     text-decoration: underline;
     margin-top: 5px;
-    margin-left: -40px;
 }
 .plan{
     border: 1px black solid;

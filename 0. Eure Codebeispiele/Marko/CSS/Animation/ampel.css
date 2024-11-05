@@ -1,0 +1,85 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+
+}
+h2{
+    display: flex;
+    width: 200px;
+    height: 400px;
+    background-color: grey;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid ;
+    margin-bottom: 0px;
+}
+h1 {
+    display: flex;
+    width: 50px;
+    height: 400px;
+    background-color: black;
+    margin: 0px;
+
+}
+.rot {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: black ;
+    border-radius: 50%;
+    border: 5px solid black;
+    animation: example 10s steps(1,start) infinite;
+} 
+.gelb {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: black ;
+    border-radius: 50%;
+    border: 5px solid black;
+    animation: example1 10s steps(1,start) infinite;
+}
+.grün {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 50%;
+    border: 5px solid black;
+    animation: example2 10s steps(1,start) infinite;
+
+}
+@keyframes example {
+    0% {background-color: red;}
+    20% {background-color: black;}
+    40% {background-color: black;}
+    45% {background-color: black;}
+    50% {background-color: black;}
+    55% {background-color: black;}
+    60% {background-color: black;}
+    90% {background-color: red;}
+}
+@keyframes example1 {
+    0% {background-color: black;}
+    20% {background-color: yellow;}
+    40% {background-color: black;}
+    45% {background-color: black;}
+    50% {background-color: black;}
+    60% {background-color: yellow;}
+    65% {background-color: black;}
+    75% {background-color: black;}
+}
+@keyframes example2 {
+    0% {background-color: black;}
+    20% {background-color: black;}
+    40% {background-color: green;}
+    45% {background-color: black;}
+    50% {background-color: green;}
+    55% {background-color: black;}
+    60% {background-color: black;}
+    80% {background-color: black;}
+}
