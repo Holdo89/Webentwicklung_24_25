@@ -1,4 +1,7 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
     height: 100vh;
     margin: 0;
@@ -6,3 +9,34 @@ body {
     /* hier noch nicht vollständig */
 }
 /* hier noch nicht vollständig */
+* {
+    margin: 0px;
+    padding: 0;
+  }
+section{
+    display: flex;
+    gap: 20px;
+}
+p{
+    color: #007bff;
+    font-size: 20px ;
+    margin: 0;
+}
+.plan{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    padding: 20px;
+    text-align: center;
+}
+ul {
+    list-style: none;
+    font-size: 16px;
+  }
+  
+li {
+    border-bottom: 1px solid #ddd;
+    margin: 10px;
+}
+

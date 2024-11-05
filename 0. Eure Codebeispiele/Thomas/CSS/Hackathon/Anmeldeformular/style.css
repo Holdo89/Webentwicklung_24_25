@@ -1,9 +1,76 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
         /* hier noch nicht vollständig */
 
+}
+.form-container{
+    border: 3px solid;
+    border-radius: 10px;
+    border-color: lightgray;
+    padding: 20px;
+
+}
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 50px;
+
+
+    
+}
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    
+}
+label{
+    text-align: center;
+}
+#e-mail{
+    
+    border-radius: 5px;
+    width: 400px;
+    margin-left: 40px;
+    height: 40px;
+
+
+    
+}
+#Benutzername{
+    font-size: 22px;
+
+}
+#PW{
+    font-size: 20px;
+    
+}
+#Passwort{
+    border-radius: 5px;
+    width: 400px;
+    margin-left: 40px;
+    height: 40px;
+
+}
+
+#Anmeldung{
+    background-color: lightblue;
+    border-radius: 5px;
+    height: 50px;
+    margin-left: 30px;
+    margin-right: 40px;
+
+    
 }
 
     /* hier noch nicht vollständig */
