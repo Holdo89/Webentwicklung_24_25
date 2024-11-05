@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+        background-color: green;
+        width: 50px;
+        height: 50px;
+        padding: 20px;
+        border: 1px solid;
+      }
+      .Trans:hover {
+        transform: translate(150px, 200px);
+        transition-duration: 5s;
+      }
+
+      .Rotate:hover {
+        transform: rotate(45deg);
+        transition-duration: 3s;
+      }
+
+      .Scale:hover {
+        transform: scale(2, 3);
+        transition-duration: 5s;
+      }
+      .SkewBox:hover {
+        transform: skew(20deg, 30deg);
+        transition-duration: 5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Trans">Translate Box</div>
+    <div class="Rotate">Rotate box</div>
+
+    <div class="Scale">ScaleBox</div>
+    <div class="SkewBox">Skew</div>
+  </body>
+</html>
