@@ -1,9 +1,40 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
         /* hier noch nicht vollständig */
 }
+h1{
+    display: flex;
+    justify-content: center;
 
+}
+   
+    ul{
+        display: flex;
+        flex-direction: column;
+    
+        gap:5px;
+        
+        
+
+    }
+    li{
+        list-style: none;
+        background-color:lightblue;
+        font-size: 30px;
+        padding:10px;
+        width: 400px;
+        border-radius: 10px;
+        text-align: center;
+       
+
+        
+        
+        
+    }
     /* hier noch nicht vollständig */
 

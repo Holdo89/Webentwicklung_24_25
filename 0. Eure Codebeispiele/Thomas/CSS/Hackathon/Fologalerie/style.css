@@ -1,9 +1,38 @@
 body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+
+    
+
     /* hier noch nicht vollständig */
 
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
 }
+.gallery{
+    display: grid;
+    gap: 5px;
+    grid-template-columns:4fr 4fr;
+    grid-template-rows: 4fr 4fr;
+    gap: 10px;
+
+    
+    
+    
+
+    
+}
+img{
+
+    width: 250px;
+    max-height: 300px;
+    border-radius: 10px;
+    
+    
+}
+
 
     /* hier noch nicht vollständig */

@@ -1,8 +1,72 @@
 body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
     height: 100vh;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: lightgray;
     /* hier noch nicht vollständig */
 }
+.pricing{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-evenly;
+    gap: 100px;
+    
+    
+    
+    
+    
+}
+.plan{
+    display: grid;
+    border: 0px solid;
+    background-color: white;
+    border-radius: 10px;
+    width:290px;
+    align-items: center;
+
+    
+    
+
+    
+    
+    
+}
+h2, p.price{
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    font-size: 30px
+
+}
+
+ul{
+    list-style: none;
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-decoration: underline brown;
+
+    
+    
+}
+p.price{
+    color: blue;
+    margin-top: -40px;
+    
+    
+}
+h2{
+    margin-bottom: 50px;
+    
+}
+li{
+    text-align: center;
+    margin-right: 40px;
+
+}
+
+
+
 /* hier noch nicht vollständig */
