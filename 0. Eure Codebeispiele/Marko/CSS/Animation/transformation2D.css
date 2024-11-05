@@ -1,3 +1,10 @@
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 30px;
+}
+
 div {
     width: 100px;
     height: 100px;
@@ -7,20 +14,19 @@ div {
     justify-content: center;
     align-items: center;
     color: white;
-    margin: 30px;
-    
-    
-    
 
 } .translate:hover {
-    transform: translate(150px, 200px);
+    transform: translate(100px, 200px);
     transition: 1s;
+
 } .rotate:hover {
     transform: rotate(60deg);
     transition: 1s;
+
 } .scale:hover {
     transform: scale(2,3);
-    transition: 0.5s;
+    transition: 1s;
+
 } .skew:hover {
     transform: skew(50deg, 10deg);
     transition: 1s;
