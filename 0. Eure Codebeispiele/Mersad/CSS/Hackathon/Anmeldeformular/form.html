@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anmeldeformular</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="form-container">
-        <h1>Anmeldung</h1>
+      <h1>Anmeldung</h1>
+      <form>
         <form>
-            <!-- hier noch nicht vollständig -->
+          <label for="benutzername">Benutzername:</label><br />
+          <input type="text" id="benutzername" name="benutzername" /><br />
+          <label for="passwort">Passwort:</label><br />
+          <input type="password" id="passwort" name="password" /><br /><br />
+          <input id="button" type="submit" value="Anmelden" />
         </form>
+      </form>
+      <!-- hier noch nicht vollständig -->
     </div>
-</body>
+  </body>
 </html>

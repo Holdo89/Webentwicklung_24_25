@@ -1,9 +1,23 @@
 body {
+    display: flex;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
         /* hier noch nicht vollständig */
 }
-
+.todo-list{
+    text-align: center;
+    width: 350px;
+}
+ul{
+    padding: 10px;
+}
+li{
+    list-style: none;
+    background-color: aqua;
+    margin-bottom: 5px;
+    padding: 10px;
+}
     /* hier noch nicht vollständig */
-

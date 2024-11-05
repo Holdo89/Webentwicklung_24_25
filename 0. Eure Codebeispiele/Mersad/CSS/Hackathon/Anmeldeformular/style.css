@@ -1,9 +1,38 @@
 body {
+    display: flex;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    align-items: center;
+    justify-content: center;
         /* hier noch nicht vollständig */
 
 }
-
+.form-container{
+    text-align: center;
+    border: 1px rgb(236, 229, 229);
+    background-color: white;
+    width: 300px;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px black solid;
+}
+input{
+    margin-bottom: 10px;
+    width: 280px;
+    border-radius: 5px;
+    border: 1px black solid;
+    padding: 5px;
+}
+#passwort{
+    margin-bottom: -10px;
+}
+#benutzername{
+    margin-bottom: 25px;
+}
+#button{
+    margin-top: -10px;;
+    background-color: rgb(110, 110, 236);
+    width: 300px;
+}
     /* hier noch nicht vollständig */

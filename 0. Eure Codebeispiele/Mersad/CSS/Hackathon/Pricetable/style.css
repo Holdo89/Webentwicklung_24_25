@@ -1,8 +1,41 @@
 body {
+    display: flex;
     font-family: Arial, sans-serif;
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    justify-content: center;
+    align-items: center;
     /* hier noch nicht vollständig */
+}
+section{
+    display: flex;
+    background-color: rgb(222, 216, 216);
+    height: 300px;
+    width: 600px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+ul{
+    list-style: none;
+}
+li {
+    text-decoration: underline;
+    margin-top: 5px;
+    margin-left: -40px;
+}
+.plan{
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
+    height: 250px;
+    width: 150px;
+}
+.price{
+    color: blue;
+    font-size: large;
 }
 /* hier noch nicht vollständig */
