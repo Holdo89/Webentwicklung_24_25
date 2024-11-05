@@ -140,3 +140,21 @@ h2 {
   text-decoration: underline;
 }
 
+#footer {
+  height: 40px;
+  background-color: #69D2E7;
+  clear:both;
+  font-family:Open Sans;
+}
+
+#footer a {
+display: inline-block;
+margin-right: 5px;
+}
+
+#footer img a {
+width: auto;
+height: 10px;
+max-height: 10px;
+}
+
