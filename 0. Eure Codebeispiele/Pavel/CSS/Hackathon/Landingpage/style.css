@@ -1,13 +1,52 @@
 body {
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-        /* hier noch nicht vollständig */
-
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ddd8d8;
+  /* hier noch nicht vollständig */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
-    /* hier noch nicht vollständig */
+
+section {
+  padding: 40px;
+  border-radius: 5%;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  background-color: white;
+ 
+}
+
+h1 {
+  text-align: center;
+  color: gray;
+  font-weight: 650;
+  font-size: xx-large;
+}
+img {
+    position: relative;
+    left: 125px;
+}
+p {
+  text-align: center;
+  color: gray;
+}
+button {
+  padding: 15px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  left: 125px;
+}
+/* hier noch nicht vollständig */
 
 .buy-button:hover {
-    background-color: #218838;
+  background-color: #218838;
 }

@@ -1,8 +1,32 @@
 body {
+    display: flex;
+    justify-content: center;
     height: 100vh;
-    margin: 0;
+    margin: 0x;
     font-family: Arial, sans-serif;
-        /* hier noch nicht vollständig */
+
+    
+    }
+    .todo-list{
+        text-align: center;
+        width: 400px;
+    }
+ 
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      
+  }
+li{
+    width: 300px;
+    height: 30px;
+    background: rgb(174, 247, 247);
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8%;
+   
 }
 
     /* hier noch nicht vollständig */
