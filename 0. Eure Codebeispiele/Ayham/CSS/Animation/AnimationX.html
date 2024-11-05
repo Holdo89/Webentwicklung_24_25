@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animation</title>
     <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
         div{
             display: flex;
             width: 100px;
@@ -16,24 +20,18 @@
             border: dotted;
             margin: 20px;
             animation: na1 5s infinite;
-            animation-timing-function: linear;
-            
+            animation-timing-function: linear;  
         }
-        .tran:hover{
-            transform: translate(110px, 125px);
-            transition-duration: 2s;
-    
-        }
-        .rot:hover{
-            transform:rotate(45deg);
+        .rotx:hover{
+            transform: rotateX(45deg);
             transition-duration: 2s;
         }
-        .sca:hover{
-            transform:scale(2,2) ;
+        .roty:hover{
+            transform: rotatey(45deg);
             transition-duration: 2s;
         }
-        .ske:hover{
-            transform: skew(-40deg);
+        .rotz:hover{
+            transform: rotatez(45deg);
             transition-duration: 2s;
         }
         @keyframes na1 {
@@ -56,10 +54,10 @@
     </style>
 </head>
 <body>
-    <div class="tran">Translate Box</div>
-    <div class="rot">Rotate Box</div>
-    <div class="sca">Scale Box</div>
-    <div class="ske">Skew Box</div>
+    <div class="rotx">Rotate X Box</div>
+    <div class="roty">Rotate Y Box</div>
+    <div class="rotz">Rotate Z Box</div>
+    
     
 </body>
 </html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .con{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 20px;
+          width: 200px;
+          height: 600px;
+          background-color: rgb(34, 28, 28);        
+        }
+        .rot{
+          display: flex;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid gray 10px;
+          animation: rot 10s ;
+          animation-fill-mode: both;
+          animation-timing-function: linear;
+        }
+        .gelp{
+          display: flex;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid gray 10px;
+          animation: gelp 2s ;
+          animation-timing-function: linear;
+        }
+        .grun{
+          display: flex;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid gray 10px;
+          animation: grun 4s ;
+          animation-timing-function: linear;
+        }
+        @keyframes grun{
+          0%{
+            background-color: rgb(67, 233, 67) ;
+          }
+          100%{
+            background-color: transparent;
+          }
+        }
+        @keyframes gelp{
+          0%{
+            background-color: gold; opacity: 4s;
+          }
+          10%{
+            background-color: transparent;
+          }
+          20%{
+            background-color: gold; opacity: 4s;
+          }
+          30%{
+            background-color: transparent;
+          }
+          40%{
+            background-color: gold; opacity: 4s;
+          }
+          50%{
+            background-color: transparent;
+          }
+          60%{
+            background-color: gold; opacity: 4s;
+          }
+          70%{
+            background-color: transparent;
+          }
+          80%{
+            background-color: gold; opacity: 4s;
+          }
+          90%{
+            background-color: transparent;
+          }
+          95%{
+            background-color: gold; opacity: 4s;
+          }
+          100%{
+            background-color: transparent; opacity: 4s;
+          }
+        }
+        @keyframes grun{
+          0%{
+            background-color: rgb(79, 224, 79); opacity: 1s;
+          }
+          100%{
+            background-color: transparent; opacity: 1s;
+          }
+        }
+        @keyframes rot{
+          0%{
+            background-color: transparent;
+          }
+          100%{
+            background-color: red;
+          }
+
+        }
+         
+    </style>
+</head>
+<body>
+  <div class="con">
+    <div class="rot"></div>
+    <div class="gelp"></div>
+    <div class="grun"></div>
+  </div>
+    
+</body>
+</html>
