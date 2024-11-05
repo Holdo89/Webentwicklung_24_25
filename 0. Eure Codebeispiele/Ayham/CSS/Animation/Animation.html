@@ -15,6 +15,9 @@
             color: aliceblue;
             border: dotted;
             margin: 20px;
+            animation: na1 5s infinite;
+            animation-fill-mode: both;
+            animation-timing-function: ;
             
         }
         .tran:hover{
@@ -34,8 +37,22 @@
             transform: skew(-40deg);
             transition-duration: 2s;
         }
-
-
+        @keyframes na1 {
+      0%{
+        background-color: rgb(255, 153, 0);
+      }
+      25%{
+        background-color: blueviolet;
+      }
+      50%{
+        background-color: rgb(229, 10, 236);
+      }
+      75%{
+        background-color: brown;
+      }
+      100%{
+        background-color: blue;
+      }
         
     </style>
 </head>
