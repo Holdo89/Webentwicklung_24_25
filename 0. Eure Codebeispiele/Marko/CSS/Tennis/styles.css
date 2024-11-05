@@ -7,30 +7,56 @@ body {
 }
 
 .ball {
+  position: absolute;
+  left: 180px;
+  top: 330px;
   width: 30px;
   height: 30px;
+  display: flex;
   background-color: #b3bc0d;
   border-radius: 50%;
+  animation: bounce 2s infinite;
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 .racket-left {
+  position: absolute;
+  left: 20px;
+  top: 320px;
+  width: 200px;
+  transform: rotateY(30deg);
+  animation: smash-left 2s infinite;
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 .racket-right {
+  position: absolute;
+  right: 20px;
+  width: 200px;
+  top: 320px;
+  rotate: 260deg;
+  animation: smash-right 2s infinite;
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 @keyframes bounce {
+
+  50% {left:1380px; top:350px;}
+  100% {left:200px; top:350px;}
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 @keyframes smash-left {
+  50% {transform: rotateY(30deg);}
+  90% {transform: rotateY(80deg);}
+  100% {transform: translate(40px);}
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 @keyframes smash-right {
+  50% {transform: rotateX(80deg);}
+  52% {transform: translate(0px,-40px);}
+  90% {transform: rotateX(10deg);}
   /* hier fehlt zusätzlicher CSS Code */
 
 }
