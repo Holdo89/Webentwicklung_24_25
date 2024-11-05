@@ -1,9 +1,21 @@
 body {
     /* hier noch nicht vollständig */
-
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    align-content: center;
 }
-
+div{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 200px 200px;
+    gap: 30px 10px;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    width: 200px;
+    max-height: 250px;
+    border-radius: 15px;
+}
     /* hier noch nicht vollständig */
