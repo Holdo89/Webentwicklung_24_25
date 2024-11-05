@@ -1,6 +1,9 @@
 body {
-    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
+    background-color: aliceblue;
     margin: 0;
     height: 100vh;
         /* hier noch nicht vollständig */
@@ -8,3 +11,27 @@ body {
 }
 
     /* hier noch nicht vollständig */
+section{
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+}
+div{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    padding: 20px;
+    text-align: center;
+}
+p{
+    font-size: 12px;
+}
+h2{
+    font-size: 15px;
+}
+img{
+    padding: 0;
+    margin: 0;
+}
