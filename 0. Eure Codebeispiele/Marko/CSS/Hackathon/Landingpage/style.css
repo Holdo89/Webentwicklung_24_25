@@ -3,11 +3,35 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
         /* hier noch nicht vollständig */
 
+} .product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.281);
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px  slategrey;
+} .buy-button {
+    height: 40px;
+    width: 130px;
+    background-color: rgb(22, 170, 22);
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    font-size: medium;
+
+}
+h1~p {
+    display: flex;
+    color: grey;
+    
 }
     /* hier noch nicht vollständig */
-
-.buy-button:hover {
-    background-color: #218838;
-}
