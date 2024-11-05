@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Rotation Beispiel</title>
+<style>
+  .container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .box {
+    width: 100px;
+    height: 100px;
+    margin: 100px;
+    background-color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    perspective: 500px; /* Ermöglicht 3D-Effekte */
+    /* transition: transform 0.5s ease; */
+  }
+
+  /* Rotation um die X-Achse */
+  .rotate-x:hover {
+    transform: rotateX(45deg);
+  }
+
+  /* Rotation um die Y-Achse */
+  .rotate-y:hover {
+    transform: rotateY(45deg);
+  }
+
+  /* Rotation um die Z-Achse */
+  .rotate-z:hover {
+    transform: rotateZ(-45deg);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="box rotate-x">rotateX</div>
+  <div class="box rotate-y">rotateY</div>
+  <div class="box rotate-z">rotateZ</div>
+</div>
+
+</body>
+</html>
