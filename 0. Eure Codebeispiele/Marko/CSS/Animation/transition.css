@@ -1,0 +1,22 @@
+
+body {
+    display: flex;
+    height: 100vh;
+
+}
+
+div {
+    margin: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    transition: width 2s linear, height 2s linear, background-color 3s, border-radius 3s ;
+    
+    
+}
+ div:hover {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    border-radius: 50%;
+ }
