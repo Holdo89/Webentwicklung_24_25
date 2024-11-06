@@ -15,8 +15,8 @@ body {
   position: absolute;
   top: 50%;
   left: 11%;
-  animation: bounce 2s infinite ease;
-  transform-origin: 0 0;
+  animation: bounce 1.5s infinite ease-out;
+  transform-origin: bottom;
 }
 
 .racket-left {
@@ -26,7 +26,7 @@ body {
   position: absolute;            
   top: 60%;
   left: 140px;                                            
-  animation: smash-left 2s infinite ease-in;
+  animation: smash-left 1.5s infinite ease-in;
   rotate: 180deg;
   transform-origin: 0 0;
 }
@@ -39,7 +39,7 @@ body {
   top: 45%;
   left: 90%;
   transform: rotateY(180deg);
-  animation: smash-right 2s infinite ease-in;
+  animation: smash-right 1.5s infinite ease-in;
   transform-origin: 0 0;
 }
 
@@ -57,13 +57,13 @@ body {
   /* hier fehlt zusätzlicher CSS Code */
   100%, 0% {  transform: rotateY(110deg);
   }  
-  50% { transform: rotateY(20deg); }  
+  50% { transform: rotateX(-30deg); }  
 }
 
 @keyframes smash-right {
   /* hier fehlt zusätzlicher CSS Code */ 
   0%, 100% {
-     transform: rotateY(20deg);
+     transform: rotateX(-30deg);
    } 
   50% { 
     transform: rotateY(110deg);
