@@ -28,7 +28,8 @@
           height: 150px;
           border-radius: 50%;
           border: solid gray 10px;
-          animation: rot 10s ;
+          animation: rot 1s ;
+          animation-delay: 3.9s;
           animation-fill-mode: both;
           animation-timing-function: linear;
         }
@@ -38,7 +39,7 @@
           height: 150px;
           border-radius: 50%;
           border: solid gray 10px;
-          animation: gelp 2s ;
+          animation: gelp 4s ;
           animation-timing-function: linear;
         }
         .grun{
@@ -47,71 +48,30 @@
           height: 150px;
           border-radius: 50%;
           border: solid gray 10px;
-          animation: grun 4s ;
+          animation: grun 3.9s ;
           animation-timing-function: linear;
         }
         @keyframes grun{
-          0%{
+         100%, 0%{
             background-color: rgb(67, 233, 67) ;
-          }
-          100%{
-            background-color: transparent;
           }
         }
         @keyframes gelp{
-          0%{
-            background-color: gold; opacity: 4s;
+         0%,20%,40%,60%,80%,94%{
+            background-color: gold; 
           }
-          10%{
+         10%,30%,50%,70%,90%,100%{
             background-color: transparent;
-          }
-          20%{
-            background-color: gold; opacity: 4s;
-          }
-          30%{
-            background-color: transparent;
-          }
-          40%{
-            background-color: gold; opacity: 4s;
-          }
-          50%{
-            background-color: transparent;
-          }
-          60%{
-            background-color: gold; opacity: 4s;
-          }
-          70%{
-            background-color: transparent;
-          }
-          80%{
-            background-color: gold; opacity: 4s;
-          }
-          90%{
-            background-color: transparent;
-          }
-          95%{
-            background-color: gold; opacity: 4s;
-          }
-          100%{
-            background-color: transparent; opacity: 4s;
           }
         }
-        @keyframes grun{
-          0%{
-            background-color: rgb(79, 224, 79); opacity: 1s;
-          }
-          100%{
-            background-color: transparent; opacity: 1s;
-          }
-        }
+      
         @keyframes rot{
           0%{
             background-color: transparent;
           }
-          100%{
+           100%{
             background-color: red;
           }
-
         }
          
     </style>
