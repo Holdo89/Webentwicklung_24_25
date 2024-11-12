@@ -1,36 +1,107 @@
 body {
+  display: flex;
+  justify-content: center;
   overflow: hidden;
   background-image: url("./tenniscourt.png");
   background-size: 90vw;
   background-repeat: no-repeat;
   background-position-x: center;
+  
+  
 }
 
 .ball {
-  width: 30px;
-  height: 30px;
+  display: flex;
+  width: 40px;
+  height: 40px;
   background-color: #b3bc0d;
   border-radius: 50%;
+  margin:380px;
+  animation: bounce 2s ease-in-out infinite;
+  
+  
+  
+  
+  
+
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 .racket-left {
+  position: absolute;
+  height:250px;
+  width: 250px;
+  left: 10px;
+  top: 320px;
+  animation: smash-left 1s infinite;
+  
+  
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 .racket-right {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  right: 10px;
+  top: 320px;
+  animation: smash-right 1s infinite;
+  
+  
+  
+  
+  
+
+
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 @keyframes bounce {
+  0%,100%{
+    transform: translateX(550px);
+  }
+  50%{
+    transform: translateX(-550px);
+  }
+
+  
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 @keyframes smash-left {
+  0%{transform: rotateY(40deg);
+  left: 40px;
+  }
+  50%{
+    transform: rotateX(-30deg);
+  }
+ 100%{transform: rotateY(120deg);
+right: 150px;
+}
+ 
+  
+  
+
   /* hier fehlt zusätzlicher CSS Code */
 }
 
 @keyframes smash-right {
+  
+
+ 0%{
+  transform: rotateX(30deg);
+  right: 40px;
+ }
+ 50%{
+  transform: rotateY(70deg);
+  right: 80px;
+ }
+100%{
+  transform: rotateX(30deg);
+  right: 50px;
+}
+ 
+  
   /* hier fehlt zusätzlicher CSS Code */
 
 }

@@ -1,0 +1,54 @@
+body{
+    gap:10px;}
+    
+
+
+
+.Rot{
+    background-color:red;
+    width: 100px;
+    height: 100px;
+    animation: Rot 20s steps(1, end)  infinite;
+    
+}
+.Gelb{
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    animation: Gelb 20s steps(1, end) infinite;
+}
+.Grün{
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    animation: Grün 20s steps(1, end) infinite;
+}
+
+@keyframes Gelb{
+        
+    0%{background-color: black;}
+    30%{background-color: yellow;}
+    60%{background-color: black;} 
+    98%{background-color: yellow;}
+    
+
+
+
+
+
+}
+@keyframes Grün{
+   0%{background-color: black;}
+   60%{background-color: green;}
+   80%{background-color: black;}
+   85%{background-color: green;}
+   90%{background-color: black;}
+   95%{background-color: green;}
+   97%{background-color: black;}
+
+
+}
+@keyframes Rot{
+    0%{background-color: red;}
+    30%{background-color: black;}
+}

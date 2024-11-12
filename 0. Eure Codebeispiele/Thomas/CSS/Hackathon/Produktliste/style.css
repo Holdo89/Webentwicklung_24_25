@@ -1,5 +1,5 @@
 body {
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
@@ -12,10 +12,6 @@ body {
 .card-container{
     display: flex;
     gap: 20px;
-    justify-content: flex-start;
-    
-    
-   
     
 
 }
@@ -26,7 +22,6 @@ body {
     width: 350px;
     height: 350px;
     
-
 }
 
 h2{
@@ -47,8 +42,6 @@ img{
     height: 200px;
     margin-left: 25px;
     margin-top: 10px;
-    
-    
     
 }
 
