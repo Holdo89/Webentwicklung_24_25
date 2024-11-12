@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .con{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 20px;
+          width: 200px;
+          height: 600px;
+          background-color: rgb(34, 28, 28);        
+        }
+        .rot{
+          display: flex;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid gray 10px;
+          animation: rot 1s ;
+          animation-delay: 3.9s;
+          animation-fill-mode: forwards;
+          animation-timing-function: linear;
+        }
+        .gelp{
+          display: flex;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid gray 10px;
+          animation: gelp 4s ;
+          animation-timing-function: linear;
+        }
+        .grun{
+          display: flex;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: solid gray 10px;
+          animation: grun 3.9s ;
+          animation-timing-function: linear;
+        }
+        @keyframes grun{
+         100%, 0%{
+            background-color: rgb(67, 233, 67) ;
+          }
+        }
+        @keyframes gelp{
+         0%,20%,40%,60%,80%,94%{
+            background-color: gold; 
+          }
+         10%,30%,50%,70%,90%,100%{
+            background-color: transparent;
+          }
+        }
+      
+        @keyframes rot{
+          0%{
+            background-color: transparent;
+          }
+           100%{
+            background-color: red;
+          }
+        }
+         
+    </style>
+</head>
+<body>
+  <div class="con">
+    <div class="rot"></div>
+    <div class="gelp"></div>
+    <div class="grun"></div>
+  </div>
+    
+</body>
+</html>

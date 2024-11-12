@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        div{
+            display: flex;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+            background-color: green;
+            color: aliceblue;
+            border: dotted;
+            margin: 20px;
+            animation: na1 5s infinite;
+            animation-timing-function: linear;
+            
+        }
+        .tran:hover{
+            transform: translate(110px, 125px);
+            transition-duration: 2s;
+    
+        }
+        .rot:hover{
+            transform:rotate(45deg);
+            transition-duration: 2s;
+        }
+        .sca:hover{
+            transform:scale(2,2) ;
+            transition-duration: 2s;
+        }
+        .ske:hover{
+            transform: skew(-40deg);
+            transition-duration: 2s;
+        }
+        @keyframes na1 {
+      0%{
+        background-color: rgb(255, 153, 0); 
+      }
+      25%{
+        background-color: blueviolet;
+      }
+      50%{
+        background-color: rgb(229, 10, 236);
+      }
+      75%{
+        background-color: brown; 
+      }
+      100%{
+        background-color: rgb(255, 153, 0);
+      }
+    }
+    </style>
+</head>
+<body>
+    <div class="tran">Translate Box</div>
+    <div class="rot">Rotate Box</div>
+    <div class="sca">Scale Box</div>
+    <div class="ske">Skew Box</div>
+    
+</body>
+</html>

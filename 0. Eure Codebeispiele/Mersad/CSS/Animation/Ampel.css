@@ -1,0 +1,43 @@
+div#rot{
+    width: 200px;
+    height: 200px;
+    background-color:black;
+    border: 10px grey solid;
+    border-radius: 50%;
+    margin: 30px;
+    animation: first 2s steps(1, start);
+}
+div#gelb{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    border: 10px grey solid;
+    border-radius: 50%;
+    margin: 30px;
+    animation: second 10s steps(1, start);
+}
+div#grün{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    border: 10px grey solid;
+    border-radius: 50%;
+    margin: 30px;
+    animation: third 10s steps(1, start);
+}
+@keyframes first{
+    100% {background-color: red}
+}
+@keyframes second{
+    20% {background-color: black}
+    40% {background-color: yellow}
+    80% {background-color: black;}
+    100% {background-color: yellow;}
+}
+@keyframes third{
+    40% {background-color: black}
+    60% {background-color: green}
+    70% {background-color: black}
+    80% {background-color: green}
+    /* 90% {background-color: green} --> gebe ich ihm 10s länger */
+}

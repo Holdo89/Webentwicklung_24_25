@@ -1,0 +1,43 @@
+div {
+    
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    margin: 50px;
+    border: 10px grey solid;
+    border-radius: 50%;
+    background-color: black;
+}
+
+#rot {
+    animation: rot 18s steps(1,end) infinite;
+}
+@keyframes rot {
+    0% {background-color: red;}
+    30% {background-color: black;}
+}
+
+#gelb {
+    animation: gelb 18s steps(1,end) infinite;
+}
+
+@keyframes gelb {
+    0% {background-color: black;}
+    30% {background-color: yellow;}
+    60% {background-color: black;}
+}
+
+#grün {
+    animation: grün 18s steps(1,end) infinite;
+}
+
+@keyframes grün {
+    0% {background-color: black;}
+    60% {background-color: green;}
+    80% {background-color: black;}
+    85% {background-color: green;}
+    90% {background-color: black;}
+    
+}
+
+

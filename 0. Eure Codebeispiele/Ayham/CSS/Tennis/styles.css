@@ -12,25 +12,68 @@ body {
   background-color: #b3bc0d;
   border-radius: 50%;
   /* hier fehlt zusätzlicher CSS Code */
+  position: absolute;
+  top: 50%;
+  left: 11%;
+  animation: bounce 1.5s infinite ease-out;
+  transform-origin: bottom;
 }
 
 .racket-left {
   /* hier fehlt zusätzlicher CSS Code */
+  width: 200px;                   
+  height: 200px;                 
+  position: absolute;            
+  top: 60%;
+  left: 140px;                                            
+  animation: smash-left 1.5s infinite ease-in;
+  rotate: 180deg;
+  transform-origin: 0 0;
 }
 
 .racket-right {
   /* hier fehlt zusätzlicher CSS Code */
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 60%;
+  left: 90%;
+  transform: rotateY(180deg);
+  animation: smash-right 1.5s infinite ease-in;
+  transform-origin: 0 0;
 }
 
 @keyframes bounce {
   /* hier fehlt zusätzlicher CSS Code */
+  0%, 100%{
+    transform: translateX(-30);
+  }
+  50% {
+    transform: translateX(1150px);
+  }
 }
 
 @keyframes smash-left {
   /* hier fehlt zusätzlicher CSS Code */
+  100%, 0% {  transform: rotateY(110deg);
+  }  
+  50% { 
+    left: 100px;
+    top: 520px;
+    transform: rotateX(-30deg); 
+  }  
 }
 
 @keyframes smash-right {
-  /* hier fehlt zusätzlicher CSS Code */
-
+  /* hier fehlt zusätzlicher CSS Code */ 
+  0%, 100% {
+    top: 280px;
+     transform: rotateX(-30deg);
+   } 
+  50% { 
+    top: 330px;
+    left: 1350px;
+    transform: rotateY(110deg);
+  } 
 }
+

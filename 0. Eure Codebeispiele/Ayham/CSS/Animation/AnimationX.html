@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        div{
+            display: flex;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+            background-color: green;
+            color: aliceblue;
+            border: dotted;
+            margin: 20px;
+            animation: na1 5s infinite;
+            animation-timing-function: linear;  
+        }
+        .rotx:hover{
+            transform: rotateX(45deg);
+            transition-duration: 2s;
+        }
+        .roty:hover{
+            transform: rotatey(45deg);
+            transition-duration: 2s;
+        }
+        .rotz:hover{
+            transform: rotatez(45deg);
+            transition-duration: 2s;
+        }
+        @keyframes na1 {
+      0%{
+        background-color: rgb(255, 153, 0);
+      }
+      25%{
+        background-color: blueviolet;
+      }
+      50%{
+        background-color: rgb(229, 10, 236);
+      }
+      75%{
+        background-color: brown;
+      }
+      100%{
+        background-color: rgb(255, 153, 0);
+      }
+    }
+    </style>
+</head>
+<body>
+    <div class="rotx">Rotate X Box</div>
+    <div class="roty">Rotate Y Box</div>
+    <div class="rotz">Rotate Z Box</div>
+    
+    
+</body>
+</html>
