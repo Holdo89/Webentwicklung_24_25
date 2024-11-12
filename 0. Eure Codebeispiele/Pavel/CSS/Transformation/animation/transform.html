@@ -5,41 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        display: grid;
+        justify-content: center;
+        margin: 250px;
+      }
       div {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 20px;
-        background-color: green;
+        background-color: rgb(30, 182, 93);
         width: 50px;
         height: 50px;
         padding: 20px;
         border: 1px solid;
+        color: white;
+      }
+      @keyframes colorChange {
+        0% {
+          background-color: rgb(0, 255, 21);
+        }
+        33% {
+          background-color: rgb(29, 163, 29);
+        }
+        66% {
+          background-color: rgb(13, 145, 83);
+        }
+        100% {
+          background-color: rgb(4, 82, 28);
+        }
+      }
+      .Trans {
+        animation: colorChange 3s infinite;
+      }
+      .Rotate {
+        animation: colorChange 3s infinite;
+      }
+      .Scale {
+        animation: colorChange 3s infinite;
+      }
+      .SkewBox {
+        animation: colorChange 3s infinite;
       }
       .Trans:hover {
         transform: translate(150px, 200px);
-        transition-duration: 5s;
+        transition-duration: 3s;
       }
 
       .Rotate:hover {
-        transform: rotate(45deg);
+        transform: rotateY(45deg);
         transition-duration: 3s;
       }
 
       .Scale:hover {
         transform: scale(2, 3);
-        transition-duration: 5s;
+        transition-duration: 3s;
       }
       .SkewBox:hover {
         transform: skew(20deg, 30deg);
-        transition-duration: 5s;
+        transition-duration: 3s;
       }
     </style>
   </head>
   <body>
     <div class="Trans">Translate Box</div>
     <div class="Rotate">Rotate box</div>
-
     <div class="Scale">ScaleBox</div>
     <div class="SkewBox">Skew</div>
   </body>
