@@ -1,5 +1,5 @@
 body {
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
@@ -9,8 +9,7 @@ body {
     /* hier noch nicht vollständig */
 }
 .pricing{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+    display: flex;
     justify-content: space-evenly;
     gap: 100px;
     
@@ -20,12 +19,12 @@ body {
     
 }
 .plan{
-    display: grid;
-    border: 0px solid;
+    border: 1px solid;
     background-color: white;
     border-radius: 10px;
     width:290px;
     align-items: center;
+    padding: 10px;
 
     
     
@@ -53,14 +52,11 @@ ul{
 }
 p.price{
     color: blue;
-    margin-top: -40px;
+    margin-top: -10px;
     
     
 }
-h2{
-    margin-bottom: 50px;
-    
-}
+
 li{
     text-align: center;
     margin-right: 40px;
