@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 40%;
+        position: fixed;
+        margin-top: 20px;
+        margin-left: 500px;
+      }
+      .navbar {
+        position: relative;
+        top: 120px;
+        right: 230px;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-size: x-large;
+        font-weight: 700;
+      }
+      .imgthumbnail {
+        position: relative;
+        left: -220px;
+        top: 150px;
+      }
+      .progress{
+        margin-top :10px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="data:image/png;base64,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" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+           Neuen Benutzer Registrieren
+          </a>
+        </div>
+      </nav>
+    
+    <img
+      src="https://media.istockphoto.com/id/1097305476/photo/close-up-of-registration-desk-in-front-of-conference-center-with-businessman-writing-on-the.jpg?s=612x612&w=0&k=20&c=q6Lh_mkJ5HN330zCF9brJJgvbk1tTX4xsu4bhp9PgY0="
+      class="imgthumbnail"
+      alt=""
+      width="200px"
+    />
+    <form class="row g-3">
+      <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationDefault01"
+          value="Mark"
+          required
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationDefault02"
+          value="Otto"
+          required
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="validationDefaultUsername" class="form-label"
+          >Username</label
+        >
+        <div class="input-group">
+ 
+          <input
+            type="text"
+            class="form-control"
+            id="validationDefaultUsername"
+            aria-describedby="inputGroupPrepend2"
+            required
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationDefault03"
+          required
+        />
+      </div>
+      <div class="col-md-3">
+        <label for="validationDefault04" class="form-label">State</label>
+        <select class="form-select" id="validationDefault04" required>
+          <option selected disabled value="">Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="validationDefault05" class="form-label">Zip</label>
+        <input
+          type="text"
+          class="form-control"
+          id="validationDefault05"
+          required
+        />
+      </div>
+      <div class="col-12">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="invalidCheck2"
+            required
+          />
+          <label class="form-check-label" for="invalidCheck2">
+            Agree to terms and conditions
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="button" class="btn btn-secondary">Zuruck</button>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+        
+      </div>
+    </form>
+    
+    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar w-75"></div>
+       
+      </div>
+  </body>
+</html>
