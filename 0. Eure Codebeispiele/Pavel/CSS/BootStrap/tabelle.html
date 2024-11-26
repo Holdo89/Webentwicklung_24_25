@@ -38,18 +38,32 @@
       .progress{
         margin-top :10px;
       }
+
+   
     </style>
   </head>
   <body>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+      </div>
+    </nav>
+    
+    <!-- As a heading -->
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Navbar</span>
+      </div>
+    </nav>
+    
     
     <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="data:image/png;base64,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" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-           Neuen Benutzer Registrieren
-          </a>
-        </div>
-      </nav>
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="data:image/png;base64,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" alt="Neuer" width="30" height="24">Neue benutze
+        </a>
+      </div>
+    </nav>
     
     <img
       src="https://media.istockphoto.com/id/1097305476/photo/close-up-of-registration-desk-in-front-of-conference-center-with-businessman-writing-on-the.jpg?s=612x612&w=0&k=20&c=q6Lh_mkJ5HN330zCF9brJJgvbk1tTX4xsu4bhp9PgY0="
@@ -143,5 +157,6 @@
         <div class="progress-bar w-75"></div>
        
       </div>
+      
   </body>
 </html>
