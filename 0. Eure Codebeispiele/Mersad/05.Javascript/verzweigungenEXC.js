@@ -1,3 +1,4 @@
+// Beispiel:
 let name = prompt("Bitte Namen eingeben");
 let nameLowerCase = name.toLowerCase();
 let lastIndexOfSpace = name.lastIndexOf(" ");
@@ -7,6 +8,7 @@ let nachname =
   nameLowerCase.slice(lastIndexOfSpace + 2);
 alert("Mein Name schön formatiert: " + vorname + " " + nachname);
 
+// Beispiel 1:
 let Temperatur = prompt("Gib bitte die Temperatur ein");
 if (Temperatur < 10) {
   console.log("Es ist kalt");
@@ -15,11 +17,12 @@ else {
   console.log("Es ist heiß");
 }
 
+// Beispiel 2:
 let Buchstabe = prompt("Bitte gib einen Buchstaben ein");
 switch (Buchstabe) {
   case "a":
   case "e":
-  case " i":
+  case "i":
   case "o":
   case "u":
     console.log("Buchstabe ist ein Vokal");
@@ -27,13 +30,25 @@ switch (Buchstabe) {
   default:
     console.log("Buchstabe ist ein Konsonant");
 }
+
+// Beispiel 3:
+let Zahl1 = prompt("Bitte gib eine Zahl ein");
+let Zahl2 = prompt("Bitte gib eine Zahl ein");
+let Zahl3 = prompt("Bitte gib eine Zahl ein");
+
+const maximum =
+  zahl1 > zahl2 && zahl1 > zahl3 ? zahl2 > zahl1 && zahl2 > zahl3 : zahl3;
+
+console.log("die größe Zahl: " + maximum);
+
+// Beispiel 4:
 let userZahl = prompt("Bitte gib eine Zahl ein");
 if (userZahl % 2 == 0) {
   console.log("Es ist eine gerade Zahl");
 } else if (userZahl % 2 == 1) {
   console.log("Die Zahl ist ungerade");
 } else {
-  console.log("Es ist eine KOmmazahl");
+  console.log("Es ist eine Kommazahl");
 }
 
 let UserZahl1 = prompt("Bitte eine Zahl eingeben");
