@@ -10,3 +10,4 @@ function isLeapYear(year) {
 }
 
 isLeapYear(2023);
+
