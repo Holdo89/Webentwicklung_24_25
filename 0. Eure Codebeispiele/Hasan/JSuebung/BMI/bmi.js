@@ -17,6 +17,6 @@ if (bmi < 18.5) {
 
 
 function getBmi (groesse, gewicht) {
-    bmi = gewicht / (groesse * 2);
+    bmi = gewicht / (groesse ** 2);
     console.log(ergebnis)
 }
