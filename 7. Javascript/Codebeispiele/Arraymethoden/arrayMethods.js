@@ -11,11 +11,12 @@
 // const array3 = [1, 2, 3, 4, 5];
 // const poppedElement = array3.pop();
 // console.log(poppedElement);
-// console.log("array3:",array3)
+// console.log(array3)
 
 // // push(): Fügt ein oder mehrere Elemente am Ende eines Arrays hinzu und gibt die neue Länge des Arrays zurück.
 // const array4 = [1, 2, 3, 4, 5];
 // const newLength = array4.push(6, 7);
+// console.log(array4)
 // console.log(newLength);
 
 // // shift(): Entfernt das erste Element aus einem Array und gibt dieses Element zurück.
@@ -50,12 +51,13 @@
 // console.log(flattenedArray);
 
 // // splice(index, Anzahl der Stellen die Entfernt werden, EInzufügende Stellen): Ändert den Inhalt eines Arrays durch Hinzufügen oder Entfernen von Elementen an einer bestimmten Position.
-// const array12 = [1, 2, 3, 4, 5];
-// array12.splice(2, 1);
-// console.log(array12); 
+const array12 = [1, 2, 3, 4, 5];
+array12[8] = 10
+// array12.splice(2, 1, 6);
+console.log(array12); 
 
 // // slice(): Gibt eine flache Kopie eines Teils eines Arrays zurück, ohne das Original-Array zu ändern.
 // const array13 = [1, 2, 3, 4, 5];
 // const slicedArray = array13.slice(1, 4);
-// console.log(slicedArray); // Ausgabe: [2, 3, 4]
+// console.log(array13); // Ausgabe: [2, 3, 4]
 
