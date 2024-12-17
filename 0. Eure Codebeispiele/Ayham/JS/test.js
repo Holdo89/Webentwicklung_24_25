@@ -54,7 +54,7 @@ let name = prompt("Bitte Name eingeben:");
 let newNamelower = name.toLowerCase();
 let newNameSpace = name.lastIndexOf(" ");
 let vorname = name[0].toUpperCase()+newNamelower.slice(1,newNameSpace);
-let lastname = name[newNameSpace+1].toUpperCase() + newNamelower.slice(newNameSpace+1);
+let lastname = ' '+name[newNameSpace+1].toUpperCase() + newNamelower.slice(newNameSpace+2) ;
 alert (vorname + lastname);
 /*****************************************/
 
@@ -80,14 +80,6 @@ console.log(s(5))
 /*************************************************/
 
 function isleap (j){
-    const s = j % 4;
-    s == 0 ?  console.log('JA') : console.log('NEIN');
-}
-function isleap (j){
-    const s = j % 100;
-    s == 0 ?  console.log('NEIN') : console.log('JA');
-}
-function isleap (j){
     const s = j % 400;
     s == 0 ?  console.log('JA') : console.log('NEIN');
 }
@@ -95,3 +87,14 @@ isleap(100)
 
 /****************************************************/
 
+const rndInt = Math.ceil(Math.random() * 6)
+console.log(rndInt)
+
+/****************************************************/
+function ran(array){
+    let ar = Math.ceil(Math.random()*(array.length)-1)
+    return array[ar]
+}
+  
+const arrays = ["Ayham","Pavel","Mersad","Hassan","Marko","Thomas"]
+console.log(ran(arrays))
