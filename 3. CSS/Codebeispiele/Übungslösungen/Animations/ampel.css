@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.ampel {
+    width: 80px;
+    height: 220px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.licht {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.3; /* Start mit gedimmten Lichtern */
+}
+
+.rot, .gelb, .gruen {
+    animation: ampelrot 8s infinite;
+}
+
+.rot {
+    background-color: red;
+}
+
+.gelb {
+    background-color: yellow;
+    animation-delay: 6s;
+}
+
+.gruen {
+    background-color: green;
+    animation-delay: 2s;
+}
+
+@keyframes ampelrot {
+    0%, 
+    25% { background-color: transparent; }         /* Licht leuchtet */
+    26%, 100% { opacity: 0.3; }     /* Licht gedimmt */
+}

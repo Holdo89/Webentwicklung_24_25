@@ -15,3 +15,8 @@ if (Schaltjahr(year)) {
 }
 
 
+let würfelZahl = Math.ceil(Math.random()*6)+9 // 0,...,6
+console.log(würfelZahl)
+
+
+
