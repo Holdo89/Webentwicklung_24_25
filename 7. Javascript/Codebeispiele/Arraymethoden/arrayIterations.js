@@ -1,3 +1,4 @@
+
 // // Iteriert über jedes Element im Array und führt eine bereitgestellte Funktion aus.
 // const arrayForEach = [1, 2, 3, 4, 5];
  //arrayForEach.forEach((element,index, array) => console.log("An Stelle ", index , "steht", element, "des Arrays ", array));
