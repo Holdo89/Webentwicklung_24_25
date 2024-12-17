@@ -8,26 +8,24 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    transition-duration: 1s;
+
   }
 
   /* Verschiebung, Drehung, Skalierung und Verzerrung */
   .translate:hover {
     transform: translate(100px, 200px);
-    /* transition-duration: 1s; */
   }
 
   .rotate:hover {
     transform: rotate(45deg);
-    transition-duration: 1s;
   }
 
   .scale:hover {
     transform: scale(2, 3) ;
-    transition-duration: 1s;
   }
 
   
   .skew:hover {
     transform: skew(20deg, 30deg);
-    transition-duration: 1s;
   }

@@ -14,7 +14,7 @@ body {
   background-color: #b3bc0d;
   border-radius: 50%;
   position: absolute;
-  animation: bounce 2s infinite;
+  animation: bounce 2s linear infinite;
 }
 
 .racket {

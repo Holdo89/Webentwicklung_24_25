@@ -25,7 +25,7 @@
 
 // // Filtert Elemente basierend auf einer bestimmten Bedingung und erstellt ein neues Array.
 // const arrayFilter = [1, 2, 3, 4, 5];
-// const filteredArray = arrayFilter.filter(element => element % 2 === 0);
+// const filteredArray = arrayFilter.filter(thomas => thomas % 2 === 0);
 // console.log(filteredArray);
 
 // // Reduziert das Array auf einen einzelnen Wert durch Anwendung einer akkumulierten Funktion auf jedes Element.
