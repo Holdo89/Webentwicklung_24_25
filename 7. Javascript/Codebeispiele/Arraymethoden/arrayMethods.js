@@ -59,5 +59,5 @@ console.log(array12);
 // // slice(): Gibt eine flache Kopie eines Teils eines Arrays zurück, ohne das Original-Array zu ändern.
 // const array13 = [1, 2, 3, 4, 5];
 // const slicedArray = array13.slice(1, 4);
-// console.log(slicedArray); // Ausgabe: [2, 3, 4]
+// console.log(array13); // Ausgabe: [2, 3, 4]
 
