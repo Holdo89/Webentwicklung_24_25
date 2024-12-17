@@ -20,6 +20,7 @@ const participants = [
   const highScorers = participants.filter(participant => participant.points > 100);
   console.log("\nTeilnehmer mit mehr als 100 Punkten:", highScorers);
   
+  
   // 4. sort - Nach Punkten aufsteigend sortieren
   const sortedAscending = [...participants].sort((a, b) => a.points - b.points);
   console.log("\nNach Punkten aufsteigend sortiert:", sortedAscending);
