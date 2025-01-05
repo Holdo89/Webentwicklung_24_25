@@ -35,3 +35,21 @@ function generateFibonacci2(wert) {
   }
   console.log(array);
 }
+
+generateFibonacci3(10);
+
+function generateFibonacci3(wert) {
+  let array = [];
+  let a = 0;
+  let b = 1;
+  let ergebnis;
+  zahlen = 0;
+  while (zahlen < wert) {
+    ergebnis = a + b;
+    array.push(a);
+    a = b;
+    b = ergebnis;
+    zahlen++;
+  }
+  console.log(array);
+}
