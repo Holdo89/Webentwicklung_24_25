@@ -14,3 +14,11 @@
 // und die Schrift darin wird weiß,
 // und der Text innerhalb des Buttons ändert sich zu „Light Mode“
 // Wird der Button erneut geklickt dann ändert sich die Hintergrundfarbe wieder auf weiß und der Text des neuen Button zu „Dark Mode“
+
+function testFunction(text){
+    console.log(text)
+}
+
+let nachricht = "Textnachricht" //aus der DB
+
+document.getElementById("newButton").onclick = () => testFunction(nachricht);
