@@ -1,9 +1,7 @@
 document.getElementById("output").innerHTML="Juhuu"
 
 document.querySelector("#main-container h1").innerHTML = "test"
-
 document.getElementsByTagName("button")[0].innerHTML="klick mich"
-
 document.getElementsByTagName("button")[0].style.backgroundColor = "blue"
 
 let newButton = document.createElement("button")
