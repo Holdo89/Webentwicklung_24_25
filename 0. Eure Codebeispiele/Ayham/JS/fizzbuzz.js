@@ -25,17 +25,5 @@ for(let i = beer; i > 0 ; i--){
     console.log('Take one down and pass it around, '+ (i-1) + ' bottles of beeer on the wall' )
 }
 
-function fib(n) {
-    if (n <= 1) {
-        return 1;
-    }
-    const fibArray = [0, 1]; 
-    for (let i = 2; i <= n; i++) {
-        fibArray[i] = fibArray[i - 1] + fibArray[i - 2];
-    }
-    return fibArray
-}
-
-console.log(fib(10));
 
 
