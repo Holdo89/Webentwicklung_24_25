@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+}
+#home, #text{
+    display: flex;
+    flex-direction: row;
+}
+#first, #second, #third, #fourd{
+    margin:100px;
+}
+.title{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    color: white;
+    margin: 20px 0px 50px 0px;
+}
+.yellow{
+    color: yellow;
+    font-size: 30px;
+    margin: 20px;
+}
+#language{
+    color: beige;
+    margin: 50px;
+}
+li{
+    color: beige;
+    margin: 10px;
+}
+#aboutMe{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    color: white;
+    margin: 40px;
+}
+img{
+    border: 2px;
+    border-color: blanchedalmond;
+    border-style: solid;
+    border: none;
+    max-width: 300px;
+}
+#pictureOne{
+    margin: 130px 90px;
+    border-radius: 300px 20px;
+}
+#pictureTwo{
+    margin-top: 200px;
+    border-radius: 30px;
+}
