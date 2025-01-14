@@ -19,11 +19,5 @@ while (x > 0){
     x--;
 }
 
-let beer = 12;
-for(let i = beer; i > 0 ; i--){
-    console.log(i + ' botteles of beer on the wall,'+ i + ' botteles of beer')
-    console.log('Take one down and pass it around, '+ (i-1) + ' bottles of beeer on the wall' )
-}
-
 
 
