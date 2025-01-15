@@ -6,7 +6,7 @@
 // Wähle das <button>-Element mit der ID "changeTextButton" aus und ändere seinen Textinhalt auf "Klick mich!„ und seine Hintergrundfarbe auf blau.
 let but = document.querySelector('#changeTextButton');
 but.onmouseover = () => {
-    but.innerText = ('KLICK HER');
+    but.innerText = ('Click Here');
     but.style.backgroundColor = 'red';
 }
 but.onclick = () => {
