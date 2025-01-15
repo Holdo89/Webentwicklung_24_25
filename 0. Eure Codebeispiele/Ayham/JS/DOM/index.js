@@ -10,7 +10,7 @@ but.onmouseover = () => {
     but.style.backgroundColor = 'red';
 }
 but.onclick = () => {
-    alert('NOOOOOOOOOOOOOOO');
+    alert('CLICK OK');
     but.style.backgroundColor = 'blue';
 }
 
