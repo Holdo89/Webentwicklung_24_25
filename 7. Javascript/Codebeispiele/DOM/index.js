@@ -1,1 +1,1 @@
-document.querySelector("ul").innerHTML="<h2>Test</h2>"
+document.querySelector("ul").innerHTML = "<h2>Test</h2>";
