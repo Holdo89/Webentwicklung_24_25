@@ -1,0 +1,35 @@
+body{
+    display:grid;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.game{
+    display: grid;
+    justify-content: center;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(175, 239, 176);
+}
+.name{
+    text-align: center;
+    max-width: 30rem;
+    padding: 0px 20px;
+    margin-bottom: 1px;
+    background-color: blueviolet;
+}
+
+.square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    width: 6rem;
+    height: 6rem;
+    margin: 0.5rem;
+    background-color: blueviolet;
+}
+.square:hover{
+    background-color: bisque;
+    cursor: pointer;
+}
