@@ -32,7 +32,7 @@ body{
     font-size: 5rem;
     width: 6rem;
     height: 6rem;
-    margin: 0.35rem;
+    margin: 0.5rem;
     background-color: var(--primary-color);
     border-radius: 8px;
 }
