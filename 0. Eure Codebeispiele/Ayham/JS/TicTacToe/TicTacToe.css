@@ -8,7 +8,7 @@ body{
     display:grid;
     justify-content: center;
     font-size: 2.5rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: cursive;
 }
 .game{
     display: grid;
@@ -21,13 +21,12 @@ body{
 .name{
     text-align: center;
     max-width: 30rem;
-    padding: 0px 20px;
     margin-bottom: 1px;
     background-color: var(--primary-color);
 }
 
 .square{
-    text-align: center;
+    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 5rem;
@@ -39,6 +38,7 @@ body{
 }
 .square:hover{
     background-color: var(--hover-color);
+    box-shadow: 1px 1px 15px grey;
     cursor: pointer;
 }
 /*.container {
@@ -52,3 +52,4 @@ body{
     height:21rem;
     background-color: rgb(127, 118, 246);
 }
+

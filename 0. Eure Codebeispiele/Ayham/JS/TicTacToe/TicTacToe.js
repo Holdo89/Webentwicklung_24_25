@@ -1,46 +1,38 @@
 //document.write('<div>Tic Tac Toe Game</div>');
 let char = 'X';
+let drow = true;
 let title = document.querySelector('.name');
-function game (id){
+function game(id) {
     let element = document.getElementById(id);
-    let blocks = document.querySelectorAll('.square');
-    if(char === 'X' && element.innerHTML !== 'X' && element.innerHTML ==''){
-        element.innerHTML = 'O';
+    if(element.innerHTML === ''){
+        element.innerHTML = char;
         element.style.backgroundColor = 'rgb(127, 118, 246)';
-        title.textContent = `${char} - TURN`;
-        char = 'O';
         isWins();
-    }else if(char === 'O' && element.innerHTML !== 'O' && element.innerHTML ==''){
-        element.innerHTML = 'X';
-        element.style.backgroundColor = 'rgb(127, 118, 246)';
-        title.textContent = `${char} - TURN`;
-        char = 'X';
-        isWins();
+        char === 'X'?char = 'O':char = 'X';
+        title.textContent = `${char}'s- TURN`;
     }
 }
 function isWins (){
+    let blocks = [];
     let win = document.querySelector('.winer');
-    let bord = document.querySelector('.game');
-    const b1 = document.getElementById('block1').textContent;
-    const b2 = document.getElementById('block2').textContent;
-    const b3 = document.getElementById('block3').textContent;
-    const b4 = document.getElementById('block4').textContent;
-    const b5 = document.getElementById('block5').textContent;
-    const b6 = document.getElementById('block6').textContent;
-    const b7 = document.getElementById('block7').textContent;
-    const b8 = document.getElementById('block8').textContent;
-    const b9 = document.getElementById('block9').textContent;
-    if ((b1 === b2 && b2 === b3 && b1 !== '') ||
-        (b4 === b5 && b5 === b6 && b4 !== '') ||
-        (b7 === b8 && b8 === b9 && b7 !== '') ||
-        (b1 === b4 && b4 === b7 && b1 !== '') ||
-        (b2 === b5 && b5 === b8 && b2 !== '') ||
-        (b3 === b6 && b6 === b9 && b3 !== '') ||
-        (b1 === b5 && b5 === b9 && b5 !== '') ||
-        (b3 === b5 && b5 === b7 && b5 !== '')) {
-        //bord.style.display = 'none';
+    for(let i = 1; i < 10; i++) {
+        blocks.push(document.getElementById(`block${i}`).textContent);
+    }
+    if(
+        (blocks[0] === blocks[1] && blocks[1] === blocks[2] && blocks[0] !== '') ||
+        (blocks[3] === blocks[4] && blocks[4] === blocks[5] && blocks[3] !== '') || 
+        (blocks[6] === blocks[7] && blocks[7] === blocks[8] && blocks[6] !== '') || 
+        (blocks[0] === blocks[3] && blocks[3] === blocks[6] && blocks[0] !== '') || 
+        (blocks[1] === blocks[4] && blocks[4] === blocks[7] && blocks[1] !== '') || 
+        (blocks[2] === blocks[5] && blocks[5] === blocks[8] && blocks[2] !== '') ||  
+        (blocks[0] === blocks[4] && blocks[4] === blocks[8] && blocks[0] !== '') || 
+        (blocks[2] === blocks[4] && blocks[4] === blocks[6] && blocks[2] !== '') ){ 
         win.style.display = 'block';
-        setInterval(() => {win.innerHTML += char}, 450);
-        setTimeout(() =>{location.reload()},2000);
+        win.innerHTML += `<h2>${char}</h2>`;
+        setTimeout(() =>{location.reload()},2500);
+    } else if (blocks.every((block) => block !== '')) {
+        win.style.display = 'block';
+        win.innerHTML = "<h2>It's a draw!</h2>";
+        setTimeout(() => { location.reload(); }, 2500);
     }
 }
