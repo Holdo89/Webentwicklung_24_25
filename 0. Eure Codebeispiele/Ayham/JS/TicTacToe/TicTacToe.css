@@ -1,5 +1,5 @@
 :root{
-    --primary-color:rgb(70, 77, 213);
+    --primary-color:blueviolet;
     --hover-color:bisque;
     --secondary-color:rgb(175, 239, 176);
 }
@@ -32,9 +32,9 @@ body{
     font-size: 5rem;
     width: 6rem;
     height: 6rem;
-    margin: 0.4rem;
+    margin: 0.35rem;
     background-color: var(--primary-color);
-    border-radius: 6px;
+    border-radius: 8px;
 }
 .square:hover{
     background-color: var(--hover-color);
