@@ -29,11 +29,11 @@ function isWins() {
             for (let index of pattern) {
                 document.getElementById(`block${index + 1}`).style.backgroundColor = 'bisque';
             }
-            setTimeout(()=>{win.style.display = 'block';},700);
+            setTimeout(()=>{win.style.display = 'block';},750);
             win.innerHTML = `<h2>${blocks[a]}<br> wins!</h2>`;
             setTimeout(() => { location.reload(); }, 2500);
         }else if(drow && blocks.every(block => block !== '')){
-            setTimeout(()=>{win.style.display = 'block';},710);
+            setTimeout(()=>{win.style.display = 'block';},750);
             win.innerHTML = "<h2>It's a draw!</h2>";
             setTimeout(() => { location.reload(); }, 2500);
         }
