@@ -14,7 +14,6 @@ function game(id) {
 }
 function isWins() {
     let blocks = [];
-    let winner = false;
     let win = document.querySelector('.winer');
     for (let i = 1; i < 10; i++) {
         blocks.push(document.getElementById(`block${i}`).textContent);
@@ -26,15 +25,15 @@ function isWins() {
     for (let pattern of winPatterns){
         const [a, b, c] = pattern;
         if (blocks[a] === blocks[b] && blocks[b] === blocks[c] && blocks[a] !== ''){
-            winner = true;
+            drow = false;
             for (let index of pattern) {
                 document.getElementById(`block${index + 1}`).style.backgroundColor = 'bisque';
             }
-            setTimeout(()=>{win.style.display = 'block';
-            win.innerHTML = `<h2>${blocks[a]}<br> wins!</h2>`},800);
-            setTimeout(() =>{ location.reload(); }, 2500);
-        }else if(!winner && blocks.every(block => block !== '')){
-            win.style.display = 'block';
+            setTimeout(()=>{win.style.display = 'block';},700);
+            win.innerHTML = `<h2>${blocks[a]}<br> wins!</h2>`;
+            setTimeout(() => { location.reload(); }, 2500);
+        }else if(drow && blocks.every(block => block !== '')){
+            setTimeout(()=>{win.style.display = 'block';},710);
             win.innerHTML = "<h2>It's a draw!</h2>";
             setTimeout(() => { location.reload(); }, 2500);
         }
