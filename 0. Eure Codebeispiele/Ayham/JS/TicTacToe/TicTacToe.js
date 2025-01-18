@@ -12,27 +12,33 @@ function game(id) {
         title.textContent = `${char}'s- TURN`;
     }
 }
-function isWins (){
+function isWins() {
     let blocks = [];
+    let winner = false;
     let win = document.querySelector('.winer');
-    for(let i = 1; i < 10; i++) {
+    for (let i = 1; i < 10; i++) {
         blocks.push(document.getElementById(`block${i}`).textContent);
     }
-    if(
-        (blocks[0] === blocks[1] && blocks[1] === blocks[2] && blocks[0] !== '') ||
-        (blocks[3] === blocks[4] && blocks[4] === blocks[5] && blocks[3] !== '') || 
-        (blocks[6] === blocks[7] && blocks[7] === blocks[8] && blocks[6] !== '') || 
-        (blocks[0] === blocks[3] && blocks[3] === blocks[6] && blocks[0] !== '') || 
-        (blocks[1] === blocks[4] && blocks[4] === blocks[7] && blocks[1] !== '') || 
-        (blocks[2] === blocks[5] && blocks[5] === blocks[8] && blocks[2] !== '') ||  
-        (blocks[0] === blocks[4] && blocks[4] === blocks[8] && blocks[0] !== '') || 
-        (blocks[2] === blocks[4] && blocks[4] === blocks[6] && blocks[2] !== '') ){ 
-        win.style.display = 'block';
-        win.innerHTML += `<h2>${char}</h2>`;
-        setTimeout(() =>{location.reload()},2500);
-    } else if (blocks.every((block) => block !== '')) {
-        win.style.display = 'block';
-        win.innerHTML = "<h2>It's a draw!</h2>";
-        setTimeout(() => { location.reload(); }, 2500);
+    const winPatterns = [
+        [0, 1, 2],[3, 4, 5], [6, 7, 8], 
+        [0, 3, 6],[1, 4, 7],[2, 5, 8], 
+        [0, 4, 8],[2, 4, 6] ];
+    for (let pattern of winPatterns){
+        const [a, b, c] = pattern;
+        if (blocks[a] === blocks[b] && blocks[b] === blocks[c] && blocks[a] !== ''){
+            winner = true;
+            for (let index of pattern) {
+                document.getElementById(`block${index + 1}`).style.backgroundColor = 'bisque';
+            }
+            setTimeout(()=>{win.style.display = 'block';
+            win.innerHTML = `<h2>${blocks[a]}<br> wins!</h2>`},800);
+            setTimeout(() =>{ location.reload(); }, 2500);
+        }else if(!winner && blocks.every(block => block !== '')){
+            win.style.display = 'block';
+            win.innerHTML = "<h2>It's a draw!</h2>";
+            setTimeout(() => { location.reload(); }, 2500);
+        }
     }
 }
+
+
