@@ -15,6 +15,7 @@ function game(id) {
 function isWins() {
     let blocks = [];
     let win = document.querySelector('.winer');
+    let squares = document.querySelectorAll('.square');
     for (let i = 1; i < 10; i++) {
         blocks.push(document.getElementById(`block${i}`).textContent);
     }
@@ -27,6 +28,7 @@ function isWins() {
         if (blocks[a] === blocks[b] && blocks[b] === blocks[c] && blocks[a] !== ''){
             drow = false;
             for (let index of pattern) {
+                for (let square of squares) square.onclick = null;
                 document.getElementById(`block${index + 1}`).style.backgroundColor = 'bisque';
             }
             setTimeout(()=>{win.style.display = 'block';},750);
