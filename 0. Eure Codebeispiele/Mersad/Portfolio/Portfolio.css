@@ -5,7 +5,7 @@ body{
     display: flex;
     flex-direction: row;
 }
-#first, #second, #third, #fourd{
+#first, #second, #third, #fourd, #fived{
     margin:100px;
 }
 .title{
@@ -47,4 +47,12 @@ img{
 #pictureTwo{
     margin-top: 200px;
     border-radius: 30px;
+}
+p{
+    font-size:50px;
+}
+#grid {
+    display: grid;
+    grid-template-rows: 80px 200px;
+    grid-template-columns: auto auto auto;
 }
