@@ -36,7 +36,7 @@ function isWins(winPatterns,squares) {
             win.innerHTML = `<h2>${blocks[a]}<br> wins!</h2>`;
             reload(win);
         }else if(drow && blocks.every(block => block !== '')){
-            win.innerHTML = "<h2>It's a draw!</h2>";
+            win.innerHTML = "<h2>It's<br> a draw!</h2>";
             reload(win);
         }
     }

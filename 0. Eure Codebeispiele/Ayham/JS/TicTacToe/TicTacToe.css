@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Rubik+Wet+Paint&display=swap');
+
+
 :root{
     --primary-color:blueviolet;
-    --hover-color:bisque;
-    --secondary-color:rgb(175, 239, 176);
+    --hover-color:rgb(196, 199, 255);
+    --secondary-color:rgb(189, 175, 239);
 }
 body{
     position: relative;
     display:grid;
     justify-content: center;
-    font-size: 2.5rem;
-    font-family: cursive;
+    font-size: 2.2rem;
+    font-family: "Finger Paint", serif;
 }
 .game{
     display: grid;
