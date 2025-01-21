@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seite mit Scroll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .section {
+            height: 100vh; 
+            padding: 20px;
+        }
+        .section:nth-child(odd) {
+            background-color: #f0f0f0;
+        }
+        .section:nth-child(even) {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h1>Erste Sektion</h1>
+        <p>Hier ist der Anfang.</p>
+    </div>
+    <div class="section">
+        <h1>Zweite Sektion</h1>
+        <p>Hier geht es weiter.</p>
+    </div>
+    <div class="section">
+        <h1>Dritte Sektion</h1>
+        <p>Ende der Seite.</p>
+    </div>
+</body>
+</html>

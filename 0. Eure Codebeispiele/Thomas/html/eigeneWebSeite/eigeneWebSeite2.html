@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über Mich - [Dein Name]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: black;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+
+        }
+        nav:hover
+            {
+            background-color: darkblue;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        .about-me, .projects, .contact {
+            margin-bottom: 2rem;
+
+            
+        }
+        .about-me, .projects, .contact:hover{
+            
+        }
+        h1, h2 {
+            color: #6200ea;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .project-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Willkommen auf meiner Webseite!</h1>
+        <nav>
+            <a href="#about">Über Mich</a>
+            <a href="#projects">Projekte</a>
+            <a href="#contact">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="about" class="about-me">
+            <h2>Über Mich</h2>
+            <p>Hallo! Ich bin [Dein Name], ein kreativer Kopf mit einer Leidenschaft für [deine Interessen, z. B. Programmierung, Kunst, oder Gaming]. Hier teile ich meine Projekte, Ideen und mehr über mich.</p>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2>Meine Projekte</h2>
+            <div class="project-item">
+                <h3>Projekt 1</h3>
+                <p>Beschreibung deines ersten Projekts. Zum Beispiel: Eine App, die ich entwickelt habe, um Aufgaben zu organisieren.</p>
+            </div>
+            <div class="project-item">
+                <h3>Projekt 2</h3>
+                <p>Beschreibung eines weiteren Projekts oder einer coolen Idee, an der du arbeitest.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Kontakt</h2>
+            <p>Du kannst mich über die folgenden Kanäle erreichen:</p>
+            <ul>
+                <li>E-Mail: <a href="mailto:deinemail@example.com">deinemail@example.com</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/deinprofil" target="_blank">linkedin.com/in/deinprofil</a></li>
+                <li>GitHub: <a href="https://github.com/deingithub" target="_blank">github.com/deingithub</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 [Dein Name]. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>

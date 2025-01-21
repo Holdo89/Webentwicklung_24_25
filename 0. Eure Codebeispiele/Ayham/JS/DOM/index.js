@@ -4,6 +4,16 @@
 // Wähle das <p>-Element mit der ID "output" aus und ändere seinen Textinhalt auf "Text geändert!".
 // Wähle das <h1>-Element innerhalb des <div> mit der ID "main-container" aus und ändere seinen Textinhalt auf "DOM-Manipulationsübung abgeschlossen!".
 // Wähle das <button>-Element mit der ID "changeTextButton" aus und ändere seinen Textinhalt auf "Klick mich!„ und seine Hintergrundfarbe auf blau.
+let but = document.querySelector('#changeTextButton');
+but.onmouseover = () => {
+    but.innerText = ('Click Here');
+    but.style.backgroundColor = 'red';
+}
+but.onclick = () => {
+    alert('CLICK OK');
+    but.style.backgroundColor = 'blue';
+}
+
 
 //Part 2
 
@@ -14,3 +24,22 @@
 // und die Schrift darin wird weiß, 
 // und der Text innerhalb des Buttons ändert sich zu „Light Mode“
 // Wird der Button erneut geklickt dann ändert sich die Hintergrundfarbe wieder auf weiß und der Text des neuen Button zu „Dark Mode“
+
+let dark = document.createElement('button');
+dark.innerText = ('🌙 Dark Mode')
+dark.style.backgroundColor = '#aaa';
+
+document.querySelector("#main-container").appendChild(dark);
+dark.onclick = () =>{
+    if(dark.innerText.includes('Dark')){
+        document.querySelector('body').style.backgroundColor = 'black';
+        document.querySelector('body').style.color= 'white';
+        dark.innerText = ('🔆 Light Mode');
+        dark.style.color = 'white';
+    }else{
+        document.querySelector('body').style.backgroundColor = 'white';
+        document.querySelector('body').style.color= 'black';
+        dark.innerText = ('🌙 Dark Mode');
+        dark.style.color = 'black';
+    }
+}
