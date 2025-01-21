@@ -26,7 +26,7 @@ but.onclick = () => {
 // Wird der Button erneut geklickt dann ändert sich die Hintergrundfarbe wieder auf weiß und der Text des neuen Button zu „Dark Mode“
 
 let dark = document.createElement('button');
-dark.innerText = ('Dark Mode')
+dark.innerText = ('🌙 Dark Mode')
 dark.style.backgroundColor = '#aaa';
 
 document.querySelector("#main-container").appendChild(dark);
@@ -34,12 +34,12 @@ dark.onclick = () =>{
     if(dark.innerText.includes('Dark')){
         document.querySelector('body').style.backgroundColor = 'black';
         document.querySelector('body').style.color= 'white';
-        dark.innerText = ('Light Mode');
+        dark.innerText = ('🔆 Light Mode');
         dark.style.color = 'white';
     }else{
         document.querySelector('body').style.backgroundColor = 'white';
         document.querySelector('body').style.color= 'black';
-        dark.innerText = ('Dark Mode');
+        dark.innerText = ('🌙 Dark Mode');
         dark.style.color = 'black';
     }
 }
