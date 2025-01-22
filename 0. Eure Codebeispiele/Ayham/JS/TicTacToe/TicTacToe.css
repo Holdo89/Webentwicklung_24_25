@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Rubik+Wet+Paint&display=swap');
+
+
 :root{
     --primary-color:blueviolet;
-    --hover-color:bisque;
-    --secondary-color:rgb(175, 239, 176);
+    --hover-color:rgb(196, 199, 255);
+    --secondary-color:rgb(189, 175, 239);
 }
 body{
     position: relative;
     display:grid;
     justify-content: center;
-    font-size: 2.5rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.2rem;
+    font-family: "Finger Paint", serif;
 }
 .game{
     display: grid;
@@ -21,13 +24,12 @@ body{
 .name{
     text-align: center;
     max-width: 30rem;
-    padding: 0px 20px;
     margin-bottom: 1px;
     background-color: var(--primary-color);
 }
 
 .square{
-    text-align: center;
+    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 5rem;
@@ -39,6 +41,7 @@ body{
 }
 .square:hover{
     background-color: var(--hover-color);
+    box-shadow: 1px 1px 15px grey;
     cursor: pointer;
 }
 /*.container {
@@ -52,3 +55,4 @@ body{
     height:21rem;
     background-color: rgb(127, 118, 246);
 }
+

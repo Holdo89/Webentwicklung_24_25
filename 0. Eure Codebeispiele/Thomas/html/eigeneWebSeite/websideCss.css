@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    background:#121212;
+    background-image: linear-gradient(135deg,#4c6a92,#1e2a47);
+    color: #333;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+header{
+    background-color: #1e2a47;
+    color: white;
+    padding: 20px 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+header .container{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header nav ul{
+    list-style: none;
+    display: flex;
+}
+header nav ul li{
+    margin: 0 15px;
+}
+header nav ul li a{
+    color: #ff6f61;
+    text-decoration: none;
+    font-weight: bold;
+}
+header nav ul li a:hover{
+    text-decoration: underline;
+}
+
+section{
+    padding: 100px 0 60px 0;
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: transparent;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+
+}
+h1,h2{
+    text-align: center;
+    margin-bottom: 0px;
+}
+    #Aboutme{
+        
+    }
+
+#Projects{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.Projects{
+    margin-bottom: 40px;
+    text-align: center;
+}
+.Projects img{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+}
+.Projects h3{
+    margin-top: 15px;
+    font-size: large;
+}
+.Projects p{
+    margin-top: 10px;
+    font-size: large;
+    color: #555;
+
+}
+#Skills{
+    
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+#Skills ul{
+    list-style: none;
+    padding-left: 0;
+}
+#Skills ul li{
+    margin: 10px 0;
+    font-size: large;
+    color: #444;
+
+}
+#Contact{
+    
+    color: white;
+}
+#Contact a{
+    color: #ff6f61;
+}
+footer{
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+footer p{
+    font-size: 0.9em;
+}
+@media (max-width:768px){
+    header.container{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul{
+        display: block;
+        margin-top: 10px;
+    }
+    header nav ul li{
+        margin: 5px 0;
+
+    }
+    section{
+        padding: 80px 0 40px 0;
+
+    }
+    .container{
+        width: 90%;
+    }
+    .Project{
+        width: 100%;
+        margin: 20px 0;
+    }
+    .Project img{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media(max-width:480px){
+    header.container{
+        align-items: center;
+    }
+    h1{
+        font-size: 1.5em;
+    }
+    h2{
+        font-size: 1.3em;
+    }
+    .Project h3{
+        font-size: 1.2em;
+    }
+}
