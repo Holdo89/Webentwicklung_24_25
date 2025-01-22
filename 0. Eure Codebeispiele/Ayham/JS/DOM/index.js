@@ -9,10 +9,10 @@ but.onmouseover = () => {
     but.innerText = ('Click Here');
     but.style.backgroundColor = 'red';
 }
-but.onclick = () => {
+but.addEventListener("click", () => {
     alert('CLICK OK');
     but.style.backgroundColor = 'blue';
-}
+});
 
 
 //Part 2
