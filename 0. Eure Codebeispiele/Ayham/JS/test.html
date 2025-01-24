@@ -1,19 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST JS</title>
-    <script src="JStest2.js"></script>
+    <title>TASN 1088 Abenteuerland Hörsching</title>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font-family: "Chewy", serif;
+        }
+
+        header {
+            background-color: #4A90E2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #FFD166;
+        }
+
+        header .logo h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #FFF;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background-image: url('https://via.placeholder.com/1200x400'); /* Platzhalterbild */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin: 10px 0 20px;
+        }
+
+        .btn {
+            background-color: #FF6F61;
+            color: #FFF;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #2ECC71;
+            color: #FFF;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Expedita saepe odio architecto optio, harum nobis fugiat nostrum dignissimos
-            illum aliquam possimus commodi quas iusto quisquam? Deleniti at consectetur delectus quisquam.
-        </p>
-    </div>
-    
+    <header>
+        <div class="logo">
+            <h1>TASN 1088</h1>
+            <h2>Abenteuerland Hörsching</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Startseite</a></li>
+                <li><a href="#">Über uns</a></li>
+                <li><a href="#">Attraktionen</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Willkommen im Abenteuerland!</h1>
+            <p>Erleben Sie Spaß und Abenteuer in Hörsching.</p>
+            <a href="#" class="btn">Jetzt entdecken</a>
+        </div>
+    </section>
+
+    <section class="content">
+        <h2>Unsere Attraktionen</h2>
+        <p>Entdecken Sie unsere aufregenden Attraktionen und Angebote für die ganze Familie.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 TASN 1088 Abenteuerland Hörsching. Alle Rechte vorbehalten.</p>
+    </footer>
 </body>
 </html>
