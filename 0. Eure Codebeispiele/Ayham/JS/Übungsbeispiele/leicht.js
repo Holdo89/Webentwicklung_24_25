@@ -42,11 +42,38 @@ function pal(str){
 console.log(pal('mam'));
 
 // 7. Schreibe eine Funktion, die ein Array von Zahlen in aufsteigender Reihenfolge sortiert.
-
+function sort(arr){
+    return arr.sort();
+}
+console.log([1,2,0,3,8,4,9]);
+console.log(sort([1,2,0,3,8,4,9]));
 // 8. Schreibe eine Funktion, die Duplikate aus einem Array entfernt.
+function duplEntfern(arr){
+    let newarr=[...new Set(arr)];
+    return newarr.sort();
+}
+let arr = [1,0,0,1,2,2,3,8,9,9,3,6,3,5,5,7,4,4]
+console.log(duplEntfern(arr));
 
 // 9. Schreibe eine Funktion, die einen String in CamelCase umwandelt.
 // Bsp: "Das ist ein Test" -> "DasIstEinTest"
+function camelCase(str){
+    let lowerCase = str.split(' ');
+    let camelCase = '';
+    for(let word of lowerCase){
+        camelCase += word[0].toUpperCase()+word.slice(1);
+        }
+    return camelCase;
+}
+console.log(camelCase('Das ist ein Test'));
 
 // 10. Schreibe eine Funktion, die die Fakultät einer Zahl berechnet.
 // Fakultät(5) = 5 * 4 * 3 * 2 * 1 = 120
+function fakult(num){
+    let resault = 1;
+    for(let i = num; i > 0; i--){
+        resault *= i;
+    }
+    return console.log(resault);
+}
+fakult(5);
