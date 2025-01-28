@@ -64,8 +64,35 @@ return str.split(' ').length;;
 console.log(counter('Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt'));
 // 7. Schreibe eine Funktion, die das größte gemeinsame Teiler (ggT) von zwei Zahlen berechnet.
 
-// 8. Schreibe eine Funktion, die das Datum des nächsten Montags zurückgibt.
 
+
+
+
+
+
+
+
+// 8. Schreibe eine Funktion, die das Datum des nächsten Montags zurückgibt.
+function nextMonday(){
+    let today = new Date().getDay();
+    let nextDay = (7 - today);
+    return 'Next Monday is after '+nextDay+' Days.';
+}
+console.log(nextMonday());
 // 9. Schreibe eine Funktion, die prüft, ob ein String eine gültige URL ist.
 
 // 10. Schreibe eine Funktion, die die Elemente eines Arrays in umgekehrter Reihenfolge anordnet.
+function reverseArray(arr){
+    return arr.sort().reverse();
+}
+let arrOne = ["Emil", "Ayham", "Tedy","Cat", "Lion"];
+let arrTow = [0,5,6,4,1,2,3];
+
+console.log(reverseArray(arrOne));
+console.log(reverseArray(arrTow));
+
+
+
+
+
+
