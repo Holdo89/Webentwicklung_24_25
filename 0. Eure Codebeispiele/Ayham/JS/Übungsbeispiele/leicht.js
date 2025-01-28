@@ -24,9 +24,8 @@ maxi([1,2,0,3,8,4,9]);
 function coun(str){
     const char = ['A','E','I','O','U'];
     let count = 0;
-    let upp = str.toUpperCase();
-    let arr = upp.split('');
-    for (const v of arr) {
+    let upp = str.toUpperCase().split('');
+    for (const v of upp) {
         if(char.includes(v))
         count++;
     }
