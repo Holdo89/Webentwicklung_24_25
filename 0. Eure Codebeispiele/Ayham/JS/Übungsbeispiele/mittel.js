@@ -58,7 +58,10 @@ let arr2 = ["Emil", "Ayham", "Tedy"];
 console.log(towArrays(arr1,arr2));
 
 // 6. Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt.
-
+function counter(str){
+return str.split(' ').length;;
+}
+console.log(counter('Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt'));
 // 7. Schreibe eine Funktion, die das größte gemeinsame Teiler (ggT) von zwei Zahlen berechnet.
 
 // 8. Schreibe eine Funktion, die das Datum des nächsten Montags zurückgibt.
