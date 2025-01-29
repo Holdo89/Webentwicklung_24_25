@@ -20,7 +20,39 @@ console.log(compare(arr1,arr3));
 console.log(compare(arr4,arr3));
 
 // 2. Schreibe eine Funktion, die die Anzahl der Vorkommen jedes Zeichens in einem String zählt und als Objekt zurückgibt.
-
+function counter(str){
+    const char = {};
+    let word = str.toUpperCase().split('');
+    for(let c of word){
+        if(c in char){
+            char[c]++;
+        }else{
+            char[c] = 1
+        }
+    }
+    return char;
+}
+console.log(counter("einem String zählt und als Objekt"));
 // 3. Schreibe eine Funktion, die die Primfaktoren einer Zahl findet.
 
+
+
+
+
+
+
+
 // 4. Schreibe eine Funktion, die ein Array von Objekten nach einem bestimmten Schlüssel sortiert.
+function arraySort (arr, key){
+    let arrSort = arr.sort((a,b) => a[key] - b[key]);
+    return arrSort;
+}
+
+let cars = [
+    { brand: "Toyota", doors: 4 },
+    { brand: "BMW", doors: 2 },
+    { brand: "Audi", doors: 5 },
+    { brand: "Mercedes", doors: 4 }
+];
+
+console.log(arraySort(cars,"doors"));

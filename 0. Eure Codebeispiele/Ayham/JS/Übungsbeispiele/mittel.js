@@ -19,15 +19,15 @@ function anagram (str1, str2){
     let word2 = str2.toUpperCase().split('').sort().join();
     return word1 === word2;
 }
- console.log( anagram("listen","silent"));
- console.log( anagram("listen","silente"));
+console.log( anagram("listen","silent"));
+console.log( anagram("listen","silente"));
 // 3. Schreibea eine Funktion, die die Anzahl der Vorkommen eines bestimmten Zeichens in einem String zählt.
 function counter (str){
     const char = {'N':0,'E':0};
     let word = str.toUpperCase().split('');
     for(let c of word){
         if(c in char){
-            char[c] += 1;
+            char[c]++;
         }
     }
     return char;
@@ -58,10 +58,10 @@ let arr2 = ["Emil", "Ayham", "Tedy"];
 console.log(towArrays(arr1,arr2));
 
 // 6. Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt.
-function counter(str){
+function counter1(str){
 return str.split(' ').length;;
 }
-console.log(counter('Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt'));
+console.log(counter1('Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt'));
 // 7. Schreibe eine Funktion, die das größte gemeinsame Teiler (ggT) von zwei Zahlen berechnet.
 
 
@@ -80,6 +80,13 @@ function nextMonday(){
 }
 console.log(nextMonday());
 // 9. Schreibe eine Funktion, die prüft, ob ein String eine gültige URL ist.
+
+
+
+
+
+
+
 
 // 10. Schreibe eine Funktion, die die Elemente eines Arrays in umgekehrter Reihenfolge anordnet.
 function reverseArray(arr){
