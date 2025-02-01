@@ -76,3 +76,7 @@ function fakult(num){
     return console.log(resault);
 }
 fakult(5);
+
+
+let str = 'Das_ist_ein _Test';
+console.log(str.split(' ').splice('-').join());
