@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Climbing Bug</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 100wh;
+            height: 400px;
+            background-color: blueviolet;
+        }
+        .seil{
+            width: 1.5rem;
+            translate: 1470px 5px;
+        }
+        .bug{
+            width: 5rem;
+            translate: 1375px -500px;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="IMG/Seile.png" class="seil">
+    <!--<img src="IMG/budy.png" class="body keffer" id="bug">
+    <img src="IMG/Hand.png" class="hand1 keffer" id="bugH1">
+    <img src="IMG/Hand.png" class="hand2 keffer" id="bugH2">
+    <img src="IMG/Foot.png" class="foot2 keffer" id="bugF">-->
+    <img src="IMG/fullBug.png" class="bug keffer" id="bug">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+
+    <script>
+        document.addEventListener('scroll', () => {
+        const scrollElement = document.getElementById('bug');
+        const scrollPosition = window.scrollY;
+        scrollElement.style.transform = `translateY(${scrollPosition}px)`;
+    });
+
+    </script>
+
+</body>
+</html>
