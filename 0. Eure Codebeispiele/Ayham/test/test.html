@@ -9,42 +9,84 @@
             padding: 0;
             margin: 0;
         }
-        div{
-            width: 100wh;
-            height: 400px;
-            background-color: blueviolet;
-        }
         .seil{
-            width: 1.5rem;
-            translate: 1470px 5px;
+            width: 30px;
+            translate: 1470px 0px;
         }
-        .bug{
-            width: 5rem;
-            translate: 1375px -500px;
+        .body{
+            translate: 1335px -650px;
         }
+        .hand2{
+            position: relative;
+            translate: 1160px -685px;
+            transform-origin: left top;
+            animation: 2s klit infinite ease-in-out alternate;
+            z-index: 1;
+        }
+        .hand1{
+            position: relative;
+            translate: 1245px -705px;
+            transform-origin:  top left;
+            animation: 2s klit infinite ease-in-out alternate;
+            z-index: 2;
+                    
+        }
+        div{
+            width: 400px;
+            height: 400px;
+        }
+        .foot2{
+            position: relative;
+            translate: 1115px -620px;
+            rotate: 50deg;
+            transform-origin:  top left;
+            animation: 2s ease-in-out;
+        }
+        .foot2.animated {
+            animation: klit1 2s ease-in-out infinite alternate;
+}
+        @keyframes klit {
+            0% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg); }
+        }
+        @keyframes klit1 {
+            0% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
+        }
+        .hand-left { left: 10px; top: 50px; }
+        .hand-right { right: 10px; top: 50px; }
+        .foot-left { left: 20px; bottom: 10px; }
+        .foot-right { right: 20px; bottom: 10px; }
     </style>
 </head>
 <body>
 
     <img src="IMG/Seile.png" class="seil">
-    <!--<img src="IMG/budy.png" class="body keffer" id="bug">
-    <img src="IMG/Hand.png" class="hand1 keffer" id="bugH1">
-    <img src="IMG/Hand.png" class="hand2 keffer" id="bugH2">
-    <img src="IMG/Foot.png" class="foot2 keffer" id="bugF">-->
-    <img src="IMG/fullBug.png" class="bug keffer" id="bug">
+    <img src="IMG/budy.png" class="body kefer" id="bug">
+    <img src="IMG/Hand.png" class="hand1 kefer" id="bugH">
+    <img src="IMG/Hand.png" class="hand2 kefer" id="bugH">
+    
+    <img src="IMG/Foot.png" class="foot2 kefer" id="bugF">
     <div></div>
     <div></div>
     <div></div>
-    <div></div>
-
 
     <script>
         document.addEventListener('scroll', () => {
         const scrollElement = document.getElementById('bug');
+        const rotateElement = document.getElementById('bugF');
         const scrollPosition = window.scrollY;
         scrollElement.style.transform = `translateY(${scrollPosition}px)`;
+        rotateElement.style.transform = `rotate(${scrollPosition}deg)`;
     });
-
+window.addEventListener("scroll", () => {
+    let scrollPos = window.scrollY;
+    
+    // Bewegung der Hände und Füße im Kletter-Stil
+    document.querySelector(".hand-left").style.transform = `translateY(${scrollPos % 20}px) rotate(${scrollPos % 10}deg)`;
+    document.querySelector(".hand-right").style.transform = `translateY(${(scrollPos % 20) * -1}px) rotate(${(scrollPos % 10) * -1}deg)`;
+    document.querySelector(".foot-left").style.transform = `translateY(${(scrollPos % 20) * -1}px) rotate(${(scrollPos % 10)}deg)`;
+});
     </script>
 
 </body>
