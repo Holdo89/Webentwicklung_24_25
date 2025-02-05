@@ -82,7 +82,6 @@
 window.addEventListener("scroll", () => {
     let scrollPos = window.scrollY;
     
-    // Bewegung der Hände und Füße im Kletter-Stil
     document.querySelector(".hand-left").style.transform = `translateY(${scrollPos % 20}px) rotate(${scrollPos % 10}deg)`;
     document.querySelector(".hand-right").style.transform = `translateY(${(scrollPos % 20) * -1}px) rotate(${(scrollPos % 10) * -1}deg)`;
     document.querySelector(".foot-left").style.transform = `translateY(${(scrollPos % 20) * -1}px) rotate(${(scrollPos % 10)}deg)`;
