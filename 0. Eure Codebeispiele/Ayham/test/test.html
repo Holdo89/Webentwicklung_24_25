@@ -11,75 +11,74 @@
         }
         .seil{
             width: 30px;
-            translate: 1470px 0px;
+            translate: 148px 0px;
         }
         .body{
-            translate: 1335px -650px;
+            position: fixed;
+            translate: 15px 75px;
         }
         .hand2{
-            position: relative;
-            translate: 1160px -685px;
-            transform-origin: left top;
-            animation: 2s klit infinite ease-in-out alternate;
-            z-index: 1;
+            position: fixed;
+            translate: 70px 190px;
+            transition: transform 0.1s ease; 
+            transform-origin:  top left;
+            animation: 2s ease-in-out;
         }
         .hand1{
-            position: relative;
-            translate: 1245px -705px;
+            position: fixed;
+            translate: 70px 210px;
+            transition: transform 0.1s ease; 
             transform-origin:  top left;
-            animation: 2s klit infinite ease-in-out alternate;
-            z-index: 2;
-                    
+            animation: 2s ease-in-out;
         }
         div{
             width: 400px;
             height: 400px;
         }
         .foot2{
-            position: relative;
-            translate: 1115px -620px;
-            rotate: 50deg;
+            position: fixed;
+            translate: 70px 250px;
+            rotate: 20deg;
+            transition: transform 0.1s ease; 
             transform-origin:  top left;
             animation: 2s ease-in-out;
         }
-        .foot2.animated {
-            animation: klit1 2s ease-in-out infinite alternate;
-}
-        @keyframes klit {
-            0% { transform: rotate(10deg); }
-            100% { transform: rotate(-10deg); }
-        }
-        @keyframes klit1 {
-            0% { transform: rotate(5deg); }
-            100% { transform: rotate(-5deg); }
-        }
-        .hand-left { left: 10px; top: 50px; }
-        .hand-right { right: 10px; top: 50px; }
-        .foot-left { left: 20px; bottom: 10px; }
-        .foot-right { right: 20px; bottom: 10px; }
     </style>
 </head>
 <body>
 
     <img src="IMG/Seile.png" class="seil">
-    <img src="IMG/budy.png" class="body kefer" id="bug">
-    <img src="IMG/Hand.png" class="hand1 kefer" id="bugH">
-    <img src="IMG/Hand.png" class="hand2 kefer" id="bugH">
-    
-    <img src="IMG/Foot.png" class="foot2 kefer" id="bugF">
+    <img src="IMG/budy.png" class="body kefer" id="bugBody">
+    <img src="IMG/Hand.png" class="hand1 kefer" id="bugHand1">
+    <img src="IMG/Hand.png" class="hand2 kefer" id="bugHand2">
+    <img src="IMG/Foot.png" class="foot2 kefer" id="bugFoot">
     <div></div>
     <div></div>
     <div></div>
 
     <script>
+        function scrolling (element){
         document.addEventListener('scroll', () => {
-        const scrollElement = document.getElementById('bug');
-        const rotateElement = document.getElementById('bugF');
         const scrollPosition = window.scrollY;
-        scrollElement.style.transform = `translateY(${scrollPosition}px)`;
-        rotateElement.style.transform = `rotate(${scrollPosition}deg)`;
-    });
-
+        element.style.transform = `translateY(${scrollPosition}px)`;
+    });}
+    function moving(element, rotatAngle = 0){
+        let isRotat = true; 
+        window.addEventListener('scroll', () => {
+            const scroll_Y = window.scrollY;
+            isRotat ? rotatAngle +=0.7 : rotatAngle -= 0.7;
+            rotatAngle >= 20 ? isRotat = false : true ;
+            rotatAngle <= 10 ? isRotat = true : false;
+            element.style.transform = `rotate(${rotatAngle}deg)`;
+        });}
+        const bugBody = document.getElementById('bugBody');
+        const foot = document.getElementById('bugFoot');
+        const hand1 = document.getElementById('bugHand1');
+        const hand2 = document.getElementById('bugHand2');
+    
+        moving(foot);
+        moving(hand1);
+        moving(hand2,10);
     </script>
 
 </body>
