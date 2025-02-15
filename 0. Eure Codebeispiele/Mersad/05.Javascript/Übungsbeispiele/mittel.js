@@ -8,7 +8,14 @@
 // 4. Schreibe eine Funktion, die die Primzahlen bis zu einer bestimmten Zahl findet.
 
 // 5. Schreibe eine Funktion, die zwei Arrays zusammenführt und sortiert.
+let array1 = [2, 5, 7];
+let array2 = [1, 4, 9];
+sortieren(array1, array2);
 
+function sortieren(array1, array2) {
+  let newArray = array1.concat(array2);
+  console.log(newArray.sort());
+}
 // 6. Schreibe eine Funktion, die die Anzahl der Wörter in einem Satz zählt.
 
 // 7. Schreibe eine Funktion, die das größte gemeinsame Teiler (ggT) von zwei Zahlen berechnet.
