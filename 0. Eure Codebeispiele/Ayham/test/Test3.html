@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ca{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+        .ca .ra{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .ca .ra .bl{
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background-color: black;
+            left: 50%;
+            transform-origin: 50% 1000%;
+        }
+    </style>
+</head>
+<body>
+    <div class="ca">
+        <diy class="ra">
+            <div class="bl"></div>
+        </diy>
+    </div>
+</body>
+</html>
+<script>
+    let el1 = document.getElementsByClassName('ra')[0];
+    let el2 = document.getElementsByClassName('bl');
+    for (let i = 0 ; i < 100; i++) {
+        el1.innerHTML += "<div class='bl'></div>";
+        el2[i].style.transform = "rotate("+3.6*i+"deg)";
+    }
+
+</script>

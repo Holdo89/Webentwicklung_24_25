@@ -1,62 +1,59 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تدوير وتحريك العنصر مع التمرير</title>
-    <style>
-        #moving-element {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform-origin: center center;
-            transition: transform 0.1s ease; /* لجعل الحركة سلسة */
-        }
-        body {
-            height: 2000px; /* لجعل الصفحة قابلة للتمرير */
-        }
-    </style>
-</head>
-<body>
-    <img src="IMG/foot2.png" id="moving-element">
+<style> 
+    #bugHand1{
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+    #bugHand2{
+        
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+    #bugFoot{
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+</style>
+<script>
+    function scrolling (element){
+    document.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    element.style.transform = `translateY(${scrollPosition}px)`;
+});}
+function moving(element, rotatAngle = 0){
+    let isRotat = true; 
+    window.addEventListener('scroll', () => {
+        const scroll_Y = window.scrollY;
+        isRotat ? rotatAngle +=0.7 : rotatAngle -= 0.7;
+        rotatAngle >= 7 ? isRotat = false : true ;
+        rotatAngle <= 0.7 ? isRotat = true : false;
+        element.style.transform = `rotate(${rotatAngle}deg)`;
+    });}
+    const bugBody = document.getElementById('bugBody');
+    const foot = document.getElementById('bugFoot');
+    const hand1 = document.getElementById('bugHand1');
+    const hand2 = document.getElementById('bugHand2');
 
-    <script>
-        const element = document.getElementById('moving-element');
-        let rotationAngle = 0; // متغير لتخزين زاوية التدوير الحالية
-        let isRotatingForward = true; // متغير لتحديد اتجاه التدوير
+    moving(foot);
+    moving(hand1);
+    moving(hand2,1);
+</script>
 
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY || window.pageYOffset;
 
-            // زيادة أو إنقاص زاوية التدوير بناءً على اتجاه التمرير
-            if (isRotatingForward) {
-                rotationAngle += 1; // زيادة الزاوية عند التمرير لأسفل
-            } else {
-                rotationAngle -= 1; // إنقاص الزاوية عند التمرير لأعلى
-            }
+<iframe src="https://www.my360planet.at/Tagaluba/" width="100%" height="600px" style="border: none;"></iframe>
 
-            // إذا وصلت الزاوية إلى 360 درجة، نعكس الاتجاه
-            if (rotationAngle >= 50) {
-                isRotatingForward = false;
-            }
-            // إذا وصلت الزاوية إلى 0 درجة، نعكس الاتجاه مرة أخرى
-            if (rotationAngle <= 30) {
-                isRotatingForward = true;
-            }
-
-            // حساب الإزاحة الأفقية والعمودية بناءً على التمرير
-            const moveX = scrollY * 0.1; // تحريك أفقي
-            const moveY = scrollY * 0.1; // تحريك عمودي
-
-            // تطبيق التدوير والتحريك على العنصر
-            element.style.transform = `
-                rotate(${rotationAngle}deg)
-                translate(${moveX}px, ${moveY}px)
-            `;
-        });
-    </script>
-</body>
-</html>
+<style>
+    .homePage{
+        margin-top: 100px;
+        width: 100%;
+    }
+    #myVideo{
+        scale: 1;
+    }
+</style>
+<video  autoplay muted loop playsinline id="myVideo">
+            <source src="TagaLuba.mp4" type="video/mp4">
+            Ihr Browser unterstützt dieses Video nicht.
+</video>

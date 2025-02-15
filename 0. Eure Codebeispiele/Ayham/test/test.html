@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Climbing Bug</title>
     <style>
-        *{
-            padding: 0;
-            margin: 0;
+        div{
+            height: 1000px;
         }
         .seil{
             width: 30px;
@@ -19,28 +18,26 @@
         }
         .hand2{
             position: fixed;
-            translate: 70px 190px;
+            translate: 60px 190px;
+            rotate: -20deg;
             transition: transform 0.1s ease; 
-            transform-origin:  top left;
+            transform-origin:  top;
             animation: 2s ease-in-out;
         }
         .hand1{
             position: fixed;
-            translate: 70px 210px;
+            translate: 60px 220px;
+            rotate: -20deg;
             transition: transform 0.1s ease; 
-            transform-origin:  top left;
+            transform-origin:  top ;
             animation: 2s ease-in-out;
-        }
-        div{
-            width: 400px;
-            height: 400px;
         }
         .foot2{
             position: fixed;
             translate: 70px 250px;
             rotate: 20deg;
             transition: transform 0.1s ease; 
-            transform-origin:  top left;
+            transform-origin:  0% 50%;
             animation: 2s ease-in-out;
         }
     </style>
@@ -55,7 +52,7 @@
     <div></div>
     <div></div>
     <div></div>
-
+    <div></div>
     <script>
         function scrolling (element){
         document.addEventListener('scroll', () => {
