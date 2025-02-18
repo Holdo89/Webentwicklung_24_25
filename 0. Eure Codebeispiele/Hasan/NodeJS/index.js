@@ -2,11 +2,11 @@ import express from "express";
 const app = express();
 
 app.get("/", (req, res) => {
-    res.send("<h1> Welcome to the homepage!</h1>");
+    res.send("<h1> CodersBay ist super!</h1>");
 });
 
 app.get("/about", (req, res) => {
-    res.send("<h1>About us</h1>");
+    res.send("<h1>Hi</h1>");
 });
 
 app.use((req, res)=>{
