@@ -1,73 +1,59 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kletternder Käfer</title>
-    <style>
-        body {
-            height: 200vh; /* Längere Seite zum Scrollen */
-            overflow-x: hidden;
-            background-color: white;
-            margin: 0;
-        }
+<style> 
+    #bugHand1{
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+    #bugHand2{
+        
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+    #bugFoot{
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+</style>
+<script>
+    function scrolling (element){
+    document.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    element.style.transform = `translateY(${scrollPosition}px)`;
+});}
+function moving(element, rotatAngle = 0){
+    let isRotat = true; 
+    window.addEventListener('scroll', () => {
+        const scroll_Y = window.scrollY;
+        isRotat ? rotatAngle +=0.7 : rotatAngle -= 0.7;
+        rotatAngle >= 7 ? isRotat = false : true ;
+        rotatAngle <= 0.7 ? isRotat = true : false;
+        element.style.transform = `rotate(${rotatAngle}deg)`;
+    });}
+    const bugBody = document.getElementById('bugBody');
+    const foot = document.getElementById('bugFoot');
+    const hand1 = document.getElementById('bugHand1');
+    const hand2 = document.getElementById('bugHand2');
 
-        .kefer-container {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: transform 0.1s linear;
-        }
-
-        .kefer-part {
-            position: absolute;
-        }
-
-        .seil {
-            top: 0;
-            width: 30px;
-            z-index: -1;
-        }
-        .climber {
-    position: fixed;
-    left: 50px; 
-    bottom: 50px;
-}
-
-.hand, .foot {
-    position: absolute;
-    transition: transform 0.3s ease-in-out;
-}
-
-.hand-left { left: 10px; top: 50px; }
-.hand-right { right: 10px; top: 50px; }
-.foot-left { left: 20px; bottom: 10px; }
-.foot-right { right: 20px; bottom: 10px; }
+    moving(foot);
+    moving(hand1);
+    moving(hand2,1);
+</script>
 
 
-    </style>
-</head>
-<body>
-    <div class="climber">
-        <img src="IMG/body.png" class="body" alt="Bee Body">
-        <img src="IMG/hand.png" class="hand hand-left" alt="Left Hand">
-        <img src="IMG/hand.png" class="hand hand-right" alt="Right Hand">
-        <img src="IMG/foot.png" class="foot foot-left" alt="Left Foot">
-        <img src="IMG/foot.png" class="foot foot-right" alt="Right Foot">
-    </div>
+<iframe src="https://www.my360planet.at/Tagaluba/" width="100%" height="600px" style="border: none;"></iframe>
 
-    <script>
-      window.addEventListener("scroll", () => {
-    let scrollPos = window.scrollY;
-    
-    // Bewegung der Hände und Füße im Kletter-Stil
-    document.querySelector(".hand-left").style.transform = `translateY(${scrollPos % 40}px) rotate(${scrollPos % 30}deg)`;
-    document.querySelector(".hand-right").style.transform = `translateY(${(scrollPos % 40) * -1}px) rotate(${(scrollPos % 30) * 1}deg)`;
-    document.querySelector(".foot-left").style.transform = `translateY(${(scrollPos % 40) * -1}px) rotate(${(scrollPos % 30)}deg)`;
-    document.querySelector(".foot-right").style.transform = `translateY(${scrollPos % 30}px) rotate(${(scrollPos % 30) * 1}deg)`;
-});
-
-    </script>
-
-</body>
-</html>
+<style>
+    .homePage{
+        margin-top: 100px;
+        width: 100%;
+    }
+    #myVideo{
+        scale: 1;
+    }
+</style>
+<video  autoplay muted loop playsinline id="myVideo">
+            <source src="TagaLuba.mp4" type="video/mp4">
+            Ihr Browser unterstützt dieses Video nicht.
+</video>
