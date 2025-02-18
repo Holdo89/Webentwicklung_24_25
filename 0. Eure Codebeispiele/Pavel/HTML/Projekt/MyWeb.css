@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #ff66b2, #80ccff);
+    animation: backgroundAnimation 60s ease-in-out infinite;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background: linear-gradient(45deg, #ff66b2, #80ccff);
+    }
+    25% {
+        background: linear-gradient(45deg, #ff99cc, #ffcc00);
+    }
+    50% {
+        background: linear-gradient(45deg, #99ccff, #66ff66);
+    }
+    75% {
+        background: linear-gradient(45deg, #ff3333, #ffccff);
+    }
+    100% {
+        background: linear-gradient(45deg, #ff66b2, #80ccff);
+    }
+}
+
+header {
+    text-align: center;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+.header-content h1 {
+    font-size: 2.5em;
+}
+
+.scroll-section {
+    text-align: center;
+    margin-top: 100px; /* Adjust to move the section lower */
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.skills {
+    text-align: center;
+    margin-top: 50px;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.skills h2 {
+    font-size: 2em;
+}
+
+.skill-item {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.projects {
+    text-align: center;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.project-folders {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.project {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.project img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}

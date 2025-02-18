@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Climbing Bug</title>
+    <style>
+        div{
+            height: 1000px;
+        }
+        .seil{
+            width: 30px;
+            translate: 148px 0px;
+        }
+        .body{
+            position: fixed;
+            translate: 15px 75px;
+        }
+        .hand2{
+            position: fixed;
+            translate: 60px 190px;
+            rotate: -20deg;
+            transition: transform 0.1s ease; 
+            transform-origin:  top;
+            animation: 2s ease-in-out;
+        }
+        .hand1{
+            position: fixed;
+            translate: 60px 220px;
+            rotate: -20deg;
+            transition: transform 0.1s ease; 
+            transform-origin:  top ;
+            animation: 2s ease-in-out;
+        }
+        .foot2{
+            position: fixed;
+            translate: 70px 250px;
+            rotate: 20deg;
+            transition: transform 0.1s ease; 
+            transform-origin:  0% 50%;
+            animation: 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="IMG/Seile.png" class="seil">
+    <img src="IMG/budy.png" class="body kefer" id="bugBody">
+    <img src="IMG/Hand.png" class="hand1 kefer" id="bugHand1">
+    <img src="IMG/Hand.png" class="hand2 kefer" id="bugHand2">
+    <img src="IMG/Foot.png" class="foot2 kefer" id="bugFoot">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        function scrolling (element){
+        document.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        element.style.transform = `translateY(${scrollPosition}px)`;
+    });}
+    function moving(element, rotatAngle = 0){
+        let isRotat = true; 
+        window.addEventListener('scroll', () => {
+            const scroll_Y = window.scrollY;
+            isRotat ? rotatAngle +=0.7 : rotatAngle -= 0.7;
+            rotatAngle >= 20 ? isRotat = false : true ;
+            rotatAngle <= 10 ? isRotat = true : false;
+            element.style.transform = `rotate(${rotatAngle}deg)`;
+        });}
+        const bugBody = document.getElementById('bugBody');
+        const foot = document.getElementById('bugFoot');
+        const hand1 = document.getElementById('bugHand1');
+        const hand2 = document.getElementById('bugHand2');
+    
+        moving(foot);
+        moving(hand1);
+        moving(hand2,10);
+    </script>
+
+</body>
+</html>

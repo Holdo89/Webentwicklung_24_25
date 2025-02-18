@@ -1,0 +1,59 @@
+<style> 
+    #bugHand1{
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+    #bugHand2{
+        
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+    #bugFoot{
+        transition: transform 0.1s ease; 
+        transform-origin:  top left;
+        animation: 2s ease-in-out;
+    }
+</style>
+<script>
+    function scrolling (element){
+    document.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    element.style.transform = `translateY(${scrollPosition}px)`;
+});}
+function moving(element, rotatAngle = 0){
+    let isRotat = true; 
+    window.addEventListener('scroll', () => {
+        const scroll_Y = window.scrollY;
+        isRotat ? rotatAngle +=0.7 : rotatAngle -= 0.7;
+        rotatAngle >= 7 ? isRotat = false : true ;
+        rotatAngle <= 0.7 ? isRotat = true : false;
+        element.style.transform = `rotate(${rotatAngle}deg)`;
+    });}
+    const bugBody = document.getElementById('bugBody');
+    const foot = document.getElementById('bugFoot');
+    const hand1 = document.getElementById('bugHand1');
+    const hand2 = document.getElementById('bugHand2');
+
+    moving(foot);
+    moving(hand1);
+    moving(hand2,1);
+</script>
+
+
+<iframe src="https://www.my360planet.at/Tagaluba/" width="100%" height="600px" style="border: none;"></iframe>
+
+<style>
+    .homePage{
+        margin-top: 100px;
+        width: 100%;
+    }
+    #myVideo{
+        scale: 1;
+    }
+</style>
+<video  autoplay muted loop playsinline id="myVideo">
+            <source src="TagaLuba.mp4" type="video/mp4">
+            Ihr Browser unterstützt dieses Video nicht.
+</video>
