@@ -14,3 +14,11 @@
 // und die Schrift darin wird weiß, 
 // und der Text innerhalb des Buttons ändert sich zu „Light Mode“
 // Wird der Button erneut geklickt dann ändert sich die Hintergrundfarbe wieder auf weiß und der Text des neuen Button zu „Dark Mode“
+
+document.querySelector("#main-container h1").textContent = "DOM-Manipulationsübung abgeschlossen!";
+const changeTextButton = document.getElementById("changeTextButton");
+changeTextButton.textContent = "Klick mich!";
+changeTextButton.style.backgroundColor = "blue";
+const darkModeButton = document.createElement("button");
+darkModeButton.textContent = "Dark Mode";
+document.getElementById("main-container").appendChild(darkModeButton);

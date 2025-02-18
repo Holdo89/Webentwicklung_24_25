@@ -7,4 +7,3 @@ fs.writeFile('message.txt', message,  (err) => {
     console.log('The file has been saved!');
   }); 
 
-fs.readFile('message.txt')
