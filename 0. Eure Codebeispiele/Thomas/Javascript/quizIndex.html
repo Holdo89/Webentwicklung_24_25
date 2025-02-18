@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./quiz.js"defer></script>
+</head>
+<style>
+    body{
+        background-color: lightcyan;
+    }
+    #text{
+        width: 100px;
+        height: 40px;
+        
+    }
+    button{
+        background-color: aqua;
+        font-family: 'Courier New', Courier, monospace;
+        color:fuchsia;
+        width: 100px;
+        height:45px;
+    }
+
+</style>
+<body>
+   <header>Guessing Game</header>
+   <div class="container">
+    <h1 id="Headline">Bitte rate die Zahl</h1>
+    <h2 id="displayTries">Versuche: 0</h2>
+    <form onsubmit="getTheNumber();return false;">
+    <input id="mynumber" type ="number"required placeholder="Bitte Zahl eingeben">
+    <button>Senden</button>
+    </form>
+
+   </div>
+</body>
+
+
+</html>

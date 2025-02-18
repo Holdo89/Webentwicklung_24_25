@@ -10,6 +10,8 @@ function whoIsPaying(names){
 
 console.log(whoIsPaying(names)+ " muss heute das Essen bezahlen")*/
 
+const { reverse } = require("dns");
+
 /*const { forEach } = require("async");
 
 const participants=[
@@ -70,5 +72,14 @@ if(zahl >=0 && zahl <= 6){
 }
 }
 getWochentage();
+
+const names=['yo','tt','qq','rr']
+function whoisit(names){
+    let random=Math.floor(Math.random()*names.length)
+    return(names[random])
+}
+console.log(whoisit(names) + 'muss heute das essen bezahlen')
+
+
 
 
