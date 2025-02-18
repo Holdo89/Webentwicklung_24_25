@@ -14,9 +14,11 @@ body {
     .headline-list {
     
         display: flex;
+        height: 40px;
         gap: 20px;
         list-style: none;
         justify-content: center;
+        align-items: center;
     }
     a {
         text-decoration: none;
@@ -25,9 +27,15 @@ body {
     .head-item {
        
         padding: 15px 20px;
-        background-color: rgb(252, 250, 250);
+        background-color: rgba(247, 247, 247, 0.345);
         border-radius: 4px;
         
     }
 
+    .head-item.logo{
+        background-color: inherit;
+        margin-top: 20px;
+    }
+
+   
       
