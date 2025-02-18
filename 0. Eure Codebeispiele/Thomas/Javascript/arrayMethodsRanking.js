@@ -31,3 +31,4 @@ console.log(reverse)
 reverse.forEach((participants)=>{
   console.log(participants.name + " " + "hat" + " " +participants.points)
 });
+
