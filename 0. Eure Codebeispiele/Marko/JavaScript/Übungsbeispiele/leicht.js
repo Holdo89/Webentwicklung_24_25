@@ -1,5 +1,10 @@
 // 1. Schreibe eine Funktion, die die Summe von zwei Zahlen zurückgibt.
+a=1;
+b=2;
+function sumNumber (a+b){
 
+    
+}
 // 2. Schreibe eine Funktion, die überprüft, ob eine Zahl gerade oder ungerade ist.
 
 // 3. Schreibe eine Funktion, die einen String umkehrt.
