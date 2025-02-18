@@ -13,13 +13,21 @@
     padding-top: 100px;
 }
 .it{
-    color: rgb(227, 98, 34);
-    animation: it 5s infinite;
+    color: rgb(0, 255, 242);
+    animation: it 3s linear infinite;
 }
 
 @keyframes it {
-    0% {color: rgb(227, 98, 34) };
-    25% {color: red};
-    75% {color: red};
-    100% {color: rgb(227, 98, 34)};
+    10% {color: rgb(255, 0, 255) };
+    60% {color: rgb(255, 0, 0)};
+    90% {color: rgb(241, 241, 241) };
+}
+.socialMedia {
+    display: flex;
+    margin-left: 50px;
+    gap: 15px
+}
+.picture{
+    height: 100px;
+    width: 100px;
 }
