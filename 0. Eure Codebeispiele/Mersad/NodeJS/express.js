@@ -27,7 +27,7 @@ app.post("/submit", (req, res) => {
 });
 
 app.post("/submit2", (req, res) => {
-  if (req.body.passwort == "mypasswort") {
+  if (req.body.passwort === "mypasswort") {
     res.send("passwort correct");
   } else {
     res.send("passwort incorrect");
