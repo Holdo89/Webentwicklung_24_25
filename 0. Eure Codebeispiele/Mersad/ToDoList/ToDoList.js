@@ -4,9 +4,9 @@ function addNew() {
   const aktuell = document.querySelectorAll("div");
 
   const neu = document.querySelector("#new");
-  const newItem = document.createElement(neu);
+  const newItem = neu.cloneNode(true);
 
   if (aktuell.length > 0) {
-    aktuell[aktuell.length].appendChild(newItem);
+    aktuell[aktuell.length - 1].parentNode.appendChild(newItem);
   }
 }
