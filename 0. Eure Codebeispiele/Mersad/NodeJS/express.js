@@ -7,6 +7,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./static"));
 // um css zu finden
 
@@ -19,8 +21,18 @@ app.get("/file", (req, res) => {
   // die Datei wird mit CSS zurückgeschickt
 });
 
-app.post("/register", (req, res) => {
-  res.send("post request successfull");
+app.post("/submit", (req, res) => {
+  console.log("username:", req.body.username);
+  res.send("Der User hat sich angemeldet " + req.body.username);
+  res.sendStatus(201);
+});
+
+app.post("/submit2", (req, res) => {
+  if (req.body.passwort == "mypasswort") {
+    res.send("passwort correct");
+  } else {
+    res.send("passwort incorrect");
+  }
   res.sendStatus(201);
 });
 
