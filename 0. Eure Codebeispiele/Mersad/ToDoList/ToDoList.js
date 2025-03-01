@@ -9,4 +9,6 @@ function addNew() {
   if (aktuell.length > 0) {
     aktuell[aktuell.length - 1].parentNode.appendChild(newItem);
   }
+  const button = document.getElementById("button");
+  document.body.appendChild(button);
 }
