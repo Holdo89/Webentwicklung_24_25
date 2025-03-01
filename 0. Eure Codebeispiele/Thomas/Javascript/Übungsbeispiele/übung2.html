@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="asdf"href="asdfads">
+    <style>
+    
+        
+         div{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border: 2px;
+            background-color: green;
+            border-radius: 5px;
+            gap: 10px;
+        }
+        
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded',function (){
+           
+        document.querySelector('#red').onclick= ()=>{
+            document.querySelector('#Hello').style.color="red";
+        }
+        document.querySelector('#grün').onclick= ()=>{
+            document.querySelector('#Hello').style.color="green";
+        }
+        document.querySelector('#blau').onclick= ()=>{
+            document.querySelector('#Hello').style.color="blue";
+        }
+    });
+    </script>
+</head>
+<body>
+
+    <h1 id="Hello">Hello</h1>
+    <ul id="list">
+
+    </ul>
+    <input id="text" placeholder="enter your text">
+    <button onsubmit="submi">submit</button>
+    <button id="red">Red</button>
+    <button id="grün">grün</button>
+    <button id="blau">blau</button>
+
+    <div id="box">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+
+
+
+
+    </div>
+    
+
+        
+
+    
+    
+</body>
+</html>
