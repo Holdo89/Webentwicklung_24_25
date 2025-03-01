@@ -23,8 +23,7 @@ app.get("/file", (req, res) => {
 
 app.post("/submit", (req, res) => {
   console.log("username:", req.body.username);
-  res.send("Der User hat sich angemeldet " + req.body.username);
-  res.sendStatus(201);
+  res.sendStatus(201).send("Der User hat sich angemeldet " + req.body.username);
 });
 
 app.post("/submit2", (req, res) => {
