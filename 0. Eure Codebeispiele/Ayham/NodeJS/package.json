@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "node.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cowsay": "^1.6.0",
+    "express": "^4.21.2",
+    "fibonacci": "^1.6.11",
+    "nodemon": "^3.1.9",
+    "shelljs": "^0.8.5",
+    "superheroes": "^4.0.0"
+  }
+}
