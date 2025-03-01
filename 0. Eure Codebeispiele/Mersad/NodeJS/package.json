@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "cowsay": "^1.6.0",
+    "express": "^4.21.2",
     "fibonacci": "^1.6.11",
     "superheroes": "^4.0.0"
   }
