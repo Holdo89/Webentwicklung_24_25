@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -6,12 +7,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.use(express.static("./static"));
+// um css zu finden
+
 app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>");
 });
 
 app.get("/file", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(path.join(__dirname, index.html));
+  // die Datei wird mit CSS zurückgeschickt
 });
 
 app.post("/register", (req, res) => {
