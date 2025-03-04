@@ -7,11 +7,23 @@ const file = dirname(fileURLToPath(import.meta.url));
 const fileCss = dirname(fileURLToPath(import.meta.url));
 let app = express();
 
-app.use(express.static('./'));
+//app.use(express.static('./'));
 
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(checkPassword);
+
+function checkPassword(req, res , next){
+    let pass = "123456";
+    console.log(req.body.password);
+    if(req.body.Password == pass){
+        next();
+    }
+    else{
+        res.status(444).send("Password Incorrect!!");
+    }
+}
 
 
 app.post('/regist', (req, res) =>{
@@ -22,11 +34,7 @@ app.post('/regist', (req, res) =>{
 });
 
 app.post('/register', (req, res) =>{
-    let user = "Ayham";
-    let pass = "123456";
-    req.body.password === pass && req.body.username === user ? 
-    res.status(200).send("user successful createt: " + req.body.username) :
-    res.status(400).send("Password Incorrect!!");
+    res.sendStatus(201);
 });
 
 
