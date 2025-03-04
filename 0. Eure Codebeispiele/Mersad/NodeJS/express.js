@@ -26,14 +26,17 @@ app.post("/submit", (req, res) => {
   res.sendStatus(201).send("Der User hat sich angemeldet " + req.body.username);
 });
 
-app.use((req, res, next) => {
+app.use(check);
+
+function check(req, res, next) {
   if (req.body.passwort === "mypasswort") {
     res.send("passwort correct");
   } else {
     res.send("passwort incorrect");
   }
   res.sendStatus(201);
-});
+  next();
+}
 
 app.put("/user/Mersad", (req, res) => {
   res.send("put successfull");
