@@ -8,32 +8,29 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
-const correctPassword = "password123"
+app.use(checkPassword);
+
+function checkPassword(req,res,next){
+  if(req.body.password == "MyPassword"){
+    res.status(200).send("Password is correct")
+
+  }else{
+    res.status(400).send("Password is incorrect");
+  }
+}
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html")); 
 });
-
-
 
 app.post("/register", (req, res) => {
    
     res.send("User registered");
   });
   
-  app.post("/login", (req, res) => {
-    const { password } = req.body;
-    if (password === correctPassword) {
-      res.send("Login successful");
-    } else {
-      res.send("Invalid password");
-    }
+  app.post("/submit", (req, res) => {
+res.sendstatus(201);
   });
-
-
-
-
-
   
 app.patch("/users",(req, res)=>{
     (res.send("<h1>Im User</h1>"))
