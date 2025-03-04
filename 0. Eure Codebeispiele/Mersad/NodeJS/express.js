@@ -36,6 +36,10 @@ function check(req, res, next) {
   }
 }
 
+app.post("/submit2", (req, res) => {
+  res.sendStatus(200);
+});
+
 app.put("/user/Mersad", (req, res) => {
   res.send("put successfull");
   res.sendStatus(200);
