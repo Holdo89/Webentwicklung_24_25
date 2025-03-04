@@ -1,0 +1,230 @@
+Angabe für HTML, CSS und Javascript Test.
+
+Jede Multiplechoice Frage hat nur eine richtige Antwort und bringt bei korrekter Antwort 1 Punkt.
+Insgesamt erreichbare Punkteanzahl = 41 (+ 4 Bonuspunkte).
+
+HTML Multiple Choice Questions:
+1. Was ist die richtige Struktur für ein HTML-Dokument?
+   a) <header><html><body></body></html></header>
+  b) <html><body><head></head></body></html>
+  x c) <html><head></head><body></body></html>
+   d) <html><head></head><body></body></document>
+
+2. Welches HTML-Tag wird verwendet, um einen Hyperlink zu erstellen?
+   a) <link>
+   x b) <a>
+   c) <href>
+   d) <nav>
+
+3. Welches Attribut wird verwendet, um ein HTML-Element eindeutig zu identifizieren?
+   a) class
+  X b) id
+   c) name
+   d) type
+
+4. Welches HTML-Tag wird verwendet, um eine geordnete Liste zu erstellen?
+   a) <ul>
+ x  b) <ol>
+   c) <li>
+   d) <dl>
+
+5. Welches HTML-Tag wird verwendet, um eine Tabellenzeile zu erstellen?
+   a) <table>
+  x b) <tr>
+   c) <td>
+   d) <th>
+
+6. Welches Attribut ist erforderlich, um ein Bild in HTML anzuzeigen?
+  x a) src
+   b) href
+   c) alt
+   d) type
+
+7. Welches HTML-Tag wird verwendet, um ein Eingabefeld zu erstellen?
+   a) <select>
+   b) <option>
+ x  c) <input>
+   d) <enter>
+
+8. Welches HTML-Tag wird verwendet, um eine externe Webseite einzubetten?
+   a) <video>
+   b) <embed>
+  x c) <iframe>
+   d) <object>
+
+9. Welches Attribut wird verwendet, um das Ziel eines Formulars zu definieren?
+  x a) action
+   b) method
+   c) enctype
+   d) target
+
+10. Welches Attribut wird verwendet, um den Titel eines Links anzuzeigen, wenn der Benutzer mit der Maus darüber fährt?
+    a) href
+    b) src
+    c) alt
+   x d) title
+
+11. Was ist der Unterschied zwischen <section> und <div>?
+    a) Kein Unterschied
+  x  b) <section> hat eine semantische Bedeutung
+    c) <div> kann nur für Tabellen verwendet werden
+    d) <section> ist nur für Bilder gedacht
+
+12. Mit welchem Tag wird ein Zeilenumbruch eingefügt?
+    a) <lb>
+   x b) <br>
+    c) <line>
+    d) <nl>
+
+HTML Programming Task:
+Erweitere das Testbeispiel.html, damit es eine Überschrift, einen Absatz, ein Bild (codersbay.png), ein Textfeld für Eingabe und einen Button mit Text "Klick" enthält (alles untereinander). (3 Punkte) *DONE*
+
+CSS Multiple Choice Questions:
+1. Wie wird eine externe CSS-Datei eingebunden?
+   a) <style src="styles.css">
+  x b) <link rel="stylesheet" href="styles.css">
+   c) <css>styles.css</css>
+   d) <script src="styles.css"></script>
+
+2. Welche CSS-Eigenschaft ändert die Hintergrundfarbe eines Elements?
+   a) color
+  x b) background-color
+   c) text-color
+   d) bgcolor
+
+3. Was bedeutet position: absolute; in CSS?
+  x a) Das Element wird immer oben links auf der Seite positioniert 
+  ! b) Das Element wird relativ zum nächstgelegenen position: relative Element positioniert
+   c) Das Element bleibt immer an der gleichen Position, selbst beim Scrollen
+   d) Das Element ist immer zentriert
+
+4. Welche Einheit ist relativ zur Schriftgröße des Elements?
+  x a) em
+   b) px
+   c) cm
+   d) %
+
+5. Wie kann man alle <p>-Elemente in CSS gleichzeitig ansprechen?
+   a) p:all
+   b) *p
+  x c) p { }
+   d) #p
+
+6. Welche Regel hat die höchste Priorität in der CSS-Cascade?
+   a) Element-Selektoren (z. B. p {})
+  x b) Inline-Stile (z. B. style="color: red;")
+   c) Externe Stylesheets (z. B. link rel="stylesheet")
+   d) Klassen-Selektoren (z. B. .example {})
+
+7. Welches CSS-Attribut wird verwendet, um die Schriftart eines Elements zu ändern?
+  x a) font-family
+   b) font-style
+   c) font-weight
+   d) font-size
+
+8. Welches CSS-Attribut wird verwendet, um den Text eines Elements fett zu machen?
+   a) font-family
+   b) font-style
+  ! c) font-weight
+  x d) font-size
+
+9. Welches CSS-Attribut wird verwendet, um die Ausrichtung des Textes zu ändern?
+ x  a) text-align
+   b) vertical-align
+   c) line-heightfweg
+   d) text-decoration
+
+10. Wie kann man ein Element gleichmäßig in der Mitte eines div positionieren?
+    a) top: center; left: center;
+ x   b) display: flex; justify-content: center; align-items: center;
+    c) margin: auto;
+    d) text-align: center;
+
+11. Wie kann man mehrere CSS-Klassen auf ein Element anwenden?
+    a) class="class1-class2"
+   x b) class="class1, class2"
+   ! c) class="class1 class2"
+    d) class="class1; class2"
+
+CSS Programming Task (Testbeispiel.css):
+Erstelle eine CSS-Regel, die alle Absätze zentriert, ihnen eine blaue Textfarbe gibt und den Text fett macht.
+Bilder im HTML sollen quadratisch sein mit einer Höhe = Breite = 200px. (3 Punkte)  *DONE*
+
+JavaScript Multiple Choice Questions:
+1. Wie sollte man (best practice) eine Variable in JavaScript erstellen?
+   a) x = 5;
+  x b) let x = 5;
+   c) var = 5;
+   d) const x 5;
+
+2. Was gibt typeof "Hello" zurück?
+  x a) "string"
+   b) "text"
+   c) "char"
+   d) "word"
+
+3. Welche der folgenden Schleifen wird mindestens einmal ausgeführt, auch wenn die Bedingung false ist?
+   a) for
+   b) while
+  x c) do...while
+   d) foreach
+
+4. Welche Schleife ist korrekt?
+  x a) for (let i = 0; i < 10; i++) {}
+   b) for i=0; i<10; i++ {}
+   c) repeat (10) {}
+   d) loop (i < 10) {}
+
+5. Welches Schlüsselwort wird verwendet, um eine Bedingung in JavaScript zu überprüfen?
+ x  a) if
+   b) else
+   c) switch
+   d) case
+
+6. Was ist der Unterschied zwischen == und ===?
+ x  a) === vergleicht Wert und Typ, == nur den Wert
+   b) == ist schneller als ===
+   c) === kann nicht mit Zahlen verwendet werden
+   d) == prüft auch den Datentyp
+
+7. Welche Methode fügt ein Element ans Ende eines Arrays hinzu?
+   a) array.shift()
+ x  b) array.push()
+   c) array.unshift()
+   d) array.pop()
+
+8. Wie kann man eine Funktion in JavaScript schreiben?
+  x a) function myFunction() { }
+   b) fun myFunction() { }
+   c) define myFunction() { }
+   d) function: myFunction() { }
+
+9. Welche Funktion gibt eine zufällige Zahl zwischen 0 und 1 zurück?
+ x  a) Math.random()
+   b) randomize()
+   c) rand()
+   d) generateRandom()
+
+10. Wie kann und sollte man einen Event-Listener in JavaScript hinzufügen?
+  x  a) element.addEventListener("click", myFunction);
+    b) element.onClickEvent(myFunction);
+    c) element.attachEvent("click", myFunction);
+    d) element.eventListener("click", myFunction);
+
+11. Welches Event wird ausgelöst, wenn der Benutzer eine Taste auf der Tastatur drückt?
+   x a) onkey
+    b) onkeypress
+   ! c) keydown
+    d) oninput
+
+12. Was passiert, wenn event.stopPropagation() in einem Event-Listener aufgerufen wird?
+   x a) Das Event wird nicht an übergeordnete Elemente weitergegeben
+    b) Das Event wird gelöscht
+    c) Das Event wird an alle untergeordneten Elemente gesendet
+    d) Das Event wird doppelt ausgeführt
+
+JavaScript Programming Task (Testbeispiel.js):
+1. Schreibe eine JavaScript-Funktion, die die Summe von zwei Zahlen berechnet und das Ergebnis in der Konsole ausgibt. (2 Punkte)
+2. Bonus: Schreibe eine JavaScript-Funktion, die beim Klick auf den Button aufgerufen wird und eine im Textfeld eingegebene Zahl *2 nimmt und das Ergebnis in der Konsole ausgibt. (4 Punkte)
+
+Ergebnis: 41 Punkte = 1 Note
