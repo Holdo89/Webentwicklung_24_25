@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/file", (req, res) => {
-  res.sendFile(path.join(__dirname, index.html));
+  res.sendFile(path.join(__dirname + "static", index.html));
   // die Datei wird mit CSS zurückgeschickt
 });
 
@@ -26,7 +26,7 @@ app.post("/submit", (req, res) => {
   res.sendStatus(201).send("Der User hat sich angemeldet " + req.body.username);
 });
 
-app.post("/submit2", (req, res) => {
+app.use((req, res, next) => {
   if (req.body.passwort === "mypasswort") {
     res.send("passwort correct");
   } else {
