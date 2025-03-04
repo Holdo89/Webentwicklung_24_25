@@ -10,11 +10,8 @@ function addNumbers(a, b) {
 
 const button = document.getElementById("code");
 
-button.addEventListener("click", ergebnis);
-
-function ergebnis() {
-  let sum = 0;
-  sum = sum * 2;
-
-  console.log(sum);
-}
+button.addEventListener("click", function () {
+  let inputField = document.querySelector("input");
+  let value = inputField.value;
+  console.log("Wert*2 = " + value * 2);
+});
