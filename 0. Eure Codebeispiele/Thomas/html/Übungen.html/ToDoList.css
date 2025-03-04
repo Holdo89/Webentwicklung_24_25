@@ -1,0 +1,46 @@
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: lightseagreen;
+    display: flex;
+    justify-content: center;
+    
+    
+    
+
+}
+
+
+
+
+h1{
+    display: flex;
+    width: 500px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px ;
+    background-color: purple;
+    
+}
+ul{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:10px;
+    font-size: 40px;
+    font-weight: bold;
+
+
+}
+li{
+    list-style: none;
+    justify-content: center;
+    
+}
+.cutout{
+    border-radius: 0px 0px 40px 0px;
+    background-color: chartreuse;
+}
