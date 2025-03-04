@@ -10,6 +10,17 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./static"));
+
+app.use(checkPassword);
+
+function checkPassword(req, res, next) {
+  if (req.body.passwort == "mypasswort") {
+    next();
+  } else {
+    res.status(400).send("passwort incorrect");
+  }
+}
+
 // um css zu finden
 
 app.get("/", (req, res) => {
@@ -28,11 +39,6 @@ app.post("/submit", (req, res) => {
 });
 
 app.post("/submit2", (req, res) => {
-  if (req.body.passwort == "mypasswort") {
-    res.send("passwort correct");
-  } else {
-    res.send("passwort incorrect");
-  }
   res.sendStatus(201);
 });
 
