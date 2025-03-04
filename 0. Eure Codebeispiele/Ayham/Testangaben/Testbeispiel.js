@@ -12,6 +12,6 @@ function Summe (num1, num2){
     
 let summe = document.querySelector('.summe');
 summe.addEventListener('click', ()=>{
-    let tow = document.querySelector('.tow').value;
+    let tow = document.querySelector('.two').value;
     console.log(tow*2);
 });
