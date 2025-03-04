@@ -12,3 +12,21 @@ function addNew() {
   const button = document.getElementById("button");
   document.body.appendChild(button);
 }
+
+// Alle div-Elemente mit der Klasse "item" auswählen
+let finish = document.querySelectorAll(".item");
+
+finish.forEach(function (item) {
+  item.addEventListener("click", start);
+});
+
+function start(event) {
+  // Finde das Checkbox-Element innerhalb des geklickten divs
+  let checkbox = event.target;
+
+  // Prüfen, ob die Checkbox angeklickt wurde
+  if (checkbox.classList.contains("checkbox") && checkbox.checked) {
+    // Das übergeordnete div (eltern div) löschen
+    event.target.parentElement.remove();
+  }
+}
