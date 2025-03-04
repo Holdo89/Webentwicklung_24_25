@@ -1,5 +1,12 @@
 // 1. Schreibe eine Funktion, die die ersten n Zahlen der Fibonacci-Folge generiert.
-
+function Fibonacci(n){
+    let fibo= [0,1];
+    for(let i = 2;i<n; i++){
+        fibo.push(fibo[i-1] + fibo[i-2]);
+}
+return fibo.slice(0,n)
+}
+console.log(Fibonacci(10));
 // 2. Schreibe eine Funktion, die prüft, ob ein String eine Anagramm eines anderen ist.
 //Bsp: 2 Wörter nutzen die selben Buchstaben, aber in einer anderen Reihenfolge. "listen" und "silent" sind Anagramme.
 
