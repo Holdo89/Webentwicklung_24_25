@@ -7,11 +7,7 @@ const file = dirname(fileURLToPath(import.meta.url));
 const fileCss = dirname(fileURLToPath(import.meta.url));
 let app = express();
 
-app.use(express.static('public'));
-
-app.get('/file2', (req,res) =>{
-    res.sendFile(path.join(file ,'/public/index.html'));
-});
+app.use(express.static('./'));
 
 
 app.use(express.json());
@@ -40,7 +36,9 @@ app.get('/file', (req,res) =>{
 });
 
 
-
+app.get('/file2', (req,res) =>{
+    res.sendFile(path.join(file ,'index.html'));
+});
 
 app.get('/', (req,res) =>{
     res.send("<h3>WELLCOM BACK</h3>")
