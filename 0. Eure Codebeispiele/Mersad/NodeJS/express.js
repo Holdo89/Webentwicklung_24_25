@@ -30,12 +30,10 @@ app.use(check);
 
 function check(req, res, next) {
   if (req.body.passwort === "mypasswort") {
-    res.send("passwort correct");
+    next();
   } else {
-    res.send("passwort incorrect");
+    res.status(400).send("passwort incorrect");
   }
-  res.sendStatus(201);
-  next();
 }
 
 app.put("/user/Mersad", (req, res) => {
