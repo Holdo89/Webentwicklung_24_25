@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #18e474, #81b6a6);
+    height: 100vh;
+}
+h1{
+    color:rgb(41, 17, 97);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40vh;
+    text-transform:capitalize;
+}

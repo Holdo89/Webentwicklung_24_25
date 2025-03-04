@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: aqua;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: azure;
+            border-radius: 0px 0px 60%;
+        }
+        h1{
+            
+            margin-bottom: 15px;
+        }
+        .list{
+            background-color: aquamarine;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 400px;
+        }
+        ul{
+            padding: 0;
+            list-style: none;
+
+        }
+        li{
+            background-color: blue;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>ToDoList</h1>
+    <div class="list">
+        <ul id="uo">
+            <li>Aufgabe 1</li>
+        </ul>
+        <div class="input">
+                <input type="text" id="todo-input" placeholder="add">
+                <button>+</button>
+        </div>
+
+
+    </div>
+
+    
+</body>
+</html>

@@ -28,18 +28,27 @@ app.get("/", (req, res) => {
 });
 
 app.get("/file", (req, res) => {
-  res.sendFile(path.join(__dirname, index.html));
+  res.sendFile(path.join(__dirname + "static", index.html));
   // die Datei wird mit CSS zurückgeschickt
 });
 
 app.post("/submit", (req, res) => {
   console.log("username:", req.body.username);
-  res.send("Der User hat sich angemeldet " + req.body.username);
-  res.sendStatus(201);
+  res.sendStatus(201).send("Der User hat sich angemeldet " + req.body.username);
 });
 
+app.use(check);
+
+function check(req, res, next) {
+  if (req.body.passwort === "mypasswort") {
+    next();
+  } else {
+    res.status(400).send("passwort incorrect");
+  }
+}
+
 app.post("/submit2", (req, res) => {
-  res.sendStatus(201);
+  res.sendStatus(200);
 });
 
 app.put("/user/Mersad", (req, res) => {

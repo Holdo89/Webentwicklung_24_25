@@ -6,7 +6,8 @@ function sumNumber(a,b){
 }
 
 console.log(sumNumber(1,2));
-// 2. Schreibe eine Funktion, die überprüft, ob eine Zahl gerade oder ungerade ist.
+// 2. Schreibe eine Funktion, die 
+// überprüft, ob eine Zahl gerade oder ungerade ist.
 
 // 3. Schreibe eine Funktion, die einen String umkehrt.
 
