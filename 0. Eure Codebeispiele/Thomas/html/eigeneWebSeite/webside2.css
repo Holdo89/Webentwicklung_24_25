@@ -264,7 +264,7 @@ footer h2{
     text-align: center;
 }
 .grid_container{
-    margin: 60px auto;
+    margin: 40px auto;
     max-width: 90%;
     width: 1500px;
     justify-content: center;
@@ -283,7 +283,7 @@ footer h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:80px;
+    padding:50px;
     gap:50px;
 
 }
@@ -301,6 +301,7 @@ footer h2{
 
 #item1{
     grid-area: item1;
+    justify-content: flex-start;
     
 }
 
@@ -315,6 +316,7 @@ footer h2{
 
 #item5{
     grid-area: item5;
+    justify-content: flex-start;
     
 
     
