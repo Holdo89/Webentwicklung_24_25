@@ -7,35 +7,35 @@ HTML Multiple Choice Questions:
 1. Was ist die richtige Struktur für ein HTML-Dokument?
    a) <header><html><body></body></html></header>
    b) <html><body><head></head></body></html>
-   c) <html><head></head><body></body></html>
+   c) <html><head></head><body></body></html> x
    d) <html><head></head><body></body></document>
 
 2. Welches HTML-Tag wird verwendet, um einen Hyperlink zu erstellen?
    a) <link>
-   b) <a>
-   c) <href>
+   b) <a> x
+   c) <href> 
    d) <nav>
 
 3. Welches Attribut wird verwendet, um ein HTML-Element eindeutig zu identifizieren?
    a) class
-   b) id
+   b) id x
    c) name
    d) type
 
 4. Welches HTML-Tag wird verwendet, um eine geordnete Liste zu erstellen?
    a) <ul>
-   b) <ol>
+   b) <ol> x
    c) <li>
    d) <dl>
 
 5. Welches HTML-Tag wird verwendet, um eine Tabellenzeile zu erstellen?
    a) <table>
-   b) <tr>
-   c) <td>
-   d) <th>
+   b) <tr> tablerow  x
+   c) <td> tabledata
+   d) <th> tableheader
 
 6. Welches Attribut ist erforderlich, um ein Bild in HTML anzuzeigen?
-   a) src
+   a) src x
    b) href
    c) alt
    d) type
@@ -43,17 +43,17 @@ HTML Multiple Choice Questions:
 7. Welches HTML-Tag wird verwendet, um ein Eingabefeld zu erstellen?
    a) <select>
    b) <option>
-   c) <input>
+   c) <input> x
    d) <enter>
 
 8. Welches HTML-Tag wird verwendet, um eine externe Webseite einzubetten?
    a) <video>
    b) <embed>
-   c) <iframe>
+   c) <iframe> x
    d) <object>
 
 9. Welches Attribut wird verwendet, um das Ziel eines Formulars zu definieren?
-   a) action
+   a) action x
    b) method
    c) enctype
    d) target
@@ -61,18 +61,18 @@ HTML Multiple Choice Questions:
 10. Welches Attribut wird verwendet, um den Titel eines Links anzuzeigen, wenn der Benutzer mit der Maus darüber fährt?
     a) href
     b) src
-    c) alt
-    d) title
+    c) alt 
+    d) title x
 
 11. Was ist der Unterschied zwischen <section> und <div>?
     a) Kein Unterschied
-    b) <section> hat eine semantische Bedeutung
+    b) <section> hat eine semantische Bedeutung x
     c) <div> kann nur für Tabellen verwendet werden
     d) <section> ist nur für Bilder gedacht
 
 12. Mit welchem Tag wird ein Zeilenumbruch eingefügt?
     a) <lb>
-    b) <br>
+    b) <br> x
     c) <line>
     d) <nl>
 
@@ -82,24 +82,24 @@ Erweitere das Testbeispiel.html, damit es eine Überschrift, einen Absatz, ein B
 CSS Multiple Choice Questions:
 1. Wie wird eine externe CSS-Datei eingebunden?
    a) <style src="styles.css">
-   b) <link rel="stylesheet" href="styles.css">
+   b) <link rel="stylesheet" href="styles.css"> x
    c) <css>styles.css</css>
    d) <script src="styles.css"></script>
 
 2. Welche CSS-Eigenschaft ändert die Hintergrundfarbe eines Elements?
    a) color
-   b) background-color
+   b) background-color x
    c) text-color
    d) bgcolor
 
 3. Was bedeutet position: absolute; in CSS?
    a) Das Element wird immer oben links auf der Seite positioniert
-   b) Das Element wird relativ zum nächstgelegenen position: relative Element positioniert
+   b) Das Element wird relativ zum nächstgelegenen position: relative Element positioniert x
    c) Das Element bleibt immer an der gleichen Position, selbst beim Scrollen
    d) Das Element ist immer zentriert
 
 4. Welche Einheit ist relativ zur Schriftgröße des Elements?
-   a) em
+   a) em x
    b) px
    c) cm
    d) %
@@ -107,17 +107,17 @@ CSS Multiple Choice Questions:
 5. Wie kann man alle <p>-Elemente in CSS gleichzeitig ansprechen?
    a) p:all
    b) *p
-   c) p { }
+   c) p { } x
    d) #p
 
 6. Welche Regel hat die höchste Priorität in der CSS-Cascade?
    a) Element-Selektoren (z. B. p {})
-   b) Inline-Stile (z. B. style="color: red;")
+   b) Inline-Stile (z. B. style="color: red;") x
    c) Externe Stylesheets (z. B. link rel="stylesheet")
    d) Klassen-Selektoren (z. B. .example {})
 
 7. Welches CSS-Attribut wird verwendet, um die Schriftart eines Elements zu ändern?
-   a) font-family
+   a) font-family x
    b) font-style
    c) font-weight
    d) font-size
@@ -125,25 +125,25 @@ CSS Multiple Choice Questions:
 8. Welches CSS-Attribut wird verwendet, um den Text eines Elements fett zu machen?
    a) font-family
    b) font-style
-   c) font-weight
+   c) font-weight x
    d) font-size
 
 9. Welches CSS-Attribut wird verwendet, um die Ausrichtung des Textes zu ändern?
-   a) text-align
+   a) text-align x
    b) vertical-align
    c) line-height
    d) text-decoration
 
 10. Wie kann man ein Element gleichmäßig in der Mitte eines div positionieren?
     a) top: center; left: center;
-    b) display: flex; justify-content: center; align-items: center;
+    b) display: flex; justify-content: center; align-items: center; x
     c) margin: auto;
     d) text-align: center;
 
 11. Wie kann man mehrere CSS-Klassen auf ein Element anwenden?
     a) class="class1-class2"
-    b) class="class1, class2"
-    c) class="class1 class2"
+    b) class="class1, class2" 
+    c) class="class1 class2" x
     d) class="class1; class2"
 
 CSS Programming Task (Testbeispiel.css):
@@ -153,12 +153,12 @@ Bilder im HTML sollen quadratisch sein mit einer Höhe = Breite = 200px. (3 Punk
 JavaScript Multiple Choice Questions:
 1. Wie sollte man (best practice) eine Variable in JavaScript erstellen?
    a) x = 5;
-   b) let x = 5;
+   b) let x = 5; x
    c) var = 5;
-   d) const x 5;
+   d) const x 5; 
 
 2. Was gibt typeof "Hello" zurück?
-   a) "string"
+   a) "string" x
    b) "text"
    c) "char"
    d) "word"
@@ -166,47 +166,47 @@ JavaScript Multiple Choice Questions:
 3. Welche der folgenden Schleifen wird mindestens einmal ausgeführt, auch wenn die Bedingung false ist?
    a) for
    b) while
-   c) do...while
+   c) do...while x
    d) foreach
 
 4. Welche Schleife ist korrekt?
-   a) for (let i = 0; i < 10; i++) {}
+   a) for (let i = 0; i < 10; i++) {} x
    b) for i=0; i<10; i++ {}
    c) repeat (10) {}
    d) loop (i < 10) {}
 
 5. Welches Schlüsselwort wird verwendet, um eine Bedingung in JavaScript zu überprüfen?
-   a) if
-   b) else
+   a) if x
+   b) else 
    c) switch
    d) case
 
 6. Was ist der Unterschied zwischen == und ===?
-   a) === vergleicht Wert und Typ, == nur den Wert
+   a) === vergleicht Wert und Typ, == nur den Wert x
    b) == ist schneller als ===
    c) === kann nicht mit Zahlen verwendet werden
    d) == prüft auch den Datentyp
 
 7. Welche Methode fügt ein Element ans Ende eines Arrays hinzu?
    a) array.shift()
-   b) array.push()
+   b) array.push() x
    c) array.unshift()
    d) array.pop()
 
 8. Wie kann man eine Funktion in JavaScript schreiben?
-   a) function myFunction() { }
+   a) function myFunction() { } x
    b) fun myFunction() { }
    c) define myFunction() { }
    d) function: myFunction() { }
 
 9. Welche Funktion gibt eine zufällige Zahl zwischen 0 und 1 zurück?
-   a) Math.random()
+   a) Math.random() x
    b) randomize()
    c) rand()
    d) generateRandom()
 
 10. Wie kann und sollte man einen Event-Listener in JavaScript hinzufügen?
-    a) element.addEventListener("click", myFunction);
+    a) element.addEventListener("click", myFunction); x
     b) element.onClickEvent(myFunction);
     c) element.attachEvent("click", myFunction);
     d) element.eventListener("click", myFunction);
@@ -214,11 +214,11 @@ JavaScript Multiple Choice Questions:
 11. Welches Event wird ausgelöst, wenn der Benutzer eine Taste auf der Tastatur drückt?
     a) onkey
     b) onkeypress
-    c) keydown
+    c) keydown x
     d) oninput
 
 12. Was passiert, wenn event.stopPropagation() in einem Event-Listener aufgerufen wird?
-    a) Das Event wird nicht an übergeordnete Elemente weitergegeben
+    a) Das Event wird nicht an übergeordnete Elemente weitergegeben x
     b) Das Event wird gelöscht
     c) Das Event wird an alle untergeordneten Elemente gesendet
     d) Das Event wird doppelt ausgeführt
@@ -226,3 +226,5 @@ JavaScript Multiple Choice Questions:
 JavaScript Programming Task (Testbeispiel.js):
 1. Schreibe eine JavaScript-Funktion, die die Summe von zwei Zahlen berechnet und das Ergebnis in der Konsole ausgibt. (2 Punkte)
 2. Bonus: Schreibe eine JavaScript-Funktion, die beim Klick auf den Button aufgerufen wird und eine im Textfeld eingegebene Zahl *2 nimmt und das Ergebnis in der Konsole ausgibt. (4 Punkte)
+
+Ergebnis 43 = Note +1
