@@ -42,3 +42,4 @@ const sortedDescending2 = [...sortedAscending];
 sortedAscending.forEach((participant2, index) => {
   console.log(`#${index + 1} ${participant2.name}: ${participant2.points} Punkte`);
   });
+  
