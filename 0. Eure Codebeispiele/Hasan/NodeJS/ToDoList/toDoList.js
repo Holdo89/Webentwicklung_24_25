@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const button = document.getElementById("button");
+    const button = document.getElementById("Hinzufügen");
     const deleteAllButton = document.getElementById("delete-all-button");  //Knopf für alles löschen
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("Aufgabenliste");

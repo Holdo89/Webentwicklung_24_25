@@ -37,7 +37,7 @@ h1 {
     border-radius: 4px;
 }
 
-#button {
+#Hinzufügen {
     width: 25%;
     padding: 0px;
     background-color: #3ec942;
@@ -47,7 +47,7 @@ h1 {
     cursor: pointer;
 }
 
-#button:hover {
+#Hinzufügen:hover {
     background-color: #45a049;
 }
 
