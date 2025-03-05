@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     let button = document.getElementById("Hinzufügen");
-    let deleteAllButton = document.getElementById("delete-all-button");  //Knopf für alles löschen
+    let deleteAllButton = document.getElementById("delete-all-button"); 
     let taskInput = document.getElementById("task-input");
     let taskList = document.getElementById("Aufgabenliste");
 
