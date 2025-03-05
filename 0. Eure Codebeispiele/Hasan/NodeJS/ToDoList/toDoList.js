@@ -4,9 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("Aufgabenliste");
 
-    // Funktion zum Hinzufügen einer Aufgabe
     function addTask() {
-        const taskText = taskInput.value.trim(); //Liest den Wert aus dem Eingabefeld
+        const taskText = taskInput.value.trim(); //Hinzufügen einer Aufgabe
 
         if (taskText === "") {
             return; //Damit ich keine leeren Aufgaben abgeben kann, brauche ich das 
