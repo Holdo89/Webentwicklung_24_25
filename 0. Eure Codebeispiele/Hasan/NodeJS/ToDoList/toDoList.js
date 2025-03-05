@@ -1,28 +1,28 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const button = document.getElementById("Hinzufügen");
-    const deleteAllButton = document.getElementById("delete-all-button");  //Knopf für alles löschen
-    const taskInput = document.getElementById("task-input");
-    const taskList = document.getElementById("Aufgabenliste");
+    let button = document.getElementById("Hinzufügen");
+    let deleteAllButton = document.getElementById("delete-all-button");  //Knopf für alles löschen
+    let taskInput = document.getElementById("task-input");
+    let taskList = document.getElementById("Aufgabenliste");
 
     function addTask() {
-        const taskText = taskInput.value.trim(); //Hinzufügen einer Aufgabe
+        let taskText = taskInput.value.trim(); //Hinzufügen einer Aufgabe
 
         if (taskText === "") {
             return; //Damit ich keine leeren Aufgaben abgeben kann, brauche ich das 
         }
 
-        const taskItem = document.createElement("li");
+        let taskItem = document.createElement("li");
         taskItem.classList.add("task-item"); //Hiermit hab ich ein neue Listenzeile erstellt
 
-        const taskTextNode = document.createElement("span");
+        let taskTextNode = document.createElement("span");
         taskTextNode.textContent = taskText;
         taskItem.appendChild(taskTextNode); //Damit der  Hinzugefügte Text bestehen bleibt
 
-        const checkbox = document.createElement("input");
+        let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         taskItem.appendChild(checkbox); //Erledigt Knopf
 
-        const deleteButton = document.createElement("button");
+        let deleteButton = document.createElement("button");
         deleteButton.textContent = "Löschen";
         deleteButton.classList.add("delete-btn");
         taskItem.appendChild(deleteButton); //Der Knopf um hinzugefügtes zu löschen
