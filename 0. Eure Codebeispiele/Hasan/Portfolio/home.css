@@ -1,16 +1,30 @@
-body {
-
+* {
     margin: 0;
-    font-family: Arial, sans serif;
-    }
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
     
+    }
     li {
     list-style: none;
         }
     .headliner {
        background-color: white;
        padding: 10px;
-        
+       position: fixed;
+       top: 0;
     }
     .headline-list {
     
@@ -21,13 +35,15 @@ body {
         justify-content: center;
         align-items: center;
     }
+    
     a {
         font-weight: 800;
         text-decoration: none;
         color: black;
     }
+   
+    
     .head-item {
-       
         padding: 15px 20px;
         background-color: rgba(247, 247, 247, 0.345);
         border-radius: 4px;
@@ -38,47 +54,23 @@ body {
         background-color: inherit;
         margin-top: 20px;
     }
-    .contact {
-        padding: 60px 20px;
-        text-align: center;
-        background-color: #f4f4f4;
+
+    #firstPic {
+        
+  
+        padding: 40px 500px ;
+
     }
-    
-    .contact h2 {
-        font-size: 2.5rem;
-        margin-bottom: 30px;
+
+    .me{
+       
+        background-color: f4f4f4;
+        width: 350px;
+        border-radius: 5%;
+        border: 1px arial black;
+        box-shadow: 5px 5px rgb(234, 229, 229);
     }
-    h2:hover {
-        color: #f9a825;
-    }
-    
-    .contact form {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    .contact input, .contact textarea {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-    }
-    
-    .contact button {
-        background-color: #f9a825;
-        color: #fff;
-        padding: 12px 30px;
-        border: none;
-        border-radius: 30px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    .contact button:hover {
-        background-color: #c17900;
-    }
+   
     footer {
         background-color: #333;
         color: #fff;
@@ -99,4 +91,4 @@ body {
     
     footer .social-links a:hover {
         color: #f9a825;
-    }
+    }    

@@ -38,46 +38,66 @@ body {
         background-color: inherit;
         margin-top: 20px;
     }
-    .contact {
+   
+    .portfolio {
         padding: 60px 20px;
-        text-align: center;
         background-color: #f4f4f4;
+        text-align: center;
     }
     
-    .contact h2 {
+    .portfolio h2 {
         font-size: 2.5rem;
-        margin-bottom: 30px;
-    }
-    h2:hover {
-        color: #f9a825;
+        margin-bottom: 40px;
     }
     
-    .contact form {
-        max-width: 600px;
-        margin: 0 auto;
+    .portfolio-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 30px;
     }
-    
-    .contact input, .contact textarea {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
+    .project {
+        background-color: #fff;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
-        font-size: 1rem;
+        overflow: hidden;
+        transition: transform 0.3s ease;
     }
     
-    .contact button {
-        background-color: #f9a825;
-        color: #fff;
-        padding: 12px 30px;
-        border: none;
-        border-radius: 30px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
+    .project img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
     }
-    .contact button:hover {
-        background-color: #c17900;
+    
+    .project-info {
+        padding: 20px;
+    }
+    
+    .project-info h3 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+    
+    .project-info p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .project-info a {
+        font-weight: bold;
+        color: #f9a825;
+        transition: color 0.3s;
+    }
+    
+    
+    .project-info a:hover {
+        color: #c17900;
+    }
+    
+    .project:hover {
+        transform: translateY(-10px);
     }
     footer {
         background-color: #333;

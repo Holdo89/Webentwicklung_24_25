@@ -1,22 +1,16 @@
 body {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+
     margin: 0;
     font-family: Arial, sans serif;
-    
-    
     }
+    
     li {
     list-style: none;
         }
     .headliner {
        background-color: white;
        padding: 10px;
-       position: fixed;
-       top: 0;
+        
     }
     .headline-list {
     
@@ -27,13 +21,13 @@ body {
         justify-content: center;
         align-items: center;
     }
-    
     a {
         font-weight: 800;
         text-decoration: none;
         color: black;
     }
     .head-item {
+       
         padding: 15px 20px;
         background-color: rgba(247, 247, 247, 0.345);
         border-radius: 4px;
@@ -44,19 +38,50 @@ body {
         background-color: inherit;
         margin-top: 20px;
     }
-
-    #firstPic {
+    .about {
+        padding: 60px 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+    
+    .about h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .about p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    footer .social-links {
+        margin-top: 10px;
+    }
+    
+    footer .social-links a {
+        color: #fff;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        transition: color 0.3s;
+    }
+    
+    footer .social-links a:hover {
+        color: #f9a825;
+    }
+    .about-photo img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid #f9a825;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
         
-  
-        padding: 40px 500px ;
-
-    }
-
-    .me{
-       
-        background-color: white;
-        width: 350px;
-        border-radius: 5%;
-        border: 1px arial black;
-        box-shadow: 5px 5px rgb(234, 229, 229);
-    }
