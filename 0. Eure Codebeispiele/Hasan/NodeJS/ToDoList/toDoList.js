@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Füge Event Listener zum Hinzufügen der Aufgabe hinzu
     button.addEventListener("click", addTask);
 
     // Möglichkeit, Aufgaben auch mit der Enter-Taste hinzuzufügen
