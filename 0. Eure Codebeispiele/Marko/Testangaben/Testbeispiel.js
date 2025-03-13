@@ -12,8 +12,9 @@ console.log(sumNumber(a, b));
 
 //2. Bonus: Schreibe eine JavaScript-Funktion, die beim Klick auf den Button aufgerufen wird und eine im Textfeld eingegebene Zahl *2 nimmt und das Ergebnis in der Konsole ausgibt. (4 Punkte) ------2 PUNKTE!!! NICHT VERGESSEN
 
-document.getElementById("myButton").addEventListener("click", function() {
-    let a=2;
-
-    console.log(a*2);
+let button = document.getElementById("myButton");
+button.addEventListener("click", function() {
+    let inputfield = document.querySelector("input")
+    let value = inputfield.value
+    console.log("Wert+2: "+value*2)
 })

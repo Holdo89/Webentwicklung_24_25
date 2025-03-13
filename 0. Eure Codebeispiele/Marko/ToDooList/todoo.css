@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+}
+.todolist{
+    position: absolute;
+    background-color: aqua;
+    height: 400px;
+    width: 400px;
+    top: 150px;
+    border-radius: 5%;
+}
+.header{
+    background-color: rgb(2, 87, 94);
+    color: white;
+    text-decoration: underline;
+    text-align: center;
+}
+.lists{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.klick{
+    position: relative;
+    left: 10px;
+}
+.button{
+    position: relative;
+    left: 70px;
+    top:10px;
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+.button:hover{
+    background-color: red;
+}
