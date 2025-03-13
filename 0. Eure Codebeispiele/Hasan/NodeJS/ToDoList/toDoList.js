@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             errorMessage.style.display = "block";
             return; //Damit ich keine leeren Aufgaben abgeben kann, brauche ich das 
         } else {
-            errorMessage.style.display = "none"; // Fehlernachricht ausblenden, wenn die Eingabe gültig ist
+            errorMessage.style.display = "none"; //Fehlernachricht ausblenden, wenn die Eingabe korrekt ist
         }
 
 
