@@ -6,17 +6,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>");
 });
 
-app.get("/simon", (req, res) => {
-  res.sendFile(__dirname + "../../../7.1 SimonGame/index.html");
-});
-
 app.post("/register", (req, res) => {
-  //Do something with the data
-  res.sendStatus(201);
+
+  let correctPassword = "password";
+  if(req.body.password === correctPassword){
+    console.log("username:", req.body.username);
+    res.status(201).send("User successfully created: " + req.body.username);
+  }
+  else{
+    res.status(400).send("Password incorrect");
+  }
+
 });
 
 app.put("/user/angela", (req, res) => {

@@ -13,25 +13,27 @@
   <body>
     <h1>To-Do Liste</h1>
 
-    <div>
-      <input type="checkbox"">
-      <input class="text" value="Haare waschen" />
-      <a>&#x1F58A;</a>
-    </div>
-    <div>
-      <input type="checkbox"">
-      <input class="text" value="Lernen" />
-      <a>&#x1F58A;</a>
-    </div>
-    <div>
-      <input type="checkbox"">
-      <input class="text" value="Staubsaugen" />
-      <a>&#x1F58A;</a>
-    </div>
-    <div id="new">
-      <input type="checkbox"">
-      <input class="text" />
-      <a>&#x1F58A;</a>
+    <div id="list-container">
+      <div class="item">
+        <input type="checkbox" />
+        <input class="text" value="Haare waschen" />
+        <a>&#x1F58A;</a>
+      </div>
+      <div class="item">
+        <input type="checkbox" />
+        <input class="text" value="Lernen" />
+        <a>&#x1F58A;</a>
+      </div>
+      <div class="item">
+        <input type="checkbox"">
+        <input class="text" value="Staubsaugen" />
+        <a>&#x1F58A;</a>
+      </div>
+      <div class="new item">
+        <input type="checkbox" />
+        <input class="text" />
+        <a>&#x1F58A;</a>
+      </div>
     </div>
     <i id="button" class="fas fa-plus-circle"></i>
     <script src="ToDoList.js"></script>

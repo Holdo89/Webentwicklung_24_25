@@ -10,6 +10,17 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./static"));
+
+app.use(checkPassword);
+
+function checkPassword(req, res, next) {
+  if (req.body.passwort == "mypasswort") {
+    next();
+  } else {
+    res.status(400).send("passwort incorrect");
+  }
+}
+
 // um css zu finden
 
 app.get("/", (req, res) => {
@@ -17,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/file", (req, res) => {
-  res.sendFile(path.join(__dirname, index.html));
+  res.sendFile(path.join(__dirname + "static", index.html));
   // die Datei wird mit CSS zurückgeschickt
 });
 
@@ -26,13 +37,18 @@ app.post("/submit", (req, res) => {
   res.sendStatus(201).send("Der User hat sich angemeldet " + req.body.username);
 });
 
-app.post("/submit2", (req, res) => {
+app.use(check);
+
+function check(req, res, next) {
   if (req.body.passwort === "mypasswort") {
-    res.send("passwort correct");
+    next();
   } else {
-    res.send("passwort incorrect");
+    res.status(400).send("passwort incorrect");
   }
-  res.sendStatus(201);
+}
+
+app.post("/submit2", (req, res) => {
+  res.sendStatus(200);
 });
 
 app.put("/user/Mersad", (req, res) => {
