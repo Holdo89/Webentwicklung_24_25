@@ -86,3 +86,7 @@ h1 {
     background-color: #48ab4d; 
 }
 
+#error-message {
+    color: red;
+    display: none;
+}
