@@ -7,35 +7,61 @@ HTML Multiple Choice Questions:
 1. Was ist die richtige Struktur für ein HTML-Dokument?
    a) <header><html><body></body></html></header>
    b) <html><body><head></head></body></html>
+<<<<<<< HEAD
+   c) <html><head></head><body></body></html>
+=======
    c) <html><head></head><body></body></html> x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    d) <html><head></head><body></body></document>
 
 2. Welches HTML-Tag wird verwendet, um einen Hyperlink zu erstellen?
    a) <link>
+<<<<<<< HEAD
+   b) <a>
+   c) <href>
+=======
    b) <a> x
    c) <href> 
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    d) <nav>
 
 3. Welches Attribut wird verwendet, um ein HTML-Element eindeutig zu identifizieren?
    a) class
+<<<<<<< HEAD
+   b) id
+=======
    b) id x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) name
    d) type
 
 4. Welches HTML-Tag wird verwendet, um eine geordnete Liste zu erstellen?
    a) <ul>
+<<<<<<< HEAD
+   b) <ol>
+=======
    b) <ol> x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) <li>
    d) <dl>
 
 5. Welches HTML-Tag wird verwendet, um eine Tabellenzeile zu erstellen?
    a) <table>
+<<<<<<< HEAD
+   b) <tr>
+   c) <td>
+   d) <th>
+
+6. Welches Attribut ist erforderlich, um ein Bild in HTML anzuzeigen?
+   a) src
+=======
    b) <tr> tablerow  x
    c) <td> tabledata
    d) <th> tableheader
 
 6. Welches Attribut ist erforderlich, um ein Bild in HTML anzuzeigen?
    a) src x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) href
    c) alt
    d) type
@@ -43,17 +69,29 @@ HTML Multiple Choice Questions:
 7. Welches HTML-Tag wird verwendet, um ein Eingabefeld zu erstellen?
    a) <select>
    b) <option>
+<<<<<<< HEAD
+   c) <input>
+=======
    c) <input> x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    d) <enter>
 
 8. Welches HTML-Tag wird verwendet, um eine externe Webseite einzubetten?
    a) <video>
    b) <embed>
+<<<<<<< HEAD
+   c) <iframe>
+   d) <object>
+
+9. Welches Attribut wird verwendet, um das Ziel eines Formulars zu definieren?
+   a) action
+=======
    c) <iframe> x
    d) <object>
 
 9. Welches Attribut wird verwendet, um das Ziel eines Formulars zu definieren?
    a) action x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) method
    c) enctype
    d) target
@@ -61,18 +99,31 @@ HTML Multiple Choice Questions:
 10. Welches Attribut wird verwendet, um den Titel eines Links anzuzeigen, wenn der Benutzer mit der Maus darüber fährt?
     a) href
     b) src
+<<<<<<< HEAD
+    c) alt
+    d) title
+
+11. Was ist der Unterschied zwischen <section> und <div>?
+    a) Kein Unterschied
+    b) <section> hat eine semantische Bedeutung
+=======
     c) alt 
     d) title x
 
 11. Was ist der Unterschied zwischen <section> und <div>?
     a) Kein Unterschied
     b) <section> hat eine semantische Bedeutung x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
     c) <div> kann nur für Tabellen verwendet werden
     d) <section> ist nur für Bilder gedacht
 
 12. Mit welchem Tag wird ein Zeilenumbruch eingefügt?
     a) <lb>
+<<<<<<< HEAD
+    b) <br>
+=======
     b) <br> x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
     c) <line>
     d) <nl>
 
@@ -82,24 +133,40 @@ Erweitere das Testbeispiel.html, damit es eine Überschrift, einen Absatz, ein B
 CSS Multiple Choice Questions:
 1. Wie wird eine externe CSS-Datei eingebunden?
    a) <style src="styles.css">
+<<<<<<< HEAD
+   b) <link rel="stylesheet" href="styles.css">
+=======
    b) <link rel="stylesheet" href="styles.css"> x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) <css>styles.css</css>
    d) <script src="styles.css"></script>
 
 2. Welche CSS-Eigenschaft ändert die Hintergrundfarbe eines Elements?
    a) color
+<<<<<<< HEAD
+   b) background-color
+=======
    b) background-color x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) text-color
    d) bgcolor
 
 3. Was bedeutet position: absolute; in CSS?
    a) Das Element wird immer oben links auf der Seite positioniert
+<<<<<<< HEAD
+   b) Das Element wird relativ zum nächstgelegenen position: relative Element positioniert
+=======
    b) Das Element wird relativ zum nächstgelegenen position: relative Element positioniert x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) Das Element bleibt immer an der gleichen Position, selbst beim Scrollen
    d) Das Element ist immer zentriert
 
 4. Welche Einheit ist relativ zur Schriftgröße des Elements?
+<<<<<<< HEAD
+   a) em
+=======
    a) em x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) px
    c) cm
    d) %
@@ -107,17 +174,29 @@ CSS Multiple Choice Questions:
 5. Wie kann man alle <p>-Elemente in CSS gleichzeitig ansprechen?
    a) p:all
    b) *p
+<<<<<<< HEAD
+   c) p { }
+=======
    c) p { } x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    d) #p
 
 6. Welche Regel hat die höchste Priorität in der CSS-Cascade?
    a) Element-Selektoren (z. B. p {})
+<<<<<<< HEAD
+   b) Inline-Stile (z. B. style="color: red;")
+=======
    b) Inline-Stile (z. B. style="color: red;") x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) Externe Stylesheets (z. B. link rel="stylesheet")
    d) Klassen-Selektoren (z. B. .example {})
 
 7. Welches CSS-Attribut wird verwendet, um die Schriftart eines Elements zu ändern?
+<<<<<<< HEAD
+   a) font-family
+=======
    a) font-family x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) font-style
    c) font-weight
    d) font-size
@@ -125,25 +204,42 @@ CSS Multiple Choice Questions:
 8. Welches CSS-Attribut wird verwendet, um den Text eines Elements fett zu machen?
    a) font-family
    b) font-style
+<<<<<<< HEAD
+   c) font-weight
+   d) font-size
+
+9. Welches CSS-Attribut wird verwendet, um die Ausrichtung des Textes zu ändern?
+   a) text-align
+=======
    c) font-weight x
    d) font-size
 
 9. Welches CSS-Attribut wird verwendet, um die Ausrichtung des Textes zu ändern?
    a) text-align x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) vertical-align
    c) line-height
    d) text-decoration
 
 10. Wie kann man ein Element gleichmäßig in der Mitte eines div positionieren?
     a) top: center; left: center;
+<<<<<<< HEAD
+    b) display: flex; justify-content: center; align-items: center;
+=======
     b) display: flex; justify-content: center; align-items: center; x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
     c) margin: auto;
     d) text-align: center;
 
 11. Wie kann man mehrere CSS-Klassen auf ein Element anwenden?
     a) class="class1-class2"
+<<<<<<< HEAD
+    b) class="class1, class2"
+    c) class="class1 class2"
+=======
     b) class="class1, class2" 
     c) class="class1 class2" x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
     d) class="class1; class2"
 
 CSS Programming Task (Testbeispiel.css):
@@ -153,12 +249,21 @@ Bilder im HTML sollen quadratisch sein mit einer Höhe = Breite = 200px. (3 Punk
 JavaScript Multiple Choice Questions:
 1. Wie sollte man (best practice) eine Variable in JavaScript erstellen?
    a) x = 5;
+<<<<<<< HEAD
+   b) let x = 5;
+   c) var = 5;
+   d) const x 5;
+
+2. Was gibt typeof "Hello" zurück?
+   a) "string"
+=======
    b) let x = 5; x
    c) var = 5;
    d) const x 5; 
 
 2. Was gibt typeof "Hello" zurück?
    a) "string" x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) "text"
    c) "char"
    d) "word"
@@ -166,47 +271,80 @@ JavaScript Multiple Choice Questions:
 3. Welche der folgenden Schleifen wird mindestens einmal ausgeführt, auch wenn die Bedingung false ist?
    a) for
    b) while
+<<<<<<< HEAD
+   c) do...while
+   d) foreach
+
+4. Welche Schleife ist korrekt?
+   a) for (let i = 0; i < 10; i++) {}
+=======
    c) do...while x
    d) foreach
 
 4. Welche Schleife ist korrekt?
    a) for (let i = 0; i < 10; i++) {} x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) for i=0; i<10; i++ {}
    c) repeat (10) {}
    d) loop (i < 10) {}
 
 5. Welches Schlüsselwort wird verwendet, um eine Bedingung in JavaScript zu überprüfen?
+<<<<<<< HEAD
+   a) if
+   b) else
+=======
    a) if x
    b) else 
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) switch
    d) case
 
 6. Was ist der Unterschied zwischen == und ===?
+<<<<<<< HEAD
+   a) === vergleicht Wert und Typ, == nur den Wert
+=======
    a) === vergleicht Wert und Typ, == nur den Wert x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) == ist schneller als ===
    c) === kann nicht mit Zahlen verwendet werden
    d) == prüft auch den Datentyp
 
 7. Welche Methode fügt ein Element ans Ende eines Arrays hinzu?
    a) array.shift()
+<<<<<<< HEAD
+   b) array.push()
+=======
    b) array.push() x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    c) array.unshift()
    d) array.pop()
 
 8. Wie kann man eine Funktion in JavaScript schreiben?
+<<<<<<< HEAD
+   a) function myFunction() { }
+=======
    a) function myFunction() { } x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) fun myFunction() { }
    c) define myFunction() { }
    d) function: myFunction() { }
 
 9. Welche Funktion gibt eine zufällige Zahl zwischen 0 und 1 zurück?
+<<<<<<< HEAD
+   a) Math.random()
+=======
    a) Math.random() x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
    b) randomize()
    c) rand()
    d) generateRandom()
 
 10. Wie kann und sollte man einen Event-Listener in JavaScript hinzufügen?
+<<<<<<< HEAD
+    a) element.addEventListener("click", myFunction);
+=======
     a) element.addEventListener("click", myFunction); x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
     b) element.onClickEvent(myFunction);
     c) element.attachEvent("click", myFunction);
     d) element.eventListener("click", myFunction);
@@ -214,11 +352,19 @@ JavaScript Multiple Choice Questions:
 11. Welches Event wird ausgelöst, wenn der Benutzer eine Taste auf der Tastatur drückt?
     a) onkey
     b) onkeypress
+<<<<<<< HEAD
+    c) keydown
+    d) oninput
+
+12. Was passiert, wenn event.stopPropagation() in einem Event-Listener aufgerufen wird?
+    a) Das Event wird nicht an übergeordnete Elemente weitergegeben
+=======
     c) keydown x
     d) oninput
 
 12. Was passiert, wenn event.stopPropagation() in einem Event-Listener aufgerufen wird?
     a) Das Event wird nicht an übergeordnete Elemente weitergegeben x
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
     b) Das Event wird gelöscht
     c) Das Event wird an alle untergeordneten Elemente gesendet
     d) Das Event wird doppelt ausgeführt
@@ -226,5 +372,8 @@ JavaScript Multiple Choice Questions:
 JavaScript Programming Task (Testbeispiel.js):
 1. Schreibe eine JavaScript-Funktion, die die Summe von zwei Zahlen berechnet und das Ergebnis in der Konsole ausgibt. (2 Punkte)
 2. Bonus: Schreibe eine JavaScript-Funktion, die beim Klick auf den Button aufgerufen wird und eine im Textfeld eingegebene Zahl *2 nimmt und das Ergebnis in der Konsole ausgibt. (4 Punkte)
+<<<<<<< HEAD
+=======
 
 Ergebnis 43 = Note +1
+>>>>>>> 4209f672fbfcb760bc702ef0e479d43504137366
