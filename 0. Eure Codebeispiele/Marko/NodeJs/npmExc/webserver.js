@@ -5,10 +5,19 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const port = 3000;
+const port = 8090;
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("./public"));
+app.use(checkPassword);
+
+function checkPassword(req, res, next){
+  if (req.body.passwort === "mypasswort"){
+    next();
+  } else {
+    res.status(400).send("passwort incorect")
+  }
+}
 
 app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>");
@@ -19,8 +28,8 @@ app.post("/register", (req, res) => {
 });
 app.post("/submit", (req, res)=>{
     console.log("username:", req.body.username);
-    let password = "myPassword"
-    if (req.body.password===password){
+    let passwort = "mypasswort"
+    if (req.body.passwort===passwort){
         //res.send("User successfully created: "+req.body.username)<l
        //res.sendStatus(201);
        res.status(201).send("User successfully created: "+req.body.username)
@@ -31,6 +40,7 @@ app.post("/submit", (req, res)=>{
         res.status(400).send("The password is wrong:  ")
     }
 })
+
 app.put("/user/marko", (req, res) => {
   res.send("Put request successfull");
   res.sendStatus(200);

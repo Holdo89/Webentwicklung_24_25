@@ -10,6 +10,16 @@ app.get("/File",(req,res)=>{
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+app.use(checkPasswort);
+
+function checkPasswort(req,res,next){
+    if(req.body.password==="password"){
+       next();
+    }
+    else{
+        res.status(400).send("Wrong password:"); 
+    }
+}
 
 app.get('/',(req,res)=>{
     res.send("<h1>Welcome 2 the hp </h1>")
@@ -46,7 +56,6 @@ app.post("/register",(req,res)=>{
     if(req.body.password==="password"){
         console.log("yooo")
         res.status(201).send("User successfully created:"+ req.body.username);
-        
     }
     else{
         console.log("Wrong Password") 
