@@ -62,7 +62,10 @@ header{
     
 }
 nav{
-    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
 
 }
 nav ul{
@@ -70,14 +73,13 @@ nav ul{
     display: flex;
     gap:20px;
     font-size: 40px;
-    padding: -10px;
+    
 }
 nav a{
     color: var(--secondary-text-color);
     text-decoration: none;
-    position: relative;
-    padding: 3px;
-    top: -50px;
+    padding: 10px;
+    
 }
 nav a:hover{
     color: var(--text-color);
