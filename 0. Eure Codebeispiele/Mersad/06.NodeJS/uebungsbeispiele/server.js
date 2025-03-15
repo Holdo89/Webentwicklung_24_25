@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 const app = express();
 const port = 3000;
 
@@ -24,6 +24,25 @@ function passwordchecker(req, res, next) {
     res.status(400).send("password incorrect");
   }
 }
+
+app.get("/endpoint", (req, res) => {
+  let url = "https://wheretheiss.at/";
+
+  try {
+    axios.get(url).then((response) => {
+      res
+        .status(200)
+        .send(
+          "Longitude: " +
+            response.data.Longitude +
+            "Latitude: " +
+            response.data.Latitude
+        );
+    });
+  } catch (error) {
+    res.status(500).send("Fehler beim Aufruf der Api");
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server startet on port ${port}`);
