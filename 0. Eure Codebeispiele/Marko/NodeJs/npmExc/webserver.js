@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const port = 3000;
+const port = 8090;
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("./public"));
@@ -28,8 +28,8 @@ app.post("/register", (req, res) => {
 });
 app.post("/submit", (req, res)=>{
     console.log("username:", req.body.username);
-    let password = "mypasswort"
-    if (req.body.passwort===password){
+    let passwort = "mypasswort"
+    if (req.body.passwort===passwort){
         //res.send("User successfully created: "+req.body.username)<l
        //res.sendStatus(201);
        res.status(201).send("User successfully created: "+req.body.username)

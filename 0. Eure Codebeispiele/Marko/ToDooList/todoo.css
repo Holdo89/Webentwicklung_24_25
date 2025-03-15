@@ -1,0 +1,124 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url(flow.gif) no-repeat center center/cover;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.todolist {
+  background: rgba(132, 0, 255, 0.3);
+  padding: 25px;
+  width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.header {
+  background: url(flow.gif) no-repeat center center/cover;
+  color: white;
+  text-decoration: underline;
+  font-family: cursive;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 24px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.lists div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+.lists p {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  left: 15px;
+}
+
+.newText {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+input[type="text"] {
+  font-family: cursive;
+  font-weight: bold;
+  height: 35px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.klick,
+.delete {
+  background-color: cornflowerblue;
+  border: none;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete:hover {
+  background-color: #ff0800;
+  box-shadow: 0 0 15px #5f0b08;
+  transform: scale(1.15) rotate(-3deg);
+}
+
+.klick:hover {
+  background-color: #33ff00;
+  box-shadow: 0 0 15px #0f4601;
+  transform: scale(1.15) rotate(3deg);
+}
+
+input[type="text"]::placeholder {
+  position: relative;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}

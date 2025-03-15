@@ -26,6 +26,9 @@ h1{
     border-style: none;
     text-decoration: none;
 }
+#list-container{
+    margin-bottom: -15px;
+}
 div{
     margin: 10px;
 }

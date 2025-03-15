@@ -1,0 +1,15 @@
+/*CSS Programming Task (Testbeispiel.css):
+Erstelle eine CSS-Regel, die alle Absätze zentriert, ihnen eine blaue Textfarbe gibt und den Text fett macht.
+Bilder im HTML sollen quadratisch sein mit einer Höhe = Breite = 200px. (3 Punkte)*/
+p{
+    color: blue;
+    text-align: center;
+    font-weight: bolder;
+}
+img{
+    width: 200px;
+    height: 200px;
+}
+h1{
+    text-align: center;
+}
