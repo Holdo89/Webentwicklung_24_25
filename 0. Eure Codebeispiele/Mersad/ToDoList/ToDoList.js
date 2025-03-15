@@ -1,24 +1,29 @@
 document.getElementById("button").addEventListener("click", addNew);
 
 function addNew() {
-  const aktuell = document.querySelectorAll(".item");
+  const listContainer = document.querySelector("#list-container");
+  const entry = document.querySelector(".new");
+  const inputText = entry.querySelector(".text");
 
-  const neu = document.querySelector(".new");
-  const newItem = neu.cloneNode(true);
+  // Überprüfen, ob das Eingabefeld leer ist oder nur Leerzeichen enthält
+  if (inputText.value.length == 0) {
+    alert("Bitte eine Aufgabe eingeben!"); // Fehlermeldung anzeigen
+    return; // Verhindert das Hinzufügen des neuen Items
+  }
+  const newItem = document.createElement("div");
+  newItem.innerHTML =
+    '<span class="item"><input type="checkbox" /><input class="text" value = "' +
+    inputText.value +
+    '" placeholder="Aufgabe eingeben" /><a>&#x1F58A;</a></span>';
 
   // Das neue Element zum DOM hinzufügen
-  if (aktuell.length > 0) {
-    aktuell[aktuell.length - 1].parentNode.appendChild(newItem);
-  }
+  listContainer.appendChild(newItem);
 
   // Entferne den Inhalt von der "new"-Klasse, um es als Vorlage beizubehalten
-  newItem.querySelector(".text").value = "";
+  inputText.value = "";
 
-  // Den Event-Listener auf das neue Element anwenden
+  // Den Event-Listener auf das entrye Element anwenden
   addDeleteEventListener(newItem);
-
-  // Den Button am Ende der Liste positionieren
-  positionButtonAtEnd();
 }
 
 // Event-Listener für das Löschen eines Items hinzufügen
@@ -32,15 +37,6 @@ function addDeleteEventListener(item) {
       item.remove();
     }
   });
-}
-
-// Den Button immer am Ende der Liste positionieren
-function positionButtonAtEnd() {
-  const button = document.getElementById("button");
-  const listContainer = document.getElementById("list-container");
-
-  // Verschiebt den Button an das Ende des Containers
-  listContainer.appendChild(button);
 }
 
 // Initiale Event-Listener für die bereits vorhandenen Items
