@@ -16,12 +16,12 @@ function passwordchecker(req, res, next) {
 
   if (req.body.password === password && req.body.username === username) {
     next();
+  } else if (req.body.password !== password && req.body.username !== username) {
+    res.status(400).send("username and password incorrect");
   } else if (req.body.username !== username) {
     res.status(400).send("username incorrect");
   } else if (req.body.password !== password) {
     res.status(400).send("password incorrect");
-  } else {
-    res.status(400).send("username and password incorrect");
   }
 }
 
