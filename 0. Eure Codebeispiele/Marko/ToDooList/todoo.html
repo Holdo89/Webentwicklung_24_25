@@ -8,19 +8,26 @@
   </head>
   <body>
     <section class="todolist">
-      <h1 class="header">To Do List</h1>
+      <h1 class="header">To-Do List</h1>
       <div class="lists">
-        <div><input type="checkbox" /><input value="Essen" type="text" /></div>
+        <p>
+          <input class="newText" type="text" placeholder="Another To-Do?" />
+        </p>
         <div>
-          <input type="checkbox" /><input value="Dominik nerven" type="text" />
+          <input type="checkbox" />
+          <input type="text" value="Essen" />
         </div>
         <div>
-          <input type="checkbox" /><input value="Schlafen" type="text" />
+          <input type="checkbox" />
+          <input type="text" value="Dominik nerven" />
         </div>
         <div>
-          <input class="klick" type="text" placeholder="Neue To Do?"/>
-          <br />
-          <input class="button" value="Klick!" type="button" />
+          <input type="checkbox" />
+          <input type="text" value="Schlafen" />
+        </div>
+        <div class="buttons">
+          <input class="klick" type="button" value="New" />
+          <input class="delete" type="button" value="Delete" />
         </div>
       </div>
     </section>
