@@ -6,6 +6,10 @@ app.get("/", (req, res) => {
   res.send("<h1> Mersad");
 });
 
+app.use(passwortchecker);
+
+function passwortchecker(req, res, next) {}
+
 app.listen(port, () => {
   console.log(`Server startet on port ${port}`);
 });
