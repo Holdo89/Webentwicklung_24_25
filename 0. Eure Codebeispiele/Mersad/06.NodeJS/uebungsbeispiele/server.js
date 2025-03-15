@@ -1,10 +1,11 @@
 import express, { response } from "express";
+import axios from "axios";
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(passwordchecker);
+//app.use(passwordchecker);
 
 app.get("/", (req, res) => {
   res.send("<h1> Welcome User </h1>");
@@ -26,18 +27,27 @@ function passwordchecker(req, res, next) {
 }
 
 app.get("/endpoint", (req, res) => {
-  let url = "https://wheretheiss.at/";
+  let yourUrl = "https://api.wheretheiss.at/v1/satellites/25544";
 
   try {
-    axios.get(url).then((response) => {
-      res
-        .status(200)
-        .send(
-          "Longitude: " +
-            response.data.Longitude +
-            "Latitude: " +
-            response.data.Latitude
-        );
+    axios.get(yourUrl).then((response) => {
+      res.status(200).send(
+        "Longitude: " +
+          response.data.longitude +
+          "  " +
+          "<br>" +
+          "Latitude: " +
+          response.data.latitude +
+          "<br>" +
+          `<iframe
+                width="50%%"
+                height="600"
+                frameborder="0"
+                scrolling="no"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?height=400&hl=en&q=${response.data.latitude},${response.data.longitude}&t=&z=12&ie=UTF8&iwloc=B&output=embed"
+              ></iframe>`
+      );
     });
   } catch (error) {
     res.status(500).send("Fehler beim Aufruf der Api");
