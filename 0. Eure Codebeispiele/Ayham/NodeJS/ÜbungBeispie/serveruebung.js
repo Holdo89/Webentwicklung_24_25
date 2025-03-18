@@ -47,11 +47,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import { dirname, parse } from "path";
 import { fileURLToPath } from "url";
+import cors from "cors";
+
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
+app.use(cors());
 app.use(express.json());
+
 const port = 8090;
 
 app.use(bodyParser.urlencoded({ extended: true }));
