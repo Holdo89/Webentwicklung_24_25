@@ -1,12 +1,13 @@
- document.getElementById("demo").innerHTML = "Hello World";
-
- fetch("http://localhost:3000/jokes/50", {
+fetch("http://localhost:3000/jokes/50", {
     method: "GET",
-    headers:{
-        "Content-Type": "application/json"
-    }
- }).then((response) => response.json())
- .then((data) => {
-    htmlElement.innerHTML = data.jokeText;
-    htmlElement.style.backgroundcolor ="red";
- })
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // andere Variante
+      //document.getElementById("demo").innerHTML = data.jokeText;
+      htmlElement.innerHTML = data.jokeText;
+      htmlElement.style.backgroundColor = "red";
+    });
