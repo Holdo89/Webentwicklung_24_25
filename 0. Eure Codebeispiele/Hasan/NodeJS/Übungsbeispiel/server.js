@@ -43,40 +43,50 @@ app.listen(port, () => {
 });
 
 //1. GET a random joke
+
 app.get("/random", (req, res) => {
-    const randomIndex = Math.floor(Math.random() * jokes,length);
-    res.json(jokes(randomIndex));
-})
+    const randomIndex = Math.floor(Math.random() * jokes.length);
+    res.json(jokes[randomIndex]);
+  });
 
 //2. GET a specific joke
-app.get("/jokes/:d", (req, res) => {
+app.get("/jokes/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const foundJoke = jokes.find((joke) => joke.id === id);
     res.json(foundJoke);
-})
+});
 //3. FILTER jokes by type
 app.get("/filter", (req, res) => {
     const type = req.query.type;
     const filteredActivities = jokes.filter((joke) => joke.jokeType === type);
     res.json(filteredActivities);
-})
-
-//Get a specific joke
-
-//Filter jokes by type
+});
 
 //4. POST a new joke
+app.post("jokes",(req, res) => {
+    const newJoke = req.body;
+    jokes.push(newJoke);
+    res.json("Joke correct");
+})
 
 //5. PUT a joke
 
 //6. PATCH a joke
 
 //7. DELETE Specific joke
+app.delete("/jokes/:id", (req, res) => {
+    const jokeId = parseInt(req.params.id);
+    const newArray = jokes.find((element) => (element.id) !== jokeId);
+    jokes===newArray;
+    res.send("deletedJoke correct");
+
+})
 
 //8. DELETE All jokes
 
 
-var jokes = [
+
+let jokes = [
     {
       id: 1,
       jokeText:
