@@ -1,5 +1,5 @@
 
-let text = document.getElementById('demo').innerHTML = "Hello World";
+document.getElementById('demo').innerHTML = "Hello World";
 
 
 fetch("//localhost:8090/jokes/60",{
