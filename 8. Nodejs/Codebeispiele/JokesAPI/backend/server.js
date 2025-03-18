@@ -28,6 +28,7 @@ app.get("jokes/:id",(req,res) =>{
   
 })
 
+
 //Filter jokes by type
 
 //4. POST a new joke
