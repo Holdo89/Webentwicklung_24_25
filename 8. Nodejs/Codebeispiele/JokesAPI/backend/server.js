@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import cors from "cors"
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
@@ -10,30 +9,47 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('../frontend'));
-app.use(cors())
 
-app.get("/test", (req, res) => {
-  res.sendFile(__dirname + "/test.html");
-});
 
 //1. GET a random joke
 app.get("/random", (req, res) => {
   const randomIndex = Math.floor(Math.random() * jokes.length);
-  res.json(jokes[randomIndex]);
+  res.send(jokes[randomIndex]);
 });
 
 
 //Get a specific joke
+app.get("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const foundJoke = jokes.find((joke) => joke.id === id);
+  res.send(foundJoke);
+});
 
 //Filter jokes by type
+app.get("/filter", (req, res) => {
+  const type = req.query.joketype;
+  const filteredActivities = jokes.filter((element) => element.jokeType === type);
+  res.json(filteredActivities);
+});
 
 //4. POST a new joke
+app.post("/jokes",(req,res)=>{
+  const newJoke = req.body;
+  jokes.push(newJoke);
+  res.send("Joke added successfully");
+})
 
 //5. PUT a joke
 
 //6. PATCH a joke
 
 //7. DELETE Specific joke
+app.delete("/jokes/:id", (req, res) => {
+  const jokeId = parseInt(req.params.id);
+  const newArray = jokes.filter((element) => element.id !== jokeId);
+  jokes=newArray;
+  res.send("Joke deleted successfully");
+});
 
 //8. DELETE All jokes
 
@@ -41,7 +57,7 @@ app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
 });
 
-var jokes = [
+let jokes = [
   {
     id: 1,
     jokeText:
