@@ -24,18 +24,8 @@ app.get("/random", (req, res) => {
 
 
 //Get a specific joke
-app.get("/jokes/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const foundJoke = jokes.find((joke) => joke.id === id);
-  res.json(foundJoke);
-});
 
 //Filter jokes by type
-app.get("/filter", (req, res) => {
-  const type = req.query.type;
-  const filteredActivities = jokes.filter((joke) => joke.jokeType === type);
-  res.json(filteredActivities);
-});
 
 //4. POST a new joke
 
