@@ -3,9 +3,9 @@ import express from 'express';
 
 let app = express();
 
-app.use(express.json());
+//app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(checkPass);
+app.use(checkPass);
 
 app.get("/5", (req, res) => {
     res.send("<div>TEST</div>");
@@ -47,15 +47,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import { dirname, parse } from "path";
 import { fileURLToPath } from "url";
-import cors from "cors"
+
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-const port = 3000;
+app.use(express.json());
+const port = 8090;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('../frontend'));
-app.use(cors())
 
 app.get("/test", (req, res) => {
   res.sendFile(__dirname + "/test.html");
@@ -63,8 +63,8 @@ app.get("/test", (req, res) => {
 
 //1. GET a random joke
 app.get("/random", (req, res) => {
-  const randomIndex = Math.floor(Math.random() * jokes.length);
-  res.json(jokes[randomIndex]);
+  const index = Math.floor(Math.random() * jokes.length);
+  res.json(jokes[index]);
 });
 
 
@@ -73,22 +73,43 @@ app.get("/jokes/:id",(req,res) =>{
   const id = parseInt(req.params.id);
   const joke = jokes.find((el)=>el.id === id);
   res.json(joke);
+  res.send('Successfully');
+
 });
 
 //Filter jokes by type
 app.get("/filter",(req,res) =>{
-  const type = parseInt(req.query.type);
-  const joke = jokes.filter((el)=>el.type === type);
-  res.json(joke);
+  const type = req.query.type;
+  const jokeType = jokes.filter((el)=>el.jokeType === type);
+  res.json(jokeType);
+  res.send('Successfully');
+
 });
 
 //4. POST a new joke
+app.post("/add",(req, res)=>{
+  let nJoke =req.body;
+  jokes.push(nJoke);
+  res.json(nJoke);
+  res.send('Successfully');
+});
 
 //5. PUT a joke
+app.put("/exchange/:id",(req, res)=>{
+  const id = parseInt(req.params.id);
+  const joke = jokes.find((el)=>el.id === id);
+  
+  res.send('Successfully');
+});
 
 //6. PATCH a joke
 
 //7. DELETE Specific joke
+app.delete("/delete",(req, res)=>{
+  const id = parseInt(req.params.id);
+  const joke = jokes.filter((el)=>el.id !== id);
+  joke = jokes ;
+})
 
 //8. DELETE All jokes
 
