@@ -44,7 +44,7 @@ app.listen(port, () => {
 
 //1. GET a random joke
 app.get("/random", (req, res) => {
-    const randomIndex = Math.floor(Math.random() * jokes,length);
+    const randomIndex = Math.floor(Math.random() * jokes.length);
     res.json(jokes(randomIndex));
 })
 
