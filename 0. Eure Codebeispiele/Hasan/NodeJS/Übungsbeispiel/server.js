@@ -61,6 +61,20 @@ app.get("/filter", (req, res) => {
     res.json(filteredActivities);
 })
 
+//Get a specific joke
+
+//Filter jokes by type
+
+//4. POST a new joke
+
+//5. PUT a joke
+
+//6. PATCH a joke
+
+//7. DELETE Specific joke
+
+//8. DELETE All jokes
+
 
 var jokes = [
     {
