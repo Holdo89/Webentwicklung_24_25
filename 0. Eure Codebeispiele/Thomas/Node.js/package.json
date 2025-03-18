@@ -8,7 +8,6 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cowsay": "^1.6.0",
     "express": "^4.21.2",
@@ -17,5 +16,7 @@
     "path": "^0.12.7",
     "superheroes": "^4.0.0",
     "url": "^0.11.4"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }

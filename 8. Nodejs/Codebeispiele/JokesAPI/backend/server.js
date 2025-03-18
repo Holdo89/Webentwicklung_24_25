@@ -25,6 +25,7 @@ app.get("/random", (req, res) => {
 
 //Get a specific joke
 
+
 //Filter jokes by type
 
 //4. POST a new joke
