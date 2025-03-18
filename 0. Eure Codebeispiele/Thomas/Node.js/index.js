@@ -12,8 +12,11 @@ app.use(express.urlencoded({extended:true}));
 
 app.use(checkPasswort);
 
+
+
 function checkPasswort(req,res,next){
     if(req.body.password==="password"){
+        console.log("Password is correct")
        next();
     }
     else{
@@ -50,6 +53,11 @@ app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,"index.html"));
 });
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+app.use(checkPasswort);
+
 app.post("/register",(req,res)=>{
     console.log("username:",req.body.username);
     
@@ -59,7 +67,7 @@ app.post("/register",(req,res)=>{
     }
     else{
         console.log("Wrong Password") 
-        res.status(201).send("Wrong password:"+ req.body.username);
+        res.status(400).send("Wrong password:"+ req.body.username);
         
     }
 });
