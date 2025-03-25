@@ -1,12 +1,13 @@
 import express from "express";
 import axios from "axios";
-
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 //app.use(checkCredentials);
 
 function checkCredentials(req, res, next) {
