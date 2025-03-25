@@ -51,7 +51,7 @@
             }
         });
         
-        
+
         let deleteButton = document.createElement("button");
         deleteButton.textContent = "Löschen";
         deleteButton.classList.add("delete-btn");
