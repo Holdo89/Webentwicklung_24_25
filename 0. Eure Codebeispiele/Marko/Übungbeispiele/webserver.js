@@ -1,9 +1,11 @@
 import bodyParser from "body-parser";
 import express, { response } from "express";
 import axios from "axios";
+import cors from "cors";
 const app = express();
 const port = 8090;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // // app.use(checkUser);

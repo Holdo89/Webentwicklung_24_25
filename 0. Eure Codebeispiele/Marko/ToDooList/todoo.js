@@ -32,3 +32,14 @@ inputField.addEventListener("keydown", function (event) {
     addTask();
   }
 });
+
+fetch("http://localhost:8090/todo", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    document.querySelector("#todo").innerHTML= data;
+  });
