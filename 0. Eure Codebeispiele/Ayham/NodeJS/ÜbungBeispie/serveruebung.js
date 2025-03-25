@@ -95,7 +95,6 @@ app.post("/add",(req, res)=>{
   let nJoke =req.body;
   jokes.push(nJoke);
   res.json(nJoke);
-  res.send('Successfully');
 });
 
 //5. PUT a joke
