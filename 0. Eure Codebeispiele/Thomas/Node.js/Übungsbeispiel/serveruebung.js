@@ -1,10 +1,14 @@
 import express, { response } from "express";
 import axios from "axios";
+import cors from "cors";
 const app = express();
 const port = 3000;
 
+
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 //app.use(checkPassword);
 
@@ -70,6 +74,27 @@ app.post("/add",(req,res)=>{
       jokes.push(newJoke);
       res.send("Jokes successfully added")
 });
+
+app.patch("/jokes/:id",(req,res)=>{
+    const joke=jokes.find(j => j.id===parseInt(req.params.id));
+    if(!joke) return res.status(404).send("Joke not found")
+        if(req.body.text){
+          joke.text=req.body.text
+        }
+        res.send("Joke is updated")
+})
+app.patch("/jokes/:id",(req,res)=>{
+  const joke=jokes.find(j => j.id ===parseInt(req.params.id));
+  if(!joke){
+    return res.status(404).json({error:"joke not found"})
+      }
+      if(req.body.text){
+        joke.text=req.body.text
+      }else {
+        return res.status(404).json({error:"error"})
+      }
+      res.status(200).json({error:"joke is updated"});
+})
 
 app.delete("/jokes/:id",(req,res)=>{
     const jokeID=parseInt(req.params.id)
