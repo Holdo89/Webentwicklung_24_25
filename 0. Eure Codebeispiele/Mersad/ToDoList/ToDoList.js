@@ -1,3 +1,14 @@
+fetch("http://localhost:3000/todos", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    divElement.innerHTML = data.todos;
+  });
+
 document.getElementById("button").addEventListener("click", addNew);
 
 function addNew() {
