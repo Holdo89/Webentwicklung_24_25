@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "todolist",
   "version": "1.0.0",
-  "main": "createFile.js",
+  "main": "ToDoList.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,11 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "cowsay": "^1.6.0",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
-    "fibonacci": "^1.6.11",
-    "mysql": "^2.18.1",
-    "nodemon": "^3.1.9",
-    "superheroes": "^4.0.0"
+    "mysql": "^2.18.1"
   }
 }

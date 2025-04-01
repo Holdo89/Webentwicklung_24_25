@@ -1,8 +1,7 @@
 {
-  "name": "beispiel",
+  "name": "todoolist",
   "version": "1.0.0",
-  "main": "webserver.js",
-  "type": "module",
+  "main": "todoo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +9,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "axios": "^1.8.3",
     "cors": "^2.8.5",
     "express": "^4.21.2"
   }

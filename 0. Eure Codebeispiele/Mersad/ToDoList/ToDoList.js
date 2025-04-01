@@ -1,28 +1,55 @@
+fetch("http://localhost:3000/todos", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((task) => {
+      const newItem = document.createElement("div");
+      newItem.classList.add("item");
+      newItem.innerHTML = `
+        <input type="checkbox" />
+        <input class="text" value="${task.todo}" />
+        <a>&#x1F58A;</a>
+      `;
+
+      document.getElementById("todo").appendChild(newItem);
+
+      // Event-Listener für das Löschen hinzufügen
+      addDeleteEventListener(newItem);
+    });
+  });
+
 document.getElementById("button").addEventListener("click", addNew);
 
 function addNew() {
-  const listContainer = document.querySelector("#list-container");
-  const entry = document.querySelector(".new");
-  const inputText = entry.querySelector(".text");
+  const listContainer = document.querySelector("#todo"); // Der Hauptcontainer
+  const inputText = document.querySelector("#eingabe");
 
-  // Überprüfen, ob das Eingabefeld leer ist oder nur Leerzeichen enthält
-  if (inputText.value.length == 0) {
-    alert("Bitte eine Aufgabe eingeben!"); // Fehlermeldung anzeigen
-    return; // Verhindert das Hinzufügen des neuen Items
+  if (inputText.value.trim().length === 0) {
+    alert("Bitte eine Aufgabe eingeben!");
+    return;
   }
-  const newItem = document.createElement("div");
-  newItem.innerHTML =
-    '<span class="item"><input type="checkbox" /><input class="text" value = "' +
-    inputText.value +
-    '" placeholder="Aufgabe eingeben" /><a>&#x1F58A;</a></span>';
 
-  // Das neue Element zum DOM hinzufügen
+  // Neues Element erstellen
+  const newItem = document.createElement("div");
+  newItem.classList.add("item");
+  newItem.innerHTML = `
+    <input type="checkbox" />
+    <input class="text" value="${inputText.value}" placeholder="Aufgabe eingeben" />
+    <a>&#x1F58A;</a>
+  `;
+
+  // Vor der ".new.item" einfügen, damit es nicht verschachtelt wird
+  const newItemForm = document.querySelector(".new");
   listContainer.appendChild(newItem);
 
-  // Entferne den Inhalt von der "new"-Klasse, um es als Vorlage beizubehalten
+  // Eingabefeld leeren
   inputText.value = "";
 
-  // Den Event-Listener auf das entrye Element anwenden
+  // Event-Listener für das Löschen hinzufügen
   addDeleteEventListener(newItem);
 }
 
