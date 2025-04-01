@@ -3,7 +3,7 @@ import express, { response } from "express";
 import axios from "axios";
 import cors from "cors";
 const app = express();
-const port = 8090;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());
