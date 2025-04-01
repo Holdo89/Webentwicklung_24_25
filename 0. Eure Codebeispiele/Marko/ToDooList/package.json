@@ -2,6 +2,7 @@
   "name": "todoolist",
   "version": "1.0.0",
   "main": "todoo.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +11,7 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mysql": "^2.18.1"
   }
 }

@@ -27,19 +27,7 @@ app.get("/iss", (req, res) => {
       const latitude = response.data.latitude;
 
       const longitude = response.data.longitude;
-      res.status(200).send(
-        `<div>Latitude: (${response.data.latitude})</div>
-        <div>Longitude: (${response.data.longitude})</div>         
-                    <iframe 
-                    src="https://maps.google.com/maps?height=400&hl=en&q=${response.data.latitude},${response.data.longitude}&t=&z=12&ie=UTF8&iwloc=B&output=embed"
-                    width="600" 
-                    height="450" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                </iframe>
-    `
-      );
+      res.status(200).send(response.data);
     });
   } catch (error) {
     res.status(500).send("Fehler beim Aufruf von ISS");
