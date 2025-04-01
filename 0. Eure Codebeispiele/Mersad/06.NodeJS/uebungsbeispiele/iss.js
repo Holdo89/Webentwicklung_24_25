@@ -1,7 +1,7 @@
 function getIssLocation() {
   fetch("http://localhost:3000/endpoint", {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" }, // bei lokalhost muss man es hinzufügen !!!
   })
     .then((response) => response.json())
     .then((data) => {
