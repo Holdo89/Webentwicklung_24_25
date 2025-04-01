@@ -17,7 +17,7 @@
         data.forEach((task)=>{
             document.getElementById("todo").innerHTML +=
             `<div class="input-section">
-            <input type="text" id="task-input" placeholder="${task.todo}" />
+            <input type="text" id="task-input" placeholder="${task.title}" />
         </div>`;
     });
     })

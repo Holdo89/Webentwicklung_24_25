@@ -27,7 +27,16 @@ app.listen(port, () => {
 });
 
 app.get("/todos", (req, res) => {
-  res.json(todos);
+    const query = 'SELECT * FROM todo';
+    connection.query(query, (error, todo)  => {
+        if (error) {
+            res.status(500).send('Interner Serverfehler');
+        } else {
+            res.json(todo);
+        }
+        
+    });
+    connection.end();
 });
 
 let todos = [
