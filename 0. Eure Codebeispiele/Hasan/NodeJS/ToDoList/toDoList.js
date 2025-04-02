@@ -1,10 +1,26 @@
-document.addEventListener("DOMContentLoaded", function() {
+
+
     let button = document.getElementById("Hinzufügen");
     let deleteAllButton = document.getElementById("delete-all-button"); 
     let taskInput = document.getElementById("task-input");
     let taskList = document.getElementById("Aufgabenliste");
     let errorMessage = document.getElementById("error-message");
 
+    fetch("http://localhost:3000/todos", {
+        method: "GET",
+        headers: {
+            "Content-Type" : "application/json",
+        },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((task)=>{
+            document.getElementById("todo").innerHTML +=
+            `<div class="input-section">
+            <input type="text" id="task-input" placeholder="${task.title}" />
+        </div>`;
+    });
+    })
 
     function addTask() {
         let taskText = taskInput.value.trim(); //Hinzufügen einer Aufgabe
@@ -18,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         let taskItem = document.createElement("li");
-        taskItem.classList.add("task-item"); //Hiermit hab ich ein neue Listenzeile erstellt
+        taskItem.classList.add("task-item"); //Hiermit hab ich eine neue Listenzeile erstellt
 
         let taskTextNode = document.createElement("span");
         taskTextNode.textContent = taskText;
@@ -68,4 +84,4 @@ document.addEventListener("DOMContentLoaded", function() {
         deleteAllButton.addEventListener("click", function() {
             taskList.innerHTML = ""; // Löscht alle Aufgaben
     });
-});
+
