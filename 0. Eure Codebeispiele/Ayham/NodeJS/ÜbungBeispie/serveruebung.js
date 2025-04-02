@@ -1,11 +1,13 @@
-/*import axios from 'axios';
+import axios from 'axios';
 import express from 'express';
+import cors from 'cors';
 
 let app = express();
 
-//app.use(express.json());
+app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(checkPass);
+//app.use(checkPass);
 
 app.get("/5", (req, res) => {
     res.send("<div>TEST</div>");
@@ -17,14 +19,7 @@ app.get('/iss', (req, res) => {
     const url =  "https://api.wheretheiss.at/v1/satellites/25544";
     try {
         axios.get(url).then((response) => {
-            res.send(`<iframe
-            width="50%%"
-            height="600"
-            frameborder="0"
-            scrolling="no"
-            id="gmap_canvas"
-            src="https://maps.google.com/maps?height=400&hl=en&q=${response.data.latitude},${response.data.longitude}&t=&z=12&ie=UTF8&iwloc=B&output=embed"
-            ></iframe>`);
+            res.status(200).send(response.data);
         });
     }
     catch (error) {
@@ -40,10 +35,10 @@ function checkPass(req,res,next){
     pass != password && user != name ? res.status(404).send('Ops') : next();
 };
 
-app.listen(8090, () => {
+app.listen(3000, () => {
     console.log('STARTET');
-});*/
-import express from "express";
+});
+/*import express from "express";
 import bodyParser from "body-parser";
 import { dirname, parse } from "path";
 import { fileURLToPath } from "url";
@@ -691,4 +686,4 @@ var jokes = [
     jokeText: "What do you call fake spaghetti? An impasta!",
     jokeType: "Food",
   },
-];
+];*/
