@@ -28,6 +28,34 @@ app.listen(port, () => {
   console.log(`Server startet on port ${port}`);
 });
 
+app.post("/newTodo", (req, res) => {
+  const query = `INSERT INTO todos (todo) VALUES ('${req.body.task}')`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      res.status(500).send("interner Serverfehler");
+    } else {
+      res.status(200).send("Eintrag erfolgreich");
+    }
+  });
+});
+
+app.delete("/delete", (req, res) => {
+  const query = `DELETE FROM todos WHERE id = ?`;
+
+  connection.query(query, [req.body.id], (error, results) => {
+    if (error) {
+      console.error("Fehler beim Löschen:", error);
+      res.status(500).json({ error: "Interner Serverfehler" });
+    } else {
+      if (results.affectedRows > 0) {
+        res.status(200).json({ message: "Erfolgreich gelöscht" });
+      } else {
+        res.status(404).json({ error: "Aufgabe nicht gefunden" });
+      }
+    }
+  });
+});
+
 app.get("/todos", (req, res) => {
   const query = "SELECT * FROM todos";
   connection.query(query, (error, todos) => {
@@ -37,24 +65,4 @@ app.get("/todos", (req, res) => {
       res.json(todos);
     }
   });
-  connection.end();
 });
-
-let todos = [
-  {
-    id: 1,
-    todo: "lernen",
-  },
-  {
-    id: 2,
-    todo: "programmieren",
-  },
-  {
-    id: 3,
-    todo: "putzen",
-  },
-  {
-    id: 4,
-    todo: "kochen",
-  },
-];
