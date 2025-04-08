@@ -11,16 +11,13 @@
                 })
             })
 
-
 function addTier() {
     const tierName = document.getElementById('tiername').value;
     const tierArt = document.getElementById('tierart').value;
-
     const tier = {
         tier_name: tierName,
         tier_art: tierArt
     };
-
     fetch('http://localhost:5000/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,6 +29,22 @@ function addTier() {
             location.reload();
         } else {
             console.error("Failed to add Tier");
+        }
+    })
+}
+
+function delltier() {
+    const id = document.getElementById('tierid').value;
+    fetch(`http://localhost:5000/delete/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Tier deleted successfully");
+            location.reload();
+        } else {
+            console.error("Failed to delete Tier");
         }
     })
 }
