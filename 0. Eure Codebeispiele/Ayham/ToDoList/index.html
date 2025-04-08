@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="ToDoList.css">
+    <title>TO DO LIST</title>
+</head>
+<body>
+    <section>
+        <nav class="navi">
+            <a href="index.html" class="todo">TO DO LIST</a>
+            <a href="login.html" class="Login">
+                <i class="fa-solid fa-right-to-bracket not_animated"></i>
+                <i class="fa-solid fa-right-to-bracket fa-beat-fade animated"></i>
+            </a>
+            <a href="register.html" class="Signup">
+                <i class="fa-solid fa-user-plus not_animated"></i>
+                <i class="fa-solid fa-user-plus fa-beat-fade animated"></i>
+            </a>
+            <a href="about.html" class="About">
+                <i class="fa-solid fa-circle-info not_animated"></i>
+                <i class="fa-solid fa-circle-info fa-beat-fade animated"></i>
+            </a>
+        </nav>
+    </section >
+    <section class="bodyList">
+        <div class="listCont">
+            <div class="side1 page">
+                <div id="main-content" class="hidden Priority">
+                    <p id="info">Welcome! Here you can manage your tasks.</p>
+                    <div id="todo-section" class="todo-section">
+                        <h3>Add Task</h3>
+                        <input type="text" maxlength="60" id="task-input" placeholder="Max 60 Character" required>
+                        <label id="prioritySelect">
+                            <input type="radio"  name="priority" value="low" checked />Low
+                            <input type="radio"  name="priority" value="medium" />Medium
+                            <input type="radio"  name="priority" value="high" />High
+                        </label>
+                        <button id="add-task" onclick="addTask()">ADD</button>
+                    </div>
+                </div> 
+                <ul id="list">
+                </ul>
+            </div>
+            <button id="toggleButton"></button>
+            <div class="side2 page in"></div>
+            <div class="side2 page out"><h1>TO DO ...</h1>
+                <ul class="outList">
+                </ul>
+            </div>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+            <span>-</span>
+        </div>
+        
+        <a href="login.html" class="logHome"><img src="IMG/Login-Transparent.png" width="200px"></a>
+    </section>
+    <script src="./ToDoList.js"></script>
+</body>
+</html>
