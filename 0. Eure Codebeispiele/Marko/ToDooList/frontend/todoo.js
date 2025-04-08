@@ -1,12 +1,8 @@
-
-
 // document.addEventListener("DOMContentLoaded", function () {
 //   const inputField = document.getElementById("newText");
 //   const addButton = document.querySelector(".klick");
 //   const deleteButton = document.querySelector(".delete");
 //   const listsContainer = document.getElementById("todo");
-
-  
 
 //   addButton.addEventListener("click", function () {
 //     const newTask = inputField.value.trim();
@@ -31,7 +27,6 @@
 //     });
 //   });
 // });
-
 
 // fetch("http://localhost:8090/todo", {
 //   method: "GET",
@@ -68,15 +63,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const newTask = inputField.value.trim();
     if (newTask !== "") {
       addTask(newTask);
+      newAddedInput()
       inputField.value = "";
     }
   });
 
+
+
   deleteButton.addEventListener("click", function () {
-    const checkboxes = document.querySelectorAll(".lists input[type='checkbox']:checked");
+    const checkboxes = document.querySelectorAll(
+      ".lists input[type='checkbox']:checked"
+    );
     checkboxes.forEach((checkbox) => checkbox.parentElement.remove());
   });
-
 
   fetch("http://localhost:8090/todo", {
     method: "GET",
@@ -84,7 +83,17 @@ document.addEventListener("DOMContentLoaded", function () {
   })
     .then((response) => response.json())
     .then((data) => {
-      data.forEach((task) => addTask(task.title)); 
+      data.forEach((task) => addTask(task.title));
     })
     .catch((error) => console.error("Error fetching data:", error));
 });
+
+//
+function newAddedInput() {
+  const newTodo = document.getElementById("newText").value;
+  fetch("http://localhost:8090/posttodo", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({key:newTodo}),
+  });
+}
