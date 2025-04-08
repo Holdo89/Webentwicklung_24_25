@@ -1,0 +1,18 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(161, 156, 156)
+}
+ul{
+    border: solid 1px black;
+    color: brown;
+}
+h1{
+    text-align: center;
+    color: brown;
+}

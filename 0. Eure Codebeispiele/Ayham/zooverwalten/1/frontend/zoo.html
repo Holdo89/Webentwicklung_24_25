@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooVerwaltung</title>
+    <link rel="stylesheet" href="zoo.css">
+</head>
+<body>
+    <header>
+        <h1>ZOO VERWALTUNG</h1>
+    </header>
+    <section>
+        <input type="text" id="tiername" placeholder="Tiername">
+        <input type="text" id="tierart" placeholder="Tierart">
+        <input type="button" id="tieradd" onclick="addTier()" value="Tier hinzufügen">
+    </section>
+    <section>
+        <button class="button">Tier</button>
+        <ul id="tiereliste"></ul>
+    </section>
+    <script src="zoo.js"></script>
+</body>
+</html>
