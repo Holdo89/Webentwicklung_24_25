@@ -32,14 +32,7 @@ app.get("/iss", (req, res) => {
   let yourUrl = " https://api.wheretheiss.at/v1/satellites/25544";
   try {
     axios.get(yourUrl).then((response) => {
-      res.status(200).send(`<iframe
-        width="50%%"
-        height="600"
-        frameborder="0"
-        scrolling="no"
-        id="gmap_canvas"
-        src="https://maps.google.com/maps?height=400&hl=en&q=${response.data.latitude},${response.data.longitude}&t=&z=12&ie=UTF8&iwloc=B&output=embed"
-      ></iframe>`);
+      res.status(200).send(response.data)
 
 
     });
