@@ -41,6 +41,18 @@ app.get("/toDo",(req,res)=>{
     
 });
 
+app.post("/newToDo",(req,res)=>{
+    const query= `INSERT INTO todolist (title) VALUES ('${req.body.task}')`
+    connection.query(query,(error,results)=>{
+        if(error){
+            res.status(500).send("hat nicht geklappt")
+        }
+        else{
+            res.status(200).send("hat geklappt")
+        }
+    })
+})
+
 
 
 
