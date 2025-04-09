@@ -6,8 +6,20 @@
         .then(response => response.json())
         .then((data) => {
             let text = document.getElementById('tiereliste');
+            text.innerHTML = `
+            <table class="table">
+            <th>Tier ID</th>
+            <th>Tier Name</th>
+            <th>Tier Art</th>
+            </table>`;
             data.forEach(ele => {
-                text.innerHTML += `<li>${ele.tier_name}</li>`;
+                text.innerHTML += `
+                <tr class="table-row">
+                    <td>${ele.id}</td>
+                    <td>${ele.tier_name}</td>
+                    <td>${ele.tier_art}</td>
+                </tr>
+                <br>`;
                 })
             })
 

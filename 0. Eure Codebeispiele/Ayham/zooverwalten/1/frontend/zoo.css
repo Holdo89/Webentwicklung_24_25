@@ -16,3 +16,15 @@ h1{
     text-align: center;
     color: brown;
 }
+
+.table th{
+    width: 100vw;
+    border: solid 1px black;
+    padding: 10px;
+    text-align: center;
+}
+.table-row{
+    width: 100vw;
+    color: rgb(65, 0, 0);
+    background-color: antiquewhite;
+}

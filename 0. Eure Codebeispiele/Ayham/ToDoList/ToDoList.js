@@ -42,7 +42,7 @@ function createTaskElement(task) {
 /***********************Priority Update************ */
 function updatePriority(task) {
     let now = Date.now();
-    let oneMinute = 60 * 1000;
+    let oneMinute = 2*24*60*60 * 1000;
     if (task.addedTime && now - task.addedTime > oneMinute) {
         if (task.priority === 'medium') {
             task.priority = 'high';
