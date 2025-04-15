@@ -53,6 +53,13 @@ app.post("/newToDo",(req,res)=>{
     })
 })
 
+app.delete("/delete",(req,res)=>{
+    const query=`DELETE FROM Todolist WHERE`
+    
+})
+
+
+
 
 
 

@@ -92,7 +92,6 @@ function addCheckboxEventListener(item) {
   let deleteBtn = item.querySelector(".delete-btn");
 
   if (!checkbox || !deleteBtn) {
-    console.warn("Fehler: Checkbox oder Delete-Button nicht gefunden!", item);
     return;
   }
 
