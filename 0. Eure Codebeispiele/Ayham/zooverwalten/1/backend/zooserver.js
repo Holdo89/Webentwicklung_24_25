@@ -53,6 +53,18 @@ app.delete('/delete/:id', (req, res) => {
     });
 });
 
+app.delete('/delete', (req, res) => {
+    const { id } = req.body;
+    const sql = 'DELETE FROM tiere WHERE id = ?';
+    connection.query(sql, [id], (err, result) => {
+        if (err) {
+            res.send('Error');
+        } else {
+            res.send('Animal deleted' + result);
+        }
+    });
+}
+);
 
 
 app.listen(port, () => {
