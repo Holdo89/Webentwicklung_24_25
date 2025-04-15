@@ -37,6 +37,29 @@ app.get("/todo", (req, res) => {
     // connections.end();
 });
 
+
+// app.post("/posttodo", (req, res) => {
+//   const query = `INSERT INTO todos(title) VALUES ('${req.body.task}')`;
+//   connection.query(query, (error, results)=> {
+//     if(error){
+//       res.send(500).send("Hat nicht geklappt")
+//     } else{
+//       res.send(200).send("Hat nicht geplappt")
+//     }
+//   })
+// })
+app.post("/posttodo", (req, res) => {
+  console.log("Request Body:", req.body);
+  const query = `INSERT INTO todos(title) VALUES ('${req.body.key}')`;
+  connection.query(query, [req.body.key], (error, results) => {
+    if (error) {
+      return res.status(500).send("Hat nicht geklappt");
+    } else{
+      res.status(200).send("Hat geklappt");
+    }
+  });
+});
+
 app.listen(port, () => {
     console.log(`Server starting`);
   });
