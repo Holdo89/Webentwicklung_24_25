@@ -42,7 +42,16 @@ app.post('/addNewAnimal', (req, res) => {
     });
 });
 
-
+app.delete("/deleteAnimal", (req, res) => {
+    const query = `DELETE FROM tiere WHERE id=${req.body.id}`
+    connection.query(query, (err, result) => {
+        if (err) {
+            res.status(500).send("Internet server fail")
+        } else {
+           res.status(201).send("Tier  wurde geloscht")
+        }
+})
+});
 
 app.listen(port, () => {
     console.log('Server is running on port ' + port);
