@@ -6,10 +6,9 @@ function getAllAnimals() {
     .then((response) => response.json())
     .then((data) => {
       const list = document.getElementById("tiere");
-      list.innerHTML="";
+      list.innerHTML = "";
       data.forEach((element) => {
-        
-        list.innerHTML += `<li>${element.tiername}</li>`;
+        list.innerHTML += `<li>${element.tiername} <i class="material-icons" onclick="deleteAnimal(${element.id})">delete</i></li>`;
       });
     })
     .catch((error) => console.error("Error fetching data:", error));
@@ -32,5 +31,12 @@ function addNewAnimal() {
     },
     body: JSON.stringify(tier),
   }).then(getAllAnimals());
+}
 
+function deleteAnimal(id) {
+  fetch("http://localhost:3000/deleteAnimal", {
+    method:"DELETE",
+    headers: { "Content-Type": "application/json"},
+    body: JSON.stringify({id:id})
+  }).then(getAllAnimals());
 }

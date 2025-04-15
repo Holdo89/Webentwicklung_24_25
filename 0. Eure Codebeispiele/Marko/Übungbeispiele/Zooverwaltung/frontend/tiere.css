@@ -15,4 +15,15 @@ body{
     justify-content: center;
     align-items: center;
   }
+
+h3{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+h1{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px
+}
   
