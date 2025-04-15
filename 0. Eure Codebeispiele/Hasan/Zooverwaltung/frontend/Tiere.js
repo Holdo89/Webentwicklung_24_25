@@ -10,11 +10,19 @@ function getAllAnimals() {
             const list = document.getElementById("tiere");
             list.innerHTML = "";
             data.forEach((element) => {
-                list.innerHTML += `<li>${element.Tiername}</li>`
-            });
+                list.innerHTML += `<li>${element.Tiername} <input type="button" value="löschen" onClick="deleteItem(${element.ID})"></input></li>`;          
+              });
         });
     }
     getAllAnimals();
+    
+    function deleteItem(id){
+        fetch("http://localhost:4000/deleteAnimal", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json",    },
+            body: JSON.stringify({id:id})
+        }).then(getAllAnimals());
+    }
 
     function addNewAnimal() {
         const tiername = document.getElementById("tiername").value

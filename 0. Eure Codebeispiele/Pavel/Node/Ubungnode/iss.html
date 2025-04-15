@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISS Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: radial-gradient(circle, #080974, #0044a4, #0074c4, #00a2d8, #32d0e7);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        #isslocation {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        input[type="button"] {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            background: orange;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+      
+        }
+    </style>
+</head>
+<body>
+    <h1>ISS Station</h1>
+    <div id="isslocation">Click for info</div>
+    <input type="button" onclick="getIssLocation()" value="Refresh">
+    <script src="iss.js"></script>
+</body>
+</html>

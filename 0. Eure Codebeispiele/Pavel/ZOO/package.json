@@ -1,11 +1,13 @@
 {
-  "name": "zooverwaltung",
+  "name": "zoo",
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
@@ -13,6 +15,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "mysql": "^2.18.1",
-    "server.js": "^1.0.0"
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.9"
   }
 }
