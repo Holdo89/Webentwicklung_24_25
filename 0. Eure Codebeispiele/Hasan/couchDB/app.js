@@ -12,4 +12,6 @@ const db = nano.db.use('tiere');
   } catch (err) {
     console.error('Fehler beim Abrufen:', err);
   }
+
+  
 })();
