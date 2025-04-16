@@ -23,30 +23,41 @@ connection.connect((err) => {
   }
 });
 
-app.get("/tiere", (req, res)=>{
-    const query ='SELECT * FROM tiere';
-    connection.query(query, (error, results)=>{
-        if(error){
-            res.status(500).send('Interner Fehler')
-        } else {
-            res.json(results);
-        }
-    })
-})
+app.get("/tiere", (req, res) => {
+  const query = "SELECT * FROM tiere";
+  connection.query(query, (error, results) => {
+    if (error) {
+      res.status(500).send("Interner Fehler");
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 app.post("/posttiere", (req, res) => {
-    const tiername = req.body.tiername;
-    const tierart = req.body.tierart;
-    const query = `INSERT INTO tiere(tiername, tierart) VALUES ('${tiername}','${tierart}')`;
-    connection.query(query, (error, results) => {
-      if (error) {
-        return res.status(500).send("Hat nicht geklappt");
-      } else{
-        res.status(200).send("Tier wurde angelegt");
-      }
-    });
+  const tiername = req.body.tiername;
+  const tierart = req.body.tierart;
+  const query = `INSERT INTO tiere(tiername, tierart) VALUES ('${tiername}','${tierart}')`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      return res.status(500).send("Hat nicht geklappt");
+    } else {
+      res.status(200).send("Tier wurde angelegt");
+    }
   });
+});
+
+app.delete("/deleteAnimal", (req, res) => {
+  const query = `DELETE FROM tiere WHERE id=${req.body.id}`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      return res.status(500).send("Hat nicht geklappt");
+    } else {
+      res.status(200).send("Tier wurde gelöscht");
+    }
+  });
+});
 
 app.listen(port, () => {
-    console.log(`Server starting`);
-  });
+  console.log(`Server starting`);
+});
