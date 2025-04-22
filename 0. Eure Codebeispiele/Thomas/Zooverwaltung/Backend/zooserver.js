@@ -48,7 +48,14 @@ app.post("/addNewAnimal", (req, res) => {
   });
 
 app.delete("/deleteAnimal",(req,res)=>{
-  
+  const query=`DELETE FROM tiere WHERE ID=${req.body.id}`
+  connection.query(query, (error, results) => {
+    if (error) {
+      res.status(500).send("interner Serverfehler");
+    } else {
+      res.status(201).send("Tier wurde gelöscht")
+    }
+  });
 })
 
 
