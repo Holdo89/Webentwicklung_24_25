@@ -53,6 +53,17 @@ app.listen(port, () => {
         });
   });
 
+  app.delete("/deleteAnimal",(req,res)=>{
+    const query = `DELETE FROM Tiere WHERE ID=${req.body.id}`
+    connection.query(query, (error, Tiere) => {
+          if (error) {
+            res.status(500).send("interner Serverfehler");
+          } else {
+            res.status(201).send("Tier wurde gelöscht");
+          }
+        });
+  })
+
   app.listen(port, () => {
     console.log(`Successfully started server on port ${port}.`)
   })

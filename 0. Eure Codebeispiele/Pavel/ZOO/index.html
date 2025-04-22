@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zoo Verwaltung</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Zoo Verwaltung</h1>
+    <p>Hier siehst du alle Tiere in der Datenbank:</p>
+    <ul id="tiereListe"></ul>
+
+    <h4>Neues Tier</h4>
+    <input id="tier_name" placeholder="Tiername" />
+    <input id="tier_art" placeholder="Tierart" />
+    <input type="button" value="Neues Tier anlegen" onclick="addNewAnimal()" />
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

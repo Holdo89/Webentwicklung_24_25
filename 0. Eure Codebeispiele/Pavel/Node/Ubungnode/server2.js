@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 import axios from "axios";
+const cors = require('cors')
 const port = 3000;
 
 app.use(express.json());
@@ -49,24 +50,15 @@ jokes.splice(jokes.indexOf(deletedJoke),1);
 app.get("/iss", (req, res) => {
   const issUrl = "https://api.wheretheiss.at/v1/satellites/25544";
 
-  try {
-    axios.get(issUrl).then((response) => {
+  axios.get(issUrl)
+    .then((response) => {
       const { latitude, longitude } = response.data;
-      const mapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+      res.status(200).json({ latitude, longitude });
+    })
+  });
 
-      res.status(200).send(`<iframe
-        width="50%%"
-        height="600"
-        frameborder="0"
-        scrolling="no"
-        id="gmap_canvas"
-        src="https://maps.google.com/maps?height=400&hl=en&q=${response.data.latitude},${response.data.longitude}&t=&z=12&ie=UTF8&iwloc=B&output=embed"
-      ></iframe>`);
-    });
-  } catch (error) {
-    res.status(500).send("Unexpected error: " + error.message);
-  }
-});
+
+
 
 app.get("/", (req, res) => {
   res.status(200).send("<h1>Welcome to my coders bay</h1>");
