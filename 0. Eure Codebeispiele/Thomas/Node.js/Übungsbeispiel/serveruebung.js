@@ -674,3 +674,26 @@ app.delete("/jokes/:id",(req,res)=>{
     console.log("Server startet ok");
   });
 
+
+  /*app.post('/ai', async (req, res) => {
+    try {
+      const response = await axios.post(
+        'http://192.168.1.101:5000/v1/completions',
+        {
+          prompt: "def is_prime(n):\n    ",
+          max_tokens: 64,
+          temperature: 0.2,
+          stop: ["\n\n"]
+        };
+        headers: {
+          'Authorization': 'Bearer 1e08e801371b3ca78989e36af0cbdf6e',
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    res.json(response.data);
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    res.status(500).json({ error: 'Fehler beim Anfragen der API' });
+  }
+});*/
