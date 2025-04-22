@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: black;
+}
+
+h1{
+    color: lightseagreen;
+    display: flex;
+    justify-content: center;
+    padding: 70px;
+    font-size: 90px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    font-size:large;
+    gap: 20px;   
+    align-items: center;
+    height: 30vh;
+    
+     
+}
+.Card1{
+    background:linear-gradient(#000,#222,#1111);
+    border: 2px solid;
+    border-radius: 20%;
+    padding: 100px 100px;
+    color: gold;
+   
+}
+.Card2{
+    background:linear-gradient(#000,#222,#1111);
+    border: 2px solid;
+    border-radius: 20%;
+    padding: 100px 100px;
+    color: gold;
+}
+.Card3{
+    background:linear-gradient(#000,#222,#1111);
+    border: 2px solid ;
+    border-radius: 20%;
+    padding: 100px 100px;
+    color: gold;
+}
+a{
+    text-decoration: none;
+
+}
+
+a:hover{
+    color: aqua;
+    text-shadow: 10 10 10 1;
+}
+
+
+
+

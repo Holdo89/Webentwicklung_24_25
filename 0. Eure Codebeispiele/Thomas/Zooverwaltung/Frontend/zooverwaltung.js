@@ -9,7 +9,7 @@
             const list=document.getElementById("tiere");
             list.innerHTML="";
             data.forEach((element) => {
-                list.innerHTML +=`<li> ${element.Tiername}</li>`
+                list.innerHTML +=`<li> ${element.Tiername}<input type "button" onclick="deleteAnimal(${element.ID})"value="löschen"</input></li>`
             })
 })};
 getAllAnimals();
@@ -22,13 +22,27 @@ function addNewAnimal(){
         tiername:tiernamevalue,
         tierart:tierartvalue
     }
+       
+
+
+
+
 
         fetch("http://localhost:3000/addNewAnimal", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-
+            
             body: JSON.stringify(tier)
           }).then(getAllAnimals());
+    }
+
+    function deleteAnimal(ID){
+        fetch("http://localhost:3000/deleteAnimal",{
+            method:"DELETE",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify({id:ID})
+        }).then(getAllAnimals());
+        
     }
 
 
