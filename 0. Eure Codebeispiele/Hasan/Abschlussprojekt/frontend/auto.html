@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoProfi – Autohandel & Aufbereitung</title>
+  <link rel="stylesheet" href="auto.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>AutoProfi</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Start</a></li>
+          <li><a href="#services">Leistungen</a></li>
+          <li><a href="#about">Über uns</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section id="slider" class="section">
+    <div class="container">
+      <h2>Unsere Fahrzeuge</h2>
+      <div class="image-slider" id="imageSlider">
+        <div class="slider-images">
+            <img src="images/BmwM3_1.jpg" alt="BMW M3">
+            <img src="images/BmwCoupe_1.jpg" alt="BMW Coupe" >
+          <img src="images/BmwM8.jpg" alt="BMW M8">
+          <img src="images/BmwX6.jpg" alt="BMW X6">
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </div>
+  </section>
+  
+  
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2>Fahrzeuge mit Qualität & Glanz</h2>
+      <p>Autohandel und Fahrzeugaufbereitung aus einer Hand – zuverlässig, transparent & professionell.</p>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Unsere Leistungen</h2>
+      <div class="grid services">
+        <div class="card">
+          <h3>Autohandel</h3>
+          <p>Große Auswahl an geprüften Fahrzeugen mit Garantie.</p>
+        </div>
+        <div class="card">
+          <h3>Fahrzeugaufbereitung</h3>
+          <p>Innen- & Außenpflege, Lackpolitur, Ozonbehandlung & mehr.</p>
+        </div>
+        <div class="card">
+          <h3>Beratung & Service</h3>
+          <p>Persönliche Betreuung und transparente Fahrzeugbewertung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section dark">
+    <div class="container">
+      <h2>Über uns</h2>
+      <p>Seit über 10 Jahren steht AutoProfi für Qualität, Vertrauen und Leidenschaft für Fahrzeuge. Unser Team begleitet Sie vom ersten Kontakt bis zur Fahrzeugübergabe – kompetent und ehrlich.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <form id="contactForm">
+        <input type="text" placeholder="Ihr Name" required />
+        <input type="email" placeholder="Ihre E-Mail" required />
+        <textarea placeholder="Ihre Nachricht..." required></textarea>
+        <button type="submit">Absenden</button>
+        <p id="formStatus"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AutoProfi – Alle Rechte vorbehalten</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
