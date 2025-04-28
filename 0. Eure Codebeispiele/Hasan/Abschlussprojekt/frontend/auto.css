@@ -44,13 +44,18 @@ body {
 
 
 .section {
-  padding: 100px 20px;
+  padding: 100px 20px 40px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; 
   text-align: center;
+}
+
+
+#home {
+  padding-top: 150px; /* Abstand von Navbar */
 }
 
 .home {
@@ -87,15 +92,15 @@ body {
 }
 
 .section-dark {
-  background: linear-gradient(to bottom, #3a3a3a 0%, #1a1a1a 100%);
+  background: linear-gradient(to bottom, #323030 0%, #1a1a1a 100%);
   color: #adebc7;
 }
-
 
 .section-light {
   background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
   color: #323030;
 }
+
 
 
 .button {
