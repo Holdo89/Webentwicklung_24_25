@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #323030;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: #323030;
+  padding: 10px 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.navbar .logo img {
+  height: 50px;
+  margin-bottom: 10px; /* Abstand zwischen Logo und Links */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #adebc7;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+
+.section {
+  padding: 100px 20px 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+  text-align: center;
+}
+
+
+#home {
+  padding-top: 150px; /* Abstand von Navbar */
+}
+
+.home {
+  background-image: url('images/Detailing.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #adebc7;
+}
+
+.home-content {
+  background-color: rgba(50, 48, 48, 0.5);
+  border: 2px solid #323030;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  text-align: center;
+  transition: background-color 0.3s ease; 
+}
+
+.home-content:hover {
+  background-color: rgba(30, 30, 30, 0.7); 
+}
+
+.home-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #adebc7; 
+}
+
+.home-content p {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.section-dark {
+  background: linear-gradient(to bottom, #323030 0%, #1a1a1a 100%);
+  color: #adebc7;
+}
+
+.section-light {
+  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+  color: #323030;
+}
+
+
+
+.button {
+  background-color: #adebc7;
+  color: #323030;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #8cd3ad;
+}
