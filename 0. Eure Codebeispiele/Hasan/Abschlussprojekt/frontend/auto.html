@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="auto.css">
 </head>
 <body>
+
   <!-- Navbar -->
   <nav class="navbar">
-    <a href="#home" class="logo"> <img src="images/logo.png" width="100" alt="Logo"  ></a>
-    
+    <a href="#intro-split" class="logo"><img src="images/logo.png" width="100" alt="Logo"></a>
     <ul class="nav-links">
       <li><a href="#handel">Handel</a></li>
       <li><a href="#aufbereitung">Aufbereitung</a></li>
@@ -19,14 +19,15 @@
     </ul>
   </nav>
 
-  <!-- Startseite -->
-  <section id="home" class="section home">
-    <div class="home-content">
-      <h1>Willkommen bei SC-Cars</h1>
-      <p>Autoverkauf und professionelle Fahrzeugaufbereitung</p>
-    </div>
+  <!-- Split-Screen Start -->
+  <section id="intro-split" class="intro-split">
+    <a href="#handel" class="split half left">
+      <div class="overlay-text">Handel</div>
+    </a>
+    <a href="#aufbereitung" class="split half right">
+      <div class="overlay-text">Aufbereitung</div>
+    </a>
   </section>
-  
 
   <!-- Handel -->
   <section id="handel" class="section section-light">
@@ -53,7 +54,6 @@
     <button class="button">Termin buchen</button>
   </section>
 
-  <!-- JavaScript für später -->
   <script src="auto.js"></script>
 </body>
 </html>

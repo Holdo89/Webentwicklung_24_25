@@ -1,11 +1,18 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Arial', sans-serif;
   background-color: #323030;
   color: #fff;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
+/* Navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -13,13 +20,13 @@ body {
   padding: 10px 20px;
   z-index: 1000;
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
 }
 
 .navbar .logo img {
   height: 50px;
-  margin-bottom: 10px; /* Abstand zwischen Logo und Links */
+  margin-bottom: 10px;
 }
 
 .nav-links {
@@ -42,53 +49,66 @@ body {
   color: #ffffff;
 }
 
+/* Split-Screen */
+.intro-split {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
 
+.split {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+}
+
+.split.left {
+  flex: 1;
+  background-image: url('images/handel1.jpg');
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 40% 0, 60% 100%, 0% 100%);
+  z-index: 2;
+}
+
+.split.right {
+  flex: 1;
+  background-image: url('images/Detailing.jpg');
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 60% 100%);
+  z-index: 1;
+}
+
+.overlay-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+.split:hover {
+  transform: scale(1.02);
+}
+
+/* Weitere Sektionen */
 .section {
   padding: 100px 20px 40px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   text-align: center;
-}
-
-
-#home {
-  padding-top: 150px; /* Abstand von Navbar */
-}
-
-.home {
-  background-image: url('images/Detailing.jpg');
-  background-size: cover;
-  background-position: center;
-  color: #adebc7;
-}
-
-.home-content {
-  background-color: rgba(50, 48, 48, 0.5);
-  border: 2px solid #323030;
-  padding: 40px;
-  border-radius: 12px;
-  max-width: 700px;
-  width: 90%;
-  text-align: center;
-  transition: background-color 0.3s ease; 
-}
-
-.home-content:hover {
-  background-color: rgba(30, 30, 30, 0.7); 
-}
-
-.home-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #adebc7; 
-}
-
-.home-content p {
-  font-size: 1.2rem;
-  color: #ffffff;
 }
 
 .section-dark {
@@ -100,8 +120,6 @@ body {
   background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
   color: #323030;
 }
-
-
 
 .button {
   background-color: #adebc7;
