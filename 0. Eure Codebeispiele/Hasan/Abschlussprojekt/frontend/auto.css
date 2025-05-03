@@ -31,6 +31,7 @@ body {
   transform: translateY(-20px); /* Startposition außerhalb des Bildschirms */
   transition: all 0.5s ease; /* Sanfter Übergang für die Animation */
 }
+
 .navbar.visible {
   display: flex; /* Navbar sichtbar machen */
   opacity: 1; /* Voll sichtbar */
@@ -40,9 +41,9 @@ body {
 }
 
 .navbar.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-20px);
+  opacity: 0; /* Unsichtbar */
+  pointer-events: none; /* Nicht klickbar */
+  transform: translateY(-20px); /* Hochgeschoben */
   animation: fadeOutUp 0.5s ease forwards;  /* Animation für das Ausblenden */
 }
 
@@ -102,38 +103,50 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  display: flex; /* Zwei Spalten nebeneinander */
+  overflow: hidden;
 }
 
+/* Einzelelement der Split-Ansicht */
 .split {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.3s ease;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  color: white;
+  transition: transform 0.3s ease;
 }
 
+/* Bilddarstellung per <img> */
+.split-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Text über Bild */
+.overlay-text {
+  position: relative;
+  z-index: 1;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+/* Linke Seite des Split-Screens */
 .split.left {
-  flex: 1;
-  background-image: url('images/handel1.jpg');
-  background-size: cover;
-  background-position: center;
-  clip-path: polygon(0 0, 40% 0, 60% 100%, 0% 100%);
   z-index: 2;
 }
 
+/* Rechte Seite des Split-Screens */
 .split.right {
-  flex: 1;
-  background-image: url('images/Detailing.jpg');
-  background-size: cover;
-  background-position: center;
-  clip-path: polygon(40% 0, 100% 0, 100% 100%, 60% 100%);
   z-index: 1;
 }
 
@@ -148,16 +161,19 @@ body {
   text-align: center;
 }
 
+/* Dunkler Hintergrund für z. B. Aufbereitung, Kontakt */
 .section-dark {
   background: linear-gradient(to bottom, #323030 0%, #1a1a1a 100%);
   color: #adebc7;
 }
 
+/* Heller Hintergrund für z. B. Fahrzeughandel */
 .section-light {
   background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
   color: #323030;
 }
 
+/* Button */
 .button {
   background-color: #adebc7;
   color: #323030;
