@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.querySelector('.navbar');
-  const handelSection = document.getElementById('handel');
+  const fahrzeugeSection = document.getElementById('fahrzeuge'); // ← Hier korrekter ID-Wert!
   const aufbereitungSection = document.getElementById('aufbereitung');
   const kontaktSection = document.getElementById('kontakt');
   const terminSection = document.getElementById('termin');
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       // Wenn eine der relevanten Sektionen im Sichtbereich ist und die Navbar nicht schon sichtbar ist
-      if (entry.target === handelSection || entry.target === aufbereitungSection || entry.target === kontaktSection || entry.target === terminSection) {
+      if (entry.target === fahrzeugeSection || entry.target === aufbereitungSection || entry.target === kontaktSection || entry.target === terminSection) {
         if (entry.isIntersecting && !navbarVisible) {
           navbar.classList.add('visible');  // Navbar anzeigen
           navbarVisible = true;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.1 });
 
   // Beobachte alle relevanten Sektionen
-  observer.observe(handelSection);
+  observer.observe(fahrzeugeSection);
   observer.observe(aufbereitungSection);
   observer.observe(kontaktSection);
   observer.observe(terminSection);

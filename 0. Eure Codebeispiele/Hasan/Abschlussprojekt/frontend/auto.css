@@ -120,7 +120,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* Bilddarstellung per <img> */
+/* Bilddarstellung per <img>, vorher wurde backround bild genommen jetzt umgebaut */
 .split-image {
   position: absolute;
   top: 0;
@@ -130,6 +130,19 @@ body {
   object-fit: cover;
   z-index: 0;
 }
+
+/* Schwarzes Overlay */
+.split .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Intensiverer Kontrast (mehr Deckkraft) */
+  z-index: 0;
+  transition: background-color 0.3s ease;
+}
+
 
 /* Overlay-Text über Bild */
 .overlay-text {
@@ -141,13 +154,13 @@ body {
   z-index: 1;
   font-size: 2rem;
   font-weight: bold;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, font-size 0.3s ease;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 /* Hover-Effekt für den gesamten Link-Bereich */
 .split:hover .overlay-text {
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.8); /* XXL-Größe */
   opacity: 0.9;
 }
 
