@@ -28,6 +28,8 @@ fetch("http://localhost:3000/jokes/102",{
     console.log(data);
       
    })
+
+   
    
 
 
