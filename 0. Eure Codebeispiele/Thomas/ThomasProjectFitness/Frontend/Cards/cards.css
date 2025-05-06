@@ -18,34 +18,39 @@ h1{
     font-size:large;
     gap: 20px;   
     align-items: center;
-    height: 30vh;
+    height: 40vh;
     
      
 }
 .Card1{
     background:linear-gradient(#000,#222,#1111);
-    border: 2px solid;
+    border: 2px red solid;
     border-radius: 20%;
     padding: 100px 100px;
-    color: gold;
+    color:white;
+    cursor: pointer;
    
 }
 .Card2{
     background:linear-gradient(#000,#222,#1111);
-    border: 2px solid;
+    border: 2px red solid;
     border-radius: 20%;
     padding: 100px 100px;
-    color: gold;
+    color: white;
+    cursor: pointer;
 }
 .Card3{
     background:linear-gradient(#000,#222,#1111);
-    border: 2px solid ;
+    border: 2px red solid ;
     border-radius: 20%;
     padding: 100px 100px;
-    color: gold;
+    color: white;
+    cursor: pointer;
+
 }
 a{
     text-decoration: none;
+    font-size: 30px;
 
 }
 

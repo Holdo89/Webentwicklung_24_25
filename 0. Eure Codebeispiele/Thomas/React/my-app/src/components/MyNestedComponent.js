@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MyNestedComponent() {
+export default function MyNestedComponent(props) {
   return (
-    <div>
-      <h1>Ich bin eine verschachtelte Komponente</h1>
+    <div style={{color:props.color}}>
+      {props.text}
     </div>
   )
 }
