@@ -1,41 +1,40 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
 
-export default function Login({ onLoginSuccess, onRegisterClick }) {
+export default function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
-      setError('Bitte, geben Sie Ihre E-Mail und Ihr Password ein');
+      <Alert severity="error">Bitte E-Mail und Passwort eingeben</Alert>
       return;
     }
 
     try {
-        const response =await fetch ('http://localhost:3001/login',{
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-        if (!response.ok) {
-            const errorMessage = await response.text();
-            setError(errorMessage);
-          } else {
-            const data = await response.json();
-            console.log('Login erfolgreich', data);
-            onLoginSuccess();
-            setEmail('');
-            setPassword('');
-            setError('');
-          }
-        } catch (error) {
-          setError('Ein Fehler ist aufgetreten');
-          console.error(error);
+      const response = await fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        setError(errorMessage);
+      } else {
+        const data = await response.json();
+        console.log('Login erfolgreich', data);
+        onLoginSuccess();
+      }
+    } catch (error) {
+      setError('Ein Fehler ist aufgetreten');
+      console.error(error);
     }
   };
 
@@ -74,7 +73,6 @@ export default function Login({ onLoginSuccess, onRegisterClick }) {
 
         <TextField
           label="Email"
-          variant="outlined"
           fullWidth
           margin="normal"
           value={email}
@@ -83,7 +81,6 @@ export default function Login({ onLoginSuccess, onRegisterClick }) {
 
         <TextField
           label="Password"
-          variant="outlined"
           type="password"
           fullWidth
           margin="normal"
@@ -91,23 +88,17 @@ export default function Login({ onLoginSuccess, onRegisterClick }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{ mt: 2 }}
-        >
-          Log In
+        <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
+          Einloggen
         </Button>
 
         <Button
-          type="submit"
-          variant="outlined"
-          width ="100px"
-          sx={{ mt: 2 }}
-          onClick={onRegisterClick}
+          variant="text"
+          fullWidth
+          sx={{ mt: 1 }}
+          onClick={() => navigate('/register')}
         >
-          Register
+          Registrieren
         </Button>
       </Box>
     </Box>

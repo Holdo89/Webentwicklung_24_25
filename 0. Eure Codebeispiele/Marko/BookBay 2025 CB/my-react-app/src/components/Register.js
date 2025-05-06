@@ -1,28 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Alert from '@mui/material/Alert';
 
 function Register() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/register", formData);
+      await axios.post("http://localhost:3001/register", formData);
+      <Alert severity="success">Registrierung erfolgreich!</Alert>
       alert("Registrierung erfolgreich!");
-      console.log(response.data);
+      navigate("/login"); // ✅ automatische Weiterleitung nach Login
     } catch (error) {
       console.error(error);
+      <Alert severity="error">Registrierung fehlgeschlagen!</Alert>
       alert("Registrierung fehlgeschlagen!");
     }
   };
@@ -58,7 +63,9 @@ function Register() {
           style={styles.input}
           required
         />
-        <button type="submit" style={styles.button}>Registrieren</button>
+        <button type="submit" style={styles.button}>
+          Registrieren
+        </button>
       </form>
     </div>
   );
@@ -72,16 +79,16 @@ const styles = {
     border: "1px solid #ccc",
     borderRadius: "8px",
     textAlign: "center",
-    backgroundColor: "#f9f9f9"
+    backgroundColor: "#f9f9f9",
   },
   form: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   input: {
     margin: "10px 0",
     padding: "10px",
-    fontSize: "16px"
+    fontSize: "16px",
   },
   button: {
     padding: "10px",
@@ -90,8 +97,8 @@ const styles = {
     color: "white",
     border: "none",
     cursor: "pointer",
-    borderRadius: "10px"
-  }
+    borderRadius: "10px",
+  },
 };
 
 export default Register;
