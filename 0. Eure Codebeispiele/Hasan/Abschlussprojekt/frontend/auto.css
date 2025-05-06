@@ -1,0 +1,220 @@
+/* Allgemeine Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #323030;
+  color: #fff;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Navbar */ 
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #323030;
+  padding: 10px 20px;
+  z-index: 1000;
+  display: none; /* Start unsichtbar, wird später durch JavaScript gesteuert */
+  flex-direction: column;
+  align-items: center;
+  opacity: 0; /* Anfangszustand, unsichtbar */
+  pointer-events: none; /* Verhindert das Klicken auf die Navbar, wenn sie unsichtbar ist */
+  transform: translateY(-20px); /* Startposition außerhalb des Bildschirms */
+  transition: all 0.5s ease; /* Sanfter Übergang für die Animation */
+}
+
+.navbar.visible {
+  display: flex; /* Navbar sichtbar machen */
+  opacity: 1; /* Voll sichtbar */
+  pointer-events: auto; /* Ermöglicht das Klicken, wenn sichtbar */
+  transform: translateY(0); /* Position auf dem Bildschirm */
+  animation: fadeInDown 0.5s ease forwards;  /* Animation für das Einblenden */
+}
+
+.navbar.hidden {
+  opacity: 0; /* Unsichtbar */
+  pointer-events: none; /* Nicht klickbar */
+  transform: translateY(-20px); /* Hochgeschoben */
+  animation: fadeOutUp 0.5s ease forwards;  /* Animation für das Ausblenden */
+}
+
+/* Animation für das Einblenden (von oben nach unten) */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation für das Ausblenden (nach oben) */
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Navbar Logo */
+.navbar .logo img {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #adebc7;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+/* Split-Screen */
+.intro-split {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex; /* Zwei Spalten nebeneinander */
+  overflow: hidden;
+}
+
+/* Einzelelement der Split-Ansicht */
+.split {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* Bilddarstellung per <img>, vorher wurde backround bild genommen jetzt umgebaut */
+.split-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Schwarzes Overlay */
+.split .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Intensiverer Kontrast (mehr Deckkraft) */
+  z-index: 0;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Overlay-Text über Bild */
+.overlay-text {
+  color: #96d8b1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, opacity 0.3s ease, font-size 0.3s ease;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Hover-Effekt für den gesamten Link-Bereich */
+.split:hover .overlay-text {
+  transform: translate(-50%, -50%) scale(1.8); /* XXL-Größe */
+  opacity: 0.9;
+}
+
+/* Optionaler Hover-Zoom für das Bild */
+.split:hover .split-image {
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+/* Linke Seite des Split-Screens */
+.split.left {
+  z-index: 2;
+}
+
+/* Rechte Seite des Split-Screens */
+.split.right {
+  z-index: 1;
+}
+
+/* Weitere Sektionen */
+.section {
+  padding: 100px 20px 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+/* Dunkler Hintergrund für z. B. Aufbereitung, Kontakt */
+.section-dark {
+  background: linear-gradient(to bottom, #323030 0%, #1a1a1a 100%);
+  color: #adebc7;
+}
+
+/* Heller Hintergrund für z. B. Fahrzeughandel */
+.section-light {
+  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+  color: #323030;
+}
+
+/* Button */
+.button {
+  background-color: #adebc7;
+  color: #323030;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #8cd3ad;
+}
