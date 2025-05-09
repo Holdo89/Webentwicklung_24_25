@@ -1,0 +1,270 @@
+/* Allgemeiner Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Body */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #323030;
+  color: #fff;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #323030;
+  padding: 10px 20px;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+}
+
+.navbar.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  animation: fadeInDown 0.5s ease forwards;
+}
+
+.navbar.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  animation: fadeOutUp 0.5s ease forwards;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.navbar .logo img {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #adebc7;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+/* Split-Screen */
+.intro-split {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.split {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.split-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.split .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 0;
+  transition: background-color 0.3s ease;
+}
+
+.overlay-text {
+  color: #96d8b1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, opacity 0.3s ease, font-size 0.3s ease;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.split:hover .overlay-text {
+  transform: translate(-50%, -50%) scale(1.8);
+  opacity: 0.9;
+}
+
+.split:hover .split-image {
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+.split.full-width {
+  flex: 1 1 100%;
+}
+
+/* Sektionen */
+.section {
+  padding: 100px 20px 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.section-dark {
+  background: linear-gradient(to bottom, #323030 0%, #1a1a1a 100%);
+  color: #adebc7;
+}
+
+.section-light {
+  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+  color: #323030;
+}
+
+/* Buttons */
+.button {
+  background-color: #adebc7;
+  color: #323030;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #8cd3ad;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    flex-direction: column;
+  }
+
+  .split {
+    flex: 1 1 100%;
+    min-height: 50vh; /* Anpassen der Höhe für kleinere Bildschirme */
+  }
+
+  .overlay-text {
+    font-size: 1.5rem;
+  }
+}
+/* Aufbereitung - Rechteckige Rahmen für die Dienstleistungen */
+.aufbereitung-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Damit die Container bei kleinen Bildschirmgrößen auf mehrere Zeilen gehen */
+}
+
+.aufbereitung-item {
+  background-color: #96d8b1; /* sanftes grün für den Hintergrund */
+  color: #323030;
+  border-radius: 8px; /* abgerundete Ecken */
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aufbereitung-item h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #323030;
+  margin-bottom: 15px;
+}
+
+.aufbereitung-item ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.aufbereitung-item ul li {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.aufbereitung-item p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #323030;
+}
+
+.aufbereitung-item:hover {
+  transform: scale(1.05); /* Vergrößerung beim Hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* stärkeren Schatten beim Hover */
+}
