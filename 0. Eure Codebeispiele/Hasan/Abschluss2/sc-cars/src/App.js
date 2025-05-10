@@ -14,19 +14,11 @@ export default function App() {
     const sections = [aufbereitungRef.current, kontaktRef.current, terminRef.current];
     const introSplit = introSplitRef.current;
 
-    let navbarVisible = false;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (sections.includes(entry.target)) {
-            if (entry.isIntersecting && !navbarVisible) {
-              navbar.classList.add("visible");
-              navbarVisible = true;
-            }
-          } else if (entry.target === introSplit && entry.isIntersecting) {
-            navbar.classList.remove("visible");
-            navbarVisible = false;
+          if (entry.target === introSplit) {
+            navbar.classList.toggle("visible", !entry.isIntersecting);
           }
         });
       },
