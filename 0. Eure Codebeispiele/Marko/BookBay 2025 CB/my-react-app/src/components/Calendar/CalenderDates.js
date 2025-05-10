@@ -33,22 +33,16 @@ const initialValue = dayjs("2022-04-17");
 
 function ServerDay(props) {
   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
-
   const isSelected =
-    !props.outsideCurrentMonth &&
-    highlightedDays.indexOf(props.day.date()) >= 0;
+    !outsideCurrentMonth && highlightedDays.indexOf(day.date()) >= 0;
 
   return (
     <Badge
-      key={props.day.toString()}
+      key={day.toString()}
       overlap="circular"
-      badgeContent={isSelected ? "⚠️ " : undefined}
+      badgeContent={isSelected ? "⚠️" : undefined}
     >
-      <PickersDay
-        {...other}
-        outsideCurrentMonth={outsideCurrentMonth}
-        day={day}
-      />
+      <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
     </Badge>
   );
 }
@@ -60,17 +54,13 @@ export default function DateCalendarServerRequest() {
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
-    fakeFetch(date, {
-      signal: controller.signal,
-    })
+    fakeFetch(date, { signal: controller.signal })
       .then(({ daysToHighlight }) => {
         setHighlightedDays(daysToHighlight);
         setIsLoading(false);
       })
       .catch((error) => {
-        if (error.name !== "AbortError") {
-          throw error;
-        }
+        if (error.name !== "AbortError") throw error;
       });
 
     requestAbortController.current = controller;
@@ -82,10 +72,7 @@ export default function DateCalendarServerRequest() {
   }, []);
 
   const handleMonthChange = (date) => {
-    if (requestAbortController.current) {
-      requestAbortController.current.abort();
-    }
-
+    requestAbortController.current?.abort();
     setIsLoading(true);
     setHighlightedDays([]);
     fetchHighlightedDays(date);
@@ -94,18 +81,13 @@ export default function DateCalendarServerRequest() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
+        sx={{ width: 400, '& .MuiPickersDay-root': { fontSize: '1rem' } }}
         defaultValue={initialValue}
         loading={isLoading}
         onMonthChange={handleMonthChange}
         renderLoading={() => <DayCalendarSkeleton />}
-        slots={{
-          day: ServerDay,
-        }}
-        slotProps={{
-          day: {
-            highlightedDays,
-          },
-        }}
+        slots={{ day: ServerDay }}
+        slotProps={{ day: { highlightedDays } }}
       />
     </LocalizationProvider>
   );
