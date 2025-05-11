@@ -108,14 +108,33 @@ export default function App() {
 
       <section id="kontakt" className="section section-light" ref={kontaktRef}>
         <h2>Kontakt</h2>
-        <p>Schreib uns eine Nachricht oder ruf uns an.</p>
-        <form id="contactForm" onSubmit={handleFormSubmit}>
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="E-Mail" required />
-          <textarea placeholder="Nachricht" required></textarea>
-          <button type="submit" className="button">Senden</button>
-        </form>
-        <div id="formStatus" style={{ marginTop: "10px" }}></div>
+        <p>Schreib uns eine Nachricht..</p>
+
+        <div className="kontakt-container">
+          {/* Kontaktformular */}
+          <form className="kontakt-form" id="contactForm" onSubmit={handleFormSubmit}>
+            <input type="text" placeholder="Name" required />
+            <input type="email" placeholder="E-Mail" required />
+            <textarea placeholder="Nachricht" rows="5" required></textarea>
+            <button type="submit" className="button">Senden</button>
+            <div id="formStatus" style={{ marginTop: "10px" }}></div>
+          </form>
+
+          {/* Google Maps */}
+          <div className="kontakt-map">
+            <iframe
+              title="SC Cars Standort"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2644.181414301986!2d16.3738183!3d48.2081742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07f5c5d1a9d1%3A0xb36acbfc54b06ef5!2sStephansplatz%2C%201010%20Wien!5e0!3m2!1sde!2sat!4v1689954322345!5m2!1sde!2sat"
+              width="100%"
+              height="300"
+              style={{ border: 0, borderRadius: "12px", boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)" }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <p className="map-caption">Hier findest du uns.</p>
+          </div>
+        </div>
       </section>
 
       <section id="termin" className="section section-dark" ref={terminRef}>
