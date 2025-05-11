@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.rechner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nummer{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,34 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import MyNestedComponent from "./MyNestedComponent";
-import image from "./circle.webp"
+import image from "./circle.webp";
+import "../App.css";
 
 export default function MyParentComponent() {
-  const name = "Marko";
-  const greetingMessage = `Hallo, ${name}`;
-  let textVariable = "Das hier ist irgendeiner Text";
-  let number= 3;
-  let color="red"
+  
+  const [count, setCount] = useState(0);
+
+  function minusClick() {
+    let newCount = count -1;
+    setCount(newCount)
+    console.log("Count: ", count);
+  }
+  function plusClick() {
+    let newCount = count +1;
+    setCount(newCount);
+    console.log("Count: ", count);
+  }
   return (
-    <div>
-      Ich bin die Parent Komponente
-      <img width="300px" height="300px" src={image}></img>
-      <div className="nested" style={{ color: "red", fontFamily: "cursive" }}>
-        {greetingMessage}
-        <p>Ich bin eine verschachtelte Komponente.</p>
-        <p>Wie kann ich dir Helfen, {name}?</p>
+    <>
+      <div className="nummer">{count}</div>
+      <div className="rechner">
+        <button onClick={minusClick}>-</button>
+        <button onClick={plusClick}>+</button>
       </div>
-      <MyNestedComponent color={color} text={textVariable} myNumber={number}/>
-      <MyNestedComponent text={"Wie geht's dir den?"} />
-      <MyNestedComponent color={color} text={"React ist sehr cool"} />
-    </div>
+    </>
   );
-
-
-
-
-
-
-
-
 }
-
