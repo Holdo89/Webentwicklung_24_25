@@ -9,7 +9,7 @@ export default function LottoNumbers() {
     function generateLottoNumbers(){
         let tempArray = [];
         for(let i=0; i<lottoNumbers.length; i++){
-            tempArray[i]=Math.floor(minValue + Math.random()*maxValue)
+            tempArray[i]=Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
         }
         setLottoNumbers(tempArray)
     }
