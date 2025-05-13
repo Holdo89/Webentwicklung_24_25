@@ -1,0 +1,149 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+      to right,
+      #000000 0%,
+      #1a1a1a 50%,
+      #333333 100%
+    );
+    font-family: 'Antonio', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  p{
+    color: white
+  }
+
+  .container{
+    text-align: center;
+    border: 2px solid #00BFA6;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px;
+    max-width: 400px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    color: #00BFA6;
+    font-size: 5.5rem;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 0px;
+    
+  }
+  .main{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-top: 80px;
+    width: 100%;
+  }
+  .login-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+  }
+  .login-box input{
+    font-family:'Antonio', sans-serif;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    background: transparent;
+    
+    
+  }
+  .login-box input::placeholder{
+    color: white;
+    display: flex;
+    text-align: center;
+  }
+  .login-box input:focus::placeholder {
+    color: transparent;
+  }
+
+  .login-box input:focus{
+        border-color: #ffd700;
+  }
+  .login-box button{
+    font-family:'Antonio', sans-serif;
+    padding: 14px;
+    background: gold;
+    color: black;
+    font-size: medium;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  .login-box button:hover{
+    background:linear-gradient( white,#ffd700)
+  }
+
+  #acc{
+    font-size: 20px;
+    color: white;
+  }
+  #reg{
+    text-decoration: none;
+    color: #00BFA6;
+    cursor: pointer;
+  }
+  #reg:hover{
+    transition: ease-in-out;
+    text-decoration: underline;
+    
+  }
+ 
+
+  #responseMessage {
+  height: 20px; 
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  opacity: 0;
+  color: red;
+  transition: opacity 0.8s ease-in-out;
+}
+
+#responseMessage.show {
+  opacity: 1;
+  
+}
+
+#responseMessage.success {
+  color: green;
+}
+
+#responseMessage.error {
+  color: red;
+}
+
+label{
+  color: white;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+  
+  
+ 
+  

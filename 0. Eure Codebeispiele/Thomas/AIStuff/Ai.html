@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat mit Java</title>
+  </head>
+  <body>
+    <h1 style="color: navy">Meine Ai hey...</h1>
+    <textarea
+      id="prompt"
+      rows="4"
+      cols="50"
+      placeholder="Dein Text..."
+    ></textarea
+    ><br />
+    <button onclick="sendeFrage()">Senden</button>
+    <h3>Antwort:</h3>
+    <p id="antwort"></p>
+
+    <script>
+      async function sendeFrage() {
+        const bearerToken = "1e08e801371b3ca78989e36af0cbdf6e";
+        const prompt = document.getElementById("prompt").value;
+        const res = await fetch("http://192.168.22.6:5000/v1/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + bearerToken,
+          },
+          body: JSON.stringify({
+            prompt: prompt,
+            max_tokens: 200,
+            model: "text-davinci-003",
+          }),
+        });
+
+        const data = await res.json();
+        const antwort = data.choices?.[0]?.text || "Keine Antwort.";
+        document.getElementById("antwort").textContent = antwort;
+      }
+    </script>
+  </body>
+</html>

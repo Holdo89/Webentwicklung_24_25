@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="tiere.css" />
+    <title>Tiere</title>
+  </head>
+  <body>
+    <h1>The world of animals</h1>
+    <br />
+    <h3>Suche nach den tieren</h3>
+    <div id="search">
+      <input id="tiername" placeholder="Tiername" />
+      <input id="tierart" placeholder="Tierart" />
+      <input onclick="addNewAnimal()" type="button" value="Add Animal" />
+    </div>
+    <div>
+      <div id="tiere" class="container"></div>
+      <div id="animallist"></div>
+    </div>
+    <script src="tiere.js"></script>
+  </body>
+</html>
