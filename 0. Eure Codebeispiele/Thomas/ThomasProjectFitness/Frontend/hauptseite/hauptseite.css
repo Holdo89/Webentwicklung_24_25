@@ -1,18 +1,25 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: #333
+    background: linear-gradient(
+        to right,
+        #000000 0%,
+        #1a1a1a 50%,
+        #333333 100%
+      );
   }
   
   header {
     background-image: url(''); 
     background-size: cover;
     background-position: center;
-    height: 300px;
+    height: 200px;
     position: relative;
     color: white;
   }
   
+  
+
   .header-overlay {
     background: rgba(0, 0, 0, 0.5); 
     height: 100%;
@@ -20,6 +27,9 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
+    background: url('hauptseite.jpg') no-repeat center center/cover;
+    
+    
   }
   
   .header-top {
@@ -29,7 +39,7 @@ body {
   }
   
   .header-links a {
-    color: white;
+    color:lightseagreen;
     margin: 0 15px;
     text-decoration: none;
     font-size: 18px;
@@ -81,7 +91,7 @@ body {
     font-size: 18px;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.3s;
+    
   }
   
   .button:hover {
@@ -114,4 +124,10 @@ body {
     font-size: 16px;
     color: #777;
   }
-  
+
+ #tipp-text{
+  color: white;
+ }
+ .tipp-box{
+  color: #e68900;
+ }

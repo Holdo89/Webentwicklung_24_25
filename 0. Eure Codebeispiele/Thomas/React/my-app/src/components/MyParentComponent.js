@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import MyNestedComponent from "./MyNestedComponent";
 import "./style.css";
 import image from "./bild.jpg"
 
-export default function MyParentComponent() {
+export  function MyParentComponent() {
   const name = "Hello World";
   const hello = `Hello,${name}`;
   const color= "red";
@@ -21,4 +21,30 @@ export default function MyParentComponent() {
       <img style={{hight:300,width:300}} className="img1" src={image} ></img>
     </div>
   );
+
 }
+export default function Button(){
+  const[count,setCount]=useState(0)
+
+  function erhöhen(){
+    let newCount =count+1
+    setCount(newCount)
+  }
+  function vermindern(){
+    let newCount =count-1
+    setCount(newCount)
+  }
+
+  return(
+    <>
+    <h1>{count}</h1>
+    <button onClick={vermindern}>
+      -
+    </button>
+    <button onClick={erhöhen}>
+      +
+    </button>
+    </>
+  );
+}
+
