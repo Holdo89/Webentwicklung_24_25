@@ -59,9 +59,35 @@ app.post('/login', (req, res) => {
 });
 
 //Registrierung 
-app.post('/register', (req, res)=> {
-  const {name, last_name, email, password} =req.body;
-})
+app.post('/register', (req, res) => {
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).send("Alle Felder müssen ausgefüllt werden.");
+  }
+
+  const checkQuery = "SELECT * FROM user WHERE email = ?";
+  connection.query(checkQuery, [email], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Serverfehler beim Überprüfen des E-Mails.");
+    }
+
+    if (results.length > 0) {
+      return res.status(409).send("E-Mail ist bereits registriert.");
+    }
+
+    const insertQuery = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+    connection.query(insertQuery, [name, email, password], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Fehler beim Einfügen in die Datenbank.");
+      }
+
+      res.status(201).send({ message: "Benutzer erfolgreich registriert!" });
+    });
+  });
+});
 
 // Bekomme alle Termine
 app.get("/bookbay", (req, res) => {

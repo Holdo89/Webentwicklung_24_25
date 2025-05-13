@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.layoutList .MuiListItem-root:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +46,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+.MuiDateCalendar-root{
+  width: 500px;
+  
 }
