@@ -371,3 +371,98 @@ body {
   }
 }
 
+/* Kalender Wrapper: Zentriert, 50% der Fensterbreite */
+.calendar-wrapper {
+  width: 50vw;
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  backdrop-filter: blur(10px); /* Weiche Hintergrundunschärfe */
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* React Calendar Grundstruktur */
+.react-calendar {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Navigation (Monatsname, Pfeile) */
+.react-calendar__navigation {
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.react-calendar__navigation button {
+  background: transparent;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* Wochentagsnamen */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+/* Tageszellen */
+.react-calendar__tile {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.8rem 0;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.react-calendar__tile--now {
+  border: 2px solid #ffffff;
+  font-weight: bold;
+}
+
+.react-calendar__tile--active {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #3d8bfd;
+  color: #3d8bfd;
+}
+
+/* Mobil-Optimierung */
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    width: 90vw;
+  }
+
+  .react-calendar {
+    font-size: 0.85rem;
+  }
+}
+
+/* Vergangene Tage: transparent mit #adebc7 als Schriftfarbe */
+.react-calendar__tile:disabled {
+  color: rgba(173, 235, 199, 0.5); /* #adebc7 mit 50% Transparenz */
+  background: transparent;
+  border: 1px solid rgba(173, 235, 199, 0.2); /* Dezenter Rahmen */
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+

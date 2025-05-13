@@ -1,5 +1,9 @@
 // src/App.jsx
-import React, { useEffect, useRef } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+
 import "./App.css";
 
 export default function App() {
@@ -8,6 +12,9 @@ export default function App() {
   const kontaktRef = useRef(null);
   const terminRef = useRef(null);
   const introSplitRef = useRef(null);
+
+  const [date, setDate] = useState(new Date()); // Kalender-Zustand
+  const [confirmationMessage, setConfirmationMessage] = useState(""); // Bestätigung
 
   useEffect(() => {
     const navbar = navbarRef.current;
@@ -36,6 +43,10 @@ export default function App() {
     status.textContent = "Vielen Dank für Ihre Nachricht!";
     status.style.color = "green";
     e.target.reset();
+  };
+
+  const handleTerminBestätigen = () => {
+    setConfirmationMessage(`Termin am ${date.toLocaleDateString("de-DE")} wurde bestätigt.`);
   };
 
   return (
@@ -111,7 +122,6 @@ export default function App() {
         <p>Schreib uns eine Nachricht..</p>
 
         <div className="kontakt-container">
-          {/* Kontaktformular */}
           <form className="kontakt-form" id="contactForm" onSubmit={handleFormSubmit}>
             <input type="text" placeholder="Name" required />
             <input type="email" placeholder="E-Mail" required />
@@ -120,7 +130,6 @@ export default function App() {
             <div id="formStatus" style={{ marginTop: "10px" }}></div>
           </form>
 
-          {/* Google Maps */}
           <div className="kontakt-map">
             <iframe
               title="SC Cars Standort"
@@ -140,7 +149,26 @@ export default function App() {
       <section id="termin" className="section section-dark" ref={terminRef}>
         <h2>Termin vereinbaren</h2>
         <p>Buche jetzt einen Termin zur Fahrzeugaufbereitung oder Fahrzeugbesichtigung.</p>
-        <button className="button">Termin buchen</button>
+
+        <div className="calendar-wrapper" style={{ maxWidth: "400px", margin: "2rem auto" }}>
+          <Calendar
+            onChange={(newDate) => setDate(newDate)}
+            value={date}
+            minDate={new Date()}
+            locale="de-DE"
+          />
+          <p style={{ textAlign: "center", marginTop: "1rem" }}>
+            Ausgewähltes Datum: <strong>{date.toLocaleDateString("de-DE")}</strong>
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+            <button className="button" onClick={handleTerminBestätigen}>Termin bestätigen</button>
+          </div>
+          {confirmationMessage && (
+            <p style={{ textAlign: "center", color: "green", marginTop: "1rem" }}>
+              {confirmationMessage}
+            </p>
+          )}
+        </div>
       </section>
     </>
   );
