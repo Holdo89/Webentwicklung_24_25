@@ -11,7 +11,6 @@ export default function Button() {
   const buttonStyle = {
     backgroundColor: isBlue ? 'blue' : 'red',
     color: 'yellow',
-    padding: '10px 20px',
     border: 'none',
     marginTop: '10px'
   };
