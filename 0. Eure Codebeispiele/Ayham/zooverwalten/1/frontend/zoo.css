@@ -1,0 +1,31 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(161, 156, 156)
+}
+ul{
+    border: solid 1px black;
+    color: brown;
+}
+h1{
+    text-align: center;
+    color: brown;
+}
+
+.table th{
+    width: 100vw;
+    border: solid 1px black;
+    padding: 10px;
+    text-align: center;
+}
+.table-row{
+    width: 100vw;
+    color: rgb(65, 0, 0);
+    background-color: antiquewhite;
+}
+
