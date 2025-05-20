@@ -1,4 +1,81 @@
-.calendar-container .MuiDateCalendar-root {
-  margin-left: 0;
-  margin-top: 20px;
+/* Calendar.css */
+
+/* Container für den Kalender – links ausgerichtet und responsiv */
+.calendar-container {
+  height: calc(50vh - 100px); /* Hälfte des Bildschirms abzüglich Header */
+  background-color: #E2E8E4;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start; /* Linksbündig */
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* Kalender selbst */
+.MuiPickersLayout-root {
+  width: 100%;
+  max-width: 700px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 900px) {
+  .MuiPickersLayout-root {
+    max-width: 100%;
+  }
+}
+
+/* Tageselemente */
+.MuiPickersDay-root {
+  color: #006C84;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.MuiPickersDay-today {
+  border: 1px dashed #FFCCBB;
+}
+
+.MuiPickersDay-root.Mui-selected {
+  background-color: #FFCCBB !important;
+  color: #006C84 !important;
+}
+
+/* Uhrbereich */
+.MuiClock-root {
+  background-color: #F8F8F8;
+  border-radius: 12px;
+}
+
+.MuiClockPointer-root,
+.MuiClock-pin {
+  background-color: #6EB5C0;
+}
+
+.MuiClockNumber-root {
+  color: #006C84;
+}
+
+/* Überschriften, Iconfarbe */
+.MuiTypography-root,
+.MuiSvgIcon-root {
+  color: #006C84;
+}
+.MuiTouchRipple-root css-r3djoj-MuiTouchRipple-root{
+    background-color: red;
+}
+.css-ux17pc-MuiButtonBase-root-MuiMenuItem-root-MuiMultiSectionDigitalClockSection-item.Mui-selected{
+    background-color: #6EB5C0 !important;
+}
+.css-1qltlow-MuiTabs-indicator {
+    background-color: #FFCCBB !important;
+}
+.css-1vx8ao-MuiTypography-root-MuiPickersToolbarText-root {
+    color: #006C84 !important;
+}
+.css-1mvmid-MuiYearCalendar-button.Mui-selected {
+    background-color: #6EB5C0 !important;
 }

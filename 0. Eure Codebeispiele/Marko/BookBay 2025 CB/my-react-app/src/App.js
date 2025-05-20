@@ -1,12 +1,12 @@
 import "./App.css";
-import Layout from "./components/Header";
-import BasicDateCalendar from "./components/Calendar/Calendar";
+import Header from "./components/Header";
+import StaticDateTimePickerLandscape from "./components/calendar/Calendar";
 
 function App() {
   return (
     <>
-    <Layout/>
-    <BasicDateCalendar className="dateCalendar"/>
+      <Header />
+      <StaticDateTimePickerLandscape />
     </>
   );
 }
