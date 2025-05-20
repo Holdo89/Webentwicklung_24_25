@@ -29,7 +29,7 @@ async function register() {
 
       showMessage(" Registrierung erfolgreich!","green");
       setTimeout(() => {
-        window.location.href = "../hauptseite/hauptseite.html";
+        window.location.href = "../../../hauptseite/hauptseite.html";
       }, 7500);
 
     } else {
