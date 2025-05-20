@@ -7,6 +7,7 @@ export default function MyGrandParentComponent() {
     <>
       <MyParentComponent/>
       <Button/>
+      <PressMe/>
       
     </>
   )
