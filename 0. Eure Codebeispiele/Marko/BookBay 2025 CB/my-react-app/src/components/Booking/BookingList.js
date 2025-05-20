@@ -5,7 +5,7 @@ const BookingList = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/bookbay')
+    axios.get('http://localhost:3000/bookbay')
       .then((res) => {
         setBookings(res.data);
       })
