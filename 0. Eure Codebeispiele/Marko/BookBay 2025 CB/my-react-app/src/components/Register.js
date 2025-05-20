@@ -1,104 +1,37 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Alert from '@mui/material/Alert';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function Register() {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+const Register = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await axios.post("http://localhost:3001/register", formData);
-      <Alert severity="success">Registrierung erfolgreich!</Alert>
-      alert("Registrierung erfolgreich!");
-      navigate("/login"); // ✅ automatische Weiterleitung nach Login
-    } catch (error) {
-      console.error(error);
-      <Alert severity="error">Registrierung fehlgeschlagen!</Alert>
-      alert("Registrierung fehlgeschlagen!");
+      const res = await axios.post('http://localhost:3001/register', formData);
+      setMessage(res.data.message);
+    } catch (err) {
+      setMessage(err.response?.data || 'Registrierung fehlgeschlagen');
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2>Registrieren</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-          style={styles.input}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="E-Mail"
-          value={formData.email}
-          onChange={handleChange}
-          style={styles.input}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Passwort"
-          value={formData.password}
-          onChange={handleChange}
-          style={styles.input}
-          required
-        />
-        <button type="submit" style={styles.button}>
-          Registrieren
-        </button>
+    <div>
+      <h2>Registrierung</h2>
+      {message && <p>{message}</p>}
+      <form onSubmit={handleSubmit}>
+        <input name="name" type="text" placeholder="Name" onChange={handleChange} required />
+        <input name="email" type="email" placeholder="E-Mail" onChange={handleChange} required />
+        <input name="password" type="password" placeholder="Passwort" onChange={handleChange} required />
+        <button type="submit">Registrieren</button>
       </form>
     </div>
   );
-}
-
-const styles = {
-  container: {
-    maxWidth: "400px",
-    margin: "50px auto",
-    padding: "20px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    textAlign: "center",
-    backgroundColor: "#f9f9f9",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  input: {
-    margin: "10px 0",
-    padding: "10px",
-    fontSize: "16px",
-  },
-  button: {
-    padding: "10px",
-    fontSize: "16px",
-    backgroundColor: "blue",
-    color: "white",
-    border: "none",
-    cursor: "pointer",
-    borderRadius: "10px",
-  },
 };
 
 export default Register;

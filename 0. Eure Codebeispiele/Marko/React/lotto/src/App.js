@@ -1,4 +1,3 @@
-
 import './App.css';
 import LottoGenerator from './components/generator/LottoGenerator';
 
