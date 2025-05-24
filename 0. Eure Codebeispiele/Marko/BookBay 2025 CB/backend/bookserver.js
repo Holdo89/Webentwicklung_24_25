@@ -101,6 +101,27 @@ app.get("/bookbay", (req, res) => {
   });
 });
 
+// Neuen Termin in 'bookings' speichern
+app.post('/bookings', (req, res) => {
+  const { title, date } = req.body;
+
+  if (!title || !date) {
+    return res.status(400).send("Titel und Datum müssen angegeben werden.");
+  }
+
+  const query = "INSERT INTO bookings (title, date) VALUES (?, ?)";
+  connection.query(query, [title, date], (err, result) => {
+    if (err) {
+      console.error("Fehler beim Einfügen in bookings:", err);
+      return res.status(500).send("Speichern des Termins fehlgeschlagen.");
+    }
+
+    res.status(201).send({ message: "Termin erfolgreich gespeichert!", id: result.insertId });
+  });
+});
+
+
+
 // Server starten
 app.listen(port, () => {
   console.log(`Server starting`);
