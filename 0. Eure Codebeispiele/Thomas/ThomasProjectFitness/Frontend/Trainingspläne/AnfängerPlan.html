@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="AnfängerPlan.css"/>
+</head>
+<body>
+    <h1 id="currentDay">Montag</h1>
+    <div class="day-selector-wrapper">
+      
+  <label for="wochentagSelector" id="ws">Wähle deinen Trainingstag:</label><br>
+  <br>
+    <select id="wochentagSelector">
+      <option value="Montag">Montag</option>
+      <option value="Dienstag">Dienstag</option>
+      <option value="Mittwoch">Mittwoch</option>
+      <option value="Donnerstag">Donnerstag</option>
+      <option value="Freitag">Freitag</option>
+      <option value="Samstag">Samstag</option>
+      <option value="Sonntag">Sonntag</option>
+  </select>
+    </div>
+    <div class="button-container" id="muscleButtons"></div>
+
+  
+  <div class="carousel">
+    <button class="nav-button left" onclick="moveSlide(-1)">-</button>
+    <div class="carousel-content" id="carouselContent">
+      
+    </div>
+    <button class="nav-button right" onclick="moveSlide(1)">+</button>
+  </div>
+    
+
+  </div>
+<script src="AnfängerPlan.js"></script>
+</body>
+</html>
+   

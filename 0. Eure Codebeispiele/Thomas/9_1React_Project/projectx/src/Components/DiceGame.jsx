@@ -6,7 +6,8 @@ export default function DiceGame() {
   const [player1,setPlayer1]=useState(1);
   const [player2,setPlayer2]=useState(1);
   const[winner,setWinner]=useState("")
-}
+
+  
 
 function rollDice(){
     const roll1=Math.ceil(Math.random()*6)
@@ -21,10 +22,9 @@ if (roll1 > roll2) {
     } else {
       setWinner(" Unentschieden!");
     }
-
 }
 return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
+    <div style={{ textAlign: "center", padding: "30px" }}>
       <h1>Würfelspiel</h1>
       <Header winnerText={winner} />
       <Dice player1={player1} player2={player2} />
@@ -33,4 +33,6 @@ return (
       </button>
     </div>
   );
+}
+
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fitness Progress Tracker</title>
+<style>
+  body {
+    background: linear-gradient(to right, #000000 0%, #1a1a1a 50%, #333333 100%);
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    color: wheat;
+    text-align: center;
+  }
+  .progress-wrapper {
+    width: 100%;
+    max-width: 600px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin: 20px auto 10px auto;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #28a745;
+    border-radius: 10px 0 0 10px;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px #28a745;
+  }
+  #progressText {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  #markDoneBtn {
+    padding: 10px 25px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #markDoneBtn:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  #markDoneBtn:disabled {
+    background-color: gray;
+    cursor: default;
+  }
+</style>
+</head>
+<body>
+
+<h1>Dein Trainingsfortschritt</h1>
+
+<div class="progress-wrapper">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<p id="progressText">0 von 5 Trainingstagen erledigt</p>
+<button id="markDoneBtn">Heute erledigt</button>
+
+<script>
+  const totalDays = 5;  // Gesamtanzahl Trainingstage
+  let completedDays = 0;
+
+  const progressBar = document.getElementById("progressBar");
+  const progressText = document.getElementById("progressText");
+  const markDoneBtn = document.getElementById("markDoneBtn");
+
+  markDoneBtn.addEventListener("click", () => {
+    if (completedDays < totalDays) {
+      completedDays++;
+      updateProgress();
+    }
+  });
+
+  function updateProgress() {
+    const percent = (completedDays / totalDays) * 100;
+    progressBar.style.width = percent + "%";
+    progressText.textContent = `${completedDays} von ${totalDays} Trainingstagen erledigt`;
+
+    if (completedDays === totalDays) {
+      markDoneBtn.textContent = "Alles erledigt! 🎉";
+      markDoneBtn.disabled = true;
+    }
+  }
+
+  updateProgress();
+</script>
+
+</body>
+</html>

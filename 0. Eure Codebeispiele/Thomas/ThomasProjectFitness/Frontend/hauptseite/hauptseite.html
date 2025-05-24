@@ -25,7 +25,7 @@
 
           <div class="header-links">
             <a href="">Videos</a>
-            <a href="">Übungspläne</a>
+            
             <a href="../Cards/cards_test.html">Lvl-Auswahl</a>
             <a href="../landingpage/Langingpage.html">Logout</a>
           </div>
@@ -34,7 +34,7 @@
         <div class="header-center">
           <h1 id="usernameDisplay"></h1>
           <div class="tipp-box">
-            <strong> Tipp des Tages:</strong>
+            <button id="button2" onclick="neuerTipp()"> Tipp des Tages</button>
             <span id="tipp-text"></span>
           </div>
           
@@ -45,11 +45,11 @@
     <div class="content">
       <h2>Dein Weg zu mehr Fitness beginnt hier</h2>
       <p>
-        Starte jetzt mit deinem individuell angepassten Anfänger-Trainingsplan
+        Starte jetzt mit deinem individuell angepassten Trainingsplan
         und erreiche deine Ziele Schritt für Schritt!
       </p>
 
-      <a href="trainingsplan.html" class="button">Trainingsplan starten</a>
+      <a href="trainingsplan.html" class="button"id="button1">Trainingsplan starten</a>
 
       <div class="cards">
         <div class="card">
@@ -66,6 +66,12 @@
         </div>
       </div>
     </div>
+    <div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+
+
     <script src="hauptseite.js"></script>
   </body>
 </html>
