@@ -6,6 +6,7 @@ import Picture from '../../components/LandingPage/Picture';
 export default function LandingPage() {
   return (
     <div className="landing-container">
+      
       <Text />
       <Picture />
     </div>
