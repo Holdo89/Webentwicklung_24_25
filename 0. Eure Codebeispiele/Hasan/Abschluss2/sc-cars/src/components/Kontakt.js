@@ -18,8 +18,17 @@ export default function Kontakt({ kontaktRef, handleFormSubmit }) {
         </form>
 
         <div className="kontakt-map">
-          {/* Google Maps Embed */}
-        </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=Kremstalstraße 3, 4503 Haid, Österreich"
+    width="100%"
+    height="300"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Google Maps Standort"
+  ></iframe>
+    </div>
       </div>
     </section>
   );
