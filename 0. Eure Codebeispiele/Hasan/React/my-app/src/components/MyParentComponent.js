@@ -3,6 +3,7 @@ import MyNestedComponent from './MyNestedComponent';
 import Button from './Button';
 import './style.css';
 
+
 export default function MyParentComponent({ count, onPlus, onMinus }) {
   let textVariable = "Das wird in der NestedComponent ausgegeben";
   let textVariable2 = "Mersad du Looser";
@@ -20,3 +21,4 @@ export default function MyParentComponent({ count, onPlus, onMinus }) {
     </div>
   );
 }
+
