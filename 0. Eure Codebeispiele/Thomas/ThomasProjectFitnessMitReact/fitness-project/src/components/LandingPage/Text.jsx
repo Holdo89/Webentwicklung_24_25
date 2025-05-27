@@ -1,14 +1,15 @@
 import React from 'react';
+  import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function TextBlock() {
+  const navigate=useNavigate();
   return (
     <div className="text">
       <h1>
-        Jetzt durchstarten<br />
-        mit <span className="highlight">Imperial Fitness</span>
+        Imperial Fitness
       </h1>
       <p>Trainiere smarter. Werde stärker. Hol dir deinen Traumkörper.</p>
-      <a href="/login" className="button">Starte jetzt</a>
+      <button className="button" onClick={()=>navigate("login")}>Starte jetzt</button>
     </div>
   );
 }
