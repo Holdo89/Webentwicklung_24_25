@@ -3,14 +3,16 @@ import RegisterInput from '../../components/Register/RegisterInput'
 import SubmitButton from '../../components/Register/SubmitButton'
 import '../../styles/Register.css';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 
 export default function Register() {
-  const navigate=useNavigate
+  const navigate=useNavigate();
 const [username,setUsername]=useState("");
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 const [errors, setErrors] = useState({});
+const [responseMessage, setResponseMessage] = useState("");
 
 const validate = () => {
     const newErrors = {};
@@ -25,12 +27,26 @@ const validate = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-const handleRegister = () => {
-    if (validate()) {
-      console.log('Register-Daten:', { username, email, password });
-      
+const handleRegister = async () => {
+  if (validate()) {
+    try {
+      const response = await axios.post('http://localhost:3001/register', {
+        username,
+        email,
+        password
+      });
+      setResponseMessage("Registrierung erfolgreich! Du wirst weitergeleitet...");
+      console.log(response.data);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+    } catch (error) {
+      const message = error.response?.data || error.message || "Registrierung fehlgeschlagen";
+      setResponseMessage(message);
+      console.error('Registrierung fehlgeschlagen:', message);
     }
-  };
+  }
+};
 
 
 
@@ -49,7 +65,7 @@ const handleRegister = () => {
           {errors.password && <p className="error">{errors.password}</p>}
 
         <SubmitButton label="Registrieren" onClick={handleRegister}/>
-        <p id='responseMessage'></p>
+        <p id='responseMessage'>{responseMessage}</p>
             <p className="register-link">
           Schon registriert? <a href="/login" onClick={()=>navigate("login")}>Hier gehts zum Login</a>
           </p>

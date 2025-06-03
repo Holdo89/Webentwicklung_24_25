@@ -3,6 +3,7 @@ import SubmitButtonLogin from '../../components/Login/SubmitButtonLogin'
 import LoginInput from '../../components/Login/LoginInput'
 import '../../styles/Login.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function Login() {
@@ -10,6 +11,7 @@ export default function Login() {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [errors, setErrors] = useState({});
+    const [responseMessage, setResponseMessage] = useState("");
 
     const validate = () => {
     const newErrors = {};
@@ -23,12 +25,33 @@ export default function Login() {
     return Object.keys(newErrors).length === 0;
   };
     
-    const handleLogin = () => {
+    const handleLogin = async () => {
     if (validate()) {
-      console.log('Login erfolgreich mit:', { email, password });
-      // Weiterleitung zur Hauptseite o.ä.
+      try {
+        const response = await axios.post('http://localhost:3001/login', {
+          email,
+          password
+        });
+
+        // Token aus der Antwort speichern
+        const { token, username } = response.data;
+
+        // Token speichern 
+        localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
+
+        setResponseMessage("Login erfolgreich! Du wirst weitergeleitet...");
+        setTimeout(() => {
+          navigate('/hauptseite');
+        }, 1500);
+      } catch (error) {
+        const message = error.response?.data || error.message || "Login fehlgeschlagen";
+        setResponseMessage(message);
+        console.error('Login fehlgeschlagen:', message);
+      }
     }
   };
+
 return (
     <div className="login-page">
     <div className="main">
@@ -63,8 +86,9 @@ return (
 </p>
           
           <SubmitButtonLogin  label="Login" onClick={handleLogin} />
+          <p id="responseMessage">{responseMessage}</p>
           <p className="login-link">
-          Noch nicht <a href="/register" onClick={()=>navigate("register")}>registriert</a>?
+          Noch nicht <a href="/register" onClick={()=>navigate("register")}>registriert?</a>
           </p>
           
         </div>
