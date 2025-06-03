@@ -37,7 +37,7 @@ export default function Navbar({ navbarRef }) {
       </div>
 
       <ul className={`nav-links ${menuOpen ? "show" : ""}`}>
-        <li><a href="#ueber-mich" onClick={closeMenu}>Über mich</a></li>
+        <li><a href="#ueber-mich" onClick={closeMenu}>Über Uns</a></li>
         <li><a href="#aufbereitung" onClick={closeMenu}>Aufbereitung</a></li>
         <li><a href="#kontakt" onClick={closeMenu}>Kontakt</a></li>
         <li><a href="#termin" onClick={closeMenu}>Termin</a></li>
