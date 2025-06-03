@@ -12,7 +12,7 @@ export default function UeberMich({ ueberMichRef, ueberMichVisible }) {
       <div className="ueber-mich-image-container">
         <img
           src="/images/Detailing 2.jpg"
-          alt="Hintergrund"
+          alt="Autopflege-Detailaufnahme während der Aufbereitung"
           className="ueber-mich-bg-image"
         />
       </div>
