@@ -68,3 +68,9 @@
   }
 }
 
+/* Zusätzliche Optimierung für sehr kleine Bildschirme */
+@media (max-width: 480px) {
+  .ueber-mich-image-container {
+    height: 35vh;
+  }
+}
