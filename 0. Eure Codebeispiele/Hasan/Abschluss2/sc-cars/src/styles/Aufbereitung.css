@@ -1,0 +1,50 @@
+
+/* Aufbereitung - Rechteckige Rahmen für die Dienstleistungen */
+.aufbereitung-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Damit die Container bei kleinen Bildschirmgrößen auf mehrere Zeilen gehen */
+}
+
+.aufbereitung-item {
+  background-color: #96d8b1; /* sanftes grün für den Hintergrund */
+  color: #323030;
+  border-radius: 8px; /* abgerundete Ecken */
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aufbereitung-item h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #323030;
+  margin-bottom: 15px;
+}
+
+.aufbereitung-item ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.aufbereitung-item ul li {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.aufbereitung-item p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #323030;
+}
+
+.aufbereitung-item:hover {
+  transform: scale(1.05); /* Vergrößerung beim Hover */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* stärkeren Schatten beim Hover */
+}
+
