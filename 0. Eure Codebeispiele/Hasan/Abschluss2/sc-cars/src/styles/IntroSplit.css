@@ -1,4 +1,3 @@
-
 /* Split-Screen */
 .intro-split {
   position: relative;
@@ -20,7 +19,7 @@
   transition: transform 0.3s ease;
 }
 
-.split-image {
+.split-video {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +36,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 0;
+  z-index: 1;
   transition: background-color 0.3s ease;
 }
 
@@ -47,11 +46,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 2;
   font-size: 2rem;
   font-weight: bold;
+  text-align: center;
   transition: transform 0.3s ease, opacity 0.3s ease, font-size 0.3s ease;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .split:hover .overlay-text {
@@ -59,13 +62,21 @@
   opacity: 0.9;
 }
 
-.split:hover .split-image {
+.split:hover .split-video {
   transform: scale(1.05);
   transition: transform 0.5s ease;
 }
 
 .split.full-width {
   flex: 1 1 100%;
+}
+
+.intro-logo {
+  margin-top: 20px;
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+  border-radius: 8px;
 }
 
 /* Sektionen */
@@ -114,10 +125,50 @@
 
   .split {
     flex: 1 1 100%;
-    min-height: 50vh; /* Anpassen der Höhe für kleinere Bildschirme */
+    min-height: 50vh; /* Höhe anpassen für kleinere Bildschirme */
   }
 
   .overlay-text {
     font-size: 1.5rem;
+  }
+
+  .intro-logo {
+    width: 80px;
+    margin-top: 15px;
+  }
+}
+
+/* Button ist standardmäßig unsichtbar */
+.intro-button {
+  margin-top: 25px;
+  padding: 12px 28px;
+  background-color: #adebc7;
+  color: #323030;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Wenn der ganze Bereich (".split") gehovt wird, Button einblenden */
+.split:hover .intro-button {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Optional: Mobilgeräte optimieren */
+@media (max-width: 768px) {
+  .intro-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 20px;
   }
 }
