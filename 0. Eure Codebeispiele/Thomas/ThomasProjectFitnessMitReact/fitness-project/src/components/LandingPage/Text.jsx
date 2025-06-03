@@ -1,5 +1,5 @@
 import React from 'react';
-  import { Navigate, useNavigate } from 'react-router-dom';
+import { navigate, useNavigate } from 'react-router-dom';
 
 export default function TextBlock() {
   const navigate=useNavigate();

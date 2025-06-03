@@ -24,11 +24,12 @@ body {
     position: relative;
     color: white;
     height: 350px;
+    width: 350px !important;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
-    background-size: cover;
+    background-size: cover !important;
     background-position: center;
     display: flex;
     flex-direction: column;
@@ -58,7 +59,7 @@ body {
   .card p {
     margin: 0;
     font-size: 22px;
-    color: white;
+    color: white !important;
   }
 
   .card:hover {
