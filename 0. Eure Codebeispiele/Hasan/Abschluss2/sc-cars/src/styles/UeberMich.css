@@ -1,76 +1,105 @@
-/* Über mich Sektion: Hauptcontainer */
+/* src/styles/UeberMich.css */
+
 .ueber-mich-section {
-  position: relative;
-  width: 100%;
-  padding: 2rem 1rem;
-  background: linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+  padding: 60px 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #adebc7;
+  background: linear-gradient(to bottom, #2b2b2b 0%, #1a1a1a 100%);
 }
 
-/* Bild oben – max. 1/4 der Seite, volle Breite */
-.ueber-mich-image-container {
-  width: 100%;
-  height: 25vh;
-  overflow: hidden;
+.image-container {
   position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* stärkerer Schatten */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.ueber-mich-bg-image {
+.ueber-mich-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.25; /* Leichte Transparenz */
-   transition: opacity 0.5s ease; /* Übergang beim Hover */
+  display: block;
+  border-radius: 16px;
+  transform: scale(1.02); /* leicht vergrößert standardmäßig */
+  transition: transform 0.4s ease;
+  filter: brightness(0.95) contrast(1.15); /* sattere Farben */
 }
 
-.ueber-mich-image-container:hover .ueber-mich-bg-image {
-  opacity: 1;
+.image-container:hover .ueber-mich-image {
+  transform: scale(1.07);
 }
 
-/* Textblock darunter */
-.ueber-mich-block {
-  position: relative;
+.hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 48, 48, 0);
+  transition: background-color 0.3s ease;
+  border-radius: 12px;
   z-index: 1;
+}
+.image-container:hover {
+  box-shadow: 0 15px 40px rgba(150, 216, 177, 0.3); /* grünlicher Glow-Effekt */
+}
 
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+.image-container:hover .hover-overlay {
+  background-color: rgba(50, 48, 48, 0.6);
+}
 
+.ueber-mich-content {
+  position: relative;
   max-width: 800px;
-  margin: 2rem auto 0 auto;
-  padding: 2rem;
-
-  border: 2px solid #333;
-  border-radius: 1rem;
-
- background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   text-align: center;
+  padding: 30px 25px;
+  margin-top: -60px; /* hebt das Textfeld über das Bild */
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(50, 48, 48, 0) 0%, rgba(50, 48, 48, 0.9) 100%);
+  background-color: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid rgba(150, 216, 177, 0.3);
+  border-right: 1px solid rgba(150, 216, 177, 0.3);
+  border-bottom: 1px solid rgba(150, 216, 177, 0.3);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* kräftigerer Schatten */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Wenn sichtbar (durch IntersectionObserver oder Scroll-Effekt) */
-.ueber-mich-block.visible {
-  opacity: 1;
-  transform: translateY(0);
+
+.ueber-mich-content:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 28px rgba(150, 216, 177, 0.2);
+}
+.ueber-mich-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #c4f1df;
 }
 
-/* Responsive Optimierung */
+/* Responsive */
 @media (max-width: 768px) {
-  .ueber-mich-block {
-    padding: 1.5rem;
-    margin: 1.5rem 1rem 0 1rem;
+  .ueber-mich-section {
+    padding: 40px 15px;
   }
 
-  .ueber-mich-bg-image {
-    object-position: center;
+  .image-container {
+    height: 200px;
   }
-}
 
-/* Zusätzliche Optimierung für sehr kleine Bildschirme */
-@media (max-width: 480px) {
-  .ueber-mich-image-container {
-    height: 35vh;
+  .ueber-mich-content h2 {
+    font-size: 2rem;
+  }
+
+  .ueber-mich-content p {
+    font-size: 1rem;
   }
 }
