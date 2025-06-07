@@ -60,9 +60,9 @@ app.post('/login', (req, res) => {
 
 //Registrierung 
 app.post('/register', (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, last_name, email, password } = req.body;
 
-  if (!name || !email || !password) {
+  if (!name || !last_name || !email || !password ) {
     return res.status(400).send("Alle Felder müssen ausgefüllt werden.");
   }
 
@@ -77,8 +77,8 @@ app.post('/register', (req, res) => {
       return res.status(409).send("E-Mail ist bereits registriert.");
     }
 
-    const insertQuery = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
-    connection.query(insertQuery, [name, email, password], (err, result) => {
+    const insertQuery = "INSERT INTO user (name, last_name, email, password) VALUES (?, ?, ?, ?)";
+    connection.query(insertQuery, [name, last_name, email, password], (err, result) => {
       if (err) {
         console.error(err);
         return res.status(500).send("Fehler beim Einfügen in die Datenbank.");
@@ -90,8 +90,8 @@ app.post('/register', (req, res) => {
 });
 
 // Bekomme alle Termine
-app.get("/bookbay", (req, res) => {
-  const query = "SELECT * FROM bookbay";
+app.get("/bookings", (req, res) => {
+  const query = "SELECT * FROM bookings";
   connection.query(query, (error, results) => {
     if (error) {
       res.status(500).send("Interner Fehler");
@@ -103,14 +103,16 @@ app.get("/bookbay", (req, res) => {
 
 // Neuen Termin in 'bookings' speichern
 app.post('/bookings', (req, res) => {
-  const { title, date } = req.body;
+  const { date, title } = req.body;
 
-  if (!title || !date) {
+  if (!date || !title) {
     return res.status(400).send("Titel und Datum müssen angegeben werden.");
   }
 
-  const query = "INSERT INTO bookings (title, date) VALUES (?, ?)";
-  connection.query(query, [title, date], (err, result) => {
+  const [day, time] = date.split(' '); 
+
+  const query = "INSERT INTO bookings (date, time, title) VALUES (?, ?, ?)";
+  connection.query(query, [day, time, title], (err, result) => {
     if (err) {
       console.error("Fehler beim Einfügen in bookings:", err);
       return res.status(500).send("Speichern des Termins fehlgeschlagen.");
@@ -119,6 +121,38 @@ app.post('/bookings', (req, res) => {
     res.status(201).send({ message: "Termin erfolgreich gespeichert!", id: result.insertId });
   });
 });
+
+// Passwort ändern
+app.post('/change-password', (req, res) => {
+  const { email, oldPassword, newPassword } = req.body;
+
+  if (!email || !oldPassword || !newPassword) {
+    return res.status(400).send("Fehlende Daten.");
+  }
+
+  const query = "SELECT * FROM user WHERE email = ?";
+  connection.query(query, [email], (err, results) => {
+    if (err) return res.status(500).send("Serverfehler beim Abrufen des Users.");
+
+    if (results.length === 0) {
+      return res.status(404).send("Benutzer nicht gefunden.");
+    }
+
+    const user = results[0];
+
+    if (user.password !== oldPassword) {
+      return res.status(401).send("Altes Passwort ist falsch.");
+    }
+
+    const updateQuery = "UPDATE user SET password = ? WHERE email = ?";
+    connection.query(updateQuery, [newPassword, email], (err) => {
+      if (err) return res.status(500).send("Fehler beim Aktualisieren des Passworts.");
+      return res.status(200).send("Passwort wurde erfolgreich geändert.");
+    });
+  });
+});
+
+
 
 
 
