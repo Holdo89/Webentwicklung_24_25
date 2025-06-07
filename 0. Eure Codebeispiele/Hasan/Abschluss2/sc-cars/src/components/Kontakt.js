@@ -1,19 +1,35 @@
-// src/components/Kontakt.js
 import React, { useState } from "react";
 import "../styles/Kontakt.css";
 
 export default function Kontakt({ kontaktRef }) {
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccess(true);
 
-    // Reset success after 4 seconds
-    setTimeout(() => setSuccess(false), 4000);
+    // Werte aus Formular auslesen
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const nachricht = formData.get("nachricht");
 
-    // Optional: Reset form
-    e.target.reset();
+    try {
+      const res = await fetch("http://localhost:3001/kontakt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, nachricht }),
+      });
+
+      if (!res.ok) throw new Error("Fehler beim Senden");
+
+      setSuccess(true);
+      e.target.reset();
+
+      setTimeout(() => setSuccess(false), 4000);
+    } catch (error) {
+      alert("Fehler beim Senden. Bitte versuchen Sie es später nochmal.");
+      console.error(error);
+    }
   };
 
   return (
@@ -21,9 +37,10 @@ export default function Kontakt({ kontaktRef }) {
       <div className="kontakt-wrapper">
         <h2>Kontakt</h2>
         <form className="kontakt-form" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="E-Mail" required />
-          <textarea placeholder="Ihre Nachricht..." rows="5" required />
+          {/* Wichtig: name-Attribute hinzufügen */}
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="E-Mail" required />
+          <textarea name="nachricht" placeholder="Ihre Nachricht..." rows="5" required />
           <button type="submit">Absenden</button>
         </form>
 
