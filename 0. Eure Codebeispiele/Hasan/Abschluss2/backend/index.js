@@ -12,7 +12,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',         // Standard XAMPP-Benutzer
   password: '',         // Standard XAMPP-Passwort (leer)
-  database: 'deinedatenbank'  // Name deiner MySQL-Datenbank
+  database: 'sc-cars'  // Name deiner MySQL-Datenbank
 });
 
 db.connect(err => {

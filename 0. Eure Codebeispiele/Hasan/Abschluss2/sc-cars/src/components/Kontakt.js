@@ -7,28 +7,34 @@ export default function Kontakt({ kontaktRef }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Werte aus Formular auslesen
+    // Werte aus dem Formular extrahieren
     const formData = new FormData(e.target);
     const name = formData.get("name");
     const email = formData.get("email");
     const nachricht = formData.get("nachricht");
 
     try {
-      const res = await fetch("http://localhost:3001/kontakt", {
+      const response = await fetch("http://localhost:3001/kontakt", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ name, email, nachricht }),
       });
 
-      if (!res.ok) throw new Error("Fehler beim Senden");
+      if (!response.ok) {
+        throw new Error("Serverantwort war nicht OK");
+      }
 
+      // Erfolgsmeldung anzeigen
       setSuccess(true);
       e.target.reset();
 
+      // Erfolgsmeldung nach 4 Sekunden ausblenden
       setTimeout(() => setSuccess(false), 4000);
     } catch (error) {
-      alert("Fehler beim Senden. Bitte versuchen Sie es später nochmal.");
-      console.error(error);
+      console.error("Fehler beim Senden:", error);
+      alert("Beim Senden ist ein Fehler aufgetreten. Bitte später erneut versuchen.");
     }
   };
 
@@ -37,7 +43,6 @@ export default function Kontakt({ kontaktRef }) {
       <div className="kontakt-wrapper">
         <h2>Kontakt</h2>
         <form className="kontakt-form" onSubmit={handleSubmit}>
-          {/* Wichtig: name-Attribute hinzufügen */}
           <input type="text" name="name" placeholder="Name" required />
           <input type="email" name="email" placeholder="E-Mail" required />
           <textarea name="nachricht" placeholder="Ihre Nachricht..." rows="5" required />
