@@ -87,7 +87,7 @@ body {
     color: white;
     padding: 15px 30px;
     border: none;
-    border-radius: 30px;
+    border-radius: 40px;
     font-size: 18px;
     cursor: pointer;
     text-decoration: none;
@@ -130,4 +130,13 @@ body {
  }
  .tipp-box{
   color: #e68900;
+ }
+ #button2{
+  font-size: large;
+  background-color: #e68900;
+  font-family:'Times New Roman', Times, serif;
+  border: none;
+    border-radius: 40px;
+    padding: 0px 10px;
+    cursor: pointer;
  }

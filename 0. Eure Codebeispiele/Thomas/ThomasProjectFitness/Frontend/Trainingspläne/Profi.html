@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Profi.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Trainingsplan Anfänger</h1>
+    <p class="important">Wichtigste Info ist ! Vor jedem Training <br />Mindestens 5 Min Aufwärmen!!!</p>
+
+    <h2>Tag 1: Montag  Brust, Bizeps, Schulter, Trizeps</h2>
+    <ul>
+      <li>Liegestütze 3x10</li>
+      <li>Brustpresse 3x10</li>
+      <li>Bizeps Curls mit Langhantel 3x12</li>
+      <li>Schulterdrücken mit Kurzhanteln 3x10</li>
+      <li>Trizeps-Dips auf Stuhl 3x12</li>
+      
+    </ul>
+    <button onclick="toggleVideo('video1')">🎥 Video zum Workout anzeigen</button>
+    <div class="video-container" id="video1">
+      <iframe src="https://www.youtube.com/embed/ykJmrZ5v0Oo" allowfullscreen></iframe>
+    </div>
+
+    <h2>Tag 2: Dienstag  Pause</h2>
+    <p>Erholung und aktive Regeneration.</p>
+
+    <h2>Tag 3: Mittwoch  Pause</h2>
+    <p>Erholung und aktive Regeneration.</p>
+
+    <h2>Tag 4: Donnerstag  Ausdauer + Beine, Bauch, Rücken</h2>
+    <ul>
+      <li>20 Minuten lockeres Laufen oder Fahrradfahren</li>
+      <li>Kniebeugen  3x15</li>
+      <li>Bauch-Crunches  3x20</li>
+      <li>Superman Rückenstrecker  3x15</li>
+    </ul>
+    <button onclick="toggleVideo('video4')">🎥 Video zum Workout anzeigen</button>
+    <div class="video-container" id="video4">
+      <iframe src="https://www.youtube.com/embed/2pLT-olgUJs" allowfullscreen></iframe>
+    </div>
+
+    <h2>Tag 5: Freitag  Pause</h2>
+    <p>Erholung und aktive Regeneration.</p>
+  </div>
+
+  <script>
+    function toggleVideo(id) {
+      const video = document.getElementById(id);
+      if (video.style.display === "none" || video.style.display === "") {
+        video.style.display = "block";
+      } else {
+        video.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
