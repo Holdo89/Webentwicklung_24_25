@@ -3,11 +3,14 @@ import LevelCard from '../../components/Cards/LevelCard';
 import '../../styles/Cards.css';
 import beginner from '../../assets/anfänger.png';
 import intermediate from '../../assets/fortgeschritten.PNG';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
-export default function Cards({ onLevelChosen }) {
+export default function Cards() {
 
   const [showInfo, setShowInfo] = useState(false);
+  const navigate = useNavigate();
   const levels = [
     {
       id: 'beginner',
@@ -29,9 +32,25 @@ export default function Cards({ onLevelChosen }) {
     },
   ];
 
-  const handleSelect = (level) => {
-    localStorage.setItem('userFitnessLevel', level.id);
-    onLevelChosen();
+  const handleSelect = async (level) => {
+    console.log("Level ausgewählt:", level);
+    try {
+      const token = localStorage.getItem('token');
+      await axios.put('http://localhost:3001/user/level', 
+        { level: level.id }, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      localStorage.setItem('level', level.id);
+      
+      navigate('/hauptseite');
+    } catch (error) {
+      console.error('Fehler beim Setzen des Levels:', error);
+    }
   };
 
   return (

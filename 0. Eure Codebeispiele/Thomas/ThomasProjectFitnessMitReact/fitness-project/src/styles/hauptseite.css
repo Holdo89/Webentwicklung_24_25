@@ -105,8 +105,7 @@ body {
 }
 
 .button:hover, #button1:hover {
-  background: #e68900;
-  box-shadow: 0 0 10px #e68900;
+  box-shadow: 0 0 10px lightseagreen;
 }
 
 

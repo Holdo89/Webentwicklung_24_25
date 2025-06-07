@@ -34,16 +34,19 @@ export default function Login() {
         });
 
         // Token aus der Antwort speichern
-        const { token, username } = response.data;
+        const { token, username, level } = response.data;
 
         // Token speichern 
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
+        localStorage.setItem('level', level|| '')
 
-        setResponseMessage("Login erfolgreich! Du wirst weitergeleitet...");
-        setTimeout(() => {
-          navigate('/hauptseite');
-        }, 1500);
+        if (!level) {
+        navigate('/cards'); // Level noch nicht gesetzt -> zur Auswahlseite
+        } else {
+         navigate('/hauptseite'); // Level gesetzt -> normale Startseite
+        }
+
       } catch (error) {
         const message = error.response?.data || error.message || "Login fehlgeschlagen";
         setResponseMessage(message);

@@ -33,6 +33,7 @@
   border-radius: 8px;
   transition: background-color 0.3s ease;
   display: block;
+  cursor: pointer;
 }
 
 .sidebar a:hover,
@@ -41,3 +42,6 @@
   color: #121212;
   outline: none;
 }
+
+
+

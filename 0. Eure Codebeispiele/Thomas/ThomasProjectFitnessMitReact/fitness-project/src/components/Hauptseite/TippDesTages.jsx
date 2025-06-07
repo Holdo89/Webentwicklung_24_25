@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+
+const TippDesTages = () => {
+  const [tipp, setTipp] = useState('');
+  
 
 const tipps = [
   "Trinke genug Wasser während des Trainings.",
@@ -8,18 +12,18 @@ const tipps = [
   "Ernähre dich ausgewogen für bessere Leistung."
 ];
 
-export default function TippDesTages() {
-  const [tipp, setTipp] = useState("");
 
-  function neuerTipp() {
-    const zufall = Math.floor(Math.random() * tipps.length);
-    setTipp(tipps[zufall]);
-  }
+  const zeigeTipp = () => {
+    const zufallstipp = tipps[Math.floor(Math.random() * tipps.length)];
+    setTipp(zufallstipp);
+    localStorage.setItem('tippGedrueckt', 'true');
+  };
 
   return (
     <div className="tipp-container">
-      <button id="button2" onClick={neuerTipp}>Tipp des Tages</button>
+      <button id="button2" onClick={zeigeTipp}>Tipp des Tages</button>
       <p id="tipp-text">{tipp}</p>
     </div>
   );
 }
+export default TippDesTages;
