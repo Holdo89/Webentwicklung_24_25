@@ -19,7 +19,7 @@ export default function Header() {
         </div>
       </div>
       <div className="header-center">
-        <h1>Willkommen, {username}!</h1>
+        <h1>Servus {username}</h1>
       </div>
     </div>
   );

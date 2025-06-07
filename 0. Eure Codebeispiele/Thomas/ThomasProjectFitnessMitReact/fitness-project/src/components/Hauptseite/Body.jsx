@@ -1,7 +1,20 @@
 import React from "react";
 import '../../styles/hauptseite.css';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 export default function Body() {
+const navigate=useNavigate();
+
+useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      // Kein Token vorhanden? Weiterleiten zur Login-Seite
+      navigate('/login');
+    }
+  }, [navigate]);
+
   return (
     <div className="content">
       <h2>Dein Weg zu mehr Fitness beginnt hier</h2>
