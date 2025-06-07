@@ -25,9 +25,6 @@ export default function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.target === introSplitRef.current) {
-            navbarRef.current.classList.toggle("visible", !entry.isIntersecting);
-          }
           if (entry.target === ueberMichRef.current) {
             setUeberMichVisible(entry.isIntersecting);
           }
@@ -58,7 +55,7 @@ export default function App() {
     <>
       <Navbar navbarRef={navbarRef} />
       <IntroSplit introSplitRef={introSplitRef} />
-      <UeberMich ueberMichRef={ueberMichRef} ueberMichVisible={ueberMichVisible} />
+      <UeberMich ueberMichRef={ueberMichRef} ueberMichVisible={ueberMichVisible} /> 
       <Aufbereitung aufbereitungRef={aufbereitungRef} />
       <Kontakt kontaktRef={kontaktRef} handleFormSubmit={handleFormSubmit} />
       <Termin
