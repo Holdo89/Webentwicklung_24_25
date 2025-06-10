@@ -11,12 +11,16 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 import logo from "../assets/BookLogo.png";
 
-const pages = ["Kalender", "Termine"];
+const pages = [
+  { name: "Home", path: "/" },
+  { name: "Kalender", path: "/dashboard" },
+];
 const settings = ["Profil", "Buchungen", "Logout"];
 
-function Header() {
+function Header({ user, setUser }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -36,24 +40,20 @@ function Header() {
   };
 
   return (
-      <AppBar position="static" sx={{ backgroundColor: '#6EB5C0', color: '#E2E8E4' }}> 
+    <AppBar position="static" sx={{ backgroundColor: "#6EB5C0" , color: "#E2E8E4" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
             component="img"
-            sx={{
-              height: 100,
-              mr: 1,
-              display: { xs: "none", md: "flex" },
-            }}
+            sx={{ height: 100, mr: 1, display: { xs: "none", md: "flex" } }}
             alt="BookBay Logo"
             src={logo}
           />
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -62,61 +62,46 @@ function Header() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-              
             }}
           >
             BookBay
           </Typography>
 
+          {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  component={Link}
+                  to={page.path}
+                  onClick={handleCloseNavMenu}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
           <Box
             component="img"
-            sx={{
-              height: 100,
-              mr: 1,
-              display: { xs: "flex", md: "none" },
-            }}
+            sx={{ height: 100, mr: 1, display: { xs: "flex", md: "none" } }}
             alt="BookBay Logo"
             src={logo}
           />
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -128,53 +113,91 @@ function Header() {
               textDecoration: "none",
             }}
           >
-            LOGO
           </Typography>
+
+          {/* Desktop Nav */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
+                component={Link}
+                to={page.path}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2,color: "white", display: "block" }}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
+
+          {/* User Avatar Menü */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {!user ? (
+              <Button
+                variant="outlined"
+                color="inherit"
+                component={Link}
+                to="/login"
+                sx={{ color: "white", borderColor: "white" }}
+              >
+                Login
+              </Button>
+            ) : (
+              <>
+                <Tooltip title="Benutzeroptionen">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="User">
+                      {user?.name?.[0]?.toUpperCase() || "U"}
+                    </Avatar>
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  anchorEl={anchorElUser}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => {
+                    if (setting === "Logout") {
+                      return (
+                        <MenuItem
+                          key={setting}
+                          onClick={() => {
+                            localStorage.removeItem("user");
+                            setUser(null);
+                            handleCloseUserMenu();
+                          }}
+                        >
+                          <Typography textAlign="center">{setting}</Typography>
+                        </MenuItem>
+                      );
+                    }
+
+                    const path = setting === "Profil"
+                      ? "/profile"
+                      : setting === "Buchungen"
+                      ? "/dashboard"
+                      : "/";
+
+                    return (
+                      <MenuItem
+                        key={setting}
+                        component={Link}
+                        to={path}
+                        onClick={handleCloseUserMenu}
+                      >
+                        <Typography textAlign="center">{setting}</Typography>
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
+              </>
+            )}
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default Header;

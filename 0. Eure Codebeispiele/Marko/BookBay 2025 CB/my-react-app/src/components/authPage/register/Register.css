@@ -1,0 +1,53 @@
+.register-container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  margin: 100px auto 20px;
+  box-shadow: 0 10px 25px rgba(0, 108, 132, 0.2);
+}
+
+.register-container h2 {
+  color: #006C84;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-container input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.register-container input:focus {
+  border-color: #6EB5C0;
+  outline: none;
+}
+
+.register-container button {
+  padding: 12px;
+  background: #FFCCBB;
+  color: #006C84;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.register-container button:hover {
+  background: #fbb9a3;
+}
+
+.message {
+  color: #006C84;
+  text-align: center;
+  margin-bottom: 10px;
+}
