@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import logo from "../assets/BookLogo.png";
+import logo from "../../assets/BookLogo.png";
 
 const pages = [
   { name: "Home", path: "/" },

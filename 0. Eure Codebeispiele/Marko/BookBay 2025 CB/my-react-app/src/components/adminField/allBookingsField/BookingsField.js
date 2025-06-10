@@ -19,6 +19,7 @@ export default function BookingsField() {
       .catch((err) => console.error("Fehler beim Laden der Buchungen:", err));
   }, []);
 
+  
   return (
 <TableContainer component={Paper} className="bookings-container">
   <Table className="bookings-table" aria-label="Buchungstabelle">

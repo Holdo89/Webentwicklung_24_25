@@ -1,14 +1,13 @@
 import "./App.css";
-import Header from "./components/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BasicTable from "./components/allBookingsField/BookingsField";
-import StaticDateTimePickerLandscape from "./components/calendar/Calendar";
 import WelcomePage from "./components/welcome/WelcomePage";
 import ProfilePage from "./components/profile/ProfilePage";
 import AuthPage from "./components/authPage/AuthPage";
 import { SnackbarProvider } from "notistack";
 import RegisterComponent from "./components/authPage/register/Register";
 import { useState, useEffect } from "react";
+import Header from "./components/header/Header";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,14 +31,7 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <div className="two-column-layout">
-                  <div className="calendar-wrapper">
-                    <StaticDateTimePickerLandscape />
-                  </div>
-                  <div className="table-wrapper">
-                    <BasicTable />
-                  </div>
-                </div>
+                <Dashboard/>
               }
             />
             <Route path="/profile" element={<ProfilePage />} />
@@ -50,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
