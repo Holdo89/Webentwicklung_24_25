@@ -1,0 +1,71 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.exercise-list {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.exercise-list h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 1.5rem;
+  width: 200px;
+  height: 400px;
+  
+}
+
+.exercise-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  padding: 22px;
+  
+}
+
+.exercise-card:hover {
+  transform: scale(1.02);
+}
+
+.exercise-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: none;
+
+}
+
+.exercise-info {
+  padding: 1rem;
+}
+
+.exercise-info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.exercise-info p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+h3{
+  color: black;
+}
+
+
+
+
