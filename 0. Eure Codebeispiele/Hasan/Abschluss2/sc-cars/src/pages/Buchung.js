@@ -1,8 +1,8 @@
 // src/pages/Buchung.js
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/Buchung.css";
+import Navbar from "../components/Navbar";  // Pfad ggf. anpassen
+import { Box, Typography, FormControl, InputLabel, Select, MenuItem, Button, Paper, Fade } from "@mui/material";
 
 export default function Buchung() {
   const { datum } = useParams();
@@ -65,63 +65,142 @@ export default function Buchung() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!angebot || !uhrzeit) {
-      setError("Bitte wähle ein Angebot und eine Uhrzeit aus.");
+      setError("Bitte Angebot und Uhrzeit auswählen.");
       return;
     }
-
     setError("");
     alert(`Termin gebucht am ${datum} um ${uhrzeit} für ${angebot}`);
   };
 
   return (
-    <div className="buchung-page">
-      <div className="buchung-container">
-        <h2 className="buchung-heading">
-          Terminbuchung für <span className="buchung-highlight">{datum}</span>
-        </h2>
+    <>
+      <Navbar />
+      <Box
+        sx={{
+          minHeight: "100vh",
+          background: "linear-gradient(to bottom, #2b2b2b 0%, #1a1a1a 100%)",
+          padding: "3rem 1rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <Fade in timeout={500}>
+          <Paper
+            elevation={10}
+            sx={{
+              padding: "2rem",
+              borderRadius: "16px",
+              backgroundColor: "rgba(255, 255, 255, 0.02)",
+              border: "1px solid rgba(150, 216, 177, 0.3)",
+              boxShadow: "0 15px 40px rgba(150, 216, 177, 0.3)",
+              backdropFilter: "blur(4px)",
+              maxWidth: "600px",
+              width: "100%",
+              transition: "transform 0.4s ease, box-shadow 0.4s ease",
+              "&:hover": {
+                transform: "scale(1.02)",
+                boxShadow: "0 18px 50px rgba(150, 216, 177, 0.4)",
+              }
+            }}
+          >
+            <Typography variant="h4" align="center" sx={{ color: "#adebc7", marginBottom: "0.5rem" }}>
+              Terminbuchung
+            </Typography>
+            <Typography variant="subtitle1" align="center" sx={{ color: "#c4f1df", marginBottom: "2rem" }}>
+              {new Date(datum).toLocaleDateString("de-DE")}
+            </Typography>
 
-        <form onSubmit={handleSubmit} className="buchung-form">
-          <label className="buchung-label">
-            Angebot:
-            <select
-              className="buchung-select"
-              value={angebot}
-              onChange={(e) => setAngebot(e.target.value)}
-              required
-            >
-              <option value="">Bitte wählen</option>
-              {angebote.map((option, idx) => (
-                <option key={idx} value={option}>{option}</option>
-              ))}
-            </select>
-          </label>
+            <form onSubmit={handleSubmit}>
+              <FormControl fullWidth sx={{ mb: 3 }}>
+                {angebot === "" && (
+                  <InputLabel
+                    id="angebot-label"
+                    sx={{ color: "#adebc7", fontWeight: "bold" }}
+                  >
+                    Angebot
+                  </InputLabel>
+                )}
+                <Select
+                  labelId="angebot-label"
+                  value={angebot}
+                  onChange={(e) => setAngebot(e.target.value)}
+                  required
+                  sx={{
+                    color: "#adebc7",
+                    border: "3px solid black",
+                    borderRadius: "4px",
+                    "& .MuiSelect-select": { paddingLeft: "8px" },
+                  }}
+                  displayEmpty={false}
+                >
+                  {angebote.map((option, idx) => (
+                    <MenuItem key={idx} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
-          {angebot && (
-            <label className="buchung-label">
-              Uhrzeit:
-              <select
-                className="buchung-select"
-                value={uhrzeit}
-                onChange={(e) => setUhrzeit(e.target.value)}
-                required
+              {angebot && (
+                <FormControl fullWidth sx={{ mb: 3 }}>
+                  {uhrzeit === "" && (
+                    <InputLabel
+                      id="uhrzeit-label"
+                      sx={{ color: "#adebc7", fontWeight: "bold" }}
+                    >
+                      Uhrzeit
+                    </InputLabel>
+                  )}
+                  <Select
+                    labelId="uhrzeit-label"
+                    value={uhrzeit}
+                    onChange={(e) => setUhrzeit(e.target.value)}
+                    required
+                    sx={{
+                      color: "#adebc7",
+                      border: "3px solid black",
+                      borderRadius: "4px",
+                      "& .MuiSelect-select": { paddingLeft: "8px" },
+                    }}
+                    displayEmpty={false}
+                  >
+                    {verfügbareZeiten.map((zeit, idx) => (
+                      <MenuItem key={idx} value={zeit}>
+                        {zeit}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+
+              {error && (
+                <Typography sx={{ color: "red", fontWeight: 600, mb: 2 }} align="center">
+                  {error}
+                </Typography>
+              )}
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  backgroundColor: "#8cd3ad",
+                  fontWeight: 700,
+                  "&:hover": { backgroundColor: "#68b893" },
+                  padding: "0.75rem",
+                  fontSize: "1.1rem",
+                  borderRadius: "8px",
+                }}
+                disabled={!angebot || !uhrzeit}
               >
-                <option value="">Bitte wählen</option>
-                {verfügbareZeiten.map((zeit, idx) => (
-                  <option key={idx} value={zeit}>{zeit}</option>
-                ))}
-              </select>
-            </label>
-          )}
-
-          {error && <p className="buchung-error">{error}</p>}
-
-          <button type="submit" className="buchung-button">
-            Buchung abschließen
-          </button>
-        </form>
-      </div>
-    </div>
+                Buchung abschließen
+              </Button>
+            </form>
+          </Paper>
+        </Fade>
+      </Box>
+    </>
   );
 }

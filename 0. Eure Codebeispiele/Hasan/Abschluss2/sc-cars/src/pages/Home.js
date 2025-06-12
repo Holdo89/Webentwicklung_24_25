@@ -5,6 +5,7 @@ import UeberMich from "../components/UeberMich";
 import Aufbereitung from "../components/Aufbereitung";
 import Kontakt from "../components/Kontakt";
 import Termin from "../components/Termin";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
   const navbarRef = useRef(null);
@@ -14,11 +15,17 @@ export default function Home() {
   const terminRef = useRef(null);
   const introSplitRef = useRef(null);
 
+  const location = useLocation();
+
   const [date, setDate] = useState(new Date());
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [ueberMichVisible, setUeberMichVisible] = useState(false);
+  const [formStatus, setFormStatus] = useState("");
 
+  // IntersectionObserver nur für ueberMichRef
   useEffect(() => {
+    if (!ueberMichRef.current) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -30,25 +37,28 @@ export default function Home() {
       { threshold: 0.5 }
     );
 
-    // Sicherstellen, dass nur existierende DOM-Elemente beobachtet werden
-    [
-      ueberMichRef.current,
-      aufbereitungRef.current,
-      kontaktRef.current,
-      terminRef.current,
-      introSplitRef.current
-    ].forEach((el) => {
-      if (el) observer.observe(el);
-    });
+    observer.observe(ueberMichRef.current);
 
     return () => observer.disconnect();
   }, []);
 
+  // Scroll to hash on mount or location change
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  // React-konformes Form-Handling
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const status = document.getElementById("formStatus");
-    status.textContent = "Vielen Dank für Ihre Nachricht!";
-    status.style.color = "green";
+    setFormStatus("Vielen Dank für Ihre Nachricht!");
     e.target.reset();
   };
 
@@ -62,7 +72,7 @@ export default function Home() {
       <IntroSplit introSplitRef={introSplitRef} />
       <UeberMich ueberMichRef={ueberMichRef} ueberMichVisible={ueberMichVisible} />
       <Aufbereitung aufbereitungRef={aufbereitungRef} />
-      <Kontakt kontaktRef={kontaktRef} handleFormSubmit={handleFormSubmit} />
+      <Kontakt kontaktRef={kontaktRef} handleFormSubmit={handleFormSubmit} formStatus={formStatus} />
       <Termin
         terminRef={terminRef}
         date={date}
