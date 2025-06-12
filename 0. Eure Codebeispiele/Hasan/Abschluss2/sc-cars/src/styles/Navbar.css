@@ -1,95 +1,38 @@
+/* Navbar Container */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(50, 48, 48, 0.7);
   padding: 10px 20px;
   z-index: 1000;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: rgba(50, 48, 48, 0.7);
   transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
   backdrop-filter: blur(5px);
 }
 
+/* Navbar Hintergrund, wenn gescrollt */
 .navbar.scrolled {
-  background-color: rgba(50, 48, 48, 0.95);
+  background-color: rgba(50, 48, 48, 1);
   backdrop-filter: blur(10px);
 }
 
-.logo {
-  cursor: pointer;
+/* Logo als Button */
+.navbar .logo {
   border: none;
   background: none;
+  cursor: pointer;
   padding: 0;
-  display: inline-block;
 }
 
-.logo img {
+.navbar .logo img {
   height: 50px;
   display: block;
-  cursor: pointer;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links.show {
-  max-height: 400px;
-  transition: max-height 0.4s ease;
-}
-
-.nav-links a,
-.nav-links .nav-button {
-  text-decoration: none;
-  color: #adebc7;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
-}
-
-.nav-links a:hover,
-.nav-links .nav-button:hover {
-  color: #ffffff;
-}
-
-/* Responsive Menü */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: rgba(50, 48, 48, 0.95);
-    flex-direction: column;
-    overflow: hidden;
-    max-height: 0;
-  }
-
-  .nav-links.show {
-    max-height: 400px;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links li {
-    margin: 15px 0;
-    text-align: center;
-  }
+  pointer-events: none; /* verhindert, dass Bild selbst Events blockiert */
 }
 
 /* Hamburger Menü */
@@ -120,4 +63,58 @@
 
 .hamburger .bar.active:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Navigation Links Container */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Buttons in Navbar */
+.nav-links li .nav-button {
+  background: none;
+  border: none;
+  color: #adebc7;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0;
+}
+
+/* Hover Effekt für Buttons */
+.nav-links li .nav-button:hover {
+  color: #ffffff;
+}
+
+/* Responsive Styles für kleinere Bildschirme */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(50, 48, 48, 0.95);
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+
+  .nav-links.show {
+    max-height: 400px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 15px 0;
+    text-align: center;
+  }
 }
