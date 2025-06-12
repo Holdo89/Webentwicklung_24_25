@@ -50,6 +50,29 @@ app.post("/register", (req, res) => {
   });
 });
 
+// Endpunkt zur Prüfung, ob ein Benutzername bereits vergeben ist
+app.get("/check-username", (req, res) => {
+  const { username } = req.query;
+  if (!username) {
+    return res.status(400).json({ exists: false, message: "Kein Benutzername angegeben" });
+  }
+
+  const sql = "SELECT * FROM users WHERE username = ?";
+  db.query(sql, [username], (err, results) => {
+    if (err) {
+      console.error("Fehler bei der DB-Abfrage:", err);
+      return res.status(500).json({ exists: false, message: "Datenbankfehler" });
+    }
+
+    if (results.length > 0) {
+      return res.json({ exists: true }); // Benutzername gibts schon
+    } else {
+      return res.json({ exists: false }); // Benutzername ist frei
+    }
+  });
+});
+
+
 //Login backend
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -70,7 +93,7 @@ app.post("/login", (req, res) => {
       const token = jwt.sign(
         { id: user.id, username: user.username, email: user.email },
         JWT_SECRET,
-        { expiresIn: "3h" }
+        { expiresIn: "6h" }
       );
 
       
@@ -92,7 +115,7 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ message: 'Token ungültig' });
-    req.user = user; // payload mit id, username, email
+    req.user = user; 
     next();
   });
 }
@@ -118,6 +141,30 @@ app.put('/user/level', authenticateToken, (req, res) => {
     res.status(200).json({ message: 'Level erfolgreich gesetzt', level });
   });
 });
+
+
+app.get("/trainingsplan", (req, res) => {
+  const { level, muscle_group_id } = req.query;
+
+  if (!level) {
+    return res.status(400).json({ message: "Level ist erforderlich" });
+  }
+
+  let sql = "SELECT * FROM exercises WHERE level = ?";
+  const params = [level];
+
+  if (muscle_group_id) {
+    sql += " AND muscle_group_id = ?";
+    params.push(muscle_group_id);
+  }
+
+  db.query(sql, params, (err, results) => {
+    if (err) return res.status(500).json({ message: "Datenbankfehler" });
+    res.json(results);
+  });
+});
+
+
 
 
 const port = process.env.PORT || 3001;

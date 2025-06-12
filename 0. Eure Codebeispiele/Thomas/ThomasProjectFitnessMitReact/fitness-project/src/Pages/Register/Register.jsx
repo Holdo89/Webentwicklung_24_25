@@ -14,13 +14,37 @@ const [password,setPassword]=useState("");
 const [errors, setErrors] = useState({});
 const [responseMessage, setResponseMessage] = useState("");
 
-const validate = () => {
+  const checkUsernameExists = async (username) => {
+  try {
+    const res = await axios.get(`http://localhost:3001/check-username`, {
+      params: { username }
+    });
+    return res.data.exists;
+  } catch (error) {
+    console.error("Fehler beim Prüfen des Benutzernamens:", error);
+    return false;
+  }
+};
+
+
+
+const validate = async() => {
     const newErrors = {};
-    if (!username) newErrors.username = 'Benutzername darf nicht leer sein.';
-    if (!email) newErrors.email = 'E-Mail darf nicht leer sein.';
+
+    if (!username) {
+    newErrors.username = 'Falscher Benutzername';
+  } else {
+    const exists = await checkUsernameExists(username);
+    if (exists) {
+      newErrors.username = 'Benutzername bereits vergeben';
+    }
+  }
+
+
+    if (!email) newErrors.email = 'Ungültige Email';
     else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Ungültige E-Mail-Adresse.';
 
-    if (!password) newErrors.password = 'Passwort darf nicht leer sein.';
+    if (!password) newErrors.password = 'Ungültiges Passwort';
     else if (password.length < 6) newErrors.password = 'Mindestens 6 Zeichen.';
 
     setErrors(newErrors);
@@ -28,7 +52,8 @@ const validate = () => {
   };
 
 const handleRegister = async () => {
-  if (validate()) {
+  const isValid=await validate();
+  if (isValid) {
     try {
       const response = await axios.post('http://localhost:3001/register', {
         username,
@@ -58,7 +83,7 @@ const handleRegister = async () => {
       <div className='container'>
         <div className='register-box'>
         <RegisterInput type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-          {errors.username && <p className="error">{errors.username}</p>}
+          {errors.username && <p className="error">{errors.username} </p>}
         <RegisterInput type="email" placeholder="Email-Adresse" value={email} onChange={(e) => setEmail(e.target.value)}/>
           {errors.email && <p className="error">{errors.email}</p>}
         <RegisterInput type="password" placeholder="Password" value={password}onChange={(e) => setPassword(e.target.value)}/>
