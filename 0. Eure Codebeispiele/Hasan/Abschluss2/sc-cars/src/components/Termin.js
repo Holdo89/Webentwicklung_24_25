@@ -3,8 +3,24 @@ import React from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../styles/Termin.css";
+import { useNavigate } from "react-router-dom";
 
-export default function Termin({ terminRef, date, setDate, handleTerminBestätigen, confirmationMessage }) {
+export default function Termin({ terminRef, date, setDate }) {
+  const navigate = useNavigate();
+
+  const disableDate = ({ date, view }) => {
+    if (view !== "month") return false;
+
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    const isBeforeTomorrow = date < tomorrow;
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+
+    return isBeforeTomorrow || isWeekend;
+  };
+
   return (
     <section id="termin" className="section section-dark" ref={terminRef}>
       <h2>Termin vereinbaren</h2>
@@ -15,19 +31,23 @@ export default function Termin({ terminRef, date, setDate, handleTerminBestätig
           onChange={(newDate) => setDate(newDate)}
           value={date}
           minDate={new Date()}
+          tileDisabled={disableDate}
           locale="de-DE"
         />
         <p style={{ textAlign: "center", marginTop: "1rem" }}>
           Ausgewähltes Datum: <strong>{date.toLocaleDateString("de-DE")}</strong>
         </p>
         <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
-          <button className="button" onClick={handleTerminBestätigen}>Termin bestätigen</button>
+          <button
+            className="button"
+            onClick={() => {
+              const selectedDate = date.toISOString().split("T")[0];
+              navigate(`/buchung/${selectedDate}`);
+            }}
+          >
+            Termin bestätigen
+          </button>
         </div>
-        {confirmationMessage && (
-          <p style={{ textAlign: "center", color: "green", marginTop: "1rem" }}>
-            {confirmationMessage}
-          </p>
-        )}
       </div>
     </section>
   );

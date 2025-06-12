@@ -30,8 +30,16 @@ export default function Home() {
       { threshold: 0.5 }
     );
 
-    [ueberMichRef.current, aufbereitungRef.current, kontaktRef.current, terminRef.current, introSplitRef.current]
-      .forEach((el) => observer.observe(el));
+    // Sicherstellen, dass nur existierende DOM-Elemente beobachtet werden
+    [
+      ueberMichRef.current,
+      aufbereitungRef.current,
+      kontaktRef.current,
+      terminRef.current,
+      introSplitRef.current
+    ].forEach((el) => {
+      if (el) observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, []);
@@ -52,7 +60,7 @@ export default function Home() {
     <>
       <Navbar navbarRef={navbarRef} />
       <IntroSplit introSplitRef={introSplitRef} />
-      <UeberMich ueberMichRef={ueberMichRef} ueberMichVisible={ueberMichVisible} /> 
+      <UeberMich ueberMichRef={ueberMichRef} ueberMichVisible={ueberMichVisible} />
       <Aufbereitung aufbereitungRef={aufbereitungRef} />
       <Kontakt kontaktRef={kontaktRef} handleFormSubmit={handleFormSubmit} />
       <Termin
