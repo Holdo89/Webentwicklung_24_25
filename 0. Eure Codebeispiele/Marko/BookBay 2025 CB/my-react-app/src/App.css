@@ -1,0 +1,41 @@
+/* Hintergrundbild*/
+.background-container {
+  background: linear-gradient(to top,  #006c84, #e2e6e8,#1e92ff,  #6eb5c0);
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hauptbereich mit zwei gleich großen Spalten */
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 90vw;
+  max-width: 1400px;
+  height: 80vh;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Beide Spalten gleich hoch */
+.calendar-wrapper,
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Responsiv */
+@media (max-width: 900px) {
+  .two-column-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}

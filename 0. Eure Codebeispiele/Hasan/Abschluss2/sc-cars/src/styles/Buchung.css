@@ -1,0 +1,97 @@
+/* src/styles/Buchung.css */
+
+.buchung-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #2b2b2b 0%, #1a1a1a 100%);
+  color: #adebc7;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buchung-container {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  background-color: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid rgba(150, 216, 177, 0.3);
+  border-right: 1px solid rgba(150, 216, 177, 0.3);
+  border-bottom: 1px solid rgba(150, 216, 177, 0.3);
+  border-top: none;
+  transform: scale(1.02);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.buchung-container:hover {
+  transform: scale(1.07);
+  box-shadow: 0 15px 40px rgba(150, 216, 177, 0.3);
+}
+
+.buchung-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #adebc7;
+}
+
+.buchung-highlight {
+  color: #8cd3ad;
+}
+
+.buchung-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.buchung-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #adebc7;
+}
+
+.buchung-select {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(150, 216, 177, 0.5);
+  background-color: rgba(0,0,0,0.2);
+  color: #adebc7;
+  outline-color: #8cd3ad;
+  cursor: pointer;
+}
+
+.buchung-select option {
+  background-color: #1a1a1a;
+  color: #adebc7;
+}
+
+.buchung-error {
+  color: #f07171;
+  font-weight: 700;
+  text-align: center;
+}
+
+.buchung-button {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  background-color: #8cd3ad;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buchung-button:hover {
+  background-color: #6ab686;
+}

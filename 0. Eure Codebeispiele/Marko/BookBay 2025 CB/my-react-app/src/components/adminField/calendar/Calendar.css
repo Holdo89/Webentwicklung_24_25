@@ -2,14 +2,17 @@
 
 /* Container für den Kalender – links ausgerichtet und responsiv */
 .calendar-container {
-  height: calc(50vh - 100px); /* Hälfte des Bildschirms abzüglich Header */
-  background-color: #E2E8E4;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 20px;
   display: flex;
-  justify-content: flex-start; /* Linksbündig */
+  justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
 }
+
 
 /* Kalender selbst */
 .MuiPickersLayout-root {
@@ -17,7 +20,7 @@
   max-width: 700px;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(73, 126, 168, 0.1);
   padding: 16px;
 }
 
@@ -42,12 +45,6 @@
 .MuiPickersDay-root.Mui-selected {
   background-color: #FFCCBB !important;
   color: #006C84 !important;
-}
-
-/* Uhrbereich */
-.MuiClock-root {
-  background-color: #F8F8F8;
-  border-radius: 12px;
 }
 
 .MuiClockPointer-root,
@@ -78,4 +75,25 @@
 }
 .css-1mvmid-MuiYearCalendar-button.Mui-selected {
     background-color: #6EB5C0 !important;
+}
+/* Wenn User eingeloggt ist, 2-Spalten-Layout */
+.two-column-layout {
+  display: flex;
+  gap: 20px; /* Abstand zwischen Kalender und Tabelle */
+  padding: 20px;
+}
+
+.calendar-wrapper {
+  flex: 1; /* Kalender nimmt 1 Teil der Breite */
+}
+
+.table-wrapper {
+  flex: 1; /* BookingField nimmt 1 Teil der Breite */
+}
+
+/* Wenn User ausgeloggt ist, Kalender mittig */
+.centered-calendar-container {
+  display: flex;
+  justify-content: center; /* horizontal zentriert */
+  padding: 40px 0;
 }

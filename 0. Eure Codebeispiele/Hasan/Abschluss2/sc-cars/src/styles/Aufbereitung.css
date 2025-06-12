@@ -1,50 +1,144 @@
-
-/* Aufbereitung - Rechteckige Rahmen für die Dienstleistungen */
-.aufbereitung-container {
-  display: flex;
-  justify-content: space-around;
-  gap: 30px;
-  margin-top: 30px;
-  flex-wrap: wrap; /* Damit die Container bei kleinen Bildschirmgrößen auf mehrere Zeilen gehen */
+.aufbereitung-section {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #2b2b2b 0%, #1a1a1a 100%);
+  color: #adebc7;
+  text-align: center;
+  min-height: 80vh;
 }
 
-.aufbereitung-item {
-  background-color: #96d8b1; /* sanftes grün für den Hintergrund */
-  color: #323030;
-  border-radius: 8px; /* abgerundete Ecken */
-  width: 300px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.aufbereitung-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #96d8b1;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+.aufbereitung-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+}
+
+.aufbereitung-text {
+  flex: 1 1 400px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #c4f1df;
   text-align: left;
+}
+
+/* --- Image Stack Styles --- */
+.image-stack {
+  position: relative;
+  width: 400px;    
+  height: 300px;   
+}
+
+.image-stack .image {
+  position: absolute;
+  width: 100%;      /* Vollbreite des Containers */
+  height: 100%;     /* Volle Höhe */
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(150, 216, 177, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.image-left {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transform: translate(0, 0);
+  transition: transform 0.3s ease, z-index 0.3s ease;
+  cursor: pointer;
+}
+
+.image-right {
+  top: 70px;    /* mehr Abstand nach unten */
+  left: 70px;   /* mehr Abstand nach rechts */
+  z-index: 1;
+  transform: none;
+  transition: transform 0.3s ease, z-index 0.3s ease;
+  cursor: pointer;
+}
+
+
+/* wenn aktiv (gehovt oder zuletzt gehovt) */
+.image-left.active,
+.image-right.active {
+  transform: translate(0, 0) scale(1.05);
+  z-index: 10;
+  box-shadow: 0 12px 25px rgba(150, 216, 177, 0.6);
+}
+
+.image-stack .image:hover {
+  transform: translate(0, 0) scale(1.05);
+  box-shadow: 0 12px 25px rgba(150, 216, 177, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .aufbereitung-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-stack {
+    width: 90%;
+    height: auto;
+    margin-top: 30px;
+  }
+
+  .image-stack .image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    margin-bottom: 20px;
+  }
+}
+
+.aufbereitung-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 200px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.box {
+  background-color: rgba(162, 252, 199, 0.1); /* leichtes Mint-Grün als Hintergrund */
+  border: 1px solid #2f2f2f;
+  border-radius: 15px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 6px 15px rgba(162, 252, 199, 0.2); /* Schatten in Mint-Grün */
+  color: #a2fcc7; /* Textfarbe */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.aufbereitung-item h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #323030;
-  margin-bottom: 15px;
+.box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(162, 252, 199, 0.35); /* intensiverer Schatten beim Hover */
 }
 
-.aufbereitung-item ul {
-  list-style-type: none;
-  padding-left: 0;
+.box h4 {
+  font-size: 1.2rem;
   margin-bottom: 10px;
+  color: #a2fcc7; /* Überschrift in Mint-Grün */
 }
 
-.aufbereitung-item ul li {
-  font-size: 1rem;
-  margin-bottom: 5px;
-}
-
-.aufbereitung-item p {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #323030;
-}
-
-.aufbereitung-item:hover {
-  transform: scale(1.05); /* Vergrößerung beim Hover */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* stärkeren Schatten beim Hover */
+.box p {
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 

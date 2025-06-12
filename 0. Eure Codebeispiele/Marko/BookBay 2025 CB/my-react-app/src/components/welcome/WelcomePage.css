@@ -1,0 +1,37 @@
+.welcome-root {
+  min-height: 100vh;
+  background-image: url("../../assets/BookLogo.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.welcome-card {
+  padding: 40px;
+  text-align: center;
+  backdrop-filter: blur(0.1px);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 30px;
+}
+
+.welcome-title {
+  font-weight: 600;
+  color: #0d3b66;
+}
+
+.welcome-text {
+  color: #4a4a4a;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.welcome-button {
+  margin-top: 24px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  text-transform: none;
+}
