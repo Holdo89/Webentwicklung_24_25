@@ -122,6 +122,28 @@ app.post('/bookings', (req, res) => {
   });
 });
 
+// Gibt die Anzahl der Buchungen pro Tag zurück
+app.get("/bookingsCount", (req, res) => {
+  const query = `
+    SELECT DATE(datetime) as bookingDate, COUNT(*) as count
+    FROM bookings
+    GROUP BY DATE(datetime)
+  `;
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Fehler beim Abrufen der Buchungen.");
+    }
+    const countPerDay = {};
+    results.forEach(row => {
+      countPerDay[row.bookingDate] = row.count;
+    });
+    res.json(countPerDay);
+  });
+});
+
+
 // Passwort ändern
 app.post('/change-password', (req, res) => {
   const { email, oldPassword, newPassword } = req.body;
