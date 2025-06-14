@@ -7,6 +7,7 @@ import {BrowserRouter,Routes,Route, useLocation} from "react-router-dom"
 import Hauptseite1 from "./Pages/Hauptseite/Hauptseite1";
 import Sidebar from "./components/Hauptseite/Sidebar";
 import LevelDisplay from "./components/Hauptseite/LevelAuswahl";
+import Trainingsplan from "./Pages/Trainingsplan/Trainingsplan";
 
 function LayoutWithSidebar({ children }) {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
       <Route path= "register"element={<Register/>}/>
       <Route path= "cards"element={<Cards/>}/>
       <Route path="hauptseite"element={<Hauptseite1/>}/>
+      <Route path="trainingsplan"element={<Trainingsplan/>}/>
        </Routes>
        <LayoutWithSidebar/>
     </BrowserRouter>

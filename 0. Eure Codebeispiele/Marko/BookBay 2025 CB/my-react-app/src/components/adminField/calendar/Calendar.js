@@ -13,17 +13,15 @@ import "./Calendar.css";
 
 dayjs.locale("de");
 
-function CalendarComponent() {
+function CalendarComponent({ onBookingAdded }) {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
-  const [bookingsCount, setBookingsCount] = useState({}); // Termine pro Tag
+  const [bookingsCount, setBookingsCount] = useState({});
   const { enqueueSnackbar } = useSnackbar();
 
-  // Beispiel: Termine von Backend laden
   useEffect(() => {
     async function fetchBookingsCount() {
       try {
-        const res = await axios.get("http://localhost:3001/bookingsCount"); 
-
+        const res = await axios.get("http://localhost:3001/bookingsCount");
         setBookingsCount(res.data);
       } catch (error) {
         console.error("Fehler beim Laden der Buchungen:", error);
@@ -43,30 +41,60 @@ function CalendarComponent() {
       return;
     }
 
-    try {
-      await axios.post("http://localhost:3001/bookings", {
-        title: "Geburtstagsfeier",
-        date: value.format("YYYY-MM-DD HH:mm:ss"),
-        time: value.format("00:00:00"),
-      });
-      
-
-      enqueueSnackbar("Termin erfolgreich gespeichert!", {
-        variant: "success",
-        autoHideDuration: 3000,
-      });
-      setSelectedDateTime(null);
-      // Optional: hier nochmal bookingsCount aktualisieren, wenn möglich
-    } catch (error) {
-      console.error("Fehler beim Speichern:", error);
-      enqueueSnackbar("Fehler beim Speichern.", {
+    const userStr = localStorage.getItem("user");
+    if (!userStr) {
+      enqueueSnackbar("User nicht angemeldet!", {
         variant: "error",
         autoHideDuration: 3000,
       });
+      return;
+    }
+
+    const user = JSON.parse(userStr);
+
+    try {
+      const res = await axios.post("http://localhost:3001/bookings", {
+        title: "Geburtstagsfeier",
+        date: value.format("YYYY-MM-DD HH:mm:ss"),
+        userId: user.id,
+      });
+
+      enqueueSnackbar("Termin erfolgreich gespeichert!", {
+        variant: "success",
+      });
+      setSelectedDateTime(null);
+
+      const dayStr = value.format("YYYY-MM-DD");
+      setBookingsCount((prev) => ({
+        ...prev,
+        [dayStr]: (prev[dayStr] || 0) + 1,
+      }));
+
+      if (onBookingAdded) {
+        onBookingAdded({
+          id: res.data.id,
+          title: res.data.title,
+          firstName: res.data.firstName || "",
+          lastName: res.data.lastName || "",
+          date: res.data.date,
+          time: res.data.time,
+        });
+      }
+    } catch (error) {
+      console.error(
+        "Fehler beim Speichern:",
+        error?.response?.data || error.message
+      );
+      enqueueSnackbar(
+        "Fehler beim Speichern: " + (error?.response?.data || error.message),
+        {
+          variant: "error",
+          autoHideDuration: 5000,
+        }
+      );
     }
   };
 
-  // renderDay anpassen: zeigt Tag + Warnung wenn mehr als 5 Termine
   const renderDayWithWarning = (day, selectedDates, pickersDayProps) => {
     const dayStr = day.format("YYYY-MM-DD");
     const count = bookingsCount[dayStr] || 0;
@@ -97,10 +125,13 @@ function CalendarComponent() {
   );
 }
 
-export default function StaticDateTimePickerLandscape() {
+export default function StaticDateTimePickerLandscape({ onBookingAdded }) {
   return (
-    <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-      <CalendarComponent />
+    <SnackbarProvider
+      maxSnack={3}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+    >
+      <CalendarComponent onBookingAdded={onBookingAdded} />
     </SnackbarProvider>
   );
 }

@@ -15,6 +15,10 @@ useEffect(() => {
     }
   }, [navigate]);
 
+  const handleStartTraining = () => {
+    navigate('/trainingsplan');
+  };
+
   return (
     <div className="content">
       <h2>Dein Weg zu mehr Fitness beginnt hier</h2>
@@ -23,9 +27,9 @@ useEffect(() => {
         und erreiche deine Ziele Schritt für Schritt!
       </p>
 
-      <a href="trainingsplan.html" className="button" id="button1">
+      <button className="button" onClick={handleStartTraining}>
         Trainingsplan starten
-      </a>
+      </button>
 
       <div className="cards">
         <div className="card-hauptseite">

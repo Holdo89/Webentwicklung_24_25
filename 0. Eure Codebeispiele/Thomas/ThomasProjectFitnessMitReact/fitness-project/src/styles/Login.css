@@ -139,3 +139,10 @@ body {
   visibility: visible;
   height: auto;
 }
+
+.login-link{
+  color: white;
+}
+a{
+  color: lightseagreen;
+}

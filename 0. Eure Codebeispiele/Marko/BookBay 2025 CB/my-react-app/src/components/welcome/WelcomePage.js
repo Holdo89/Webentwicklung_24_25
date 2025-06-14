@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Button, Container, Paper } from "@mui/material";
+import { Box, Typography, Button, Container } from "@mui/material";
+import { motion } from "framer-motion";
 import "./WelcomePage.css";
 
 function WelcomePage() {
@@ -9,35 +10,51 @@ function WelcomePage() {
   return (
     <Box className="welcome-root">
       <Container maxWidth="md">
-        <Paper className="welcome-card" elevation={8}>
+        <motion.div
+          className="glass-card"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <Typography variant="h2" className="welcome-title" gutterBottom>
             Willkommen bei{" "}
-            <span>
-              <span style={{ color: "#006C84", fontWeight: 600 }}>Book</span>
-              <span style={{ color: "#b9b0b0", fontWeight: 600 }}>Bay</span>
+            <span className="gradient-text">
+              <span>Book</span>Bay
             </span>
           </Typography>
+
           <Typography variant="body1" className="welcome-text">
-            BookBay ist eine intuitive Buchungs-App, mit der du Termine einfach
-            planen, verwalten und organisieren kannst – egal ob für dein
-            Unternehmen, deine Dienstleistung oder persönliche Projekte.
-            <br />
-            <br />
-            Biete deinen Kunden flexible Zeitfenster an, reduziere den
-            Kommunikationsaufwand und steigere deine Effizienz. Mit einer klaren
-            Oberfläche und smarten Funktionen wirst du BookBay nie wieder missen
-            wollen.
+            Die intuitive Buchungs-App, mit der du Termine einfach{" "}
+            <strong>planen</strong>, <strong>verwalten</strong> und{" "}
+            <strong>organisieren</strong> kannst – für dein Business, deine
+            Dienstleistung oder persönliche Projekte.
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={() => navigate("/dashboard")}
-            className="welcome-button"
-          >
-            Zu deinem Dashboard
-          </Button>
-        </Paper>
+
+          <ul className="welcome-list">
+            <li>Flexible Terminfenster für deine Kunden</li>
+            <li>Weniger Rückfragen – mehr Klarheit</li>
+            <li>Effizienz auf neuem Level</li>
+          </ul>
+
+          <Box className="welcome-buttons">
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => navigate("/dashboard")}
+              className="welcome-button"
+            >
+              Dashboard
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={() => navigate("/register")}
+              className="register-button"
+            >
+              Registrieren
+            </Button>
+          </Box>
+        </motion.div>
       </Container>
     </Box>
   );

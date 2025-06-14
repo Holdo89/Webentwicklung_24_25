@@ -58,7 +58,7 @@ export default function Login() {
 return (
     <div className="login-page">
     <div className="main">
-      <h1 className="h1">Login</h1>
+      <h1 className="h1"></h1>
       <div className="container">
         <div className="login-box">
           <LoginInput
