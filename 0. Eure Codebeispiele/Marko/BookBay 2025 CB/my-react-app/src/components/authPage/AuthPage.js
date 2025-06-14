@@ -13,6 +13,7 @@ const AuthPage = ({ onLoginSuccess }) => {
           <Login
             onLoginSuccess={(user) => {
               localStorage.setItem("user", JSON.stringify(user));
+              localStorage.setItem("userId", user.id);
               onLoginSuccess(user);
             }}
             onSwitchToRegister={() => setIsLogin(false)}

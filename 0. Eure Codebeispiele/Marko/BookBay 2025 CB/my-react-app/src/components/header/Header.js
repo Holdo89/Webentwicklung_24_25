@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // <-- hinzugefügt
 import logo from "../../assets/BookLogo.png";
 
 const pages = [
@@ -23,6 +23,9 @@ const settings = ["Profil", "Buchungen", "Logout"];
 function Header({ user, setUser }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
+  const location = useLocation(); 
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -40,7 +43,10 @@ function Header({ user, setUser }) {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#6EB5C0" , color: "#E2E8E4" }}>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: "#6EB5C0", color: "#E2E8E4" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
@@ -69,7 +75,11 @@ function Header({ user, setUser }) {
 
           {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+            <IconButton
+              size="large"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
               <MenuIcon />
             </IconButton>
             <Menu
@@ -112,10 +122,8 @@ function Header({ user, setUser }) {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
-          </Typography>
+          />
 
-          {/* Desktop Nav */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -130,7 +138,6 @@ function Header({ user, setUser }) {
             ))}
           </Box>
 
-          {/* User Avatar Menü */}
           <Box sx={{ flexGrow: 0 }}>
             {!user ? (
               <Button
@@ -166,6 +173,8 @@ function Header({ user, setUser }) {
                             localStorage.removeItem("user");
                             setUser(null);
                             handleCloseUserMenu();
+
+                            window.location.reload();
                           }}
                         >
                           <Typography textAlign="center">{setting}</Typography>
@@ -173,11 +182,12 @@ function Header({ user, setUser }) {
                       );
                     }
 
-                    const path = setting === "Profil"
-                      ? "/profile"
-                      : setting === "Buchungen"
-                      ? "/dashboard"
-                      : "/";
+                    const path =
+                      setting === "Profil"
+                        ? "/profile"
+                        : setting === "Buchungen"
+                        ? "/dashboard"
+                        : "/";
 
                     return (
                       <MenuItem
