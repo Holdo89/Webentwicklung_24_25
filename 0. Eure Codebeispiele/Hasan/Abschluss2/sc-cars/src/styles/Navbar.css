@@ -1,4 +1,3 @@
-/* Navbar Container */
 .navbar {
   position: fixed;
   top: 0;
@@ -7,40 +6,34 @@
   padding: 10px 20px;
   z-index: 1000;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   background-color: rgba(50, 48, 48, 0.7);
-  transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
   backdrop-filter: blur(5px);
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
 }
 
-/* Navbar Hintergrund, wenn gescrollt */
 .navbar.scrolled {
   background-color: rgba(50, 48, 48, 1);
   backdrop-filter: blur(10px);
 }
 
-/* Logo als Button */
-.navbar .logo {
+.logo {
   border: none;
   background: none;
   cursor: pointer;
   padding: 0;
 }
 
-.navbar .logo img {
+.logo img {
   height: 50px;
   display: block;
-  pointer-events: none; /* verhindert, dass Bild selbst Events blockiert */
 }
 
-/* Hamburger Menü */
 .hamburger {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  margin-left: auto;
   padding: 10px;
   z-index: 1100;
 }
@@ -56,26 +49,22 @@
 .hamburger .bar.active:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
-
 .hamburger .bar.active:nth-child(2) {
   opacity: 0;
 }
-
 .hamburger .bar.active:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Navigation Links Container */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 30px;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-/* Buttons in Navbar */
-.nav-links li .nav-button {
+.nav-button {
   background: none;
   border: none;
   color: #adebc7;
@@ -86,12 +75,10 @@
   padding: 0;
 }
 
-/* Hover Effekt für Buttons */
-.nav-links li .nav-button:hover {
+.nav-button:hover {
   color: #ffffff;
 }
 
-/* Responsive Styles für kleinere Bildschirme */
 @media (max-width: 768px) {
   .nav-links {
     position: absolute;
