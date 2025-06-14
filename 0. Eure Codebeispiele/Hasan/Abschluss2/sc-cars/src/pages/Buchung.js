@@ -1,15 +1,56 @@
 // src/pages/Buchung.js
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";  // Pfad ggf. anpassen
-import { Box, Typography, FormControl, InputLabel, Select, MenuItem, Button, Paper, Fade } from "@mui/material";
+import { useParams, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import {
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Paper,
+  Fade,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
+
+function BuchungErfolgDialog({ open, onClose, datum, angebot, uhrzeit }) {
+  return (
+    <Dialog open={open} onClose={onClose}>
+      <DialogTitle>Vielen Dank für Ihre Buchung!</DialogTitle>
+      <DialogContent>
+        <Typography>
+          <strong>Datum:</strong> {new Date(datum).toLocaleDateString("de-DE")}
+        </Typography>
+        <Typography>
+          <strong>Leistung:</strong> {angebot}
+        </Typography>
+        <Typography>
+          <strong>Uhrzeit:</strong> {uhrzeit} Uhr
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="primary">
+          Schließen
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
 
 export default function Buchung() {
   const { datum } = useParams();
+  const navigate = useNavigate();
+
   const [angebot, setAngebot] = useState("");
   const [verfügbareZeiten, setVerfügbareZeiten] = useState([]);
   const [uhrzeit, setUhrzeit] = useState("");
   const [error, setError] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const angebote = [
     "Innenreinigung",
@@ -19,7 +60,7 @@ export default function Buchung() {
     "Kundenberatung",
     "Tiefenreinigung-Sitze",
     "Felgenreparatur",
-    "Sonstiges (Begutachtung)"
+    "Sonstiges (Begutachtung)",
   ];
 
   useEffect(() => {
@@ -70,7 +111,12 @@ export default function Buchung() {
       return;
     }
     setError("");
-    alert(`Termin gebucht am ${datum} um ${uhrzeit} für ${angebot}`);
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    navigate("/");
   };
 
   return (
@@ -83,7 +129,7 @@ export default function Buchung() {
           padding: "3rem 1rem",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <Fade in timeout={500}>
@@ -102,13 +148,21 @@ export default function Buchung() {
               "&:hover": {
                 transform: "scale(1.02)",
                 boxShadow: "0 18px 50px rgba(150, 216, 177, 0.4)",
-              }
+              },
             }}
           >
-            <Typography variant="h4" align="center" sx={{ color: "#adebc7", marginBottom: "0.5rem" }}>
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{ color: "#adebc7", marginBottom: "0.5rem" }}
+            >
               Terminbuchung
             </Typography>
-            <Typography variant="subtitle1" align="center" sx={{ color: "#c4f1df", marginBottom: "2rem" }}>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              sx={{ color: "#c4f1df", marginBottom: "2rem" }}
+            >
               {new Date(datum).toLocaleDateString("de-DE")}
             </Typography>
 
@@ -201,6 +255,14 @@ export default function Buchung() {
           </Paper>
         </Fade>
       </Box>
+
+      <BuchungErfolgDialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        datum={datum}
+        angebot={angebot}
+        uhrzeit={uhrzeit}
+      />
     </>
   );
 }
