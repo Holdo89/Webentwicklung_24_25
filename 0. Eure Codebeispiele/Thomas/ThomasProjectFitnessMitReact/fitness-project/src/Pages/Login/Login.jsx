@@ -57,6 +57,7 @@ export default function Login() {
 
 return (
     <div className="login-page">
+      <div className='login-wrapper'>
     <div className="main">
       <h1 className="h1"></h1>
       <div className="container">
@@ -96,6 +97,7 @@ return (
           
         </div>
       </div>
+    </div>
     </div>
     </div>
     
