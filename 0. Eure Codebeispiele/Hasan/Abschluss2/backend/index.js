@@ -44,10 +44,11 @@ app.post("/kontakt", (req, res) => {
     // 3. E-Mail senden (Mailtrap oder anderer SMTP-Dienst)
     const transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io", // SMTP-Host z.B. von Mailtrap
-      port: 587,
+      port: 2525, // Port für Mailtrap
+      secure: false, // true für 465, false für andere Ports
       auth: {
-        user: "40e70e0246ed42", // <- hier deinen Mailtrap-User einsetzen
-        pass: "000f175fddfeaf", // <- hier dein Mailtrap-Passwort einsetzen
+        user: "40e70e0246ed42", // <- Mailtrap-User 
+        pass: "000f175fddfeaf", // <- Mailtrap-Passwort 
       },
     });
 
@@ -71,7 +72,7 @@ app.post("/kontakt", (req, res) => {
   });
 });
 
-const PORT = 3001;
+const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server läuft auf http://localhost:${PORT}`);
+  console.log(`Server läuft auf http://localhost:${PORT}`);
 });
