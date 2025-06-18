@@ -6,7 +6,7 @@
   box-sizing: border-box;
   position: fixed; 
   top: 0;
-  right: 0;
+  left: 0px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

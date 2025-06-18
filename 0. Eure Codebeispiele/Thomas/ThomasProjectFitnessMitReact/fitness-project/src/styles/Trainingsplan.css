@@ -1,7 +1,7 @@
-body{
-  display: flex;
-  justify-content: center;
-  align-items: normal;
+.trainingsplan-only{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 5px;
   text-align: center;
   
 }
@@ -24,6 +24,7 @@ body{
   gap: 1.5rem;
   width: 100%;
   max-width: 1000px;
+  
 }
 
 .exercise-card {
@@ -33,10 +34,15 @@ body{
   
   transition: transform 0.2s ease;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 100%; 
 }
 
 .exercise-card:hover {
   transform: scale(1.02);
+  background-color: lightgray;
 }
 
 .exercise-image {
@@ -83,6 +89,34 @@ label{
   text-align: center;
 
 }
+
+.button-more-info{
+  background-color: orange;
+  width: 133px;
+  height: 35px;
+  cursor: pointer;
+  margin-top: 30px;
+  border-radius: 20px;
+  
+}
+        
+.checkbox1{
+  
+  accent-color: lightseagreen;
+  width: 15px;
+  height: 15px;
+  
+}
+
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+  
+}
+
+
 
 
 

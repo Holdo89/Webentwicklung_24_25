@@ -23,30 +23,30 @@ const getMuscleGroupInfo = (level) => {
   switch (level) {
     case "beginner":
       return ( 
-        <>
-        <p>1.Trainingstag = Schulter/Brust/Trizeps</p>
-        <p>2.Trainingstag = Rücken/Bizeps</p>
-        <p>3.Trainingstag = Beine/Bauch</p>
-          </>
+        <div className='checkbox-list'>
+        <p>1.Trainingstag = Schulter/Brust/Trizeps<input type='checkbox' className='checkbox1'></input></p>
+        <p>2.Trainingstag = Rücken/Bizeps<input type='checkbox' className='checkbox1'></input></p>
+        <p>3.Trainingstag = Beine/Bauch<input type='checkbox' className='checkbox1'></input></p>
+          </div>
           );
     case "intermediate":
       return ( 
-        <>
+        <div className='checkbox-list'>
         <p>1.Trainingstag = Schulter/Brust</p>
         <p>2.Trainingstag = Beine</p>
         <p>3.Trainingstag = Trizeps/Bizeps</p>
         <p>4.Trainingstag = Rücken/Bauch</p>
-          </>
+          </div>
           );
     case "pro":
       return ( 
-        <>
+        <div className='checkbox-list'>
         <p>1.Trainingstag = Brust/Bizeps</p>
         <p>2.Trainingstag = Beine/Bauch</p>
         <p>3.Trainingstag = Trizeps/Bizeps/Schulter</p>
         <p>4.Trainingstag = Rücken/Bauch</p>
         <p>5.Trainingstag = Beine/Bizeps</p>
-          </>
+          </div>
           );
   }
 };
@@ -56,7 +56,7 @@ const getMuscleGroupInfo = (level) => {
 
 
   return (
-    <div>
+    <div className='trainingsplan-only'>
       <h1>Trainingsplan</h1>
       <p className="muscle-group-info">{getMuscleGroupInfo(level)}</p>
       <div>
