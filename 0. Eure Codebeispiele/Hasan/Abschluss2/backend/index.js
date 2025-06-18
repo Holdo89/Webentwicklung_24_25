@@ -5,10 +5,17 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 
 const app = express();
-app.use(cors());
+
+// ✅ Erlaube Zugriff vom Frontend (Port 3000)
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: "GET,POST",
+  allowedHeaders: ["Content-Type"],
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-// MySQL-Verbindung
+// ✅ MySQL-Verbindung
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -18,22 +25,20 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error("MySQL-Verbindung fehlgeschlagen:", err);
+    console.error("❌ MySQL-Verbindung fehlgeschlagen:", err);
     return;
   }
   console.log("✅ MySQL verbunden!");
 });
 
-// POST /kontakt – Formulardaten verarbeiten
+// ✅ POST /kontakt – Daten speichern + Mail versenden
 app.post("/kontakt", (req, res) => {
   const { name, email, nachricht } = req.body;
 
-  // 1. E-Mail validieren
   if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
     return res.status(400).json({ error: "Ungültige E-Mail-Adresse." });
   }
 
-  // 2. In Datenbank speichern
   const sql = "INSERT INTO kontaktformular (name, email, nachricht) VALUES (?, ?, ?)";
   db.query(sql, [name, email, nachricht], (err, result) => {
     if (err) {
@@ -41,21 +46,20 @@ app.post("/kontakt", (req, res) => {
       return res.status(500).json({ error: "Fehler beim Speichern." });
     }
 
-    // 3. E-Mail senden (Mailtrap oder anderer SMTP-Dienst)
     const transporter = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io", // SMTP-Host z.B. von Mailtrap
-      port: 2525, // Port für Mailtrap
-      secure: false, // true für 465, false für andere Ports
+      host: "sandbox.smtp.mailtrap.io",
+      port: 2525,
+      secure: false,
       auth: {
-        user: "40e70e0246ed42", // <- Mailtrap-User 
-        pass: "000f175fddfeaf", // <- Mailtrap-Passwort 
+        user: "40e70e0246ed42",  // <-- Deine Mailtrap-Zugangsdaten
+        pass: "000f175fddfeaf",
       },
     });
 
     const mailOptions = {
-      from: '"Website Kontaktformular" <no-reply@deinedomain.at>', // fester Absender
-      to: "kochdominic@hotmail.com", // EMPFÄNGER
-      replyTo: email, // Benutzer-Mail für Antwort
+      from: '"Website Kontaktformular" <no-reply@deinedomain.at>',
+      to: "kochdominic@hotmail.com",
+      replyTo: email,
       subject: "Neue Kontaktanfrage über das Formular",
       text: `Von: ${name} <${email}>\n\n${nachricht}`,
     };
@@ -72,7 +76,6 @@ app.post("/kontakt", (req, res) => {
   });
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server läuft auf http://localhost:${PORT}`);
+app.listen(3001, () => {
+  console.log("🚀 Backend läuft auf http://localhost:3001");
 });
