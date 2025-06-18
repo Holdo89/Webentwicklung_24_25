@@ -14,7 +14,7 @@ export default function Kontakt({ kontaktRef }) {
     const nachricht = formData.get("nachricht");
 
     try {
-      const response = await fetch("http://localhost:3001/kontakt", {
+      const response = await fetch("http://localhost:3000/kontakt", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
