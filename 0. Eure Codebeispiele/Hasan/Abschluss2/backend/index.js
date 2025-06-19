@@ -51,14 +51,14 @@ app.post("/kontakt", (req, res) => {
       port: 2525,
       secure: false,
       auth: {
-        user: "40e70e0246ed42",  // <-- Deine Mailtrap-Zugangsdaten
+        user: "40e70e0246ed42",  // <-- Mein Mailtrap-Zugangsdaten
         pass: "000f175fddfeaf",
       },
     });
 
     const mailOptions = {
       from: '"Website Kontaktformular" <no-reply@deinedomain.at>',
-      to: "kochdominic@hotmail.com",
+      to: "coders.bay.test2@hotmail.com", // <-- Meine E-Mail-Adresse
       replyTo: email,
       subject: "Neue Kontaktanfrage über das Formular",
       text: `Von: ${name} <${email}>\n\n${nachricht}`,
