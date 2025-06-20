@@ -1,7 +1,7 @@
 .level-display {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 40px;
   background-color: orange;
   color: white;
   padding: 8px 14px;

@@ -11,7 +11,7 @@ import Trainingsplan from "./Pages/Trainingsplan/Trainingsplan";
 
 function LayoutWithSidebar({ children }) {
   const location = useLocation();
-  const showSidebar = ["/cards", "/hauptseite"].includes(location.pathname);
+  const showSidebar = ["/cards", "/hauptseite","/trainingsplan"].includes(location.pathname);
   const level =["/hauptseite"].includes(location.pathname)
 
   return (

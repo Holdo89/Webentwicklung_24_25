@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
 export default function Navbar({ navbarRef }) {
-  const [isTop, setIsTop] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isTop, setIsTop] = useState(true);  // Navbar-Hintergrund abhängig vom Scroll
+  const [menuOpen, setMenuOpen] = useState(false); // Menü offen/zu
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,9 +16,10 @@ export default function Navbar({ navbarRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleMenu = () => setMenuOpen(prev => !prev);
   const closeMenu = () => setMenuOpen(false);
 
+  // Smooth Scroll Logik
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -44,8 +45,12 @@ export default function Navbar({ navbarRef }) {
         backgroundColor: isTop ? "rgba(50, 48, 48, 0.7)" : "rgba(50, 48, 48, 1)",
       }}
     >
-      <button className="logo" onClick={() => handleNavClick("intro-split")} style={{ border: "none", background: "none" }}>
-        <img src="/images/logo.png" width="100" alt="Logo" />
+      <button
+        className="logo"
+        onClick={() => handleNavClick("intro-split")}
+        style={{ border: "none", background: "none", cursor: "pointer" }}
+      >
+        <img src="/images/logo.png" width="100" alt="Logo" style={{ pointerEvents: "none" }} />
       </button>
 
       <div className="hamburger" onClick={toggleMenu}>
