@@ -6,13 +6,14 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-// CORS erlauben (Frontend unter localhost:3000)
-const corsOptions = {
+// ✅ CORS-Konfiguration für das Frontend
+app.use(cors({
   origin: "http://localhost:3000",
-  methods: "GET,POST",
+  methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
-};
-app.use(cors(corsOptions));
+}));
+
+// ✅ Body-Parser Middleware
 app.use(bodyParser.json());
 
 // ✅ MySQL-Verbindung herstellen
@@ -25,14 +26,14 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error(" MySQL-Verbindung fehlgeschlagen:", err);
-    return;
+    console.error("❌ MySQL-Verbindung fehlgeschlagen:", err);
+  } else {
+    console.log("✅ MySQL verbunden!");
   }
-  console.log(" MySQL verbunden!");
 });
 
 
-//  ROUTE 1 – Kontaktformular speichern + E-Mail senden
+// ✅ ROUTE 1: Kontaktformular speichern + E-Mail senden
 app.post("/kontakt", (req, res) => {
   const { name, email, nachricht } = req.body;
 
@@ -41,25 +42,24 @@ app.post("/kontakt", (req, res) => {
   }
 
   const sql = "INSERT INTO kontaktformular (name, email, nachricht) VALUES (?, ?, ?)";
-  db.query(sql, [name, email, nachricht], (err, result) => {
+  db.query(sql, [name, email, nachricht], (err) => {
     if (err) {
-      console.error("Fehler beim Speichern:", err);
+      console.error("❌ Fehler beim Speichern:", err);
       return res.status(500).json({ error: "Fehler beim Speichern." });
     }
 
     const transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
-      secure: false,
       auth: {
-        user: "40e70e0246ed42",   // Mailtrap Zugangsdaten
+        user: "40e70e0246ed42",
         pass: "000f175fddfeaf",
       },
     });
 
     const mailOptions = {
       from: '"Website Kontaktformular" <no-reply@deinedomain.at>',
-      to: "coders.bay.test2@hotmail.com", // Deine Mail
+      to: "coders.bay.test2@hotmail.com",
       replyTo: email,
       subject: "Neue Kontaktanfrage über das Formular",
       text: `Von: ${name} <${email}>\n\n${nachricht}`,
@@ -67,7 +67,7 @@ app.post("/kontakt", (req, res) => {
 
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        console.error("Fehler beim E-Mail-Versand:", err);
+        console.error("❌ Fehler beim E-Mail-Versand:", err);
         return res.status(500).json({ error: "E-Mail-Versand fehlgeschlagen." });
       }
 
@@ -78,27 +78,7 @@ app.post("/kontakt", (req, res) => {
 });
 
 
-// ✅ ROUTE 2 – Terminbuchung speichern
-app.post("/api/termine", (req, res) => {
-  const { datum, uhrzeit, angebot } = req.body;
-
-  if (!datum || !uhrzeit || !angebot) {
-    return res.status(400).json({ error: "Alle Felder sind erforderlich." });
-  }
-
-  const sql = "INSERT INTO termine (datum, uhrzeit, angebot) VALUES (?, ?, ?)";
-  db.query(sql, [datum, uhrzeit, angebot], (err, result) => {
-    if (err) {
-      console.error("Fehler beim Speichern des Termins:", err);
-      return res.status(500).json({ error: "Fehler beim Speichern des Termins." });
-    }
-
-    console.log("📅 Neuer Termin gespeichert:", result.insertId);
-    res.status(201).json({ success: true, insertedId: result.insertId });
-  });
-});
-
-// ✅ POST /buchung – Buchung in die Datenbank schreiben
+// ✅ ROUTE 2: Buchung speichern (die einzig nötige Buchungs-Route)
 app.post("/buchung", (req, res) => {
   const { datum, angebot, uhrzeit } = req.body;
 
@@ -109,15 +89,17 @@ app.post("/buchung", (req, res) => {
   const sql = "INSERT INTO buchungen (datum, angebot, uhrzeit) VALUES (?, ?, ?)";
   db.query(sql, [datum, angebot, uhrzeit], (err, result) => {
     if (err) {
-      console.error("Fehler beim Speichern:", err);
+      console.error("❌ Fehler beim Speichern der Buchung:", err);
       return res.status(500).json({ error: "Fehler beim Speichern der Buchung." });
     }
-    console.log("Buchung gespeichert:", result.insertId);
+
+    console.log("✅ Buchung gespeichert mit ID:", result.insertId);
     res.status(200).json({ message: "Buchung erfolgreich gespeichert." });
   });
 });
 
-// Server starten
+
+// ✅ Server starten
 app.listen(3001, () => {
-  console.log("Backend läuft auf http://localhost:3001");
+  console.log("🚀 Backend läuft auf http://localhost:3001");
 });
