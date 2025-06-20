@@ -97,7 +97,7 @@
 }
 
 /* Responsive: Spalten werden zu Reihen */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .two-column-layout {
     flex-direction: column;
     padding: 10px;

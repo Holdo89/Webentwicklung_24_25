@@ -1,59 +1,61 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import React, { useState } from "react";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // <-- hinzugefügt
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/BookLogo.png";
 
 const pages = [
   { name: "Home", path: "/" },
   { name: "Kalender", path: "/dashboard" },
 ];
+
 const settings = ["Profil", "Buchungen", "Logout"];
 
 function Header({ user, setUser }) {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const navigate = useNavigate();
-  const location = useLocation(); 
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // Öffnen der mobilen Navigation
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  // Öffnen des Benutzer-Menüs
+  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+  // Schließen mobiler Navigation
+  const handleCloseNavMenu = () => setAnchorElNav(null);
+  // Schließen Benutzer-Menü
+  const handleCloseUserMenu = () => setAnchorElUser(null);
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  // Logout-Handler
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    handleCloseUserMenu();
+    window.location.reload();
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{ backgroundColor: "#6EB5C0", color: "#E2E8E4" }}
-    >
+    <AppBar position="static" sx={{ bgcolor: "#6EB5C0", color: "#E2E8E4" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* Logo & Titel für Desktop */}
           <Box
             component="img"
-            sx={{ height: 100, mr: 1, display: { xs: "none", md: "flex" } }}
-            alt="BookBay Logo"
             src={logo}
+            alt="BookBay Logo"
+            sx={{ height: 100, mr: 1, display: { xs: "none", md: "flex" } }}
           />
           <Typography
             variant="h6"
@@ -73,13 +75,9 @@ function Header({ user, setUser }) {
             BookBay
           </Typography>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menü Button */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+            <IconButton size="large" color="inherit" onClick={handleOpenNavMenu}>
               <MenuIcon />
             </IconButton>
             <Menu
@@ -88,64 +86,50 @@ function Header({ user, setUser }) {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
+              {pages.map(({ name, path }) => (
                 <MenuItem
-                  key={page.name}
+                  key={name}
                   component={Link}
-                  to={page.path}
+                  to={path}
                   onClick={handleCloseNavMenu}
                 >
-                  <Typography textAlign="center">{page.name}</Typography>
+                  <Typography textAlign="center">{name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
+          {/* Logo für Mobile */}
           <Box
             component="img"
-            sx={{ height: 100, mr: 1, display: { xs: "flex", md: "none" } }}
-            alt="BookBay Logo"
             src={logo}
-          />
-          <Typography
-            variant="h5"
-            noWrap
-            component={Link}
-            to="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
+            alt="BookBay Logo"
+            sx={{ height: 100, mr: 1, display: { xs: "flex", md: "none" } }}
           />
 
+          {/* Navigation Buttons Desktop */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map(({ name, path }) => (
               <Button
-                key={page.name}
+                key={name}
                 component={Link}
-                to={page.path}
+                to={path}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.name}
+                {name}
               </Button>
             ))}
           </Box>
 
+          {/* Benutzerbereich */}
           <Box sx={{ flexGrow: 0 }}>
             {!user ? (
               <Button
                 variant="outlined"
-                color="inherit"
                 component={Link}
                 to="/login"
-                sx={{ color: "white", borderColor: "white" }}
+                sx={{ color: "white", borderColor: "white", textTransform: "none" }}
               >
                 Login
               </Button>
@@ -153,8 +137,8 @@ function Header({ user, setUser }) {
               <>
                 <Tooltip title="Benutzeroptionen">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="User">
-                      {user?.name?.[0]?.toUpperCase() || "U"}
+                    <Avatar alt={user.name}>
+                      {user.name?.[0]?.toUpperCase() || "U"}
                     </Avatar>
                   </IconButton>
                 </Tooltip>
@@ -167,16 +151,7 @@ function Header({ user, setUser }) {
                   {settings.map((setting) => {
                     if (setting === "Logout") {
                       return (
-                        <MenuItem
-                          key={setting}
-                          onClick={() => {
-                            localStorage.removeItem("user");
-                            setUser(null);
-                            handleCloseUserMenu();
-
-                            window.location.reload();
-                          }}
-                        >
+                        <MenuItem key={setting} onClick={handleLogout}>
                           <Typography textAlign="center">{setting}</Typography>
                         </MenuItem>
                       );
