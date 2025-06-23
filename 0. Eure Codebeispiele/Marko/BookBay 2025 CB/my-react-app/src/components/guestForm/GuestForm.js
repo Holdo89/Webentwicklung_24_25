@@ -1,85 +1,147 @@
-import React, { useEffect, useState } from "react";
-import StaticDateTimePickerLandscape from "../adminField/calendar/Calendar";
-import BasicTable from "../adminField/allBookingsField/BookingsField";
-import GuestForm from "../guestForm/GuestForm"; // Wichtig: einbinden
+import React, { useState } from "react";
 import axios from "axios";
+import { useSnackbar } from "notistack";
+import "./GuestForm.css";
 
-export default function Dashboard() {
-  const [user, setUser] = useState(null);
-  const [bookings, setBookings] = useState([]);
-  const [selectedDateTime, setSelectedDateTime] = useState(null); // NEU
+export default function GuestForm({
+  selectedDateTime,
+  onBookingSuccess,
+  onCancel,
+}) {
+  const { enqueueSnackbar } = useSnackbar();
+  const [formData, setFormData] = useState({
+    salutation: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    groupSize: "1",
+  });
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  useEffect(() => {
-    async function fetchBookings() {
-      try {
-        const res = await axios.get("http://localhost:3001/bookings");
-        setBookings(res.data);
-      } catch (error) {
-        console.error("Fehler beim Laden der Buchungen:", error);
-      }
-    }
-    fetchBookings();
-  }, []);
-
-  const addBooking = (newBooking) => {
-    setBookings((prev) => [...prev, newBooking]);
-    setSelectedDateTime(null); // Formular schließen nach erfolgreicher Buchung
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleDelete = async (bookingId) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { salutation, firstName, lastName, email, groupSize } = formData;
+
+    if (!salutation || !firstName || !lastName || !email || !groupSize) {
+      enqueueSnackbar("Bitte füllen Sie alle Felder aus", {
+        variant: "warning",
+      });
+      return;
+    }
+
     try {
-      await axios.delete(`http://localhost:3001/bookings/${bookingId}`);
-      setBookings((prev) => prev.filter((b) => b.id !== bookingId));
+      // In handleSubmit:
+      const bookingData = {
+        title: "Geburtstagsfeier",
+        guest_title: formData.salutation,
+        guestName: firstName,
+        guestLastName: lastName,
+        guestEmail: email,
+        guestGroupSize: parseInt(groupSize, 10),
+        date: selectedDateTime.format("YYYY-MM-DD HH:mm"),
+      };
+
+      console.log("Sende Buchungsdaten:", bookingData);
+
+      const response = await axios.post(
+        "http://localhost:3001/bookings",
+        bookingData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      enqueueSnackbar("Buchung erfolgreich!", { variant: "success" });
+      onBookingSuccess(response.data);
     } catch (error) {
-      console.error("Fehler beim Löschen:", error);
+      console.error(
+        "Fehler bei der Buchung:",
+        error.response?.data || error.message
+      );
+      enqueueSnackbar(
+        error.response?.data?.message || "Buchung fehlgeschlagen",
+        { variant: "error" }
+      );
     }
   };
 
-  const handleDateTimeSelect = (dateTime) => {
-    setSelectedDateTime(dateTime); // Zeige GuestForm
-  };
-
-  // UI für Gäste
-  if (!user) {
-    return (
-      <div className="centered-calendar-container">
-        {!selectedDateTime ? (
-          <StaticDateTimePickerLandscape onDateTimeSelected={handleDateTimeSelect} />
-        ) : (
-          <GuestForm
-            selectedDateTime={selectedDateTime}
-            onBookingSuccess={addBooking}
-            onCancel={() => setSelectedDateTime(null)}
-          />
-        )}
-      </div>
-    );
-  }
-
-  // UI für Admins
   return (
-    <div className="two-column-layout">
-      <div className="calendar-wrapper">
-        {!selectedDateTime ? (
-          <StaticDateTimePickerLandscape onDateTimeSelected={handleDateTimeSelect} />
-        ) : (
-          <GuestForm
-            selectedDateTime={selectedDateTime}
-            onBookingSuccess={addBooking}
-            onCancel={() => setSelectedDateTime(null)}
-          />
-        )}
+    <form className="guest-form-container" onSubmit={handleSubmit}>
+      <h2>Termin buchen</h2>
+
+      <label>
+        Anrede:
+        <select
+          name="salutation"
+          value={formData.salutation}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Bitte wählen</option>
+          <option value="Herr">Herr</option>
+          <option value="Frau">Frau</option>
+          <option value="Divers">Divers</option>
+        </select>
+      </label>
+
+      <label>
+        Vorname:
+        <input
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <label>
+        Nachname:
+        <input
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <label>
+        E-Mail:
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <label>
+        Gruppengröße:
+        <input
+          type="number"
+          name="groupSize"
+          min="1"
+          value={formData.groupSize}
+          onChange={handleChange}
+          required
+        />
+      </label>
+
+      <div className="guest-form-buttons">
+        <button type="submit">Buchung absenden</button>
+        <button type="button" onClick={onCancel}>
+          Abbrechen
+        </button>
       </div>
-      <div className="table-wrapper">
-        <BasicTable bookings={bookings} onDeleteClick={handleDelete} />
-      </div>
-    </div>
+    </form>
   );
 }

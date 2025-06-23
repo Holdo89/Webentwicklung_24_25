@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import StaticDateTimePickerLandscape from "../adminField/calendar/Calendar";
 import BasicTable from "../adminField/allBookingsField/BookingsField";
-import GuestForm from "../guestForm/GuestForm"; // Wichtig: einbinden
+import GuestForm from "../guestForm/GuestForm";
 import axios from "axios";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
-  const [selectedDateTime, setSelectedDateTime] = useState(null); // NEU
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -16,37 +16,38 @@ export default function Dashboard() {
     }
   }, []);
 
-  useEffect(() => {
-    async function fetchBookings() {
-      try {
-        const res = await axios.get("http://localhost:3001/bookings");
-        setBookings(res.data);
-      } catch (error) {
-        console.error("Fehler beim Laden der Buchungen:", error);
-      }
+  const fetchBookings = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/bookings");
+      setBookings(res.data);
+    } catch (error) {
+      console.error("Fehler beim Laden der Buchungen:", error);
     }
+  };
+
+  useEffect(() => {
     fetchBookings();
   }, []);
 
-  const addBooking = (newBooking) => {
-    setBookings((prev) => [...prev, newBooking]);
-    setSelectedDateTime(null); // Formular schließen nach erfolgreicher Buchung
+  const addBooking = async () => {
+    await fetchBookings();
+    setSelectedDateTime(null); // Formular schließen
   };
 
   const handleDelete = async (bookingId) => {
     try {
       await axios.delete(`http://localhost:3001/bookings/${bookingId}`);
-      setBookings((prev) => prev.filter((b) => b.id !== bookingId));
+      await fetchBookings(); // Auch nach dem Löschen aktualisieren
     } catch (error) {
       console.error("Fehler beim Löschen:", error);
     }
   };
 
   const handleDateTimeSelect = (dateTime) => {
-    setSelectedDateTime(dateTime); // Zeige GuestForm
+    setSelectedDateTime(dateTime);
   };
 
-  // UI für Gäste
+  // Gast-UI
   if (!user) {
     return (
       <div className="centered-calendar-container">
@@ -63,7 +64,7 @@ export default function Dashboard() {
     );
   }
 
-  // UI für Admins
+  // Admin-UI
   return (
     <div className="two-column-layout">
       <div className="calendar-wrapper">

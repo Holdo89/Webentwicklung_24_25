@@ -28,9 +28,7 @@ connection.connect((err) => {
   }
 });
 
-// Endpunkte
-
-// Login (Anmeldung)
+// Login
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -54,16 +52,27 @@ app.post("/login", (req, res) => {
       return res.status(401).send("Falsches Passwort");
     }
 
-    res.status(200).send({ message: "Login erfolgreicher Login", user: user });
+    res.status(200).send({
+      message: "Login erfolgreich",
+      user: {
+        id: user.id,
+        title: user.title,
+        name: user.name,
+        last_name: user.last_name,
+        email: user.email,
+      },
+    });
   });
 });
 
-//Registrierung
+// Registrierung
 app.post("/register", (req, res) => {
-  const { name, last_name, email, password } = req.body;
+  const { title, name, last_name, email, password } = req.body;
 
-  if (!name || !last_name || !email || !password) {
-    return res.status(400).send("Alle Felder müssen ausgefüllt werden.");
+  if (!title || !name || !last_name || !email || !password) {
+    return res
+      .status(400)
+      .send("Alle Felder (inkl. Anrede) müssen ausgefüllt werden.");
   }
 
   const checkQuery = "SELECT * FROM user WHERE email = ?";
@@ -78,10 +87,10 @@ app.post("/register", (req, res) => {
     }
 
     const insertQuery =
-      "INSERT INTO user (name, last_name, email, password) VALUES (?, ?, ?, ?)";
+      "INSERT INTO user (title, name, last_name, email, password) VALUES (?, ?, ?, ?, ?)";
     connection.query(
       insertQuery,
-      [name, last_name, email, password],
+      [title, name, last_name, email, password],
       (err, result) => {
         if (err) {
           console.error(err);
@@ -94,109 +103,155 @@ app.post("/register", (req, res) => {
   });
 });
 
-// Bekomme alle Termine
+// Alle Buchungen abrufen
 app.get("/bookings", (req, res) => {
   const query = `
-  SELECT bookings.*, user.name AS firstName, user.last_name AS lastName
-  FROM bookings
-  LEFT JOIN user ON bookings.userId = user.id
-`;
+    SELECT 
+      b.id,
+      b.date,
+      b.time,
+      COALESCE(b.title, 'Geburtstagsfeier') AS title,
+      COALESCE(u.name, b.guest_name) AS firstName, 
+      COALESCE(u.last_name, b.guest_lastname) AS lastName,
+      COALESCE(u.email, b.guest_email) AS email,
+      CASE
+        WHEN b.userId IS NOT NULL THEN u.title
+        ELSE b.guest_title
+      END AS salutation
+    FROM bookings b
+    LEFT JOIN user u ON b.userId = u.id
+    ORDER BY b.date, b.time
+  `;
 
   connection.query(query, (error, results) => {
     if (error) {
-      res.status(500).send("Interner Fehler");
-    } else {
-      res.json(results);
+      console.error("Fehler beim Abrufen der Buchungen:", error);
+      return res.status(500).send("Fehler beim Laden der Buchungen");
     }
+    res.json(results);
   });
 });
 
-// Neuen Termin in 'bookings' speichern
-app.post("/bookings", (req, res) => {
-  const { date, title, userId } = req.body;
-
-  if (!date || !title || !userId) {
-    return res
-      .status(400)
-      .send("Titel, Datum und UserId müssen angegeben werden.");
-  }
-
-  const [day, time] = date.split(" ");
-
-  const insertQuery =
-    "INSERT INTO bookings (date, time, title, userId) VALUES (?, ?, ?, ?)";
-  connection.query(insertQuery, [day, time, title, userId], (err, result) => {
-    if (err) {
-      console.error(
-        "Fehler beim Einfügen in bookings:",
-        err.sqlMessage || err.message
-      );
-      return res.status(500).send("Speichern des Termins fehlgeschlagen.");
-    }
-
-    const bookingId = result.insertId;
-    console.log("Neuer Booking ID:", bookingId);
-
-    const selectQuery = `
-      SELECT b.id, b.title, b.date, b.time, u.name AS firstName, u.last_name AS lastName
-      FROM bookings b
-      JOIN user u ON b.userId = u.id
-      WHERE b.id = ?
-    `;
-    connection.query(selectQuery, [bookingId], (err2, rows) => {
-      if (err2) {
-        console.error(
-          "Fehler beim Abfragen der Buchung:",
-          err2.sqlMessage || err2.message
-        );
-        return res.status(500).send("Fehler beim Laden der Buchung.");
-      }
-      if (rows.length === 0) {
-        console.log("Keine Buchung gefunden für ID:", bookingId);
-        return res.status(404).send("Buchung nicht gefunden.");
-      }
-
-      res.status(201).json(rows[0]);
-    });
-  });
-});
-
-// Termin löschen
-app.delete("/bookings/:id", (req, res) => {
-  const bookingId = req.params.id;
-  const deleteQuery = "DELETE FROM bookings WHERE id = ?";
-  connection.query(deleteQuery, [bookingId], (err, result) => {
-    if (err) {
-      console.error("Fehler beim Löschen:", err);
-      return res.status(500).send("Löschen fehlgeschlagen.");
-    }
-    res.status(200).send("Termin gelöscht.");
-  });
-});
-
-// Gibt die Anzahl der Buchungen pro Tag zurück
+// Buchungsstatistik pro Tag
 app.get("/bookingsCount", (req, res) => {
   const query = `
-    SELECT date AS bookingDate, COUNT(*) AS count
+    SELECT date, COUNT(*) as count
     FROM bookings
     GROUP BY date
   `;
 
   connection.query(query, (err, results) => {
     if (err) {
-      console.error(err);
-      return res.status(500).send("Fehler beim Abrufen der Buchungen.");
+      console.error("Fehler beim Abrufen der Buchungsanzahl:", err);
+      return res.status(500).send("Fehler beim Laden der Buchungsstatistik");
     }
 
     const countPerDay = {};
     results.forEach((row) => {
-      countPerDay[row.bookingDate] = row.count;
+      countPerDay[row.date] = row.count;
     });
 
     res.json(countPerDay);
   });
 });
 
+// Neue Buchung erstellen
+app.post("/bookings", (req, res) => {
+  const {
+    date,
+    title = "Geburtstagsfeier", // Standardwert falls nicht angegeben
+    userId,
+    guest_title,
+    guestName,
+    guestLastName,
+    guestEmail,
+    guestGroupSize,
+  } = req.body;
+
+  if (!date || (!userId && !guestEmail)) {
+    return res.status(400).send("Fehlende Daten für Buchung.");
+  }
+
+  const [day, time] = date.split(" ");
+
+  if (userId) {
+    // Für eingeloggte Benutzer
+    const query =
+      "INSERT INTO bookings (date, time, title, userId) VALUES (?, ?, ?, ?)";
+    connection.query(query, [day, time, title, userId], (err, result) => {
+      if (err) {
+        console.error("Fehler beim Einfügen:", err);
+        return res.status(500).send("Fehler beim Speichern der Buchung");
+      }
+
+      // Rückgabe mit allen benötigten Feldern
+      res.status(201).json({
+        id: result.insertId,
+        title, // = "Geburtstagsfeier" oder was vom Client kam
+        date: day,
+        time,
+        salutation: guest_title,
+        firstName: guestName,
+        lastName: guestLastName,
+        email: guestEmail,
+      });
+    });
+  } else {
+    // Für Gäste
+    const query = `
+      INSERT INTO bookings (
+        date, time, title, guest_title,
+        guest_name, guest_lastname, guest_email, guest_group_size
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    connection.query(
+      query,
+      [
+        day,
+        time,
+        title,
+        guest_title,
+        guestName,
+        guestLastName,
+        guestEmail,
+        guestGroupSize || 1,
+      ],
+      (err, result) => {
+        if (err) {
+          console.error("Fehler beim Einfügen:", err);
+          return res.status(500).send("Fehler bei der Gäste-Buchung");
+        }
+        res.status(201).json({
+          id: result.insertId,
+          title: guest_title,
+          date: day,
+          time,
+          firstName: guestName,
+          lastName: guestLastName,
+        });
+      }
+    );
+  }
+});
+
+// Buchung löschen
+app.delete("/bookings/:id", (req, res) => {
+  const bookingId = req.params.id;
+  const query = "DELETE FROM bookings WHERE id = ?";
+
+  connection.query(query, [bookingId], (err, result) => {
+    if (err) {
+      console.error("Fehler beim Löschen:", err);
+      return res.status(500).send("Fehler beim Löschen der Buchung");
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).send("Buchung nicht gefunden");
+    }
+
+    res.status(200).send("Buchung erfolgreich gelöscht");
+  });
+});
 
 // Passwort ändern
 app.post("/change-password", (req, res) => {
@@ -208,57 +263,30 @@ app.post("/change-password", (req, res) => {
 
   const query = "SELECT * FROM user WHERE email = ?";
   connection.query(query, [email], (err, results) => {
-    if (err)
+    if (err) {
       return res.status(500).send("Serverfehler beim Abrufen des Users.");
+    }
 
     if (results.length === 0) {
       return res.status(404).send("Benutzer nicht gefunden.");
     }
 
     const user = results[0];
-
     if (user.password !== oldPassword) {
       return res.status(401).send("Altes Passwort ist falsch.");
     }
 
     const updateQuery = "UPDATE user SET password = ? WHERE email = ?";
     connection.query(updateQuery, [newPassword, email], (err) => {
-      if (err)
+      if (err) {
         return res.status(500).send("Fehler beim Aktualisieren des Passworts.");
+      }
       return res.status(200).send("Passwort wurde erfolgreich geändert.");
     });
   });
 });
 
-app.post("/bookings", (req, res) => {
-  const { date, title, userId, guestName, guestLastName, guestEmail, guestGroupSize } = req.body;
-
-  if (!date || !title || (!userId && !guestEmail)) {
-    return res.status(400).send("Fehlende Daten für Buchung.");
-  }
-
-  const [day, time] = date.split(" ");
-
-  if (userId) {
-    // Für eingeloggte Benutzer
-    const query = "INSERT INTO bookings (date, time, title, userId) VALUES (?, ?, ?, ?)";
-    connection.query(query, [day, time, title, userId], (err, result) => {
-      if (err) return res.status(500).send("Fehler beim Einfügen.");
-      return res.status(201).json({ id: result.insertId, title, date: day, time });
-    });
-  } else {
-    // Für Gäste
-    const query = `INSERT INTO bookings (date, time, title, guest_name, guest_lastname, guest_email, guest_group_size)
-                   VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    connection.query(query, [day, time, title, guestName, guestLastName, guestEmail, guestGroupSize], (err, result) => {
-      if (err) return res.status(500).send("Fehler bei der Gäste-Buchung.");
-      return res.status(201).json({ id: result.insertId, title, date: day, time, guestName, guestLastName });
-    });
-  }
-});
-
-
 // Server starten
 app.listen(port, () => {
-  console.log(`Server starting`);
+  console.log(`Server läuft auf Port ${port}`);
 });

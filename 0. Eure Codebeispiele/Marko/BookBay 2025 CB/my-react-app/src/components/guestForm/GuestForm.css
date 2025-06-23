@@ -1,47 +1,59 @@
+/* GuestForm.css */
+
 .guest-form-container {
-  background: #f5f5f5;
-  padding: 1.5rem;
+  background: #fff;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
 }
 
-.guest-form {
+.guest-form-container h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+.guest-form-container label {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #444;
 }
 
-.form-group label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-input {
-  padding: 0.5rem;
-  width: 100%;
+.guest-form-container input,
+.guest-form-container select {
+  margin-top: 0.4rem;
+  padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 8px;
+  font-size: 1rem;
 }
 
-.form-actions {
+.guest-form-buttons {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
-button {
-  padding: 0.6rem 1rem;
+.guest-form-buttons button {
+  padding: 0.7rem 1.4rem;
   border: none;
   border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
+  font-size: 1rem;
 }
 
-button[type="submit"] {
+.guest-form-buttons button[type="submit"] {
   background-color: #1976d2;
   color: white;
 }
 
-.cancel-btn {
-  background-color: #eee;
+.guest-form-buttons button[type="button"] {
+  background-color: #f0f0f0;
   color: #333;
 }

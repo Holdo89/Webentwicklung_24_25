@@ -1,35 +1,19 @@
-// React und Hooks
 import * as React from "react";
 import { useState, useEffect } from "react";
-
-// dayjs für Datumslogik + deutsche Lokalisierung
 import dayjs from "dayjs";
 import "dayjs/locale/de";
-
-// HTTP-Client zur Kommunikation mit dem Backend
 import axios from "axios";
-
-// MUI-Komponenten für Datumsauswahl mit dayjs-Unterstützung
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
-
-// Snackbar für Benutzerfeedback
 import { useSnackbar, SnackbarProvider } from "notistack";
-
-// Badge für Statusanzeige im Kalender
 import Badge from "@mui/material/Badge";
-
-// CSS-Styles
 import "./Calendar.css";
 
 // Locale setzen
 dayjs.locale("de");
 
-// -----------------------------------------------
-// Haupt-Komponente mit Kalenderanzeige
-// -----------------------------------------------
 function CalendarComponent({ onDateTimeSelected }) {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [bookingsCount, setBookingsCount] = useState({});
@@ -44,6 +28,7 @@ function CalendarComponent({ onDateTimeSelected }) {
       try {
         const response = await axios.get("http://localhost:3001/bookingsCount");
         setBookingsCount(response.data);
+
       } catch (error) {
         console.error("Fehler beim Laden der Buchungen:", error);
         enqueueSnackbar("Fehler beim Laden der Buchungen", { variant: "error" });
@@ -60,32 +45,33 @@ function CalendarComponent({ onDateTimeSelected }) {
     }
 
     if (onDateTimeSelected) {
-      onDateTimeSelected(value); // Gib das gewählte Datum zurück an Dashboard
+      onDateTimeSelected(value);
     }
 
-    setSelectedDateTime(null); // Reset Auswahl
+    setSelectedDateTime(null);
   };
 
   // Tagesanzeige mit Warnsymbolen
-  const renderDayWithWarning = (day, _selectedDates, pickersDayProps) => {
-    const dayStr = day.format("YYYY-MM-DD");
-    const count = bookingsCount[dayStr] || 0;
+const renderDayWithWarning = (day, _selectedDates, pickersDayProps) => {
+  const dayStr = day.startOf("day").format("YYYY-MM-DD");
+  const count = bookingsCount[dayStr] || 0;
 
-    let badge = null;
-    if (count >= FULLY_BOOKED_LIMIT) {
-      badge = "❌";
-    } else if (count >= HALF_BOOKED_LIMIT) {
-      badge = "⚠️";
-    }
 
-    return (
-      <Badge overlap="circular" badgeContent={badge} color="error">
-        <PickersDay {...pickersDayProps} />
-      </Badge>
-    );
-  };
+  let badge = null;
+  if (count >= FULLY_BOOKED_LIMIT) {
+    badge = "❌";
+  } else if (count >= HALF_BOOKED_LIMIT) {
+    badge = "⚠️";
+  }
 
-  // UI
+  return (
+    <Badge overlap="circular" badgeContent={badge} color="error">
+      <PickersDay {...pickersDayProps} />
+    </Badge>
+  );
+};
+
+
   return (
     <div className="calendar-container">
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
@@ -104,9 +90,6 @@ function CalendarComponent({ onDateTimeSelected }) {
   );
 }
 
-// -----------------------------------------
-// Wrapper mit SnackbarProvider als Kontext
-// -----------------------------------------
 export default function StaticDateTimePickerLandscape({ onDateTimeSelected }) {
   return (
     <SnackbarProvider

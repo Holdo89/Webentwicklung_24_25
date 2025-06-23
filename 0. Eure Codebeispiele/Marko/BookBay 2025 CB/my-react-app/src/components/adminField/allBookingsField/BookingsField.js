@@ -21,16 +21,24 @@ export default function BookingsField({ bookings, onDeleteClick }) {
   return (
     <TableContainer component={Paper} className="bookings-container">
       <Table className="bookings-table" aria-label="Buchungstabelle">
-        
         {/* Tabellenkopf mit Spaltenüberschriften */}
         <TableHead>
           <TableRow>
-            <TableCell><strong>Titel</strong></TableCell>
-            <TableCell><strong>Vorname</strong></TableCell>
-            <TableCell><strong>Nachname</strong></TableCell>
-            <TableCell><strong>Datum</strong></TableCell>
-            <TableCell><strong>Uhrzeit</strong></TableCell>
-            <TableCell><strong>Löschen</strong></TableCell>
+            <TableCell>
+              <strong>Titel</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Kunde</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Datum</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Uhrzeit</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Löschen</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
 
@@ -39,17 +47,14 @@ export default function BookingsField({ bookings, onDeleteClick }) {
           {bookings.map((booking) => (
             <TableRow key={booking.id}>
               <TableCell>{booking.title}</TableCell>
-              <TableCell>{booking.firstName}</TableCell>
-              <TableCell>{booking.lastName}</TableCell>
-              {/* Datum in deutsches Format konvertieren */}
+              <TableCell>
+                {booking.salutation} {booking.lastName} {booking.firstName}{" "}
+                {/* Anrede + Vorname */}
+              </TableCell>
               <TableCell>
                 {new Date(booking.date).toLocaleDateString("de-DE")}
               </TableCell>
-              {/* Zeit extrahieren oder "/" anzeigen, falls nicht vorhanden */}
-              <TableCell>
-                {booking.time?.slice(0, 5) || "/"}
-              </TableCell>
-              {/* Button zum Löschen der Buchung */}
+              <TableCell>{booking.time?.slice(0, 5) || "/"}</TableCell>
               <TableCell>
                 <Button
                   variant="outlined"
@@ -63,7 +68,6 @@ export default function BookingsField({ bookings, onDeleteClick }) {
             </TableRow>
           ))}
         </TableBody>
-
       </Table>
     </TableContainer>
   );
