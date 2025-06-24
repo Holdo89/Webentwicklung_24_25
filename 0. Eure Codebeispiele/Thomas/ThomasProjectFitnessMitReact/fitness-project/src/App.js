@@ -28,16 +28,21 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <LayoutWithSidebar/>
+    {/* Seiten ohne Sidebar */}
     <Routes>
       <Route path="/"element={<Landing/>}/>
       <Route path= "login" element={<Login/>}/>
       <Route path= "register"element={<Register/>}/>
-      <Route path= "cards"element={<Cards/>}/>
-      <Route path="hauptseite"element={<Hauptseite1/>}/>
-      <Route path="trainingsplan"element={<Trainingsplan/>}/>
+
+    {/* Seiten mit Sidebar in Layout */}
+
+      <Route path= "cards"element={<LayoutWithSidebar><Cards/></LayoutWithSidebar>}/>
+
+      <Route path="hauptseite"element={<LayoutWithSidebar><Hauptseite1/></LayoutWithSidebar>}/>
+      
+      <Route path="trainingsplan"element={<LayoutWithSidebar><Trainingsplan/></LayoutWithSidebar>}/>
        </Routes>
-       <LayoutWithSidebar/>
+       
     </BrowserRouter>
     </>
   );

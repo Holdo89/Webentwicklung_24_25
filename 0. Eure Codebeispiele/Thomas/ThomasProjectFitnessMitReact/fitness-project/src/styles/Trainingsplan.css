@@ -41,7 +41,6 @@
 }
 
 .exercise-card:hover {
-  transform: scale(1.02);
   background-color: lightgray;
 }
 
@@ -108,13 +107,34 @@ label{
   
 }
 
-.checkbox-list {
+
+
+.trainingstage-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 10px;
-  margin: 16px 0;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.trainingstag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 500px;
+  padding: 6px 10px;
+  border: 1px solid lightseagreen;
+  
+  border-radius: 6px;
+}
+
+.trainingstag-label {
+  font-weight: 300;
   
 }
+
+
 
 
 
