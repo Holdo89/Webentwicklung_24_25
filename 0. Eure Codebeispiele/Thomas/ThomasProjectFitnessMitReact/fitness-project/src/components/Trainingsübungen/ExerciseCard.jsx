@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/Trainingsplan.css';
 import liegestuetze from '../../assets/exercises/liegestütz.png'
 import brustpresse from '../../assets/exercises/brustpresse.png'
@@ -6,6 +6,7 @@ import fliegende_kurzhantel from '../../assets/exercises/fliegende.png'
 import fallback from '../../assets/exercises/fallback.png'
 import bankdruecken from '../../assets/exercises_fortgeschritten/brustlanghantel.png'
 import dips_ringe from '../../assets/exercises_pro/dipss.png'
+import ExerciseModal from './ExerciseModal';
 
 const images ={
   liegestuetze,
@@ -24,6 +25,7 @@ const images ={
 
 
 export default function ExerciseCard({ exercise }) {
+  const [showModal, setShowModal] = useState(false);
   const image=images[exercise.image_path] || fallback
 
   return (
@@ -36,8 +38,16 @@ export default function ExerciseCard({ exercise }) {
       <div className="exercise-info">
         <h3>{exercise.name}</h3>
         <p>{exercise.description}</p>
-        <button className='button-more-info'>Mehr Infos</button>
+          <button type='button' onClick={() => setShowModal(true)} className="button-more-info">
+              Mehr Infos
+        </button>
       </div>
+      {showModal && (
+        <ExerciseModal
+          exercise={exercise}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }

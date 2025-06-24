@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ExerciseList from '../../components/Trainingsübungen/ExerciseList';
+import TrainingstagButton from '../../components/Trainingsübungen/TrainingsTagButton';
+import '../../styles/TrainingstagButton.css';
 
 
 const muscles = [
@@ -12,53 +14,61 @@ const muscles = [
   { id: 7, name: "Rücken" },
 ];
 
-export default function Trainingsplan() {
-  const [selectedMuscle, setSelectedMuscle] = useState(1);
-  const [level, setLevel] = useState(() => {
-  return localStorage.getItem('level') || 'beginner';
-});
-
-
-const getMuscleGroupInfo = (level) => {
-  switch (level) {
-    case "beginner":
-      return ( 
-        <div className='checkbox-list'>
-        <p>1.Trainingstag = Schulter/Brust/Trizeps<input type='checkbox' className='checkbox1'></input></p>
-        <p>2.Trainingstag = Rücken/Bizeps<input type='checkbox' className='checkbox1'></input></p>
-        <p>3.Trainingstag = Beine/Bauch<input type='checkbox' className='checkbox1'></input></p>
-          </div>
-          );
-    case "intermediate":
-      return ( 
-        <div className='checkbox-list'>
-        <p>1.Trainingstag = Schulter/Brust</p>
-        <p>2.Trainingstag = Beine</p>
-        <p>3.Trainingstag = Trizeps/Bizeps</p>
-        <p>4.Trainingstag = Rücken/Bauch</p>
-          </div>
-          );
-    case "pro":
-      return ( 
-        <div className='checkbox-list'>
-        <p>1.Trainingstag = Brust/Bizeps</p>
-        <p>2.Trainingstag = Beine/Bauch</p>
-        <p>3.Trainingstag = Trizeps/Bizeps/Schulter</p>
-        <p>4.Trainingstag = Rücken/Bauch</p>
-        <p>5.Trainingstag = Beine/Bizeps</p>
-          </div>
-          );
-  }
+const trainingPlanData = {
+  beginner: [
+    { tag: 1, label: '1. Trainingstag', muscles: 'Schulter/Brust/Trizeps' },
+    { tag: 2, label: '2. Trainingstag', muscles: 'Rücken/Bizeps' },
+    { tag: 3, label: '3. Trainingstag', muscles: 'Beine/Bauch' },
+  ],
+  intermediate: [
+    { tag: 1, label: '1. Trainingstag', muscles: 'Schulter/Brust' },
+    { tag: 2, label: '2. Trainingstag', muscles: 'Beine' },
+    { tag: 3, label: '3. Trainingstag', muscles: 'Trizeps/Bizeps' },
+    { tag: 4, label: '4. Trainingstag', muscles: 'Rücken/Bauch' },
+  ],
+  pro: [
+    { tag: 1, label: '1. Trainingstag', muscles: 'Brust/Bizeps' },
+    { tag: 2, label: '2. Trainingstag', muscles: 'Beine/Bauch' },
+    { tag: 3, label: '3. Trainingstag', muscles: 'Trizeps/Bizeps/Schulter' },
+    { tag: 4, label: '4. Trainingstag', muscles: 'Rücken/Bauch' },
+    { tag: 5, label: '5. Trainingstag', muscles: 'Beine/Bizeps' },
+  ],
 };
 
 
+export default function Trainingsplan() {
+const [selectedMuscle, setSelectedMuscle] = useState(1);
+  const [level, setLevel] = useState(() => localStorage.getItem('level') || 'beginner');
+  const [completedTags, setCompletedTags] = useState([]);
 
+  
+  const toggleTag = (tag) => {
+    if (completedTags.includes(tag)) {
+      setCompletedTags(completedTags.filter(trainingstag => trainingstag !== tag));
+    } else {
+      setCompletedTags([...completedTags, tag]);
+    }
+  };
 
 
   return (
     <div className='trainingsplan-only'>
-      <h1>Trainingsplan</h1>
-      <p className="muscle-group-info">{getMuscleGroupInfo(level)}</p>
+      <h1>Wochenplan</h1>
+       <div className="trainingstage-container">
+        {trainingPlanData[level].map(({ tag, label, muscles }) => (
+          <div key={tag} className="trainingstag-row">
+            <span className="trainingstag-label">
+              {label} = {muscles}
+            </span>
+            <TrainingstagButton 
+              tag={tag} 
+              completed={completedTags.includes(tag)} 
+              onToggle={toggleTag} 
+            />
+          </div>
+  ))}
+</div>
+
       <div>
         <label>Muskelgruppe wählen: </label>
         <select
