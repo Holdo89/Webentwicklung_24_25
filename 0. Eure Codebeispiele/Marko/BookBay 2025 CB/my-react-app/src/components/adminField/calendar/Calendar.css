@@ -93,10 +93,15 @@
 }
 
 /* Responsive: Spalten werden zu Reihen */
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .two-column-layout {
     flex-direction: column;
-    padding: 10px;
+    gap: 1rem;
+  }
+
+  .calendar-wrapper,
+  .table-wrapper {
+    width: 100%;
   }
 }
 

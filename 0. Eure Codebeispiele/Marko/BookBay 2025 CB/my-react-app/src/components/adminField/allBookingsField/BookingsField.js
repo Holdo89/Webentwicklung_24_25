@@ -47,7 +47,7 @@ const BookingsField = ({ bookings, onDeleteClick }) => {
                   color="error"
                   onClick={() => onDeleteClick(booking.id)}
                 >
-                  Löschen
+                  Stornieren
                 </Button>
               </TableCell>
             </TableRow>

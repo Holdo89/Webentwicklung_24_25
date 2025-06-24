@@ -68,7 +68,6 @@ const ProfilePage = () => {
       <div className="profile-info">
         <Typography><strong>Name:</strong> {user.name}</Typography>
         <Typography><strong>E-Mail:</strong> {user.email}</Typography>
-        <Typography><strong>Adresse:</strong> {user.adresse || 'Nicht angegeben'}</Typography>
       </div>
 
       <Button 

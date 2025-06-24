@@ -8,12 +8,12 @@
 /* Inhaltscontainer */
 .dashboard-content {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
-  height: calc(100vh - 120px);
 }
+
 
 /* Kalenderbereich */
 .calendar-panel {
@@ -32,12 +32,8 @@
 .bookings-panel {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 108, 132, 0.08);
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(110, 181, 192, 0.15);
-  overflow-y: auto;
-  max-height: calc(100vh - 120px);
+
 }
 
 /* Gastansicht (nicht eingeloggt) */
