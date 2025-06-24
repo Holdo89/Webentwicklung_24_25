@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.17.3",
+    "nodemailer": "^7.0.3",
     "notistack": "^3.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -26,7 +27,6 @@
     "styled-components": "^6.1.17",
     "web-vitals": "^2.1.4"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StaticDateTimePickerLandscape from '../adminField/calendar/Calendar';
 import BasicTable from '../adminField/allBookingsField/BookingsField';
-import GuestForm from '../guestForm/GuestForm';
+import GuestForm from '../clientField/guestForm/GuestForm';
 import './Dashboard.css';
 
 const Dashboard = () => {

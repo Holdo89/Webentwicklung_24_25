@@ -5,7 +5,7 @@ import './Register.css';
 
 const Register = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
-    title: "Herr", // Standardwert
+    title: "Herr",
     name: "",
     last_name: "",
     email: "",
@@ -45,6 +45,8 @@ const Register = ({ onSwitchToLogin }) => {
           <select 
             name="title" 
             value={formData.title} 
+
+            
             onChange={handleChange}
             required
           >

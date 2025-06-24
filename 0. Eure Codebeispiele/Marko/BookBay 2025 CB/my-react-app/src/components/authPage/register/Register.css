@@ -1,53 +1,85 @@
+/* Container für das Registrierungsformular */
 .register-container {
-  background-color: #ffffff;
-  border-radius: 16px;
+  background: #fff;
   padding: 2rem;
-  max-width: 400px;
-  margin: 100px auto 20px;
-  box-shadow: 0 10px 25px rgba(0, 108, 132, 0.2);
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 4rem auto 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* Überschrift */
 .register-container h2 {
-  color: #006C84;
-  text-align: center;
   margin-bottom: 1.5rem;
+  text-align: center;
+  color: #006C84;
+  font-size: 1.8rem;
 }
 
+/* Formular */
 .register-container form {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
 }
 
-.register-container input {
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
+/* Formularfeld mit Label */
+.register-container label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Eingabefelder und Dropdown */
+.register-container input,
+.register-container select {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-.register-container input:focus {
-  border-color: #6EB5C0;
+.register-container input:focus,
+.register-container select:focus {
   outline: none;
+  border-color: #6EB5C0;
+  box-shadow: 0 0 0 2px rgba(110, 181, 192, 0.2);
 }
 
-.register-container button {
-  padding: 12px;
-  background: #FFCCBB;
-  color: #006C84;
+/* Registrieren-Button */
+.register-container button[type="submit"] {
+  padding: 0.8rem 1.5rem;
+  background-color: #006C84;
+  color: white;
   border: none;
   border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s;
 }
 
-.register-container button:hover {
-  background: #fbb9a3;
+.register-container button[type="submit"]:hover {
+  background-color: #5DA4B3;
 }
 
+/* Feedback-Nachricht */
 .message {
   color: #006C84;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 600px) {
+  .register-container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
 }
