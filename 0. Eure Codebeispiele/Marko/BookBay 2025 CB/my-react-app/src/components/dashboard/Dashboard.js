@@ -1,63 +1,82 @@
-import React, { useEffect, useState } from "react";
-import StaticDateTimePickerLandscape from "../adminField/calendar/Calendar";
-import BasicTable from "../adminField/allBookingsField/BookingsField";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import StaticDateTimePickerLandscape from '../adminField/calendar/Calendar';
+import BasicTable from '../adminField/allBookingsField/BookingsField';
+import GuestForm from '../guestForm/GuestForm';
+import './Dashboard.css';
 
-export default function Dashboard() {
-  const [user, setUser] = useState(null);
+const Dashboard = () => {
+  const [user] = useState(() => JSON.parse(localStorage.getItem('user')));
   const [bookings, setBookings] = useState([]);
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
+
+  const fetchBookings = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:3001/bookings');
+      setBookings(data);
+    } catch (error) {
+      console.error('Fehler beim Laden:', error);
+    }
+  };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  useEffect(() => {
-    async function fetchBookings() {
-      try {
-        const res = await axios.get("http://localhost:3001/bookings");
-        setBookings(res.data);
-      } catch (error) {
-        console.error("Fehler beim Laden der Buchungen:", error);
-      }
-    }
     fetchBookings();
   }, []);
 
-  const addBooking = (newBooking) => {
-    setBookings((prev) => [...prev, newBooking]);
+  const handleBookingUpdate = async () => {
+    await fetchBookings();
+    setSelectedDateTime(null);
   };
 
-  // Löschen-Funktion
-  const handleDelete = async (bookingId) => {
+  const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/bookings/${bookingId}`);
-      setBookings((prev) => prev.filter((b) => b.id !== bookingId));
+      await axios.delete(`http://localhost:3001/bookings/${id}`);
+      await fetchBookings();
     } catch (error) {
-      console.error("Fehler beim Löschen:", error);
+      console.error('Löschen fehlgeschlagen:', error);
     }
   };
 
-  if (!user) {
-    return (
-      <div className="centered-calendar-container">
-        <div className="calendar-wrapper">
-          <StaticDateTimePickerLandscape onBookingAdded={addBooking} />
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="two-column-layout">
-      <div className="calendar-wrapper">
-        <StaticDateTimePickerLandscape onBookingAdded={addBooking} />
-      </div>
-      <div className="table-wrapper">
-        <BasicTable bookings={bookings} onDeleteClick={handleDelete} />
-      </div>
+  const renderGuestView = () => (
+    <div className="guest-view">
+      {!selectedDateTime ? (
+        <StaticDateTimePickerLandscape onDateTimeSelected={setSelectedDateTime} />
+      ) : (
+        <GuestForm
+          selectedDateTime={selectedDateTime}
+          onBookingSuccess={handleBookingUpdate}
+          onCancel={() => setSelectedDateTime(null)}
+        />
+      )}
     </div>
   );
-}
+
+const renderAdminView = () => (
+  <div className='dashboard'>
+  <div className="dashboard-content">
+    <div className="calendar-panel">
+      {!selectedDateTime ? (
+        <StaticDateTimePickerLandscape onDateTimeSelected={setSelectedDateTime} />
+      ) : (
+        <GuestForm
+          selectedDateTime={selectedDateTime}
+          onBookingSuccess={handleBookingUpdate}
+          onCancel={() => setSelectedDateTime(null)}
+        />
+      )}
+    </div>
+    <div className="bookings-panel">
+      <BasicTable bookings={bookings} onDeleteClick={handleDelete} />
+    </div>
+    </div>
+  </div>
+);
+
+  return (
+    <div className="dashboard-container">
+      {user ? renderAdminView() : renderGuestView()}
+    </div>
+  );
+};
+
+export default Dashboard;

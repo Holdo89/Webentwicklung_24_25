@@ -1,4 +1,3 @@
-// Register.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useSnackbar } from "notistack";
@@ -6,6 +5,7 @@ import './Register.css';
 
 const Register = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
+    title: "Herr", // Standardwert
     name: "",
     last_name: "",
     email: "",
@@ -27,17 +27,12 @@ const Register = ({ onSwitchToLogin }) => {
         variant: "success",
         autoHideDuration: 3000,
       });
-
-      // 💡 Rufe den Callback auf, um zur Login-Ansicht zu wechseln
       onSwitchToLogin();
-
     } catch (err) {
-      const errorMsg =
-        err.response?.data?.message || "Diese E-Mail existiert bereits";
-      enqueueSnackbar(errorMsg, {
-        variant: "error",
-        autoHideDuration: 3000,
-      });
+      enqueueSnackbar(
+        err.response?.data?.message || "Registrierung fehlgeschlagen",
+        { variant: "error" }
+      );
     }
   };
 
@@ -45,13 +40,28 @@ const Register = ({ onSwitchToLogin }) => {
     <div className="register-container">
       <h2>Registrierung</h2>
       <form onSubmit={handleSubmit}>
+        <label>
+          Anrede:
+          <select 
+            name="title" 
+            value={formData.title} 
+            onChange={handleChange}
+            required
+          >
+            <option value="Herr">Herr</option>
+            <option value="Frau">Frau</option>
+            <option value="Divers">Divers</option>
+          </select>
+        </label>
+
         <input
           name="name"
           type="text"
-          placeholder="Name"
+          placeholder="Vorname"
           onChange={handleChange}
           required
         />
+
         <input
           name="last_name"
           type="text"
@@ -59,6 +69,7 @@ const Register = ({ onSwitchToLogin }) => {
           onChange={handleChange}
           required
         />
+
         <input
           name="email"
           type="email"
@@ -66,6 +77,7 @@ const Register = ({ onSwitchToLogin }) => {
           onChange={handleChange}
           required
         />
+
         <input
           name="password"
           type="password"
@@ -73,6 +85,7 @@ const Register = ({ onSwitchToLogin }) => {
           onChange={handleChange}
           required
         />
+
         <button type="submit">Registrieren</button>
       </form>
     </div>

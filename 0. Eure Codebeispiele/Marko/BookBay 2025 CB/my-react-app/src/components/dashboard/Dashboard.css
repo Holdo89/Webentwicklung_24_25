@@ -1,0 +1,94 @@
+/* Dashboard Hauptcontainer */
+.dashboard {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e8f4f8, #f0f9fb);
+}
+
+/* Inhaltscontainer */
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: calc(100vh - 120px);
+}
+
+/* Kalenderbereich */
+.calendar-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 108, 132, 0.08);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(110, 181, 192, 0.15);
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+/* Buchungsbereich */
+.bookings-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 108, 132, 0.08);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(110, 181, 192, 0.15);
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+
+/* Gastansicht (nicht eingeloggt) */
+.guest-view {
+  max-width: 700px;
+  margin: 3rem auto;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .calendar-panel {
+    position: static;
+    margin-bottom: 1.5rem;
+  }
+  
+  .bookings-panel {
+    max-height: none;
+  }
+}
+
+/* Komponentenanpassungen */
+.calendar-container {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.bookings-container {
+  background: transparent !important;
+}
+
+/* Scrollbar Styling */
+.bookings-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.bookings-panel::-webkit-scrollbar-track {
+  background: rgba(110, 181, 192, 0.1);
+  border-radius: 4px;
+}
+
+.bookings-panel::-webkit-scrollbar-thumb {
+  background: rgba(110, 181, 192, 0.3);
+  border-radius: 4px;
+}
+
+.bookings-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(110, 181, 192, 0.5);
+}

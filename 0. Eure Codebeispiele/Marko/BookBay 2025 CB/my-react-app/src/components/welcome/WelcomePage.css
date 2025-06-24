@@ -1,63 +1,72 @@
+/* Haupt-Container: Vollbildhöhe, Hintergrund mit Farbverlauf und Logo, zentriert Inhalt */
 .welcome-root {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #e2e8e4, #ffccbb);
-  background-image: url("../../assets/BookLogo.png");
+  min-height: 100vh; /* Volle Fensterhöhe */
+  background: linear-gradient(135deg, #e2e8e4, #ffccbb); /* Farbverlauf */
+  background-image: url("../../assets/BookLogo.png"); /* Hintergrundbild (Logo) */
   background-repeat: no-repeat;
-  background-size: 800px;
-  background-position: bottom;
+  background-size: 800px; /* Größe des Logos */
+  background-position: bottom; /* Logo unten positioniert */
   display: flex;
-  align-items: center;
+  align-items: center; /* Vertikale Zentrierung */
   justify-content: center;
+  padding: 20px;  
 }
 
+/* Karte mit Glassmorphism-Effekt: leicht transparent, weichgezeichneter Hintergrund */
 .glass-card {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 24px;
-  padding: 48px 36px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 700px;
+  backdrop-filter: blur(10px); /* Hintergrund unscharf */
+  background-color: rgba(255, 255, 255, 0.75); /* Weiß mit Transparenz */
+  border-radius: 24px; /* Abgerundete Ecken */
+  padding: 48px 36px; /* Innenabstand */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
+  text-align: center; /* Text zentriert */
+  max-width: 700px; /* Max. Breite */
 }
 
+/* Titel-Stil: kräftige, große Schrift mit Farbe */
 .welcome-title {
   font-weight: 800;
   font-size: 3rem;
   margin-bottom: 24px;
-  color: #006c84;
+  color: #006c84; /* Dunkelblau/Türkis */
 }
 
+/* Farbverlaufstext: Text mit Farbverlauf gefüllt */
 .gradient-text span {
-  background: linear-gradient(to right, #006c84, #6eb5c0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(to right, #006c84, #6eb5c0); /* Verlauf von Dunkel- zu Hellblau */
+  -webkit-background-clip: text; /* Hintergrund nur im Text sichtbar */
+  -webkit-text-fill-color: transparent; /* Text transparent für Effekt */
   font-weight: 800;
 }
 
+/* Beschreibungstext: dezente Farbe und angenehme Lesbarkeit */
 .welcome-text {
   color: #333;
   font-size: 1.2rem;
   margin-bottom: 24px;
-  line-height: 1.6;
+  line-height: 1.6; /* Zeilenhöhe */
 }
 
+/* Liste: keine Standard-Aufzählung, Farben und Abstände angepasst */
 .welcome-list {
-  list-style: none;
+  list-style: none; /* Kein Standard-Listenzeichen */
   padding: 0;
   margin-bottom: 32px;
   font-size: 1.05rem;
   color: #006c84;
-  text-align: left;
+  text-align: left; /* Linksbündig */
 }
 
+/* Listenelemente mit Abstand und eigener Aufzählung */
 .welcome-list li {
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   position: relative;
-  padding-left: 24px;
+  padding-left: 24px; /* Platz für eigenes Listenzeichen */
 }
 
+/* Eigenes Listenzeichen: Kreis mit Farbe und Umrandung */
 .welcome-list li::before {
   content: "";
   position: absolute;
@@ -65,31 +74,34 @@
   top: 8px;
   width: 10px;
   height: 10px;
-  background-color: #ffccbb;
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px #006c84;
+  background-color: #ffccbb; /* Hellorange */
+  border-radius: 50%; /* Kreis */
+  box-shadow: 0 0 0 2px #006c84; /* Umrandung in Dunkelblau */
 }
 
-
+/* Container für die Buttons, zentriert und mit Abstand */
 .welcome-buttons {
   display: flex;
   justify-content: center;
   gap: 16px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Bei kleinen Bildschirmen umbrechen */
 }
 
+/* Primärer Button: Hintergrundfarbe und Styling */
 .welcome-button {
   background-color: #006c84;
-  text-transform: none;
+  text-transform: none; /* Keine Großschreibung */
   padding: 12px 24px;
   font-size: 1rem;
   border-radius: 12px;
 }
 
+/* Hover-Effekt für primären Button: hellere Farbe */
 .welcome-button:hover {
   background-color: #6eb5c0;
 }
 
+/* Sekundärer Button (Register): Umrandung und Textfarbe */
 .register-button {
   border: 2px solid #006c84;
   color: #006c84;
@@ -99,8 +111,19 @@
   border-radius: 12px;
 }
 
+/* Hover-Effekt für Sekundärbutton: Hintergrundfarbe, weiße Schrift */
 .register-button:hover {
   background-color: #6eb5c0;
   color: white;
   border-color: #6eb5c0;
+}
+.glass-card {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  padding: 48px 36px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 700px;
+  margin: 20px; /* Neu hinzugefügt */
 }
