@@ -104,14 +104,33 @@ export default function Buchung() {
     return zeiten;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!angebot || !uhrzeit) {
       setError("Bitte Angebot und Uhrzeit auswählen.");
       return;
     }
-    setError("");
-    setDialogOpen(true);
+
+    try {
+      const res = await fetch("http://localhost:3001/buchung", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          datum: new Date(datum).toISOString().split("T")[0], // YYYY-MM-DD
+          angebot,
+          uhrzeit,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Fehler bei der Buchung.");
+
+      setError("");
+      setDialogOpen(true);
+    } catch (err) {
+      console.error("❌ Buchung fehlgeschlagen:", err);
+      setError("Die Buchung konnte nicht gespeichert werden.");
+    }
   };
 
   const handleDialogClose = () => {

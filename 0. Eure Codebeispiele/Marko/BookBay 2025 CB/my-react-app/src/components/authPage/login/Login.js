@@ -1,60 +1,59 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useSnackbar } from "notistack";
-import "./Login.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import './Login.css';
 
 const Login = ({ onLoginSuccess, onSwitchToRegister }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/login", {
-        email,
-        password,
-      });
-      const user = res.data.user;
-
-      localStorage.setItem("userId", res.data.user.id);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      if (onLoginSuccess) onLoginSuccess(user);
-      navigate("/dashboard");
-    } catch (err) {
-      enqueueSnackbar("Login fehlgeschlagen. Bitte überprüfe deine Eingaben.", {
-        variant: "error",
-        autoHideDuration: 3000,
+      const { data } = await axios.post('http://localhost:3001/login', credentials);
+      
+      localStorage.setItem('user', JSON.stringify(data.user));
+      onLoginSuccess?.(data.user);
+      navigate('/dashboard');
+    } catch {
+      enqueueSnackbar('Login fehlgeschlagen. Bitte überprüfe deine Eingaben.', {
+        variant: 'error',
+        autoHideDuration: 3000
       });
     }
+  };
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <input
+          name="email"
           type="email"
           placeholder="E-Mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={credentials.email}
+          onChange={handleChange}
           required
         />
         <input
+          name="password"
           type="password"
           placeholder="Passwort"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={credentials.password}
+          onChange={handleChange}
           required
         />
         <button type="submit">Einloggen</button>
       </form>
 
       <p className="switch-text">
-        Noch kein Bookaunt?{" "}
+        Noch kein Account?{' '}
         <span className="switch-link" onClick={onSwitchToRegister}>
           Jetzt registrieren
         </span>

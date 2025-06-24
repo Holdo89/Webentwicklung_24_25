@@ -20,7 +20,10 @@ function App() {
   }, []);
 
   return (
-    <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+    <SnackbarProvider
+      maxSnack={3}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+    >
       <Router>
         <Header user={user} setUser={setUser} />
         <div className="background-container">
@@ -28,12 +31,7 @@ function App() {
             <Route path="/" element={<WelcomePage />} />
             <Route path="/login" element={<AuthPage onLoginSuccess={setUser} />} />
             <Route path="/register" element={<RegisterComponent />} />
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboard/>
-              }
-            />
+            <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Gäste erlaubt */}
             <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </div>
@@ -42,4 +40,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

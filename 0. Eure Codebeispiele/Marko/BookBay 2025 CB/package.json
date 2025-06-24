@@ -1,6 +1,7 @@
 {
   "name": "bookbay2025",
   "version": "1.0.0",
+  "type": "module",
   "description": "Booking App",
   "main": "bookserver.js",
   "scripts": {
