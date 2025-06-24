@@ -105,3 +105,13 @@
     text-align: center;
   }
 }
+
+.nav-button.login-button,
+.nav-button.logout-button {
+  background-color: #8cd3ad;
+  color: black;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin-left: 10px;
+}

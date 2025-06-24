@@ -1,5 +1,7 @@
+// src/components/Navbar.js
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // ✅ NEU
 import "../styles/Navbar.css";
 
 export default function Navbar({ navbarRef }) {
@@ -7,6 +9,7 @@ export default function Navbar({ navbarRef }) {
   const [menuOpen, setMenuOpen] = useState(false); // Menü offen/zu
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth(); // ✅ Zugriff auf Auth
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,17 +19,16 @@ export default function Navbar({ navbarRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setMenuOpen(prev => !prev);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
   const closeMenu = () => setMenuOpen(false);
 
-  // Smooth Scroll Logik
+  // Scroll-Funktion zu Ankerpunkten
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Navigiert ggf. zuerst zur Startseite, dann scrollen
   const handleNavClick = (id) => {
     closeMenu();
     if (location.pathname !== "/") {
@@ -64,6 +66,16 @@ export default function Navbar({ navbarRef }) {
         <li><button onClick={() => handleNavClick("aufbereitung")} className="nav-button">Aufbereitung</button></li>
         <li><button onClick={() => handleNavClick("kontakt")} className="nav-button">Kontakt</button></li>
         <li><button onClick={() => handleNavClick("termin")} className="nav-button">Termin</button></li>
+
+        {/* ✅ Benutzer-Status anzeigen */}
+        {user ? (
+          <>
+            <li style={{ color: "#adebc7", marginLeft: "1rem" }}>👤 {user.name}</li>
+            <li><button onClick={logout} className="nav-button">Logout</button></li>
+          </>
+        ) : (
+          <li><button onClick={() => navigate("/login")} className="nav-button">Login</button></li>
+        )}
       </ul>
     </nav>
   );

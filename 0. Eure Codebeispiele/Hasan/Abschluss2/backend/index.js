@@ -1,3 +1,4 @@
+// 📦 Importiere erforderliche Pakete
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
@@ -6,14 +7,22 @@ const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const app = express();
-const SECRET = "dein_geheimer_schluessel"; // besser in .env auslagern
+// 🔐 Konstante für Token-Erzeugung – in .env-Datei auslagern empfohlen!
+const SECRET = "dein_geheimer_schluessel";
 
-// ✅ Middleware
-app.use(cors({ origin: "http://localhost:3000", methods: ["GET", "POST"], allowedHeaders: ["Content-Type"] }));
+const app = express();
+
+// 🌍 CORS erlauben – Frontend darf Requests schicken
+app.use(cors({
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
+
+// 🧠 Body Parser Middleware für JSON-Anfragen
 app.use(bodyParser.json());
 
-// ✅ MySQL-Verbindung
+// 🗄️ MySQL-Verbindung herstellen
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -22,23 +31,35 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-  if (err) console.error("❌ MySQL-Fehler:", err);
-  else console.log("✅ MySQL verbunden");
+  if (err) {
+    console.error("❌ MySQL-Fehler:", err);
+  } else {
+    console.log("✅ MySQL verbunden");
+  }
 });
 
-// ✅ Benutzerregistrierung
+
+// ✅ 1. Registrierung eines neuen Benutzers
 app.post("/register", async (req, res) => {
-  const { name, email, passwort } = req.body;
-  if (!email || !passwort) return res.status(400).json({ error: "E-Mail und Passwort erforderlich." });
+  const { vorname, nachname, email, passwort } = req.body;
+
+  // 🔍 Prüfung: Alle Felder vorhanden?
+  if (!vorname || !nachname || !email || !passwort) {
+    return res.status(400).json({ error: "Alle Felder sind erforderlich." });
+  }
 
   try {
+    // 🔐 Passwort verschlüsseln
     const hashed = await bcrypt.hash(passwort, 10);
-    const sql = "INSERT INTO benutzer (name, email, passwort) VALUES (?, ?, ?)";
-    db.query(sql, [name, email, hashed], (err) => {
+
+    // 💾 In die Datenbank einfügen
+    const sql = "INSERT INTO benutzer (vorname, nachname, email, passwort) VALUES (?, ?, ?, ?)";
+    db.query(sql, [vorname, nachname, email, hashed], (err) => {
       if (err) {
         console.error("❌ Registrierung fehlgeschlagen:", err);
         return res.status(500).json({ error: "Fehler bei der Registrierung." });
       }
+
       console.log("✅ Neuer Benutzer registriert:", email);
       res.status(200).json({ message: "Benutzer erfolgreich registriert." });
     });
@@ -48,41 +69,53 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// ✅ Benutzer-Login
+
+// ✅ 2. Login eines bestehenden Benutzers
 app.post("/login", (req, res) => {
   const { email, passwort } = req.body;
-  if (!email || !passwort) return res.status(400).json({ error: "Login-Daten fehlen." });
+
+  if (!email || !passwort) {
+    return res.status(400).json({ error: "Login-Daten fehlen." });
+  }
 
   const sql = "SELECT * FROM benutzer WHERE email = ?";
   db.query(sql, [email], async (err, results) => {
     if (err || results.length === 0) {
-      console.error("❌ Benutzer nicht gefunden oder Fehler:", err);
+      console.error("❌ Benutzer nicht gefunden:", err);
       return res.status(400).json({ error: "Benutzer nicht gefunden." });
     }
 
     const user = results[0];
+
+    // 🔐 Passwort vergleichen
     const match = await bcrypt.compare(passwort, user.passwort);
     if (!match) {
-      console.warn("❌ Falsches Passwort für:", email);
       return res.status(401).json({ error: "Falsches Passwort." });
     }
 
-    const token = jwt.sign({ id: user.id, name: user.name }, SECRET, { expiresIn: "2h" });
-    console.log("🔐 Benutzer eingeloggt:", email);
-    res.status(200).json({ message: "Login erfolgreich", token });
+    // 🔐 JWT-Token erstellen
+    const token = jwt.sign({ id: user.id, vorname: user.vorname }, SECRET, { expiresIn: "2h" });
+
+    res.status(200).json({
+      message: "Login erfolgreich",
+      token,
+      id: user.id,
+      vorname: user.vorname,
+      nachname: user.nachname
+    });
   });
 });
 
-// ✅ Kontaktformular
-app.post("/kontakt", (req, res) => {
-  console.log("📩 Neue Kontaktanfrage erhalten:", req.body);
 
+// ✅ 3. Kontaktformular speichern und Mail senden
+app.post("/kontakt", (req, res) => {
   const { name, email, nachricht } = req.body;
+
   if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-    console.warn("⚠️ Ungültige E-Mail:", email);
     return res.status(400).json({ error: "Ungültige E-Mail-Adresse." });
   }
 
+  // 💾 Nachricht speichern
   const sql = "INSERT INTO kontaktformular (name, email, nachricht) VALUES (?, ?, ?)";
   db.query(sql, [name, email, nachricht], (err) => {
     if (err) {
@@ -90,10 +123,14 @@ app.post("/kontakt", (req, res) => {
       return res.status(500).json({ error: "Fehler beim Speichern." });
     }
 
+    // ✉️ E-Mail senden (Mailtrap Beispiel)
     const transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
-      auth: { user: "40e70e0246ed42", pass: "000f175fddfeaf" },
+      auth: {
+        user: "40e70e0246ed42",
+        pass: "000f175fddfeaf",
+      },
     });
 
     const mailOptions = {
@@ -116,11 +153,11 @@ app.post("/kontakt", (req, res) => {
   });
 });
 
-// ✅ Buchung speichern mit Benutzer-ID
-app.post("/buchung", (req, res) => {
-  console.log("📆 Neue Buchung erhalten:", req.body);
 
+// ✅ 4. Buchung speichern (nur mit Benutzer-ID)
+app.post("/buchung", (req, res) => {
   const { datum, angebot, uhrzeit, benutzer_id } = req.body;
+
   if (!datum || !angebot || !uhrzeit || !benutzer_id) {
     return res.status(400).json({ error: "Alle Felder inkl. Benutzer-ID erforderlich." });
   }
@@ -136,6 +173,7 @@ app.post("/buchung", (req, res) => {
     res.status(200).json({ message: "Buchung erfolgreich gespeichert." });
   });
 });
+
 
 // ✅ Server starten
 app.listen(3001, () => {

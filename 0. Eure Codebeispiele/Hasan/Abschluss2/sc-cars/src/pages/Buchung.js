@@ -1,6 +1,6 @@
-// src/pages/Buchung.js
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // 🔐 Zugriff auf eingeloggten Benutzer
 import Navbar from "../components/Navbar";
 import {
   Box,
@@ -18,40 +18,43 @@ import {
   DialogActions,
 } from "@mui/material";
 
+// ✅ Dialog-Fenster für Buchungserfolg
 function BuchungErfolgDialog({ open, onClose, datum, angebot, uhrzeit }) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Vielen Dank für Ihre Buchung!</DialogTitle>
       <DialogContent>
-        <Typography>
-          <strong>Datum:</strong> {new Date(datum).toLocaleDateString("de-DE")}
-        </Typography>
-        <Typography>
-          <strong>Leistung:</strong> {angebot}
-        </Typography>
-        <Typography>
-          <strong>Uhrzeit:</strong> {uhrzeit} Uhr
-        </Typography>
+        <Typography><strong>Datum:</strong> {new Date(datum).toLocaleDateString("de-DE")}</Typography>
+        <Typography><strong>Leistung:</strong> {angebot}</Typography>
+        <Typography><strong>Uhrzeit:</strong> {uhrzeit} Uhr</Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
-          Schließen
-        </Button>
+        <Button onClick={onClose} color="primary">Schließen</Button>
       </DialogActions>
     </Dialog>
   );
 }
 
 export default function Buchung() {
-  const { datum } = useParams();
+  const { datum } = useParams();               // 📅 Datum aus URL
   const navigate = useNavigate();
+  const { user, isLoggedIn } = useAuth();      // 🔐 Benutzer aus globalem Login-Zustand
 
-  const [angebot, setAngebot] = useState("");
-  const [verfügbareZeiten, setVerfügbareZeiten] = useState([]);
-  const [uhrzeit, setUhrzeit] = useState("");
-  const [error, setError] = useState("");
-  const [dialogOpen, setDialogOpen] = useState(false);
+  // ⬇️ States
+  const [angebot, setAngebot] = useState("");              // ausgewähltes Angebot
+  const [verfügbareZeiten, setVerfügbareZeiten] = useState([]);  // Uhrzeiten für das Angebot
+  const [uhrzeit, setUhrzeit] = useState("");              // gewählte Uhrzeit
+  const [error, setError] = useState("");                  // Fehlermeldung
+  const [dialogOpen, setDialogOpen] = useState(false);     // Erfolg-Dialog
 
+  // 🔐 Wenn Benutzer nicht eingeloggt ist, leite weiter zum Login
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate(`/login?redirect=/buchung/${datum}`);
+    }
+  }, [isLoggedIn, navigate, datum]);
+
+  // ✅ Buchbare Angebote (Frontend-Auswahl)
   const angebote = [
     "Innenreinigung",
     "Außenreinigung",
@@ -63,6 +66,7 @@ export default function Buchung() {
     "Sonstiges (Begutachtung)",
   ];
 
+  // 🕘 Errechne verfügbare Zeiten je nach Angebot
   useEffect(() => {
     const zeitenNachAngebot = () => {
       switch (angebot) {
@@ -86,6 +90,7 @@ export default function Buchung() {
     setVerfügbareZeiten(zeitenNachAngebot());
   }, [angebot]);
 
+  // 🔁 Hilfsfunktion für Zeitintervalle
   const generiereZeiten = (start, ende) => {
     const zeiten = [];
     let [stunde, minute] = start.split(":").map(Number);
@@ -104,6 +109,7 @@ export default function Buchung() {
     return zeiten;
   };
 
+  // ✅ Buchung absenden
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!angebot || !uhrzeit) {
@@ -116,9 +122,10 @@ export default function Buchung() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          datum: new Date(datum).toISOString().split("T")[0], // YYYY-MM-DD
+          datum: new Date(datum).toISOString().split("T")[0], // 🔁 zu YYYY-MM-DD
           angebot,
           uhrzeit,
+          benutzer_id: user?.id, // ✅ Benutzer-ID mitgeben
         }),
       });
 
@@ -126,7 +133,7 @@ export default function Buchung() {
       if (!res.ok) throw new Error(data.error || "Fehler bei der Buchung.");
 
       setError("");
-      setDialogOpen(true);
+      setDialogOpen(true); // 🎉 Erfolg
     } catch (err) {
       console.error("❌ Buchung fehlgeschlagen:", err);
       setError("Die Buchung konnte nicht gespeichert werden.");
@@ -163,38 +170,21 @@ export default function Buchung() {
               backdropFilter: "blur(4px)",
               maxWidth: "600px",
               width: "100%",
-              transition: "transform 0.4s ease, box-shadow 0.4s ease",
-              "&:hover": {
-                transform: "scale(1.02)",
-                boxShadow: "0 18px 50px rgba(150, 216, 177, 0.4)",
-              },
             }}
           >
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{ color: "#adebc7", marginBottom: "0.5rem" }}
-            >
+            <Typography variant="h4" align="center" sx={{ color: "#adebc7", mb: 1 }}>
               Terminbuchung
             </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              sx={{ color: "#c4f1df", marginBottom: "2rem" }}
-            >
+            <Typography variant="subtitle1" align="center" sx={{ color: "#c4f1df", mb: 4 }}>
               {new Date(datum).toLocaleDateString("de-DE")}
             </Typography>
 
             <form onSubmit={handleSubmit}>
+              {/* Angebot Auswahl */}
               <FormControl fullWidth sx={{ mb: 3 }}>
-                {angebot === "" && (
-                  <InputLabel
-                    id="angebot-label"
-                    sx={{ color: "#adebc7", fontWeight: "bold" }}
-                  >
-                    Angebot
-                  </InputLabel>
-                )}
+                <InputLabel id="angebot-label" sx={{ color: "#adebc7", fontWeight: "bold" }}>
+                  Angebot
+                </InputLabel>
                 <Select
                   labelId="angebot-label"
                   value={angebot}
@@ -204,9 +194,7 @@ export default function Buchung() {
                     color: "#adebc7",
                     border: "3px solid black",
                     borderRadius: "4px",
-                    "& .MuiSelect-select": { paddingLeft: "8px" },
                   }}
-                  displayEmpty={false}
                 >
                   {angebote.map((option, idx) => (
                     <MenuItem key={idx} value={option}>
@@ -216,16 +204,12 @@ export default function Buchung() {
                 </Select>
               </FormControl>
 
+              {/* Uhrzeit Auswahl */}
               {angebot && (
                 <FormControl fullWidth sx={{ mb: 3 }}>
-                  {uhrzeit === "" && (
-                    <InputLabel
-                      id="uhrzeit-label"
-                      sx={{ color: "#adebc7", fontWeight: "bold" }}
-                    >
-                      Uhrzeit
-                    </InputLabel>
-                  )}
+                  <InputLabel id="uhrzeit-label" sx={{ color: "#adebc7", fontWeight: "bold" }}>
+                    Uhrzeit
+                  </InputLabel>
                   <Select
                     labelId="uhrzeit-label"
                     value={uhrzeit}
@@ -235,9 +219,7 @@ export default function Buchung() {
                       color: "#adebc7",
                       border: "3px solid black",
                       borderRadius: "4px",
-                      "& .MuiSelect-select": { paddingLeft: "8px" },
                     }}
-                    displayEmpty={false}
                   >
                     {verfügbareZeiten.map((zeit, idx) => (
                       <MenuItem key={idx} value={zeit}>
@@ -248,12 +230,14 @@ export default function Buchung() {
                 </FormControl>
               )}
 
+              {/* Fehleranzeige */}
               {error && (
                 <Typography sx={{ color: "red", fontWeight: 600, mb: 2 }} align="center">
                   {error}
                 </Typography>
               )}
 
+              {/* Absenden */}
               <Button
                 type="submit"
                 fullWidth
@@ -275,6 +259,7 @@ export default function Buchung() {
         </Fade>
       </Box>
 
+      {/* Erfolgsdialog */}
       <BuchungErfolgDialog
         open={dialogOpen}
         onClose={handleDialogClose}
