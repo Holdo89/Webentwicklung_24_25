@@ -8,10 +8,11 @@ import Hauptseite1 from "./Pages/Hauptseite/Hauptseite1";
 import Sidebar from "./components/Hauptseite/Sidebar";
 import LevelDisplay from "./components/Hauptseite/LevelAuswahl";
 import Trainingsplan from "./Pages/Trainingsplan/Trainingsplan";
+import Videopage from "./Pages/Videopage/Videopage";
 
 function LayoutWithSidebar({ children }) {
   const location = useLocation();
-  const showSidebar = ["/cards", "/hauptseite","/trainingsplan"].includes(location.pathname);
+  const showSidebar = ["/cards", "/hauptseite","/trainingsplan","/videos"].includes(location.pathname);
   const level =["/hauptseite"].includes(location.pathname)
 
   return (
@@ -41,8 +42,9 @@ function App() {
       <Route path="hauptseite"element={<LayoutWithSidebar><Hauptseite1/></LayoutWithSidebar>}/>
       
       <Route path="trainingsplan"element={<LayoutWithSidebar><Trainingsplan/></LayoutWithSidebar>}/>
-       </Routes>
        
+      <Route path="videos"element={<LayoutWithSidebar><Videopage/></LayoutWithSidebar>}/>
+       </Routes>
     </BrowserRouter>
     </>
   );
