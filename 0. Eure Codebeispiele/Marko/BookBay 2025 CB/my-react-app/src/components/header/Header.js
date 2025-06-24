@@ -1,188 +1,146 @@
-import React, { useState } from "react";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
-  Avatar,
-  Button,
-  Tooltip,
-  MenuItem,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../../assets/BookLogo.png";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppBar, Toolbar, Container, Box, Typography, IconButton, 
+         Avatar, Button, Menu, MenuItem, Tooltip } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import logo from '../../assets/BookLogo.png';
+import './Header.css';
 
-const pages = [
-  { name: "Home", path: "/" },
-  { name: "Kalender", path: "/dashboard" },
-];
-
-const settings = ["Profil", "Buchungen", "Logout"];
-
-function Header({ user, setUser }) {
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
-
+const Header = ({ user, setUser }) => {
+  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
+  const [userMenuAnchor, setUserMenuAnchor] = useState(null);
   const navigate = useNavigate();
 
-  // Öffnen der mobilen Navigation
-  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
-  // Öffnen des Benutzer-Menüs
-  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
-  // Schließen mobiler Navigation
-  const handleCloseNavMenu = () => setAnchorElNav(null);
-  // Schließen Benutzer-Menü
-  const handleCloseUserMenu = () => setAnchorElUser(null);
+  const pages = [
+    { name: 'Home', path: '/' },
+    { name: 'Kalender', path: '/dashboard' }
+  ];
 
-  // Logout-Handler
+  const userMenuItems = [
+    { label: 'Profil', path: '/profile' },
+    { label: 'Buchungen', path: '/dashboard' },
+    { label: 'Logout', action: () => handleLogout() }
+  ];
+
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     setUser(null);
-    handleCloseUserMenu();
-    window.location.reload();
+    navigate('/');
   };
 
+  const handleMobileMenuClose = () => setMobileMenuAnchor(null);
+  const handleUserMenuClose = () => setUserMenuAnchor(null);
+
   return (
-    <AppBar position="static" sx={{ bgcolor: "#6EB5C0", color: "#E2E8E4" }}>
+    <AppBar position="static" className="header">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Logo & Titel für Desktop */}
-          <Box
-            component="img"
-            src={logo}
-            alt="BookBay Logo"
-            sx={{ height: 100, mr: 1, display: { xs: "none", md: "flex" } }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            BookBay
-          </Typography>
-
-          {/* Mobile Menü Button */}
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton size="large" color="inherit" onClick={handleOpenNavMenu}>
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorElNav}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: "block", md: "none" } }}
+          {/* Desktop Logo */}
+          <Box className="header-logo">
+            <img src={logo} alt="BookBay Logo" className="logo-img" />
+            <Typography 
+              variant="h6" 
+              component={Link} 
+              to="/" 
+              className="logo-text"
             >
-              {pages.map(({ name, path }) => (
-                <MenuItem
-                  key={name}
-                  component={Link}
-                  to={path}
-                  onClick={handleCloseNavMenu}
-                >
-                  <Typography textAlign="center">{name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              BookBay
+            </Typography>
           </Box>
 
-          {/* Logo für Mobile */}
-          <Box
-            component="img"
-            src={logo}
-            alt="BookBay Logo"
-            sx={{ height: 100, mr: 1, display: { xs: "flex", md: "none" } }}
-          />
+          {/* Mobile Menu Button */}
+          <Box className="mobile-menu">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              onClick={(e) => setMobileMenuAnchor(e.currentTarget)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
 
-          {/* Navigation Buttons Desktop */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {/* Desktop Navigation */}
+          <Box className="desktop-nav">
             {pages.map(({ name, path }) => (
               <Button
                 key={name}
                 component={Link}
                 to={path}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                className="nav-button"
               >
                 {name}
               </Button>
             ))}
           </Box>
 
-          {/* Benutzerbereich */}
-          <Box sx={{ flexGrow: 0 }}>
-            {!user ? (
-              <Button
-                variant="outlined"
-                component={Link}
-                to="/login"
-                sx={{ color: "white", borderColor: "white", textTransform: "none" }}
-              >
-                Login
-              </Button>
-            ) : (
+          {/* User Section */}
+          <Box className="user-section">
+            {user ? (
               <>
                 <Tooltip title="Benutzeroptionen">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={user.name}>
-                      {user.name?.[0]?.toUpperCase() || "U"}
+                  <IconButton onClick={(e) => setUserMenuAnchor(e.currentTarget)}>
+                    <Avatar className="user-avatar">
+                      {user.name?.[0]?.toUpperCase() || 'U'}
                     </Avatar>
                   </IconButton>
                 </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  anchorEl={anchorElUser}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => {
-                    if (setting === "Logout") {
-                      return (
-                        <MenuItem key={setting} onClick={handleLogout}>
-                          <Typography textAlign="center">{setting}</Typography>
-                        </MenuItem>
-                      );
-                    }
-
-                    const path =
-                      setting === "Profil"
-                        ? "/profile"
-                        : setting === "Buchungen"
-                        ? "/dashboard"
-                        : "/";
-
-                    return (
-                      <MenuItem
-                        key={setting}
-                        component={Link}
-                        to={path}
-                        onClick={handleCloseUserMenu}
-                      >
-                        <Typography textAlign="center">{setting}</Typography>
-                      </MenuItem>
-                    );
-                  })}
-                </Menu>
               </>
+            ) : (
+              <Button 
+                component={Link} 
+                to="/login" 
+                className="login-button"
+              >
+                Login
+              </Button>
             )}
           </Box>
         </Toolbar>
       </Container>
+
+      {/* Mobile Menu */}
+      <Menu
+        anchorEl={mobileMenuAnchor}
+        open={Boolean(mobileMenuAnchor)}
+        onClose={handleMobileMenuClose}
+        className="mobile-menu-list"
+      >
+        {pages.map(({ name, path }) => (
+          <MenuItem 
+            key={name} 
+            component={Link} 
+            to={path}
+            onClick={handleMobileMenuClose}
+          >
+            {name}
+          </MenuItem>
+        ))}
+      </Menu>
+
+      {/* User Menu */}
+      <Menu
+        anchorEl={userMenuAnchor}
+        open={Boolean(userMenuAnchor)}
+        onClose={handleUserMenuClose}
+        className="user-menu-list"
+      >
+        {userMenuItems.map((item) => (
+          <MenuItem
+            key={item.label}
+            onClick={() => {
+              handleUserMenuClose();
+              item.action?.();
+            }}
+            component={item.path ? Link : 'div'}
+            to={item.path}
+          >
+            {item.label}
+          </MenuItem>
+        ))}
+      </Menu>
     </AppBar>
   );
-}
+};
 
 export default Header;

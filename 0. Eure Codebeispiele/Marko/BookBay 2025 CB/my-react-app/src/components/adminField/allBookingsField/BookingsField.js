@@ -1,4 +1,7 @@
-// MUI-Komponenten für die Tabellenanzeige
+import React from "react";
+import PropTypes from "prop-types";
+
+// MUI Components
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,53 +11,35 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
-// Eigene CSS-Datei für Styling der Buchungstabelle
+// Styles
 import "../allBookingsField/BookingsField.css";
 
-// ------------------------------------------
-// Komponente zeigt eine Tabelle aller Buchungen
-// Props:
-// - bookings: Array mit Buchungsdaten
-// - onDeleteClick: Funktion, die bei Klick auf "Löschen" ausgeführt wird
-// ------------------------------------------
-export default function BookingsField({ bookings, onDeleteClick }) {
+const BookingsField = ({ bookings, onDeleteClick }) => {
+  const formatDate = (date) => new Date(date).toLocaleDateString("de-DE");
+  const formatTime = (time) => time?.slice(0, 5) || "/";
+
   return (
     <TableContainer component={Paper} className="bookings-container">
       <Table className="bookings-table" aria-label="Buchungstabelle">
-        {/* Tabellenkopf mit Spaltenüberschriften */}
         <TableHead>
           <TableRow>
-            <TableCell>
-              <strong>Titel</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Kunde</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Datum</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Uhrzeit</strong>
-            </TableCell>
-            <TableCell>
-              <strong>Löschen</strong>
-            </TableCell>
+            <TableCell><strong>Titel</strong></TableCell>
+            <TableCell><strong>Kunde</strong></TableCell>
+            <TableCell><strong>Datum</strong></TableCell>
+            <TableCell><strong>Uhrzeit</strong></TableCell>
+            <TableCell><strong>Löschen</strong></TableCell>
           </TableRow>
         </TableHead>
 
-        {/* Tabellenkörper mit den Buchungsdaten */}
         <TableBody>
           {bookings.map((booking) => (
             <TableRow key={booking.id}>
               <TableCell>{booking.title}</TableCell>
               <TableCell>
-                {booking.salutation} {booking.lastName} {booking.firstName}{" "}
-                {/* Anrede + Vorname */}
+                {booking.salutation} {booking.lastName} {booking.firstName}
               </TableCell>
-              <TableCell>
-                {new Date(booking.date).toLocaleDateString("de-DE")}
-              </TableCell>
-              <TableCell>{booking.time?.slice(0, 5) || "/"}</TableCell>
+              <TableCell>{formatDate(booking.date)}</TableCell>
+              <TableCell>{formatTime(booking.time)}</TableCell>
               <TableCell>
                 <Button
                   variant="outlined"
@@ -71,4 +56,11 @@ export default function BookingsField({ bookings, onDeleteClick }) {
       </Table>
     </TableContainer>
   );
-}
+};
+
+BookingsField.propTypes = {
+  bookings: PropTypes.array.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+};
+
+export default BookingsField;

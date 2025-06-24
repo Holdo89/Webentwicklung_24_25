@@ -1,5 +1,4 @@
-/* GuestForm.css */
-
+/* Container für das gesamte Formular */
 .guest-form-container {
   background: #fff;
   padding: 2rem;
@@ -10,50 +9,96 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-.guest-form-container h2 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #333;
-}
-
-.guest-form-container label {
+/* Formular-Element */
+.guest-form {
   display: flex;
   flex-direction: column;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #444;
+  gap: 1.2rem;
 }
 
-.guest-form-container input,
-.guest-form-container select {
-  margin-top: 0.4rem;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
+/* Überschrift */
+.guest-form h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #006C84;
+  font-size: 1.8rem;
+}
+
+/* Formularfelder */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.form-field input,
+.form-field select {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #6EB5C0;
+  box-shadow: 0 0 0 2px rgba(110, 181, 192, 0.2);
+}
+
+/* Buttons */
 .guest-form-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 1.5rem;
+  gap: 1rem;
 }
 
 .guest-form-buttons button {
-  padding: 0.7rem 1.4rem;
+  padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   font-size: 1rem;
+  transition: all 0.3s;
+  flex: 1;
 }
 
 .guest-form-buttons button[type="submit"] {
-  background-color: #1976d2;
+  background-color: #006C84;
   color: white;
+}
+
+.guest-form-buttons button[type="submit"]:hover {
+  background-color: #5DA4B3;
 }
 
 .guest-form-buttons button[type="button"] {
   background-color: #f0f0f0;
   color: #333;
+  border: 1px solid #ddd;
+}
+
+.guest-form-buttons button[type="button"]:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 600px) {
+  .guest-form-container {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .guest-form-buttons {
+    flex-direction: column;
+  }
 }

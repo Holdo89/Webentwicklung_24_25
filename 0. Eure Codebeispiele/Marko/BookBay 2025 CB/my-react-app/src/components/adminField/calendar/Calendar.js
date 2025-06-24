@@ -1,76 +1,63 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/de";
 import axios from "axios";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
-import { PickersDay } from "@mui/x-date-pickers/PickersDay";
-import { useSnackbar, SnackbarProvider } from "notistack";
+import { useSnackbar } from "notistack";
 import Badge from "@mui/material/Badge";
+import { LocalizationProvider, StaticDateTimePicker, PickersDay } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "./Calendar.css";
 
-// Locale setzen
 dayjs.locale("de");
 
-function CalendarComponent({ onDateTimeSelected }) {
+const FULLY_BOOKED_LIMIT = 10;
+const HALF_BOOKED_LIMIT = 5;
+
+export default function Calendar({ onDateTimeSelected }) {
   const [selectedDateTime, setSelectedDateTime] = useState(null);
   const [bookingsCount, setBookingsCount] = useState({});
   const { enqueueSnackbar } = useSnackbar();
 
-  const HALF_BOOKED_LIMIT = 5;
-  const FULLY_BOOKED_LIMIT = 10;
-
-  // Buchungen vom Server laden
   useEffect(() => {
-    const fetchBookingsCount = async () => {
+    const fetchBookings = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/bookingsCount");
-        setBookingsCount(response.data);
-
+        const { data } = await axios.get("http://localhost:3001/bookingsCount");
+        setBookingsCount(data);
       } catch (error) {
-        console.error("Fehler beim Laden der Buchungen:", error);
         enqueueSnackbar("Fehler beim Laden der Buchungen", { variant: "error" });
       }
     };
-    fetchBookingsCount();
+
+    fetchBookings();
   }, [enqueueSnackbar]);
 
-  // Datumsauswahl verarbeiten
-  const handleAccept = (value) => {
-    if (!value || value.isBefore(dayjs())) {
+  const handleDateAccept = (date) => {
+    if (!date || date.isBefore(dayjs())) {
       enqueueSnackbar("Datum ungültig oder in der Vergangenheit", { variant: "warning" });
       return;
     }
 
-    if (onDateTimeSelected) {
-      onDateTimeSelected(value);
-    }
-
+    onDateTimeSelected?.(date);
     setSelectedDateTime(null);
   };
 
-  // Tagesanzeige mit Warnsymbolen
-const renderDayWithWarning = (day, _selectedDates, pickersDayProps) => {
-  const dayStr = day.startOf("day").format("YYYY-MM-DD");
-  const count = bookingsCount[dayStr] || 0;
+  const getBadgeForDay = (count) => {
+    if (count >= FULLY_BOOKED_LIMIT) return "❌";
+    if (count >= HALF_BOOKED_LIMIT) return "⚠️";
+    return null;
+  };
 
+  const renderDay = (day, _, pickersDayProps) => {
+    const dateKey = day.startOf("day").format("YYYY-MM-DD");
+    const count = bookingsCount[dateKey] || 0;
+    const badge = getBadgeForDay(count);
 
-  let badge = null;
-  if (count >= FULLY_BOOKED_LIMIT) {
-    badge = "❌";
-  } else if (count >= HALF_BOOKED_LIMIT) {
-    badge = "⚠️";
-  }
-
-  return (
-    <Badge overlap="circular" badgeContent={badge} color="error">
-      <PickersDay {...pickersDayProps} />
-    </Badge>
-  );
-};
-
+    return (
+      <Badge overlap="circular" badgeContent={badge}>
+        <PickersDay {...pickersDayProps} />
+      </Badge>
+    );
+  };
 
   return (
     <div className="calendar-container">
@@ -80,23 +67,12 @@ const renderDayWithWarning = (day, _selectedDates, pickersDayProps) => {
           ampm={false}
           value={selectedDateTime}
           onChange={setSelectedDateTime}
-          onAccept={handleAccept}
+          onAccept={handleDateAccept}
           minTime={dayjs().hour(12).minute(0)}
           maxTime={dayjs().hour(15).minute(0)}
-          renderDay={renderDayWithWarning}
+          renderDay={renderDay}
         />
       </LocalizationProvider>
     </div>
-  );
-}
-
-export default function StaticDateTimePickerLandscape({ onDateTimeSelected }) {
-  return (
-    <SnackbarProvider
-      maxSnack={3}
-      anchorOrigin={{ vertical: "top", horizontal: "center" }}
-    >
-      <CalendarComponent onDateTimeSelected={onDateTimeSelected} />
-    </SnackbarProvider>
   );
 }

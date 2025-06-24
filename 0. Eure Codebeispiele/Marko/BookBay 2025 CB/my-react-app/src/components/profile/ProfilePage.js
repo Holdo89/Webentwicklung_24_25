@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import Login from "../authPage/login/Login";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import axios from 'axios';
 import {
   Button,
   Dialog,
@@ -8,102 +9,108 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  Typography,
-} from "@mui/material";
-import { useSnackbar } from "notistack";
-import axios from "axios";
-import "./ProfilePage.css";
+  Typography
+} from '@mui/material';
+import Login from '../authPage/login/Login';
+import './ProfilePage.css';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [passwords, setPasswords] = useState({
+    old: '',
+    new: '',
+    confirm: ''
+  });
 
-  const [open, setOpen] = useState(false);
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem('user'));
 
   if (!user) {
-    return <Login onLoginSuccess={() => navigate("/profile")} />;
+    return <Login onLoginSuccess={() => navigate('/profile')} />;
   }
 
   const handlePasswordChange = async () => {
-    if (newPassword !== confirmPassword) {
-      enqueueSnackbar("Die neuen Passwörter stimmen nicht überein.", { variant: "error" });
+    if (passwords.new !== passwords.confirm) {
+      enqueueSnackbar('Passwörter stimmen nicht überein', { variant: 'error' });
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/change-password", {
+      await axios.post('http://localhost:3001/change-password', {
         email: user.email,
-        oldPassword,
-        newPassword,
+        oldPassword: passwords.old,
+        newPassword: passwords.new
       });
 
-      enqueueSnackbar("Passwort erfolgreich geändert!", { variant: "success" });
-      setOpen(false);
-      setOldPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
+      enqueueSnackbar('Passwort erfolgreich geändert', { variant: 'success' });
+      handleDialogClose();
     } catch (error) {
-      const errorMsg = error.response?.data || "Fehler beim Ändern des Passworts.";
-      enqueueSnackbar(errorMsg, { variant: "error" });
+      const message = error.response?.data?.message || 'Fehler beim Ändern des Passworts';
+      enqueueSnackbar(message, { variant: 'error' });
     }
   };
 
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+    setPasswords({ old: '', new: '', confirm: '' });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPasswords(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
-    <div className="profile-container">
-      <Typography variant="h4" gutterBottom>
-        Dein Profil
-      </Typography>
+    <div className="profile-page">
+      <Typography variant="h4">Dein Profil</Typography>
 
-      <Typography className="profile-item"><strong>Name:</strong> {user.name}</Typography>
-      <Typography className="profile-item"><strong>E-Mail:</strong> {user.email}</Typography>
-      <Typography className="profile-item"><strong>Adresse:</strong> {user.adresse || "Nicht angegeben"}</Typography>
+      <div className="profile-info">
+        <Typography><strong>Name:</strong> {user.name}</Typography>
+        <Typography><strong>E-Mail:</strong> {user.email}</Typography>
+        <Typography><strong>Adresse:</strong> {user.adresse || 'Nicht angegeben'}</Typography>
+      </div>
 
-      <Button
-        variant="outlined"
-        color="primary"
-        className="change-password-button"
-        onClick={() => setOpen(true)}
+      <Button 
+        variant="outlined" 
+        onClick={() => setIsDialogOpen(true)}
       >
         Passwort ändern
       </Button>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={isDialogOpen} onClose={handleDialogClose}>
         <DialogTitle>Passwort ändern</DialogTitle>
         <DialogContent>
           <TextField
+            name="old"
             label="Altes Passwort"
             type="password"
             fullWidth
-            margin="dense"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
+            margin="normal"
+            value={passwords.old}
+            onChange={handleInputChange}
           />
           <TextField
+            name="new"
             label="Neues Passwort"
             type="password"
             fullWidth
-            margin="dense"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            margin="normal"
+            value={passwords.new}
+            onChange={handleInputChange}
           />
           <TextField
-            label="Neues Passwort bestätigen"
+            name="confirm"
+            label="Passwort bestätigen"
             type="password"
             fullWidth
-            margin="dense"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            margin="normal"
+            value={passwords.confirm}
+            onChange={handleInputChange}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpen(false)} color="secondary">
-            Abbrechen
-          </Button>
+          <Button onClick={handleDialogClose}>Abbrechen</Button>
           <Button onClick={handlePasswordChange} color="primary" variant="contained">
             Speichern
           </Button>

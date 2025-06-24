@@ -4,22 +4,29 @@ import Login from './login/Login';
 import Register from './register/Register';
 
 const AuthPage = ({ onLoginSuccess }) => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLoginView, setIsLoginView] = useState(true);
+
+  const handleLoginSuccess = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    onLoginSuccess(user);
+  };
+
+  const switchToRegister = () => setIsLoginView(false);
+  const switchToLogin = () => setIsLoginView(true);
 
   return (
-    <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-      <div className="auth-wrapper">
-        {isLogin ? (
-          <Login
-            onLoginSuccess={(user) => {
-              localStorage.setItem("user", JSON.stringify(user));
-              localStorage.setItem("userId", user.id);
-              onLoginSuccess(user);
-            }}
-            onSwitchToRegister={() => setIsLogin(false)}
+    <SnackbarProvider 
+      maxSnack={3} 
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    >
+      <div className="auth-container">
+        {isLoginView ? (
+          <Login 
+            onLoginSuccess={handleLoginSuccess}
+            onSwitchToRegister={switchToRegister}
           />
         ) : (
-          <Register onSwitchToLogin={() => setIsLogin(true)} />
+          <Register onSwitchToLogin={switchToLogin} />
         )}
       </div>
     </SnackbarProvider>
