@@ -1,72 +1,75 @@
-/* Haupt-Container: Vollbildhöhe, Hintergrund mit Farbverlauf und Logo, zentriert Inhalt */
+/* Haupt-Container: Vollbildhöhe, Hintergrund mit Logo und Verlauf */
 .welcome-root {
-  min-height: 100vh; /* Volle Fensterhöhe */
-  background: linear-gradient(135deg, #e2e8e4, #ffccbb); /* Farbverlauf */
-  background-image: url("../../assets/BookLogo.png"); /* Hintergrundbild (Logo) */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e2e8e4, #ffccbb);
+  background-image: url("../../assets/BookLogoCut.png");
   background-repeat: no-repeat;
-  background-size: 800px; /* Größe des Logos */
-  background-position: bottom; /* Logo unten positioniert */
+  background-size: 400px;
+  background-position: center;
   display: flex;
-  align-items: center; /* Vertikale Zentrierung */
+  align-items: center;
   justify-content: center;
-  padding: 20px;  
+  padding: 40px 20px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
-/* Karte mit Glassmorphism-Effekt: leicht transparent, weichgezeichneter Hintergrund */
+/* Karte mit Glassmorphism */
 .glass-card {
-  backdrop-filter: blur(10px); /* Hintergrund unscharf */
-  background-color: rgba(255, 255, 255, 0.75); /* Weiß mit Transparenz */
-  border-radius: 24px; /* Abgerundete Ecken */
-  padding: 48px 36px; /* Innenabstand */
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
-  text-align: center; /* Text zentriert */
-  max-width: 700px; /* Max. Breite */
+  backdrop-filter: blur(1px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 48px 36px;
+  box-shadow: 0 16px 32px rgba(0, 108, 132, 0.1);
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* Titel-Stil: kräftige, große Schrift mit Farbe */
+/* Titel */
 .welcome-title {
   font-weight: 800;
   font-size: 3rem;
   margin-bottom: 24px;
-  color: #006c84; /* Dunkelblau/Türkis */
+  color: #006c84;
 }
 
-/* Farbverlaufstext: Text mit Farbverlauf gefüllt */
+/* Gradient-Text */
 .gradient-text span {
-  background: linear-gradient(to right, #006c84, #6eb5c0); /* Verlauf von Dunkel- zu Hellblau */
-  -webkit-background-clip: text; /* Hintergrund nur im Text sichtbar */
-  -webkit-text-fill-color: transparent; /* Text transparent für Effekt */
+  background: linear-gradient(to right, #006c84, #6eb5c0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 800;
 }
 
-/* Beschreibungstext: dezente Farbe und angenehme Lesbarkeit */
+/* Beschreibung */
 .welcome-text {
   color: #333;
   font-size: 1.2rem;
   margin-bottom: 24px;
-  line-height: 1.6; /* Zeilenhöhe */
+  line-height: 1.6;
 }
 
-/* Liste: keine Standard-Aufzählung, Farben und Abstände angepasst */
+/* Liste */
 .welcome-list {
-  list-style: none; /* Kein Standard-Listenzeichen */
+  list-style: none;
   padding: 0;
   margin-bottom: 32px;
   font-size: 1.05rem;
   color: #006c84;
-  text-align: left; /* Linksbündig */
+  text-align: left;
 }
 
-/* Listenelemente mit Abstand und eigener Aufzählung */
+/* Listenpunkte */
 .welcome-list li {
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   position: relative;
-  padding-left: 24px; /* Platz für eigenes Listenzeichen */
+  padding-left: 26px;
 }
 
-/* Eigenes Listenzeichen: Kreis mit Farbe und Umrandung */
 .welcome-list li::before {
   content: "";
   position: absolute;
@@ -74,56 +77,83 @@
   top: 8px;
   width: 10px;
   height: 10px;
-  background-color: #ffccbb; /* Hellorange */
-  border-radius: 50%; /* Kreis */
-  box-shadow: 0 0 0 2px #006c84; /* Umrandung in Dunkelblau */
+  background-color: #ffccbb;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #006c84;
 }
 
-/* Container für die Buttons, zentriert und mit Abstand */
+/* Buttons-Container */
 .welcome-buttons {
   display: flex;
   justify-content: center;
   gap: 16px;
-  flex-wrap: wrap; /* Bei kleinen Bildschirmen umbrechen */
+  flex-wrap: wrap;
+  margin-top: 24px;
 }
 
-/* Primärer Button: Hintergrundfarbe und Styling */
-.welcome-button {
-  background-color: #006c84;
-  text-transform: none; /* Keine Großschreibung */
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 12px;
-}
-
-/* Hover-Effekt für primären Button: hellere Farbe */
-.welcome-button:hover {
-  background-color: #6eb5c0;
-}
-
-/* Sekundärer Button (Register): Umrandung und Textfarbe */
+/* Buttons */
+.welcome-button,
 .register-button {
-  border: 2px solid #006c84;
-  color: #006c84;
   text-transform: none;
   padding: 12px 24px;
   font-size: 1rem;
   border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
-/* Hover-Effekt für Sekundärbutton: Hintergrundfarbe, weiße Schrift */
+.welcome-button {
+  background-color: #006c84;
+  color: white;
+}
+
+.welcome-button:hover {
+  background-color: #6eb5c0;
+}
+
+.register-button {
+  border: 2px solid #006c84;
+  color: #006c84;
+  background: transparent;
+}
+
 .register-button:hover {
   background-color: #6eb5c0;
   color: white;
   border-color: #6eb5c0;
 }
-.glass-card {
-  backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 24px;
-  padding: 48px 36px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 700px;
-  margin: 20px; /* Neu hinzugefügt */
+
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Optimierung */
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 2.2rem;
+  }
+
+  .glass-card {
+    padding: 36px 24px;
+  }
+
+  .welcome-text {
+    font-size: 1rem;
+  }
+
+  .background-container {
+    padding: 20px;
+  }
+
+  .welcome-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
 }

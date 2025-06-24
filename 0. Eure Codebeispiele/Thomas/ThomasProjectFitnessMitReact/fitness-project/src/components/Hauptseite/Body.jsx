@@ -2,6 +2,9 @@ import React from "react";
 import '../../styles/hauptseite.css';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
+import ProgressBar from './ProgressBar';
+
+
 
 export default function Body() {
 const navigate=useNavigate();
@@ -26,6 +29,9 @@ useEffect(() => {
         Starte jetzt mit deinem individuell angepassten Trainingsplan
         und erreiche deine Ziele Schritt für Schritt!
       </p>
+      <div className="chart-container">
+            <ProgressBar />
+      </div>
 
       <button className="button" onClick={handleStartTraining}>
         Trainingsplan starten

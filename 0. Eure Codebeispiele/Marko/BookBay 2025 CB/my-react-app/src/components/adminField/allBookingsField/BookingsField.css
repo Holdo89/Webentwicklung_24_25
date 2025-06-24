@@ -2,14 +2,15 @@
   width: 100%;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 108, 132, 0.1);
   overflow-x: auto;
   box-sizing: border-box;
+
 }
 
 .bookings-table {
   min-width: 600px;
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
@@ -25,10 +26,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-.bookings-table td {
-  padding: 8px 12px;
-  border-bottom: 1px solid #f0f0f0;
-}
+
 
 .bookings-table tr:hover {
   background-color: #f9f9f9;

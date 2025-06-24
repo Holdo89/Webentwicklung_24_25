@@ -6,12 +6,14 @@ import TippDesTages from "../../components/Hauptseite/TippDesTages";
 
 
 
+
 export default function Hauptseite1() {
   return (
     <div>
       <Header/>
       <TippDesTages/>
       <Body/>
+      
     </div>
   );
 }

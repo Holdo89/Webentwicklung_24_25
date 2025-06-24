@@ -163,6 +163,13 @@ app.get("/trainingsplan", (req, res) => {
     res.json(results);
   });
 });
+//videos aus der db holen
+app.get("/videos",(req,res)=>{
+db.query("SELECT id, name, video_url FROM exercises WHERE video_url IS NOT NULL", (err, results) => {
+  if (err) return res.status(500).send(err);
+  res.json(results);
+});
+});
 
 
 

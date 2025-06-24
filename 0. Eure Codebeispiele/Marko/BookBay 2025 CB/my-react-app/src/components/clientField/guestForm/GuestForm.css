@@ -5,7 +5,6 @@
   border-radius: 12px;
   max-width: 500px;
   margin: 0 auto;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   font-family: "Segoe UI", sans-serif;
 }
 
@@ -92,13 +91,27 @@
 }
 
 /* Responsive Anpassungen */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .guest-form-container {
-    padding: 1.5rem;
-    margin: 0 1rem;
+    padding: 0.5rem;
   }
-  
-  .guest-form-buttons {
-    flex-direction: column;
+
+  .guest-form h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-field label {
+    font-size: 0.85rem;
+  }
+
+  .form-field input,
+  .form-field select {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .guest-form-buttons button {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
   }
 }
