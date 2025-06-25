@@ -1,6 +1,7 @@
+// src/pages/Buchung.js
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // 🔐 Zugriff auf eingeloggten Benutzer
+import { useAuth } from "../context/AuthContext"; // 🔐 Login-Status holen
 import Navbar from "../components/Navbar";
 import {
   Box,
@@ -18,43 +19,51 @@ import {
   DialogActions,
 } from "@mui/material";
 
-// ✅ Dialog-Fenster für Buchungserfolg
+// ✅ Dialog bei erfolgreicher Buchung
 function BuchungErfolgDialog({ open, onClose, datum, angebot, uhrzeit }) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Vielen Dank für Ihre Buchung!</DialogTitle>
       <DialogContent>
-        <Typography><strong>Datum:</strong> {new Date(datum).toLocaleDateString("de-DE")}</Typography>
-        <Typography><strong>Leistung:</strong> {angebot}</Typography>
-        <Typography><strong>Uhrzeit:</strong> {uhrzeit} Uhr</Typography>
+        <Typography>
+          <strong>Datum:</strong>{" "}
+          {new Date(datum).toLocaleDateString("de-DE")}
+        </Typography>
+        <Typography>
+          <strong>Leistung:</strong> {angebot}
+        </Typography>
+        <Typography>
+          <strong>Uhrzeit:</strong> {uhrzeit} Uhr
+        </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">Schließen</Button>
+        <Button onClick={onClose} color="primary">
+          Schließen
+        </Button>
       </DialogActions>
     </Dialog>
   );
 }
 
 export default function Buchung() {
-  const { datum } = useParams();               // 📅 Datum aus URL
+  const { datum } = useParams(); // 📅 URL-Parameter z. B. /buchung/2025-07-01
   const navigate = useNavigate();
-  const { user, isLoggedIn } = useAuth();      // 🔐 Benutzer aus globalem Login-Zustand
+  const { user } = useAuth(); // 👤 Login-Status inkl. Benutzer-ID
 
-  // ⬇️ States
-  const [angebot, setAngebot] = useState("");              // ausgewähltes Angebot
-  const [verfügbareZeiten, setVerfügbareZeiten] = useState([]);  // Uhrzeiten für das Angebot
-  const [uhrzeit, setUhrzeit] = useState("");              // gewählte Uhrzeit
-  const [error, setError] = useState("");                  // Fehlermeldung
-  const [dialogOpen, setDialogOpen] = useState(false);     // Erfolg-Dialog
+  const [angebot, setAngebot] = useState("");
+  const [verfügbareZeiten, setVerfügbareZeiten] = useState([]);
+  const [uhrzeit, setUhrzeit] = useState("");
+  const [error, setError] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  // 🔐 Wenn Benutzer nicht eingeloggt ist, leite weiter zum Login
+  // 🔐 Weiterleitung, falls kein Benutzer eingeloggt ist
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!user) {
       navigate(`/login?redirect=/buchung/${datum}`);
     }
-  }, [isLoggedIn, navigate, datum]);
+  }, [user, navigate, datum]);
 
-  // ✅ Buchbare Angebote (Frontend-Auswahl)
+  // 📋 Angebote zur Auswahl
   const angebote = [
     "Innenreinigung",
     "Außenreinigung",
@@ -66,7 +75,7 @@ export default function Buchung() {
     "Sonstiges (Begutachtung)",
   ];
 
-  // 🕘 Errechne verfügbare Zeiten je nach Angebot
+  // ⏰ Verfügbare Uhrzeiten abhängig vom gewählten Angebot
   useEffect(() => {
     const zeitenNachAngebot = () => {
       switch (angebot) {
@@ -90,7 +99,7 @@ export default function Buchung() {
     setVerfügbareZeiten(zeitenNachAngebot());
   }, [angebot]);
 
-  // 🔁 Hilfsfunktion für Zeitintervalle
+  // ⏱️ Hilfsfunktion: generiert 30-Minuten-Slots zwischen Start und Ende
   const generiereZeiten = (start, ende) => {
     const zeiten = [];
     let [stunde, minute] = start.split(":").map(Number);
@@ -109,7 +118,7 @@ export default function Buchung() {
     return zeiten;
   };
 
-  // ✅ Buchung absenden
+  // 📤 Formular absenden
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!angebot || !uhrzeit) {
@@ -122,10 +131,10 @@ export default function Buchung() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          datum: new Date(datum).toISOString().split("T")[0], // 🔁 zu YYYY-MM-DD
+          datum: new Date(datum).toISOString().split("T")[0], // z.B. 2025-07-01
           angebot,
           uhrzeit,
-          benutzer_id: user?.id, // ✅ Benutzer-ID mitgeben
+          benutzer_id: user?.id, // 🔐 notwendig!
         }),
       });
 
@@ -133,7 +142,7 @@ export default function Buchung() {
       if (!res.ok) throw new Error(data.error || "Fehler bei der Buchung.");
 
       setError("");
-      setDialogOpen(true); // 🎉 Erfolg
+      setDialogOpen(true); // ✅ Erfolgsdialog anzeigen
     } catch (err) {
       console.error("❌ Buchung fehlgeschlagen:", err);
       setError("Die Buchung konnte nicht gespeichert werden.");
@@ -142,12 +151,13 @@ export default function Buchung() {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
-    navigate("/");
+    navigate("/"); // Nach Buchung zurück zur Startseite
   };
 
   return (
     <>
       <Navbar />
+
       <Box
         sx={{
           minHeight: "100vh",
@@ -172,19 +182,33 @@ export default function Buchung() {
               width: "100%",
             }}
           >
-            <Typography variant="h4" align="center" sx={{ color: "#adebc7", mb: 1 }}>
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{ color: "#adebc7", marginBottom: "0.5rem" }}
+            >
               Terminbuchung
             </Typography>
-            <Typography variant="subtitle1" align="center" sx={{ color: "#c4f1df", mb: 4 }}>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              sx={{ color: "#c4f1df", marginBottom: "2rem" }}
+            >
               {new Date(datum).toLocaleDateString("de-DE")}
             </Typography>
 
+            {/* 📋 Formular */}
             <form onSubmit={handleSubmit}>
-              {/* Angebot Auswahl */}
+              {/* Angebot auswählen */}
               <FormControl fullWidth sx={{ mb: 3 }}>
-                <InputLabel id="angebot-label" sx={{ color: "#adebc7", fontWeight: "bold" }}>
-                  Angebot
-                </InputLabel>
+                {angebot === "" && (
+                  <InputLabel
+                    id="angebot-label"
+                    sx={{ color: "#adebc7", fontWeight: "bold" }}
+                  >
+                    Angebot
+                  </InputLabel>
+                )}
                 <Select
                   labelId="angebot-label"
                   value={angebot}
@@ -204,12 +228,17 @@ export default function Buchung() {
                 </Select>
               </FormControl>
 
-              {/* Uhrzeit Auswahl */}
+              {/* Uhrzeit auswählen */}
               {angebot && (
                 <FormControl fullWidth sx={{ mb: 3 }}>
-                  <InputLabel id="uhrzeit-label" sx={{ color: "#adebc7", fontWeight: "bold" }}>
-                    Uhrzeit
-                  </InputLabel>
+                  {uhrzeit === "" && (
+                    <InputLabel
+                      id="uhrzeit-label"
+                      sx={{ color: "#adebc7", fontWeight: "bold" }}
+                    >
+                      Uhrzeit
+                    </InputLabel>
+                  )}
                   <Select
                     labelId="uhrzeit-label"
                     value={uhrzeit}
@@ -230,7 +259,7 @@ export default function Buchung() {
                 </FormControl>
               )}
 
-              {/* Fehleranzeige */}
+              {/* Fehlermeldung */}
               {error && (
                 <Typography sx={{ color: "red", fontWeight: 600, mb: 2 }} align="center">
                   {error}
@@ -259,7 +288,7 @@ export default function Buchung() {
         </Fade>
       </Box>
 
-      {/* Erfolgsdialog */}
+      {/* ✅ Erfolgsdialog */}
       <BuchungErfolgDialog
         open={dialogOpen}
         onClose={handleDialogClose}

@@ -1,9 +1,8 @@
 // src/pages/Login.js
 import React, { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
-
 import {
   Box,
   Paper,
@@ -11,23 +10,24 @@ import {
   TextField,
   Button,
   Alert,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Login() {
-  const { login } = useAuth(); // 🔐 Zugriff auf Login-Funktion aus dem Kontext
+  const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // 🔙 Ziel nach erfolgreichem Login (z. B. Buchungsseite)
+  // 🔁 Optionales Redirect-Ziel (z.B. wenn jemand zur Buchung wollte)
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
 
-  // 📦 Lokale Zustände für Eingaben & Sichtbarkeit
   const [email, setEmail] = useState("");
   const [passwort, setPasswort] = useState("");
-  const [passwortSichtbar, setPasswortSichtbar] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ Login-Handler beim Absenden des Formulars
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -40,9 +40,9 @@ export default function Login() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Login fehlgeschlagen.");
+      if (!res.ok) throw new Error(data.error || "Login fehlgeschlagen");
 
-      // ✅ Login im Context speichern + Weiterleitung
+      // 🔐 Login speichern & Benutzer umleiten
       login({ token: data.token, id: data.id, name: data.name });
       navigate(redirect);
     } catch (err) {
@@ -52,10 +52,7 @@ export default function Login() {
 
   return (
     <>
-      {/* 🔝 Navigation einblenden */}
       <Navbar />
-
-      {/* 💠 Zentrierter Seitenbereich */}
       <Box
         sx={{
           minHeight: "100vh",
@@ -67,7 +64,6 @@ export default function Login() {
         }}
       >
         <Paper
-          elevation={10}
           sx={{
             p: 4,
             maxWidth: 400,
@@ -79,17 +75,16 @@ export default function Login() {
             backdropFilter: "blur(6px)",
           }}
         >
-          {/* 🧾 Überschrift */}
           <Typography variant="h5" align="center" sx={{ color: "#adebc7", mb: 3 }}>
             Kunden-Login
           </Typography>
 
-          {/* 🧾 Login-Formular */}
           <form onSubmit={handleLogin}>
             <TextField
               fullWidth
               label="E-Mail"
               type="email"
+              variant="outlined"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -97,42 +92,38 @@ export default function Login() {
               InputLabelProps={{ style: { color: "#adebc7" } }}
               InputProps={{ style: { color: "#adebc7" } }}
             />
-
             <TextField
               fullWidth
               label="Passwort"
-              type={passwortSichtbar ? "text" : "password"}
+              variant="outlined"
+              type={showPassword ? "text" : "password"}
               value={passwort}
               onChange={(e) => setPasswort(e.target.value)}
               required
-              sx={{ mb: 1 }}
+              sx={{ mb: 3 }}
               InputLabelProps={{ style: { color: "#adebc7" } }}
-              InputProps={{ style: { color: "#adebc7" } }}
+              InputProps={{
+                style: { color: "#adebc7" },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                      sx={{ color: "#adebc7" }}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
 
-            {/* 👁 Passwort-Anzeige-Umschalter */}
-            <Button
-              onClick={() => setPasswortSichtbar(!passwortSichtbar)}
-              sx={{
-                color: "#adebc7",
-                textTransform: "none",
-                fontSize: "0.85rem",
-                padding: 0,
-                mb: 2,
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              {passwortSichtbar ? "Passwort verbergen" : "Passwort anzeigen"}
-            </Button>
-
-            {/* ⚠️ Fehleranzeige bei falschem Login */}
             {error && (
               <Alert severity="error" sx={{ mb: 2 }}>
                 {error}
               </Alert>
             )}
 
-            {/* ✅ Login-Button */}
             <Button
               type="submit"
               fullWidth
@@ -150,13 +141,9 @@ export default function Login() {
             </Button>
           </form>
 
-          {/* 🔗 Link zur Registrierung */}
           <Typography align="center" sx={{ mt: 3, color: "#adebc7" }}>
             Noch kein Konto?{" "}
-            <Link
-              to="/register"
-              style={{ color: "#fff", textDecoration: "underline" }}
-            >
+            <Link to={`/register?redirect=${redirect}`} style={{ color: "#fff", textDecoration: "underline" }}>
               Jetzt registrieren
             </Link>
           </Typography>

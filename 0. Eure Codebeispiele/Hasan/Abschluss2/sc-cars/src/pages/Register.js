@@ -1,5 +1,6 @@
+// src/pages/Register.js
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import {
   Box,
@@ -12,54 +13,52 @@ import {
 
 export default function Register() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // 🌱 Lokaler Zustand für Eingabefelder
+  const redirect = new URLSearchParams(location.search).get("redirect") || "/";
+
   const [vorname, setVorname] = useState("");
   const [nachname, setNachname] = useState("");
   const [email, setEmail] = useState("");
   const [passwort, setPasswort] = useState("");
-  const [passwortWiederholen, setPasswortWiederholen] = useState("");
-
-  // 🌱 Statusmeldungen
+  const [passwort2, setPasswort2] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // ✅ Formular absenden
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
     setSuccess("");
 
-    // ❌ Passwortvergleich prüfen
-    if (passwort !== passwortWiederholen) {
-      return setError("Passwörter stimmen nicht überein.");
+    if (passwort !== passwort2) {
+      setError("Passwörter stimmen nicht überein.");
+      return;
     }
 
     try {
       const res = await fetch("http://localhost:3001/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ vorname, nachname, email, passwort }),
+        body: JSON.stringify({
+          name: `${vorname} ${nachname}`,
+          email,
+          passwort,
+        }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Registrierung fehlgeschlagen.");
+      if (!res.ok) throw new Error(data.error || "Registrierung fehlgeschlagen");
 
-      // ✅ Erfolgreich
-      setSuccess("Registrierung erfolgreich! Du kannst dich jetzt einloggen.");
-      setTimeout(() => navigate("/login"), 2000);
+      setSuccess("Registrierung erfolgreich!");
+      setTimeout(() => navigate(`/login?redirect=${redirect}`), 1500);
     } catch (err) {
-      console.error("❌ Fehler bei Registrierung:", err);
       setError(err.message);
     }
   };
 
   return (
     <>
-      {/* 🔝 Navbar oben */}
       <Navbar />
-
-      {/* 🧾 Seite + Formular */}
       <Box
         sx={{
           minHeight: "100vh",
@@ -71,10 +70,9 @@ export default function Register() {
         }}
       >
         <Paper
-          elevation={10}
           sx={{
             p: 4,
-            maxWidth: 450,
+            maxWidth: 400,
             width: "100%",
             backgroundColor: "rgba(255, 255, 255, 0.03)",
             border: "1px solid rgba(150, 216, 177, 0.3)",
@@ -84,10 +82,9 @@ export default function Register() {
           }}
         >
           <Typography variant="h5" align="center" sx={{ color: "#adebc7", mb: 3 }}>
-            Registrierung
+            Konto erstellen
           </Typography>
 
-          {/* 🧾 Formularfelder */}
           <form onSubmit={handleRegister}>
             <TextField
               fullWidth
@@ -135,17 +132,15 @@ export default function Register() {
               fullWidth
               label="Passwort wiederholen"
               type="password"
-              value={passwortWiederholen}
-              onChange={(e) => setPasswortWiederholen(e.target.value)}
+              value={passwort2}
+              onChange={(e) => setPasswort2(e.target.value)}
               required
               sx={{ mb: 3 }}
               InputLabelProps={{ style: { color: "#adebc7" } }}
               InputProps={{ style: { color: "#adebc7" } }}
             />
 
-            {/* ⚠️ Fehlermeldung */}
             {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
-            {/* ✅ Erfolgsmeldung */}
             {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
 
             <Button
@@ -165,14 +160,13 @@ export default function Register() {
             </Button>
           </form>
 
-          {/* 🔁 Bereits registriert? */}
           <Typography align="center" sx={{ mt: 3, color: "#adebc7" }}>
             Bereits registriert?{" "}
             <Link
-              to="/login"
+              to={`/login?redirect=${redirect}`}
               style={{ color: "#fff", textDecoration: "underline" }}
             >
-              Jetzt einloggen
+              Zum Login
             </Link>
           </Typography>
         </Paper>
