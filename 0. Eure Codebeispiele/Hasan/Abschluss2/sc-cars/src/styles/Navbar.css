@@ -115,3 +115,22 @@
   padding: 0.5rem 1rem;
   margin-left: 10px;
 }
+
+.logo-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logo-image {
+  height: 50px;
+  display: block;
+  pointer-events: none;
+}
+
+.user-info {
+  color: #adebc7;
+  margin-left: 1rem;
+  font-weight: bold;
+}
