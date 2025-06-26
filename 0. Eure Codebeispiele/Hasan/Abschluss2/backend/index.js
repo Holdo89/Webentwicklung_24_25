@@ -11,11 +11,11 @@ const app = express();
 const PORT = 3001;
 const SECRET = "dein_geheimer_schluessel";
 
-// 📧 Zugangsdaten für Mailtrap (nur zu Testzwecken)
+// 📧 Mailtrap-Zugang (nur für Tests, später durch echten SMTP ersetzen)
 const MAIL_USER = "40e70e0246ed42";
 const MAIL_PASS = "000f175fddfeaf";
 
-// 🌐 CORS und JSON-Verarbeitung
+// 🌐 Middleware aktivieren
 app.use(cors({
   origin: "http://localhost:3000",
   methods: ["GET", "POST", "DELETE"],
@@ -23,20 +23,26 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-// 🔌 Verbindung zur MySQL-Datenbank
+// 🔌 MySQL-Datenbank verbinden
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "sc-cars",
 });
-
 db.connect((err) =>
   err ? console.error("❌ DB Fehler:", err) : console.log("✅ Verbunden mit MySQL")
 );
 
+// 📧 Mailer konfigurieren
+const transporter = nodemailer.createTransport({
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
+  auth: { user: MAIL_USER, pass: MAIL_PASS },
+});
+
 //
-// ✅ REGISTRIERUNG
+// ✅ Registrierung
 //
 app.post("/register", async (req, res) => {
   const { vorname, nachname, email, passwort } = req.body;
@@ -56,7 +62,7 @@ app.post("/register", async (req, res) => {
 });
 
 //
-// ✅ LOGIN
+// ✅ Login
 //
 app.post("/login", (req, res) => {
   const { email, passwort } = req.body;
@@ -81,7 +87,7 @@ app.post("/login", (req, res) => {
 });
 
 //
-// ✅ KONTAKTFORMULAR & E-MAIL
+// ✅ Kontaktformular inkl. Mailversand
 //
 app.post("/kontakt", (req, res) => {
   const { name, email, nachricht } = req.body;
@@ -90,15 +96,9 @@ app.post("/kontakt", (req, res) => {
   db.query(sql, [name, email, nachricht], (err) => {
     if (err) return res.status(500).json({ error: "Speicherfehler." });
 
-    const transporter = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
-      auth: { user: MAIL_USER, pass: MAIL_PASS },
-    });
-
     const mailOptions = {
       from: '"SC Cars Kontakt" <kontakt@sccars.at>',
-      to: "coders.bay.test2@hotmail.com",
+      to: "admin@example.com",
       subject: "Neue Kontaktanfrage",
       text: `Von: ${name} <${email}>\n\n${nachricht}`,
     };
@@ -111,14 +111,13 @@ app.post("/kontakt", (req, res) => {
 });
 
 //
-// ✅ BUCHUNG MIT VALIDIERUNG
+// ✅ Buchung mit Validierung, Zeitprüfung & HTML-Mail
 //
 app.post("/buchung", (req, res) => {
   const { datum, angebot, uhrzeit, benutzer_id } = req.body;
   if (!datum || !angebot || !uhrzeit || !benutzer_id)
     return res.status(400).json({ error: "Alle Felder erforderlich." });
 
-  // 🕒 Zeitlimits nach Angebot
   const maxZeitMap = {
     'Innenreinigung': '17:30',
     'Außenreinigung': '17:30',
@@ -141,28 +140,23 @@ app.post("/buchung", (req, res) => {
     'Sonstiges': 1.5,
   };
 
-  // 🕓 Zu spät?
   if (uhrzeit > maxZeitMap[angebot]) {
     return res.status(400).json({
       error: `Diese Leistung ist nur bis ${maxZeitMap[angebot]} buchbar.`,
     });
   }
 
-  // ⛔ Überschneidung prüfen
   const abstandStunden = abstandMap[angebot];
   const zielZeit = new Date(`${datum}T${uhrzeit}:00`);
   const startZeit = new Date(zielZeit.getTime() - abstandStunden * 60 * 60 * 1000);
   const endZeit = new Date(zielZeit.getTime() + abstandStunden * 60 * 60 * 1000);
 
-  const sql = `
+  const conflictQuery = `
     SELECT * FROM buchungen
-    WHERE datum = ?
-    AND (
-      TIME(uhrzeit) BETWEEN ? AND ?
-    )
+    WHERE datum = ? AND TIME(uhrzeit) BETWEEN ? AND ?
   `;
 
-  db.query(sql, [
+  db.query(conflictQuery, [
     datum,
     startZeit.toTimeString().slice(0, 5),
     endZeit.toTimeString().slice(0, 5),
@@ -175,17 +169,47 @@ app.post("/buchung", (req, res) => {
       });
     }
 
-    // ✅ Speichern
-    const insertSql = "INSERT INTO buchungen (datum, angebot, uhrzeit, benutzer_id) VALUES (?, ?, ?, ?)";
-    db.query(insertSql, [datum, angebot, uhrzeit, benutzer_id], (err) => {
-      if (err) return res.status(500).json({ error: "Fehler bei Eintragung." });
-      res.status(200).json({ message: "Buchung erfolgreich." });
+    // ✅ Benutzerinformationen holen
+    const benutzerQuery = "SELECT vorname, nachname FROM benutzer WHERE id = ?";
+    db.query(benutzerQuery, [benutzer_id], (err, userResult) => {
+      if (err || userResult.length === 0) {
+        return res.status(500).json({ error: "Benutzer nicht gefunden." });
+      }
+
+      const { vorname, nachname } = userResult[0];
+
+      // ✅ Buchung speichern
+      const insertSql = "INSERT INTO buchungen (datum, angebot, uhrzeit, benutzer_id) VALUES (?, ?, ?, ?)";
+      db.query(insertSql, [datum, angebot, uhrzeit, benutzer_id], (err) => {
+        if (err) return res.status(500).json({ error: "Fehler bei Eintragung." });
+
+        // 📧 HTML-E-Mail senden
+        const mailOptions = {
+          from: '"SC Cars" <noreply@sccars.at>',
+          to: "admin@example.com",
+          subject: "✅ Neue Buchung",
+          html: `
+            <h3>Neue Buchung eingegangen:</h3>
+            <p><strong>👤 Kunde:</strong> ${vorname} ${nachname}</p>
+            <p><strong>📅 Datum:</strong> ${datum}</p>
+            <p><strong>⏰ Uhrzeit:</strong> ${uhrzeit} Uhr</p>
+            <p><strong>🛠️ Leistung:</strong> ${angebot}</p>
+          `,
+        };
+
+        transporter.sendMail(mailOptions, (err) => {
+          if (err) console.error("❌ Fehler beim Mailversand:", err);
+          else console.log("📧 Bestätigungsmail versendet.");
+        });
+
+        res.status(200).json({ message: "Buchung erfolgreich." });
+      });
     });
   });
 });
 
 //
-// ✅ EIGENE BUCHUNGEN ANZEIGEN
+// ✅ Eigene Buchungen anzeigen
 //
 app.get("/meine-buchungen/:benutzer_id", (req, res) => {
   const benutzer_id = req.params.benutzer_id;
@@ -202,7 +226,7 @@ app.get("/meine-buchungen/:benutzer_id", (req, res) => {
 });
 
 //
-// ✅ BUCHUNG STORNIEREN (nur wenn > 24h vorher)
+// ✅ Buchung stornieren (nur >24h vorher)
 //
 app.delete("/buchung/:id", (req, res) => {
   const buchungId = req.params.id;
@@ -230,24 +254,19 @@ app.delete("/buchung/:id", (req, res) => {
 });
 
 //
-// ✅ NEU: VERGEBENE ZEITEN FÜR EIN DATUM
+// ✅ Gebuchte Zeiten an einem Datum abrufen
 //
 app.get("/vergebene-zeiten/:datum", (req, res) => {
   const { datum } = req.params;
-
   const sql = "SELECT uhrzeit, angebot FROM buchungen WHERE datum = ?";
   db.query(sql, [datum], (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: "Fehler beim Abrufen der Zeiten." });
-    }
-
-    // ⏳ Gibt gebuchte Uhrzeiten & Angebote zurück
+    if (err) return res.status(500).json({ error: "Fehler beim Abrufen der Zeiten." });
     res.status(200).json(results);
   });
 });
 
 //
-// ✅ SERVER STARTEN
+// ✅ Server starten
 //
 app.listen(PORT, () => {
   console.log(`🚀 Backend läuft auf http://localhost:${PORT}`);
