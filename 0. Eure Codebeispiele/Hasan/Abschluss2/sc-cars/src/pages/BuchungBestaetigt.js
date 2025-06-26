@@ -1,24 +1,33 @@
-// src/pages/BuchungBestaetigt.js
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar"; // 🔝 Navigation oben
+import Navbar from "../components/Navbar";
 import { Box, Paper, Typography, Button } from "@mui/material";
 
 export default function BuchungBestaetigt() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 📦 Übergabedaten von vorheriger Seite (z. B. /buchung)
+  // 📦 Übergabedaten von vorheriger Seite
   const { datum, angebot, uhrzeit } = location.state || {};
 
-  // ❌ Wenn keine Daten vorhanden, zurück zur Startseite
+  // ⛔ Schutz: Wenn Daten fehlen, zurück zur Startseite
   useEffect(() => {
     if (!datum || !angebot || !uhrzeit) {
       navigate("/");
     }
   }, [datum, angebot, uhrzeit, navigate]);
 
-  // ⛔ Schutz, um kein leeres Layout anzuzeigen
+  // ⏳ Nach 3 Sekunden automatisch zur Startseite
+  useEffect(() => {
+    if (datum && angebot && uhrzeit) {
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [datum, angebot, uhrzeit, navigate]);
+
+  // 👻 Falls keine Daten vorhanden (kurzzeitig), nichts anzeigen
   if (!datum || !angebot || !uhrzeit) return null;
 
   return (
@@ -68,21 +77,9 @@ export default function BuchungBestaetigt() {
             <strong>Uhrzeit:</strong> {uhrzeit} Uhr
           </Typography>
 
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#8cd3ad",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#68b893" },
-              px: 3,
-              py: 1.5,
-              fontSize: "1.05rem",
-              borderRadius: "8px",
-            }}
-            onClick={() => navigate("/")}
-          >
-            Zurück zur Startseite
-          </Button>
+          <Typography sx={{ color: "#999", fontSize: "0.85rem" }}>
+            Du wirst in wenigen Sekunden automatisch zur Startseite weitergeleitet...
+          </Typography>
         </Paper>
       </Box>
     </>
