@@ -2,27 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
-import "../styles/Buchung.css"; // 🎨 Buchungs-Styling
+import "../styles/Buchung.css";
 
 export default function Buchung() {
-  const { datum } = useParams(); // 📅 Datum aus URL
+  const { datum } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth(); // 👤 Aktueller Benutzer
+  const { user } = useAuth();
 
-  // 🧠 Zustände
   const [angebot, setAngebot] = useState("");
   const [uhrzeit, setUhrzeit] = useState("");
   const [zeiten, setZeiten] = useState([]);
+  const [vergeben, setVergeben] = useState([]);
   const [error, setError] = useState("");
 
-  // 🔐 Weiterleitung zum Login, falls nicht eingeloggt
-  useEffect(() => {
-    if (!user) {
-      navigate(`/login?redirect=/buchung/${datum}`);
-    }
-  }, [user, navigate, datum]);
-
-  // 📋 Mögliche Leistungen
   const angebote = [
     "Innenreinigung",
     "Außenreinigung",
@@ -34,52 +26,73 @@ export default function Buchung() {
     "Sonstiges",
   ];
 
-  // 🕒 Dynamische Uhrzeiten je nach Angebot
+  // Weiterleitung bei nicht-eingeloggtem Nutzer
+  useEffect(() => {
+    if (!user) navigate(`/login?redirect=/buchung/${datum}`);
+  }, [user, navigate, datum]);
+
+  // Lade bereits vergebene Zeiten vom Server
+  useEffect(() => {
+    fetch(`http://localhost:3001/vergebene-zeiten/${datum}`)
+      .then((res) => res.json())
+      .then((data) => setVergeben(data));
+  }, [datum]);
+
+  // Verfügbare Zeiten generieren und prüfen
   useEffect(() => {
     if (!angebot) return;
 
-    let endHour = 17;
-    let endMinute = 30;
+    let endStunde = 17.5;
+    if (angebot === "Politur") endStunde = 15;
+    else if (
+      ["Felgenreparatur", "Tiefenreinigung-Sitze", "Sonstiges"].includes(
+        angebot
+      )
+    )
+      endStunde = 16;
+    else if (angebot === "Innen- und Außenreinigung") endStunde = 17.5;
 
-    // ⏰ Je nach Angebot die maximale Endzeit festlegen
-    switch (angebot) {
-      case "Politur":
-        endHour = 15;
-        endMinute = 0;
-        break;
-      case "Tiefenreinigung-Sitze":
-      case "Felgenreparatur":
-      case "Sonstiges":
-        endHour = 16;
-        endMinute = 0;
-        break;
-      default:
-        endHour = 17;
-        endMinute = 30;
-    }
+    const dauerMap = {
+      Politur: 5,
+      "Innenreinigung": 2,
+      "Außenreinigung": 2,
+      "Innen- und Außenreinigung": 3,
+      "Felgenreparatur": 3.5,
+      "Tiefenreinigung-Sitze": 3.5,
+      Kundenberatung: 1.5,
+      Sonstiges: 1.5,
+    };
+    const dauer = dauerMap[angebot];
 
-    // 📅 Zeit-Slots von 9:00 bis zur erlaubten Endzeit generieren
     const slots = [];
-    for (let h = 9; h <= endHour; h++) {
-      slots.push(`${h.toString().padStart(2, "0")}:00`);
-      if (h !== endHour || endMinute === 30) {
-        slots.push(`${h.toString().padStart(2, "0")}:30`);
-      }
+    for (let h = 9; h <= endStunde - 0.5; h += 0.5) {
+      const [hour, min] = [Math.floor(h), (h % 1) * 60];
+      const zeit = `${hour.toString().padStart(2, "0")}:${min
+        .toString()
+        .padStart(2, "0")}`;
+
+      // Prüfe Kollision mit bereits vergebenen Zeiträumen
+      const konflikt = vergeben.some((v) => {
+        const start = parseFloat(v.uhrzeit.replace(":", "."));
+        const ende = start + dauerMap[v.angebot];
+        const t = h;
+        return t >= start && t < ende;
+      });
+
+      slots.push({ zeit, disabled: konflikt });
     }
 
     setZeiten(slots);
-  }, [angebot]);
+  }, [angebot, vergeben]);
 
-  // ✅ Buchung absenden
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!angebot || !uhrzeit) {
-      setError("Bitte wähle eine Leistung und eine Uhrzeit.");
+      setError("Bitte Leistung und Uhrzeit wählen.");
       return;
     }
 
-    const response = await fetch("http://localhost:3001/buchung", {
+    const res = await fetch("http://localhost:3001/buchung", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -90,14 +103,12 @@ export default function Buchung() {
       }),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      setError(data.error || "Ein Fehler ist aufgetreten.");
+    const data = await res.json();
+    if (!res.ok) {
+      setError(data.error || "Fehler bei Buchung.");
       return;
     }
 
-    // 🎉 Erfolgreich gebucht – weiter zur Bestätigung
     navigate("/bestaetigt", {
       state: { datum, angebot, uhrzeit },
     });
@@ -106,7 +117,6 @@ export default function Buchung() {
   return (
     <>
       <Navbar />
-
       <div className="buchung-container">
         <div className="buchung-card">
           <h2 className="buchung-title">
@@ -114,12 +124,14 @@ export default function Buchung() {
           </h2>
 
           <form onSubmit={handleSubmit} className="buchung-form">
-            {/* 🛠️ Leistungsauswahl */}
             <label>
               Leistung
               <select
                 value={angebot}
-                onChange={(e) => setAngebot(e.target.value)}
+                onChange={(e) => {
+                  setAngebot(e.target.value);
+                  setUhrzeit("");
+                }}
                 required
               >
                 <option value="">Bitte wählen</option>
@@ -129,7 +141,6 @@ export default function Buchung() {
               </select>
             </label>
 
-            {/* ⏰ Uhrzeit nur anzeigen, wenn Leistung gewählt */}
             {angebot && (
               <label>
                 Uhrzeit
@@ -140,16 +151,15 @@ export default function Buchung() {
                 >
                   <option value="">Bitte wählen</option>
                   {zeiten.map((z, i) => (
-                    <option key={i}>{z}</option>
+                    <option key={i} value={z.zeit} disabled={z.disabled}>
+                      {z.zeit} {z.disabled ? "⛔" : ""}
+                    </option>
                   ))}
                 </select>
               </label>
             )}
 
-            {/* ⚠️ Fehlermeldung */}
             {error && <div className="error-msg">{error}</div>}
-
-            {/* ✅ Absenden */}
             <button type="submit" className="submit-btn">
               Buchen
             </button>
