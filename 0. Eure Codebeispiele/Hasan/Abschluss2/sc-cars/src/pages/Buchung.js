@@ -1,56 +1,19 @@
-// src/pages/Buchung.js
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
-import {
-  Box,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-  Paper,
-  Fade,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
-
-function BuchungErfolgDialog({ open, onClose, datum, angebot, uhrzeit }) {
-  return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Vielen Dank für Ihre Buchung!</DialogTitle>
-      <DialogContent>
-        <Typography>
-          <strong>Datum:</strong> {new Date(datum).toLocaleDateString("de-DE")}
-        </Typography>
-        <Typography>
-          <strong>Leistung:</strong> {angebot}
-        </Typography>
-        <Typography>
-          <strong>Uhrzeit:</strong> {uhrzeit} Uhr
-        </Typography>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} color="primary">
-          Schließen
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
+import "../styles/Buchung.css";
 
 export default function Buchung() {
   const { datum } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [angebot, setAngebot] = useState("");
-  const [verfügbareZeiten, setVerfügbareZeiten] = useState([]);
   const [uhrzeit, setUhrzeit] = useState("");
+  const [zeiten, setZeiten] = useState([]);
+  const [vergeben, setVergeben] = useState([]);
   const [error, setError] = useState("");
-  const [dialogOpen, setDialogOpen] = useState(false);
 
   const angebote = [
     "Innenreinigung",
@@ -60,228 +23,149 @@ export default function Buchung() {
     "Kundenberatung",
     "Tiefenreinigung-Sitze",
     "Felgenreparatur",
-    "Sonstiges (Begutachtung)",
+    "Sonstiges",
   ];
 
+  // Weiterleitung bei nicht-eingeloggtem Nutzer
   useEffect(() => {
-    const zeitenNachAngebot = () => {
-      switch (angebot) {
-        case "Innenreinigung":
-        case "Außenreinigung":
-        case "Kundenberatung":
-          return generiereZeiten("09:00", "17:00");
-        case "Innen- und Außenreinigung":
-          return generiereZeiten("09:00", "15:30");
-        case "Politur":
-          return generiereZeiten("10:00", "14:00");
-        case "Tiefenreinigung-Sitze":
-        case "Felgenreparatur":
-        case "Sonstiges (Begutachtung)":
-          return generiereZeiten("09:00", "15:00");
-        default:
-          return [];
-      }
+    if (!user) navigate(`/login?redirect=/buchung/${datum}`);
+  }, [user, navigate, datum]);
+
+  // Lade bereits vergebene Zeiten vom Server
+  useEffect(() => {
+    fetch(`http://localhost:3001/vergebene-zeiten/${datum}`)
+      .then((res) => res.json())
+      .then((data) => setVergeben(data));
+  }, [datum]);
+
+  // Verfügbare Zeiten generieren und prüfen
+  useEffect(() => {
+    if (!angebot) return;
+
+    let endStunde = 17.5;
+    if (angebot === "Politur") endStunde = 15;
+    else if (
+      ["Felgenreparatur", "Tiefenreinigung-Sitze", "Sonstiges"].includes(
+        angebot
+      )
+    )
+      endStunde = 16;
+    else if (angebot === "Innen- und Außenreinigung") endStunde = 17.5;
+
+    const dauerMap = {
+      Politur: 5,
+      "Innenreinigung": 2,
+      "Außenreinigung": 2,
+      "Innen- und Außenreinigung": 3,
+      "Felgenreparatur": 3.5,
+      "Tiefenreinigung-Sitze": 3.5,
+      Kundenberatung: 1.5,
+      Sonstiges: 1.5,
     };
+    const dauer = dauerMap[angebot];
 
-    setVerfügbareZeiten(zeitenNachAngebot());
-  }, [angebot]);
+    const slots = [];
+    for (let h = 9; h <= endStunde - 0.5; h += 0.5) {
+      const [hour, min] = [Math.floor(h), (h % 1) * 60];
+      const zeit = `${hour.toString().padStart(2, "0")}:${min
+        .toString()
+        .padStart(2, "0")}`;
 
-  const generiereZeiten = (start, ende) => {
-    const zeiten = [];
-    let [stunde, minute] = start.split(":").map(Number);
-    const [endStunde, endMinute] = ende.split(":").map(Number);
+      // Prüfe Kollision mit bereits vergebenen Zeiträumen
+      const konflikt = vergeben.some((v) => {
+        const start = parseFloat(v.uhrzeit.replace(":", "."));
+        const ende = start + dauerMap[v.angebot];
+        const t = h;
+        return t >= start && t < ende;
+      });
 
-    while (stunde < endStunde || (stunde === endStunde && minute <= endMinute)) {
-      const h = stunde.toString().padStart(2, "0");
-      const m = minute.toString().padStart(2, "0");
-      zeiten.push(`${h}:${m}`);
-      minute += 30;
-      if (minute >= 60) {
-        minute = 0;
-        stunde++;
-      }
+      slots.push({ zeit, disabled: konflikt });
     }
-    return zeiten;
-  };
+
+    setZeiten(slots);
+  }, [angebot, vergeben]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!angebot || !uhrzeit) {
-      setError("Bitte Angebot und Uhrzeit auswählen.");
+      setError("Bitte Leistung und Uhrzeit wählen.");
       return;
     }
 
-    try {
-      const res = await fetch("http://localhost:3001/buchung", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          datum: new Date(datum).toISOString().split("T")[0], // YYYY-MM-DD
-          angebot,
-          uhrzeit,
-        }),
-      });
+    const res = await fetch("http://localhost:3001/buchung", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        datum: new Date(datum).toISOString().split("T")[0],
+        angebot,
+        uhrzeit,
+        benutzer_id: user.id,
+      }),
+    });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Fehler bei der Buchung.");
-
-      setError("");
-      setDialogOpen(true);
-    } catch (err) {
-      console.error("❌ Buchung fehlgeschlagen:", err);
-      setError("Die Buchung konnte nicht gespeichert werden.");
+    const data = await res.json();
+    if (!res.ok) {
+      setError(data.error || "Fehler bei Buchung.");
+      return;
     }
-  };
 
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-    navigate("/");
+    navigate("/bestaetigt", {
+      state: { datum, angebot, uhrzeit },
+    });
   };
 
   return (
     <>
       <Navbar />
-      <Box
-        sx={{
-          minHeight: "100vh",
-          background: "linear-gradient(to bottom, #2b2b2b 0%, #1a1a1a 100%)",
-          padding: "3rem 1rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Fade in timeout={500}>
-          <Paper
-            elevation={10}
-            sx={{
-              padding: "2rem",
-              borderRadius: "16px",
-              backgroundColor: "rgba(255, 255, 255, 0.02)",
-              border: "1px solid rgba(150, 216, 177, 0.3)",
-              boxShadow: "0 15px 40px rgba(150, 216, 177, 0.3)",
-              backdropFilter: "blur(4px)",
-              maxWidth: "600px",
-              width: "100%",
-              transition: "transform 0.4s ease, box-shadow 0.4s ease",
-              "&:hover": {
-                transform: "scale(1.02)",
-                boxShadow: "0 18px 50px rgba(150, 216, 177, 0.4)",
-              },
-            }}
-          >
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{ color: "#adebc7", marginBottom: "0.5rem" }}
-            >
-              Terminbuchung
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              sx={{ color: "#c4f1df", marginBottom: "2rem" }}
-            >
-              {new Date(datum).toLocaleDateString("de-DE")}
-            </Typography>
+      <div className="buchung-container">
+        <div className="buchung-card">
+          <h2 className="buchung-title">
+            Buchung am {new Date(datum).toLocaleDateString("de-DE")}
+          </h2>
 
-            <form onSubmit={handleSubmit}>
-              <FormControl fullWidth sx={{ mb: 3 }}>
-                {angebot === "" && (
-                  <InputLabel
-                    id="angebot-label"
-                    sx={{ color: "#adebc7", fontWeight: "bold" }}
-                  >
-                    Angebot
-                  </InputLabel>
-                )}
-                <Select
-                  labelId="angebot-label"
-                  value={angebot}
-                  onChange={(e) => setAngebot(e.target.value)}
-                  required
-                  sx={{
-                    color: "#adebc7",
-                    border: "3px solid black",
-                    borderRadius: "4px",
-                    "& .MuiSelect-select": { paddingLeft: "8px" },
-                  }}
-                  displayEmpty={false}
-                >
-                  {angebote.map((option, idx) => (
-                    <MenuItem key={idx} value={option}>
-                      {option}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-
-              {angebot && (
-                <FormControl fullWidth sx={{ mb: 3 }}>
-                  {uhrzeit === "" && (
-                    <InputLabel
-                      id="uhrzeit-label"
-                      sx={{ color: "#adebc7", fontWeight: "bold" }}
-                    >
-                      Uhrzeit
-                    </InputLabel>
-                  )}
-                  <Select
-                    labelId="uhrzeit-label"
-                    value={uhrzeit}
-                    onChange={(e) => setUhrzeit(e.target.value)}
-                    required
-                    sx={{
-                      color: "#adebc7",
-                      border: "3px solid black",
-                      borderRadius: "4px",
-                      "& .MuiSelect-select": { paddingLeft: "8px" },
-                    }}
-                    displayEmpty={false}
-                  >
-                    {verfügbareZeiten.map((zeit, idx) => (
-                      <MenuItem key={idx} value={zeit}>
-                        {zeit}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-
-              {error && (
-                <Typography sx={{ color: "red", fontWeight: 600, mb: 2 }} align="center">
-                  {error}
-                </Typography>
-              )}
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{
-                  backgroundColor: "#8cd3ad",
-                  fontWeight: 700,
-                  "&:hover": { backgroundColor: "#68b893" },
-                  padding: "0.75rem",
-                  fontSize: "1.1rem",
-                  borderRadius: "8px",
+          <form onSubmit={handleSubmit} className="buchung-form">
+            <label>
+              Leistung
+              <select
+                value={angebot}
+                onChange={(e) => {
+                  setAngebot(e.target.value);
+                  setUhrzeit("");
                 }}
-                disabled={!angebot || !uhrzeit}
+                required
               >
-                Buchung abschließen
-              </Button>
-            </form>
-          </Paper>
-        </Fade>
-      </Box>
+                <option value="">Bitte wählen</option>
+                {angebote.map((a, i) => (
+                  <option key={i}>{a}</option>
+                ))}
+              </select>
+            </label>
 
-      <BuchungErfolgDialog
-        open={dialogOpen}
-        onClose={handleDialogClose}
-        datum={datum}
-        angebot={angebot}
-        uhrzeit={uhrzeit}
-      />
+            {angebot && (
+              <label>
+                Uhrzeit
+                <select
+                  value={uhrzeit}
+                  onChange={(e) => setUhrzeit(e.target.value)}
+                  required
+                >
+                  <option value="">Bitte wählen</option>
+                  {zeiten.map((z, i) => (
+                    <option key={i} value={z.zeit} disabled={z.disabled}>
+                      {z.zeit} {z.disabled ? "⛔" : ""}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+
+            {error && <div className="error-msg">{error}</div>}
+            <button type="submit" className="submit-btn">
+              Buchen
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
