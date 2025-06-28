@@ -30,6 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center; 
+  align-items: center;
   height: 100%;
   max-width: 600px;
   padding-left: 20px;
@@ -39,6 +40,7 @@ body {
   font-size: 53px;
   line-height: 1.2;
   margin-bottom: 20px;
+  margin-left: -13px;
 }
 
 .highlight {
@@ -46,12 +48,14 @@ body {
 }
 
 .text p {
+  display: flex;
   font-size: 30px;
   color: #ccc;
   margin-bottom: 30px;
+  margin-left: 80px;
 }
 
-.button {
+.button_start {
   display: inline-block;
   padding: 32px 54px;
   background-color: #00BFA6;

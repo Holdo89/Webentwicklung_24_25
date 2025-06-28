@@ -6,6 +6,7 @@ const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET || "supersecrettoken123";
+const axios =require("axios");
 
 app.use(cors());
 app.use(express.json());
@@ -171,7 +172,145 @@ db.query("SELECT id, name, video_url FROM exercises WHERE video_url IS NOT NULL"
 });
 });
 
+//Progress-Bar Code für ständiges aktuallisieren der Daten
 
+app.post('/api/progress/update', authenticateToken, (req, res) => {
+  const userId = req.user.id;
+
+  // 1. Aktuelles Level abfragen
+  const levelSql = 'SELECT level, progress FROM users WHERE id = ?';
+  db.query(levelSql, [userId], (err, results) => {
+    if (err || results.length === 0) return res.status(500).json({ message: 'Fehler beim User-Check' });
+
+    const { level, progress } = results[0];
+
+    const levelTrainingDays = {
+      beginner: 3,
+      intermediate: 4,
+      pro: 5
+    };
+
+    const requiredDays = levelTrainingDays[level];
+    if (!requiredDays) return res.status(400).json({ message: 'Unbekanntes Level' });
+
+    // 2. Zählen, wie viele erledigte Tage es gibt
+    const sql = 'SELECT COUNT(*) AS count FROM trainingstage_progress WHERE user_id = ? AND completed = 1';
+    db.query(sql, [userId], (err, results) => {
+      if (err) return res.status(500).json({ message: 'Fehler beim Zählen' });
+
+      const completedCount = results[0].count;
+
+      // 3. Wenn alle Tage erledigt
+      if (completedCount >= requiredDays) {
+        const newProgress = Math.min(progress + 1, 100); // Optional: max 100%
+
+        // 4. Fortschritt updaten & erledigte Tage zurücksetzen
+        const updateSql = `
+          UPDATE users SET progress = ? WHERE id = ?;
+        `;
+        db.query(updateSql, [newProgress, userId], (err) => {
+          if (err) return res.status(500).json({ message: 'Fehler beim Fortschritt-Update' });
+
+          // 5. Reset erledigte Tage
+          const resetSql = 'UPDATE trainingstage_progress SET completed = 0 WHERE user_id = ?';
+          db.query(resetSql, [userId], (err) => {
+            if (err) return res.status(500).json({ message: 'Fehler beim Zurücksetzen' });
+            return res.json({ progress: newProgress });
+          });
+        });
+      } else {
+        res.status(200).json({ message: 'Noch nicht alle Trainingstage erledigt' });
+      }
+    });
+  });
+});
+
+//Api progress abrufen
+app.get('/api/progress', authenticateToken, (req, res) => {
+  const userId = req.user.id;
+
+  const sql = 'SELECT progress FROM users WHERE id = ?';
+  db.query(sql, [userId], (err, results) => {
+    if (err || results.length === 0) return res.status(500).json({ message: 'Fehler beim Abrufen des Fortschritts' });
+
+    res.json({ progress: results[0].progress });
+  });
+});
+
+// Hilfsfunktion zum Fortschritt updaten
+function updateProgress(userId, callback) {
+  const levelSql = 'SELECT level, progress FROM users WHERE id = ?';
+  db.query(levelSql, [userId], (err, results) => {
+    if (err || results.length === 0) return callback({ status: 500, message: 'Fehler beim User-Check' });
+
+    const { level, progress } = results[0];
+    const levelTrainingDays = { beginner: 3, intermediate: 4, pro: 5 };
+    const requiredDays = levelTrainingDays[level];
+    if (!requiredDays) return callback({ status: 400, message: 'Unbekanntes Level' });
+
+    const sql = 'SELECT COUNT(*) AS count FROM trainingstage_progress WHERE user_id = ? AND completed = 1';
+    db.query(sql, [userId], (err, results) => {
+      if (err) return callback({ status: 500, message: 'Fehler beim Zählen' });
+
+      const completedCount = results[0].count;
+
+      if (completedCount >= requiredDays) {
+        const newProgress = Math.min(progress + 1, 100);
+
+        const updateSql = 'UPDATE users SET progress = ? WHERE id = ?';
+        db.query(updateSql, [newProgress, userId], (err) => {
+          if (err) return callback({ status: 500, message: 'Fehler beim Fortschritt-Update' });
+
+          const resetSql = 'UPDATE trainingstage_progress SET completed = 0 WHERE user_id = ?';
+          db.query(resetSql, [userId], (err) => {
+            if (err) return callback({ status: 500, message: 'Fehler beim Zurücksetzen' });
+
+            callback(null, { progress: newProgress });
+          });
+        });
+      } else {
+        callback(null, { message: 'Noch nicht alle Trainingstage erledigt' });
+      }
+    });
+  });
+}
+
+app.post('/api/trainingstag/complete', authenticateToken, (req, res) => {
+  const userId = req.user.id;
+  const { tag } = req.body;
+
+  const sql = `
+    INSERT INTO trainingstage_progress (user_id, tag, completed,date)
+    VALUES (?, ?, 1,NOW())
+    ON DUPLICATE KEY UPDATE completed = 1, date= NOW();
+  `;
+
+  db.query(sql, [userId, tag], (err) => {
+    if (err) {
+      console.error('Fehler beim Speichern des Trainingstags:', err);
+      return res.status(500).json({ message: 'Fehler beim Speichern des Trainingstags' });
+    }
+
+    updateProgress(userId, (err, result) => {
+      if (err) {
+        return res.status(err.status).json({ message: err.message });
+      }
+      res.json(result);
+    });
+  });
+});
+
+app.get('/api/trainingstage/completed', authenticateToken, (req, res) => {
+  const userId = req.user.id;
+
+  const sql = 'SELECT tag FROM trainingstage_progress WHERE user_id = ? AND completed = 1';
+  db.query(sql, [userId], (err, results) => {
+    if (err) return res.status(500).json({ message: 'Fehler beim Abrufen der erledigten Tage' });
+
+    const tags = results.map(row => row.tag);
+    res.json({ tags });
+  });
+});
 
 
 const port = process.env.PORT || 3001;

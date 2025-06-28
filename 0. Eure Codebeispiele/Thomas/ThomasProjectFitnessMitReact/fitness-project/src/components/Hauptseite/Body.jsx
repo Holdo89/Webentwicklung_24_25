@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import '../../styles/hauptseite.css';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
 import ProgressBar from './ProgressBar';
+import axios from "axios";
 
 
 
 export default function Body() {
-const navigate=useNavigate();
+  const[progress,setProgress]=useState(0);
+  const navigate=useNavigate();
 
 useEffect(() => {
     const token = localStorage.getItem('token');
@@ -22,15 +24,35 @@ useEffect(() => {
     navigate('/trainingsplan');
   };
 
+  useEffect(() => {
+    const fetchProgress = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await axios.get('http://localhost:3001/api/progress', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log('API Progress Response:', res.data);
+        setProgress(res.data.progress || 0);
+      } catch (error) {
+        console.error('Fehler beim Laden des Fortschritts:', error);
+      }
+    };
+
+    fetchProgress();
+  }, []);
+
+console.log('Aktueller Fortschritt im State:', progress);
   return (
     <div className="content">
+      
       <h2>Dein Weg zu mehr Fitness beginnt hier</h2>
       <p>
         Starte jetzt mit deinem individuell angepassten Trainingsplan
         und erreiche deine Ziele Schritt für Schritt!
       </p>
+      
       <div className="chart-container">
-            <ProgressBar />
+            <ProgressBar key={progress} value={progress} />
       </div>
 
       <button className="button" onClick={handleStartTraining}>
