@@ -1,3 +1,5 @@
+//Erstellung einer Buchung
+
 import React, { useState } from "react";
 import ConfirmationEmail from "./components/ConfirmationEmail";
 
@@ -32,7 +34,7 @@ function BookingForm() {
       if (!res.ok) throw new Error("Fehler bei der Buchung");
 
       const newBooking = await res.json();
-      setBooking(newBooking); // Bestätigung anzeigen
+      setBooking(newBooking);
     } catch (err) {
       alert(err.message);
     }

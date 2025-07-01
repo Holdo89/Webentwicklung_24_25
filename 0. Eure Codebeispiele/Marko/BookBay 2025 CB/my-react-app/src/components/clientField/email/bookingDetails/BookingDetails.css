@@ -1,0 +1,65 @@
+.booking-details-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  animation: fadeIn 0.3s ease;
+  box-sizing: border-box; /* Wichtig für korrekte Breitenberechnung */
+}
+
+.booking-details-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem; /* Bessere Überschriften-Größe */
+}
+
+.booking-details-container p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.booking-details-container strong {
+  color: #555;
+  font-weight: 600; /* Deutlichere Hervorhebung */
+}
+
+.cancel-button {
+  display: block; /* Statt inline-block für bessere Positionierung */
+  width: 100%;
+  margin-top: 1.5rem;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.cancel-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px); /* Subtile Interaktion */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+  background-color: #E2E8E4;
+  border: 1px solid #FFCCBB;
+  color: #006C84;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin: 1rem auto; /* Zentrieren */
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.25);
+  animation: fadeInError 0.4s ease forwards;
+  max-width: 400px;
+}

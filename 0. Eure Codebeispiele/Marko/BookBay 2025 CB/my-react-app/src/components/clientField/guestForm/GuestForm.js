@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ConfirmationEmail from "../confirmationEmail/ConfirmationEmail";
-import './GuestForm.css';
+import ConfirmationEmail from "../email/confirmationEmail/ConfirmationEmail";
+import "./GuestForm.css";
+import { useSnackbar } from "notistack";
 
+const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel, onTimeChange }) => {
+  const { enqueueSnackbar } = useSnackbar();
 
-const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel }) => {
   const [formData, setFormData] = useState({
-    guest_title: "",
+    guest_title: "Herr",
     guestName: "",
     guestLastName: "",
     guestEmail: "",
+    guestGroupSize: "1",
   });
 
   const [bookingResult, setBookingResult] = useState(null);
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate group size
+    const groupSize = parseInt(formData.guestGroupSize, 10);
+    if (isNaN(groupSize) || groupSize < 1) {
+      enqueueSnackbar("Gruppengröße muss mindestens 1 sein.", { variant: "error" });
+      return;
+    }
+
+    // Format selectedDateTime (dayjs-Objekt) zu String
     const dateTime = selectedDateTime.format("YYYY-MM-DD HH:mm");
 
     try {
@@ -30,13 +43,16 @@ const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel }) => {
         guestName: formData.guestName,
         guestLastName: formData.guestLastName,
         guestEmail: formData.guestEmail,
+        guestGroupSize: groupSize,
       });
 
       setBookingResult(response.data);
+      enqueueSnackbar("Buchung erfolgreich!", { variant: "success" });
       onBookingSuccess();
     } catch (err) {
-      alert("Fehler bei der Buchung");
       console.error(err);
+      const message = err.response?.data || "Fehler bei der Buchung.";
+      enqueueSnackbar(message, { variant: "error" });
     }
   };
 
@@ -49,17 +65,50 @@ const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel }) => {
       <form className="guest-form" onSubmit={handleSubmit}>
         <h2>Gästeinformation</h2>
 
+        {/* Uhrzeit auswählen */}
+        <div className="form-field">
+          <label htmlFor="bookingTime">Uhrzeit auswählen</label>
+          <select
+            id="bookingTime"
+            value={selectedDateTime.format("HH:mm")}
+            onChange={(e) => {
+              const [hours, minutes] = e.target.value.split(":").map(Number);
+              const updated = selectedDateTime.clone().hours(hours).minutes(minutes);
+              onTimeChange(updated);
+            }}
+            required
+          >
+            {Array.from({ length: 24 }, (_, i) => i)
+              .filter((h) => h >= 9 && h <= 20)
+              .flatMap((h) => [
+                `${h.toString().padStart(2, "0")}:00`,
+                `${h.toString().padStart(2, "0")}:30`,
+              ])
+              .map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
+          </select>
+        </div>
+
+        {/* Anrede */}
         <div className="form-field">
           <label htmlFor="guest_title">Anrede</label>
-          <input
+          <select
             name="guest_title"
             id="guest_title"
             value={formData.guest_title}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="Herr">Herr</option>
+            <option value="Frau">Frau</option>
+            <option value="Divers">Divers</option>
+          </select>
         </div>
 
+        {/* Vorname */}
         <div className="form-field">
           <label htmlFor="guestName">Vorname</label>
           <input
@@ -71,6 +120,7 @@ const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel }) => {
           />
         </div>
 
+        {/* Nachname */}
         <div className="form-field">
           <label htmlFor="guestLastName">Nachname</label>
           <input
@@ -82,6 +132,7 @@ const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel }) => {
           />
         </div>
 
+        {/* E-Mail */}
         <div className="form-field">
           <label htmlFor="guestEmail">E-Mail</label>
           <input
@@ -94,9 +145,27 @@ const GuestForm = ({ selectedDateTime, onBookingSuccess, onCancel }) => {
           />
         </div>
 
+        {/* Gruppengröße */}
+        <div className="form-field">
+          <label htmlFor="guestGroupSize">Anzahl Personen</label>
+          <input
+            type="number"
+            name="guestGroupSize"
+            id="guestGroupSize"
+            min="1"
+            max="20"
+            value={formData.guestGroupSize}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* Buttons */}
         <div className="guest-form-buttons">
           <button type="submit">Buchen</button>
-          <button type="button" onClick={onCancel}>Abbrechen</button>
+          <button type="button" onClick={onCancel}>
+            Abbrechen
+          </button>
         </div>
       </form>
     </div>

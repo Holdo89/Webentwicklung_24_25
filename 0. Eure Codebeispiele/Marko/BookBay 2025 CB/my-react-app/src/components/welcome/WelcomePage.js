@@ -74,10 +74,10 @@ function WelcomePage() {
             <Button
               variant="outlined"
               size="large"
-              onClick={() => navigate("/register")}
-              className="register-button"
+              onClick={() => navigate("/profile")}
+              className="profile-button"
             >
-              Registrieren
+              Profilübersicht
             </Button>
           </Box>
         </motion.div>
