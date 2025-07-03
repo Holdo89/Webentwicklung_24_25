@@ -154,6 +154,7 @@ const BookingCalendar = ({ onDateSelect, bookedDays }) => {
       />
     </LocalizationProvider>
   );
+  
 };
 
 export default BookingCalendar;
