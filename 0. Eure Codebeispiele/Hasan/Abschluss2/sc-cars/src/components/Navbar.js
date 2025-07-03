@@ -1,13 +1,17 @@
+// src/components/Navbar.js
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.css";
 
 export default function Navbar({ navbarRef }) {
-  const [isTop, setIsTop] = useState(true);  // Navbar-Hintergrund abhängig vom Scroll
-  const [menuOpen, setMenuOpen] = useState(false); // Menü offen/zu
+  const [isTop, setIsTop] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
+  // 🎯 Beobachte Scrollposition
   useEffect(() => {
     const handleScroll = () => {
       setIsTop(window.scrollY < 50);
@@ -16,15 +20,13 @@ export default function Navbar({ navbarRef }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setMenuOpen(prev => !prev);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
   const closeMenu = () => setMenuOpen(false);
 
-  // Smooth Scroll Logik
+  // 📍 Scroll-Logik oder Navigation zur Startseite
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleNavClick = (id) => {
@@ -40,30 +42,36 @@ export default function Navbar({ navbarRef }) {
   return (
     <nav
       ref={navbarRef}
-      className={`navbar ${menuOpen ? "open" : ""}`}
-      style={{
-        backgroundColor: isTop ? "rgba(50, 48, 48, 0.7)" : "rgba(50, 48, 48, 1)",
-      }}
+      className={`navbar ${menuOpen ? "open" : ""} ${isTop ? "" : "scrolled"}`}
     >
-      <button
-        className="logo"
-        onClick={() => handleNavClick("intro-split")}
-        style={{ border: "none", background: "none", cursor: "pointer" }}
-      >
-        <img src="/images/logo.png" width="100" alt="Logo" style={{ pointerEvents: "none" }} />
+      {/* Logo */}
+      <button className="logo-button" onClick={() => handleNavClick("intro-split")}>
+        <img src="/images/logo.png" alt="Logo" className="logo-image" />
       </button>
 
+      {/* 🍔 Hamburger-Menü */}
       <div className="hamburger" onClick={toggleMenu}>
         <div className={`bar ${menuOpen ? "active" : ""}`}></div>
         <div className={`bar ${menuOpen ? "active" : ""}`}></div>
         <div className={`bar ${menuOpen ? "active" : ""}`}></div>
       </div>
 
+      {/* 🔗 Navigationslinks */}
       <ul className={`nav-links ${menuOpen ? "show" : ""}`}>
         <li><button onClick={() => handleNavClick("ueber-mich")} className="nav-button">Über Uns</button></li>
         <li><button onClick={() => handleNavClick("aufbereitung")} className="nav-button">Aufbereitung</button></li>
         <li><button onClick={() => handleNavClick("kontakt")} className="nav-button">Kontakt</button></li>
         <li><button onClick={() => handleNavClick("termin")} className="nav-button">Termin</button></li>
+
+        {user ? (
+          <>
+            <li><button onClick={() => { closeMenu(); navigate("/meine-buchungen"); }} className="nav-button">Meine Buchungen</button></li>
+            <li className="user-info">👤 {user.vorname} {user.nachname}</li>
+            <li><button onClick={logout} className="nav-button logout-button">Logout</button></li>
+          </>
+        ) : (
+          <li><button onClick={() => { closeMenu(); navigate("/login"); }} className="nav-button login-button">Login</button></li>
+        )}
       </ul>
     </nav>
   );

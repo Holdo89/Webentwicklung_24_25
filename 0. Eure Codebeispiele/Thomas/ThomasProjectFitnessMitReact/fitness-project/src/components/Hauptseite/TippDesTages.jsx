@@ -22,7 +22,7 @@ const tipps = [
   return (
     <div className="tipp-container">
       <button id="button2" onClick={zeigeTipp}>Tipp des Tages</button>
-      <p id="tipp-text">{tipp}</p>
+      <p id="tipp-text" style={{fontFamily: "Arial"}}>{tipp}</p>
     </div>
   );
 }

@@ -7,14 +7,18 @@ import fallback from '../../assets/exercises/fallback.png'
 import bankdruecken from '../../assets/exercises_fortgeschritten/brustlanghantel.png'
 import dips_ringe from '../../assets/exercises_pro/dipss.png'
 import ExerciseModal from './ExerciseModal';
+import schraegbankdruecken from '../../assets/exercises_fortgeschritten/schrägbankdrücken.png'
+import kabelzug_ueberzuege from '../../assets/exercises_fortgeschritten/kabelzugüber.png'
+
 
 const images ={
   liegestuetze,
   brustpresse,
   fliegende_kurzhantel,
   bankdruecken,
-  dips_ringe
-  //kabelzug_ueberzuege,
+  dips_ringe,
+  schraegbankdruecken,
+  kabelzug_ueberzuege
   //schraegbankdruecken,
   //fliegende_kabelzug,
   //dips_ringe,

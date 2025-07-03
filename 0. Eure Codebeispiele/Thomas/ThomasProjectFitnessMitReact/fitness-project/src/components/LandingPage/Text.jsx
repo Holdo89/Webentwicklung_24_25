@@ -9,7 +9,7 @@ export default function TextBlock() {
         Imperial Fitness
       </h1>
       <p>Trainiere smarter. Werde stärker. Hol dir deinen Traumkörper.</p>
-      <button className="button" onClick={()=>navigate("login")}>Starte jetzt</button>
+      <button className="button_start" onClick={()=>navigate("login")}>Starte jetzt</button>
     </div>
   );
 }
