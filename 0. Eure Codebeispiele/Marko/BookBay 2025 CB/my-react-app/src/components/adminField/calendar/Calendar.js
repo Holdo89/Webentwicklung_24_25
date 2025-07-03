@@ -94,13 +94,15 @@
 // }
 import * as React from 'react';
 import dayjs from 'dayjs';
+
 import 'dayjs/locale/de';
 
 import Badge from '@mui/material/Badge';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'; 
+
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
 dayjs.locale('de');
@@ -115,7 +117,7 @@ function ServerDay({ bookedDays = {}, day, outsideCurrentMonth, ...other }) {
       key={day.toString()}
       overlap="circular"
 
-      
+
       badgeContent={isHalfBooked ? '😊' : undefined}
     >
       <PickersDay 
