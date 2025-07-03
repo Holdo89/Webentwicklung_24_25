@@ -104,6 +104,7 @@ import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 
 dayjs.locale('de');
 
+
 function ServerDay({ bookedDays = {}, day, outsideCurrentMonth, ...other }) {
   const dateStr = day.format('DD.MM.YYYY');
   const isHalfBooked = bookedDays[dateStr] >= 5;
@@ -154,7 +155,7 @@ const BookingCalendar = ({ onDateSelect, bookedDays }) => {
       />
     </LocalizationProvider>
   );
-  
+
 };
 
 export default BookingCalendar;
