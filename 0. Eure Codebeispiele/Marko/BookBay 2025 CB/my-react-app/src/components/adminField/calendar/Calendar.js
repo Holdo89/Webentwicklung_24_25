@@ -114,6 +114,8 @@ function ServerDay({ bookedDays = {}, day, outsideCurrentMonth, ...other }) {
     <Badge
       key={day.toString()}
       overlap="circular"
+
+      
       badgeContent={isHalfBooked ? '😊' : undefined}
     >
       <PickersDay 
