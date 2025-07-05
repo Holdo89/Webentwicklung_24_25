@@ -1,19 +1,12 @@
-/* ========== Header Grundlayout ========== */
 .header {
-  background-color: #6EB5C0 !important;
-  color: #fefefe !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-  padding: 8px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  font-family: 'Inter', sans-serif;
+  background: rgba(110, 181, 192, 0.2) !important; /* dein Primary-Ton mit 20% Deckkraft */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* ========== Logo-Bereich ========== */
+
+
 .header-logo {
   display: flex;
   align-items: center;
@@ -21,19 +14,19 @@
 }
 
 .logo-img {
-  height: 48px;
+  height: 40px;
   width: auto;
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  letter-spacing: 0.1rem;
-  color: inherit !important;
-  text-decoration: none;
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none !important;
 }
 
-/* ========== Desktop Navigation ========== */
 .desktop-nav {
   display: flex;
   gap: 16px;
@@ -42,19 +35,19 @@
 }
 
 .nav-button {
-  color: #ffffff !important;
-  font-weight: 500 !important;
-  text-transform: none !important;
-  padding: 8px 16px !important;
-  border-radius: 8px;
-  transition: background-color 0.25s ease;
+  color: #006C84 !important;
 }
 
 .nav-button:hover {
-  background-color: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(0, 108, 132, 0.15) !important;
+  color: #006C84 !important;
 }
 
-/* ========== Benutzerbereich (Avatar, Login) ========== */
+.nav-button.active {
+  background: #006C84 !important;
+  color: #ffffff !important;
+}
+
 .user-section {
   display: flex;
   align-items: center;
@@ -64,61 +57,54 @@
 .user-avatar {
   background-color: #006C84 !important;
   color: #ffffff !important;
-  font-weight: bold;
 }
 
+/* Login-Button auf hellblauem Header */
 .login-button {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
-  text-transform: none !important;
-  font-weight: 500;
-  padding: 6px 16px;
-  border-radius: 8px;
+  color: #006C84 !important;
+  background: transparent !important;
+  border: 2px solid #006C84 !important;
 }
 
+/* Hover-Zustand */
 .login-button:hover {
-  background-color: rgba(255, 255, 255, 0.12) !important;
+  background: #006C84 !important;
+  color: #ffffff !important;
 }
 
-/* ========== Mobile Menü ========== */
+/* Aktiver/fokussierter Zustand */
+.login-button:active,
+.login-button:focus {
+  background: #005a70 !important;
+  color: #ffffff !important;
+}
+
+
 .mobile-menu {
   display: none;
-  margin-right: auto;
 }
 
-.mobile-menu button {
-  color: #ffffff !important;
-}
-
-/* ========== Menü-Listen (User & Mobile) ========== */
-.user-menu-list .MuiMenuItem-root,
-.mobile-menu-list .MuiMenuItem-root {
-  padding: 10px 20px !important;
-  min-width: 160px !important;
+.mobile-menu-list .MuiMenuItem-root,
+.user-menu-list .MuiMenuItem-root {
+  font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
+  padding: 10px 20px !important;
+  transition: background 0.2s ease;
 }
 
-.user-menu-list .MuiMenuItem-root:hover,
-.mobile-menu-list .MuiMenuItem-root:hover {
-  background-color: #f0f0f0 !important;
+.mobile-menu-list .MuiMenuItem-root:hover,
+.user-menu-list .MuiMenuItem-root:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 
-/* ========== Responsives Verhalten ========== */
 @media (max-width: 900px) {
   .desktop-nav {
     display: none;
   }
-
-  .mobile-menu,
-  .mobile-menu-list {
-    display: block;
-  }
-
   .header-logo {
     display: none;
   }
-
-  .logo-img {
-    height: 40px;
+  .mobile-menu {
+    display: block;
   }
 }

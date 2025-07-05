@@ -1,14 +1,20 @@
-/* Container für das gesamte Formular */
+/* src/components/clientField/guestForm/GuestForm.css */
+
+/* Container im Glass-Look */
 .guest-form-container {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
   padding: 2rem;
-  border-radius: 12px;
   max-width: 500px;
   margin: 0 auto;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Formular-Element */
+/* Formularaufbau */
 .guest-form {
   display: flex;
   flex-direction: column;
@@ -17,13 +23,14 @@
 
 /* Überschrift */
 .guest-form h2 {
-  margin-bottom: 1.5rem;
   text-align: center;
-  color: #006C84;
+  color: #006c84;
   font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
-/* Formularfelder */
+/* Feld-Container */
 .form-field {
   display: flex;
   flex-direction: column;
@@ -32,86 +39,77 @@
 
 .form-field label {
   font-weight: 600;
-  color: #444;
+  color: #005a70;
   font-size: 0.95rem;
 }
 
+/* Inputs & Selects */
 .form-field input,
 .form-field select {
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255,255,255,0.4);
   border-radius: 8px;
+  background: rgba(255,255,255,0.85);
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-field input:focus,
 .form-field select:focus {
   outline: none;
-  border-color: #6EB5C0;
-  box-shadow: 0 0 0 2px rgba(110, 181, 192, 0.2);
+  border-color: #6eb5c0;
+  box-shadow: 0 0 0 2px rgba(110,181,192,0.3);
 }
 
-/* Buttons */
+/* Button-Container */
 .guest-form-buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
+/* Gemeinsame Button-Stile */
 .guest-form-buttons button {
-  padding: 0.8rem 1.5rem;
+  flex: 1;
+  padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 8px;
   font-weight: 600;
-  cursor: pointer;
   font-size: 1rem;
-  transition: all 0.3s;
-  flex: 1;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+/* Primär-Button */
 .guest-form-buttons button[type="submit"] {
-  background-color: #006C84;
-  color: white;
+  background: #006c84;
+  color: #fff;
 }
 
 .guest-form-buttons button[type="submit"]:hover {
-  background-color: #5DA4B3;
+  background: #004f60;
+  transform: translateY(-2px);
 }
 
+/* Sekundär-Button */
 .guest-form-buttons button[type="button"] {
-  background-color: #f0f0f0;
+  background: rgba(255,255,255,0.3);
   color: #333;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255,255,255,0.5);
 }
 
 .guest-form-buttons button[type="button"]:hover {
-  background-color: #e0e0e0;
+  background: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
 }
 
-/* Responsive Anpassungen */
+/* Responsive */
 @media (max-width: 480px) {
-  .guest-form-container {
-    padding: 0.5rem;
-  }
-
-  .guest-form h2 {
-    font-size: 1.3rem;
-  }
-
-  .form-field label {
-    font-size: 0.85rem;
-  }
-
+  .guest-form-container { padding: 1rem; }
+  .guest-form h2 { font-size: 1.4rem; }
+  .form-field label { font-size: 0.85rem; }
   .form-field input,
-  .form-field select {
-    font-size: 0.85rem;
-    padding: 0.6rem;
-  }
-
-  .guest-form-buttons button {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
-  }
+  .form-field select { padding: 0.6rem; font-size: 0.85rem; }
+  .guest-form-buttons button { font-size: 0.85rem; padding: 0.5rem 1rem; }
 }

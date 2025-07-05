@@ -1,7 +1,7 @@
-import React from "react";
+// src/components/adminField/allBookingsField/BookingsField.jsx
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-
-// MUI Components
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,51 +10,79 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
-// Styles
-import "../allBookingsField/BookingsField.css";
+import TablePagination from "@mui/material/TablePagination";
+import "./BookingsField.css";
 
 const BookingsField = ({ bookings, onDeleteClick }) => {
-  const formatDate = (date) => new Date(date).toLocaleDateString("de-DE");
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 5;
+
+  const handleChangePage = (_event, newPage) => {
+    setPage(newPage);
+  };
+
+  const paginated = bookings.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
+  const formatDate = (date) =>
+    new Date(date).toLocaleDateString("de-DE");
   const formatTime = (time) => time?.slice(0, 5) || "/";
 
   return (
-    <TableContainer component={Paper} className="bookings-container">
-      <Table className="bookings-table" aria-label="Buchungstabelle">
-        <TableHead>
-          <TableRow>
-            <TableCell><strong>Titel</strong></TableCell>
-            <TableCell><strong>Kunde</strong></TableCell>
-            <TableCell><strong>Datum</strong></TableCell>
-            <TableCell><strong>Uhrzeit</strong></TableCell>
-            <TableCell><strong>Löschen</strong></TableCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {bookings.map((booking) => (
-            <TableRow key={booking.id}>
-              <TableCell>{booking.title}</TableCell>
-              <TableCell>
-                {booking.salutation} {booking.lastName} {booking.firstName}
-              </TableCell>
-              <TableCell>{formatDate(booking.date)}</TableCell>
-              <TableCell>{formatTime(booking.time)}</TableCell>
-              <TableCell>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  color="error"
-                  onClick={() => onDeleteClick(booking.id)}
-                >
-                  Stornieren
-                </Button>
-              </TableCell>
+    <Paper elevation={0} className="bookings-container">
+      <TableContainer>
+        <Table className="bookings-table" aria-label="Buchungstabelle">
+          <TableHead>
+            <TableRow>
+              <TableCell>Titel</TableCell>
+              <TableCell>Kunde</TableCell>
+              <TableCell>Datum</TableCell>
+              <TableCell>Uhrzeit</TableCell>
+              <TableCell align="center">Aktion</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+
+          <TableBody>
+            {paginated.map((b) => (
+              <TableRow key={b.id} className="booking-row">
+                <TableCell>{b.title}</TableCell>
+                <TableCell>
+                  {b.salutation} {b.lastName} {b.firstName}
+                </TableCell>
+                <TableCell>{formatDate(b.date)}</TableCell>
+                <TableCell>{formatTime(b.time)}</TableCell>
+                <TableCell align="center">
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="error"
+                    startIcon={<DeleteOutlineIcon />}
+                    className="cancel-btn"
+                    onClick={() => onDeleteClick(b.id)}
+                  >
+                    Stornieren
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <TablePagination
+        component="div"
+        count={bookings.length}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        rowsPerPageOptions={[rowsPerPage]}
+        labelRowsPerPage="Einträge pro Seite"
+        backIconButtonProps={{ "aria-label": "vorherige Seite" }}
+        nextIconButtonProps={{ "aria-label": "nächste Seite" }}
+      />
+    </Paper>
   );
 };
 

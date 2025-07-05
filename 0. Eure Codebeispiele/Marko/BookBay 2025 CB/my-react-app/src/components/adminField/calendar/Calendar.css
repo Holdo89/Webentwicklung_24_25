@@ -1,22 +1,172 @@
-/* Tage standardmäßig schwarz */
-.default-black {
-  color: black !important;
-}
-
-/* Halb gebucht = Orange */
-.half-booked {
-  background: #fb923c !important;
-  color: white !important;
-}
-
-/* Voll gebucht = Rot */
-.fully-booked {
-  background: #f87171 !important;
-  color: white !important;
-}
-
-/* Container-Layout */
 .calendar-container {
-  margin: 20px auto;
-  max-width: 400px;
+  background: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
+.MuiPickersLayout-root {
+  background: transparent !important;
+}
+
+@keyframes fadeInContainer {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animated-day {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.animated-day:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.MuiPickersDay-root.Mui-selected.animated-day {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+
+.animated-calendar {
+  animation: slideIn 0.5s ease-out both;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animated-button {
+  animation: popIn 0.4s ease-out both;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.MuiPickersCalendarHeader-root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  border-radius: 12px;
+}
+
+.MuiPickersCalendarHeader-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  animation-play-state: paused;
+}
+
+.MuiPickersCalendarHeader-iconButton {
+  color: #006C84;
+  transition: transform 0.2s, color 0.2s;
+}
+.MuiPickersCalendarHeader-iconButton:hover {
+  transform: scale(1.2);
+  color: #FFAB91;
+}
+
+@keyframes monthGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(255,171,145,0.7),
+                 0 0 16px rgba(255, 255, 255);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(255,171,145,1),
+                 0 0 24px rgb(255, 255, 255);
+  }
+}
+
+
+.MuiCalendarPicker-root {
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+/* unselektierte Tage weiß hinterlegen */
+.MuiPickersDay-root {
+  background-color: transparent;
+}
+
+/* selektierten Tag farbig belassen oder nach Wunsch anpassen */
+.MuiPickersDay-root.Mui-selected {
+  background-color: #ffab91 !important;
+  color: #ffffff !important;
+}
+/* Zeitwahl‐Dialog im Glassmorphism-Look */
+.MuiDialog-paper {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+/* Grid der Zeit-Buttons */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Zeit-Buttons – Standard */
+.time-slot-btn {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  border-radius: 8px;
+  color: #006C84;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Zeit-Buttons – Hover */
+.time-slot-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: scale(1.05);
+}
+
+/* Zeit-Buttons – ausgewählt */
+.time-slot-btn.MuiButton-contained {
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB) !important;
+  color: #ffffff !important;
+}
+
+/* Abbrechen- und Bestätigungs-Button */
+.confirm-button {
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  color: white !important;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.confirm-button:hover {
+  background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
+  transform: translateY(-2px);
+}
+
+
+

@@ -1,89 +1,83 @@
-// React & React Router
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// MUI-Komponenten für Layout und Styling
 import { Box, Typography, Button, Container } from "@mui/material";
-
-// Framer Motion für schöne Animation beim Laden
 import { motion } from "framer-motion";
-
-// CSS-Styles für diese Seite
 import "./WelcomePage.css";
 
-// ------------------------------------------
-// Willkommen-Seite mit Animation und Navigation
-// ------------------------------------------
-function WelcomePage() {
-  const navigate = useNavigate();          // Hook zur Navigation
-  const [user, setUser] = useState(null);  // Benutzerstatus aus localStorage
+export default function WelcomePage() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-  // Prüft beim Laden, ob ein Nutzer im localStorage gespeichert ist
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    const stored = localStorage.getItem("user");
+    if (stored) setUser(JSON.parse(stored));
   }, []);
 
   return (
-    <Box className="welcome-root"> {/* Hauptcontainer für den Hintergrund */}
-      <Container maxWidth="md">    {/* Zentrierter Inhalt in mittlerer Breite */}
-        
-        {/* Animierte Kartenkomponente */}
+    <Box className="welcome-root">
+      <Container maxWidth="lg">
         <motion.div
           className="glass-card"
-          initial={{ opacity: 0, y: 40 }}       // Startanimation
-          animate={{ opacity: 1, y: 0 }}        // Zielzustand
-          transition={{ duration: 0.8, ease: "easeOut" }} // Übergang
+          initial={{ opacity: 0, y: 80, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Überschrift */}
-          <Typography variant="h2" className="welcome-title" gutterBottom>
-            Willkommen bei{" "}
-            <span className="gradient-text">
-              <span>Book</span>Bay
-            </span>
+          <Typography variant="h1" className="welcome-title" gutterBottom>
+            Willkommen bei <span className="gradient-text">BookBay</span>
           </Typography>
 
-          {/* Beschreibungstext */}
+          <Typography variant="h5" className="welcome-subtitle" gutterBottom>
+            Die smarte Terminbuchung für dein Business & deine Projekte.
+          </Typography>
+
           <Typography variant="body1" className="welcome-text">
-            Die intuitive Buchungs-App, mit der du Termine einfach{" "}
-            <strong>planen</strong>, <strong>verwalten</strong> und{" "}
-            <strong>organisieren</strong> kannst – für dein Business, deine
-            Dienstleistung oder persönliche Projekte.
+            Plane, organisiere und verwalte Termine in Echtzeit – rund um die Uhr.
+            Erlebe höchste Flexibilität für dich und deine Kunden.
           </Typography>
 
-          {/* Vorteile als Liste */}
-          <ul className="welcome-list">
-            <li>Flexible Terminfenster für deine Kunden</li>
-            <li>Weniger Rückfragen – mehr Klarheit</li>
-            <li>Effizienz auf neuem Level</li>
-          </ul>
-
-          {/* Navigationsbuttons */}
           <Box className="welcome-buttons">
-            <Button
-              variant="contained"
-              size="large"
-              onClick={() => navigate(user ? "/dashboard" : "/login")}
-              className="welcome-button"
-            >
-              {user ? "Dashboard" : "Einloggen"}  {/* Button-Text je nach Login */}
-            </Button>
-
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={() => navigate("/profile")}
-              className="profile-button"
-            >
-              Profilübersicht
-            </Button>
+            {user ? (
+              <>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={() => navigate("/dashboard")}
+                  className="welcome-button"
+                >
+                  Zum Dashboard
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  onClick={() => navigate("/profile")}
+                  className="profile-button"
+                >
+                  Profil anzeigen
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={() => navigate("/login")}
+                  className="welcome-button"
+                >
+                  Einloggen
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  onClick={() => navigate("/dashboard")}
+                  className="profile-button"
+                >
+                  Kalender ansehen
+                </Button>
+              </>
+            )}
           </Box>
         </motion.div>
       </Container>
     </Box>
   );
 }
-
-export default WelcomePage;

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
+import dayjs from "dayjs";
 
 import Booking from "./models/Booking.js";
 import User from "./models/User.js";
@@ -10,7 +11,6 @@ import User from "./models/User.js";
 const app = express();
 const port = 3001;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,21 +21,20 @@ mongoose.connect("mongodb://localhost:27017/bookbay", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-mongoose.connection.on("connected", () => console.log("Verbunden mit MongoDB"));
-mongoose.connection.on("error", (err) => console.error("MongoDB Fehler:", err));
+mongoose.connection.on("connected", () => console.log("✅ Verbunden mit MongoDB"));
+mongoose.connection.on("error", (err) => console.error("❌ MongoDB Fehler:", err));
 
-// Mail-Konfiguration
+// Nodemailer Transport
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   auth: {
     user: "bookbaycb@gmail.com",
-    pass: "qzut mzrp vype gczb",
+    pass: "qzut mzrp vype gczb", // Hinweis: Nutze Umgebungsvariablen im Produktivbetrieb!
   },
 });
 
-
-//NEUE BUCHUNG inkl. E-Mail & Limitprüfung
+// ✅ NEUE BUCHUNG
 app.post("/bookings", async (req, res) => {
   const {
     date,
@@ -48,25 +47,31 @@ app.post("/bookings", async (req, res) => {
     guestGroupSize,
   } = req.body;
 
-  // Validate required fields
   if (!date || !guestEmail || !guestName || !guestLastName) {
     return res.status(400).json({
-      message: "Missing required fields",
+      message: "Fehlende Felder",
       required: ["date", "guestEmail", "guestName", "guestLastName"]
     });
   }
 
-  const [day, time] = date.split(" ");
-  if (!day || !time) return res.status(400).send("Invalid date format (expected 'DD.MM.YYYY HH:MM')");
+  const parsed = dayjs(date, "YYYY-MM-DD HH:mm");
+  if (!parsed.isValid()) return res.status(400).send("Ungültiges Datumsformat");
+
+  const day = parsed.format("YYYY-MM-DD");
+  const time = parsed.format("HH:mm");
+  const groupSize = parseInt(guestGroupSize, 10) || 1;
 
   try {
-    // Check booking limits
-    const countForDay = await Booking.countDocuments({ date: day });
-    if (countForDay >= 10) {
-      return res.status(400).send("Maximum bookings reached for this day");
+    const result = await Booking.aggregate([
+      { $match: { date: day } },
+      { $group: { _id: null, total: { $sum: "$guest_group_size" } } }
+    ]);
+    const totalPeople = result[0]?.total || 0;
+
+    if (totalPeople + groupSize > 50) {
+      return res.status(400).send("Maximale Gästezahl erreicht.");
     }
 
-    // Create booking
     const booking = await Booking.create({
       date: day,
       time,
@@ -76,93 +81,39 @@ app.post("/bookings", async (req, res) => {
       guest_name: guestName,
       guest_lastname: guestLastName,
       guest_email: guestEmail,
-      guest_group_size: guestGroupSize || 1,
+      guest_group_size: groupSize,
     });
 
-    // Prepare email
     const adminLink = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/dashboard/bookings/${booking._id}`;
-    
+
     const mailOptions = {
       from: process.env.EMAIL_FROM || '"BookBay Service" <noreply@bookbay.de>',
       to: guestEmail,
-      subject: "Ihre Terminbestätigung bei BookBay",
+      subject: "🎉 Deine Buchung bei BookBay ist bestätigt!",
       html: `
-        <div style="
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: #f8fafc;
-          padding: 30px;
-          color: #334155;
-          max-width: 600px;
-          margin: 0 auto;
-          border: 1px solid #e2e8f0;
-          border-radius: 12px;
-        ">
-          <h2 style="color: #1e293b; text-align: center; margin-bottom: 20px;">
-            Terminbestätigung
-          </h2>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 15px;">
-            Hallo <strong>${guest_title} ${guestLastName}</strong>,
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px; border-radius: 8px;">
+          <h2 style="color: #006c84;">✔️ Buchung bestätigt!</h2>
+          <p>Hallo <strong>${guest_title} ${guestLastName}</strong>,</p>
+          <p>Dein Termin wurde erfolgreich gebucht:</p>
+          <ul>
+            <li><strong>Datum:</strong> ${day}</li>
+            <li><strong>Uhrzeit:</strong> ${time}</li>
+            <li><strong>Personenanzahl:</strong> ${groupSize}</li>
+          </ul>
+          <p>
+            Du kannst deinen Termin jederzeit hier verwalten:<br />
+            <a href="${adminLink}" style="color: #006c84; font-weight: bold;">Termin ansehen</a>
           </p>
-          
-          <p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
-            Vielen Dank für Ihre Buchung bei BookBay. Ihr Termin für 
-            <strong style="color: #2563eb;">${title}</strong> wurde erfolgreich 
-            gebucht für den <strong>${day}</strong> um <strong>${time}</strong>.
-          </p>
-          
-          <div style="text-align: center; margin: 30px 0;">
-            <a href="${adminLink}" style="
-              background-color: #2563eb;
-              color: white;
-              padding: 14px 28px;
-              text-decoration: none;
-              border-radius: 8px;
-              font-weight: 600;
-              font-size: 16px;
-              display: inline-block;
-              transition: background-color 0.2s;
-            " onmouseover="this.style.backgroundColor='#1d4ed8'" 
-               onmouseout="this.style.backgroundColor='#2563eb'">
-              Termin verwalten
-            </a>
-          </div>
-          
-          <div style="
-            background-color: #f1f5f9;
-            padding: 16px;
-            border-radius: 8px;
-            margin: 25px 0;
-            font-size: 14px;
-          ">
-            <p style="margin: 0;">
-              <strong>Adresse:</strong>Peter-Behrens-Platz 4/2.OG, 4020 Linz<br>
-              <strong>Anzahl Personen:</strong> ${guestGroupSize || 1}
-            </p>
-          </div>
-          
-          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 25px 0;" />
-          
-          <p style="
-            font-size: 13px;
-            color: #64748b;
-            text-align: center;
-            margin-top: 20px;
-          ">
-            Diese Nachricht wurde automatisch generiert. Bitte antworten Sie nicht auf diese E-Mail.
-            <br><br>
-            © ${new Date().getFullYear()} BookBay. Alle Rechte vorbehalten.
-          </p>
+          <hr />
+          <p style="font-size: 12px; color: #666;">Diese E-Mail wurde automatisch generiert. Bitte nicht antworten.</p>
         </div>
       `,
     };
 
-    // Send email (async but don't wait for response)
     transporter.sendMail(mailOptions)
-      .then(info => console.log("Email sent:", info.messageId))
-      .catch(err => console.error("Email error:", err));
+      .then(info => console.log("📧 E-Mail versendet:", info.messageId))
+      .catch(err => console.error("❌ E-Mail Fehler:", err));
 
-    // Respond to client
     res.status(201).json({
       id: booking._id,
       title: booking.title,
@@ -172,31 +123,17 @@ app.post("/bookings", async (req, res) => {
       firstName: guestName,
       lastName: guestLastName,
       email: guestEmail,
-      groupSize: guestGroupSize || 1,
+      groupSize,
       confirmationSent: true
     });
 
   } catch (err) {
-    console.error("Booking error:", err);
-    
-    if (err.name === 'ValidationError') {
-      return res.status(400).json({
-        message: "Validation error",
-        errors: Object.entries(err.errors).reduce((acc, [field, error]) => {
-          acc[field] = error.message;
-          return acc;
-        }, {})
-      });
-    }
-    
-    res.status(500).json({
-      message: "Internal server error",
-      error: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
+    console.error("❌ Buchungsfehler:", err);
+    res.status(500).json({ message: "Interner Fehler" });
   }
 });
 
-//BUCHUNGEN ABRUFEN
+// BUCHUNGEN LISTEN
 app.get("/bookings", async (req, res) => {
   try {
     const bookings = await Booking.find()
@@ -222,12 +159,11 @@ app.get("/bookings", async (req, res) => {
   }
 });
 
-//EINZELNE BUCHUNG ANZEIGEN
+// BUCHUNG DETAILS
 app.get("/bookings/:id", async (req, res) => {
   try {
     const b = await Booking.findById(req.params.id);
     if (!b) return res.status(404).send("Buchung nicht gefunden");
-
     res.json({
       id: b._id,
       title: b.title,
@@ -245,12 +181,11 @@ app.get("/bookings/:id", async (req, res) => {
   }
 });
 
-//BUCHUNG LÖSCHEN
+// BUCHUNG LÖSCHEN
 app.delete("/bookings/:id", async (req, res) => {
   try {
     const result = await Booking.deleteOne({ _id: req.params.id });
-    if (result.deletedCount === 0)
-      return res.status(404).send("Buchung nicht gefunden");
+    if (result.deletedCount === 0) return res.status(404).send("Nicht gefunden");
     res.send("Buchung gelöscht");
   } catch (err) {
     console.error(err);
@@ -258,11 +193,10 @@ app.delete("/bookings/:id", async (req, res) => {
   }
 });
 
-//LOGIN
+// LOGIN
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password)
-    return res.status(400).send("Email & Passwort erforderlich");
+  if (!email || !password) return res.status(400).send("Email & Passwort erforderlich");
 
   try {
     const user = await User.findOne({ email });
@@ -287,7 +221,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//REGISTRIERUNG
+// REGISTRIERUNG
 app.post("/register", async (req, res) => {
   const { title, name, last_name, email, password } = req.body;
   if (!title || !name || !last_name || !email || !password)
@@ -307,7 +241,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-//PASSWORT ÄNDERN
+// PASSWORT ÄNDERN
 app.post("/change-password", async (req, res) => {
   const { email, oldPassword, newPassword } = req.body;
   if (!email || !oldPassword || !newPassword)
@@ -323,7 +257,7 @@ app.post("/change-password", async (req, res) => {
     user.password = await bcrypt.hash(newPassword, 10);
     await user.save();
 
-    res.send("Passwort erfolgreich geändert");
+    res.send("Passwort geändert");
   } catch (err) {
     console.error(err);
     res.status(500).send("Fehler beim Ändern");
@@ -333,7 +267,6 @@ app.post("/change-password", async (req, res) => {
 // PROFIL AKTUALISIEREN
 app.post("/update-profile", async (req, res) => {
   const { oldEmail, title, name, last_name, email } = req.body;
-
   if (!oldEmail || !title || !name || !last_name || !email)
     return res.status(400).send("Alle Felder erforderlich");
 
@@ -347,18 +280,18 @@ app.post("/update-profile", async (req, res) => {
     user.email = email;
     await user.save();
 
-    res.send("Profil erfolgreich aktualisiert");
+    res.send("Profil aktualisiert");
   } catch (err) {
     console.error(err);
     res.status(500).send("Fehler beim Aktualisieren");
   }
 });
 
-// STATISTIK
+// 📊 SUMME ALLER GÄSTE PRO TAG
 app.get("/bookingsCount", async (req, res) => {
   try {
     const stats = await Booking.aggregate([
-      { $group: { _id: "$date", count: { $sum: 1 } } },
+      { $group: { _id: "$date", count: { $sum: "$guest_group_size" } } }
     ]);
     const countMap = {};
     stats.forEach((entry) => {
@@ -371,7 +304,24 @@ app.get("/bookingsCount", async (req, res) => {
   }
 });
 
-// Server starten
+// 📊 ANZAHL DER BUCHUNGEN PRO TAG
+app.get("/bookingsEntriesCount", async (req, res) => {
+  try {
+    const stats = await Booking.aggregate([
+      { $group: { _id: "$date", count: { $sum: 1 } } }
+    ]);
+    const countMap = {};
+    stats.forEach((entry) => {
+      countMap[entry._id] = entry.count;
+    });
+    res.json(countMap);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Fehler bei der Eintragsstatistik");
+  }
+});
+
+// Start
 app.listen(port, () => {
-  console.log(`Server läuft auf Port ${port}`);
+  console.log(`🚀 Server läuft auf http://localhost:${port}`);
 });

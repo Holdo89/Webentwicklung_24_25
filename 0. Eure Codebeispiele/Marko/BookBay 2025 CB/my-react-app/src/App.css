@@ -1,43 +1,43 @@
-/* Gesamt-Hintergrund */
+/* Gesamt-Hintergrund: sehr heller Pastell-Gradient */
 body, html, #root {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  /* Optional: für besseren Textfluss */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
   color: #333;
 }
 
-
+/* Container-Hintergrund: subtile, helle Farbe */
 .background-container {
-  background: linear-gradient(135deg, #006c84, #6eb5c0, #e2e6e8);
+  background: linear-gradient(135deg, rgba(245, 247, 250, 0.6), rgba(255, 255, 255, 0.6));
   min-height: 100vh;
   padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
   box-sizing: border-box;
 }
 
-/* Hauptlayout mit zwei Spalten */
+/* Panel mit Glassmorphism-Ansatz */
 .two-column-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   width: 95vw;
   max-width: 1400px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0, 108, 132, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease-in-out;
 }
 
-/* Gleich hohe Spalten */
+/* Spalten-Wrapper beibehalten */
 .calendar-wrapper,
 .table-wrapper {
   display: flex;
@@ -47,16 +47,16 @@ body, html, #root {
   border-radius: 12px;
 }
 
-/* Scrollbar (optional hübsch) */
+/* Scrollbar-Styling */
 .table-wrapper::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 .table-wrapper::-webkit-scrollbar-thumb {
-  background-color: rgba(110, 181, 192, 0.4);
-  border-radius: 4px;
+  background-color: rgba(110, 181, 192, 0.3);
+  border-radius: 3px;
 }
 .table-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(110, 181, 192, 0.6);
+  background-color: rgba(110, 181, 192, 0.5);
 }
 
 /* Responsive Layout */
@@ -64,6 +64,5 @@ body, html, #root {
   .two-column-layout {
     grid-template-columns: 1fr;
     padding: 1.5rem;
-    height: auto;
   }
 }

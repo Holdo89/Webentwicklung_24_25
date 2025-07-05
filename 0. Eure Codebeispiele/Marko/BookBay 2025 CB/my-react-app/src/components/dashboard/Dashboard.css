@@ -14,8 +14,7 @@
   margin: 0 auto;
 }
 
-
-/* Kalenderbereich */
+/* Kalenderbereich (auch für Gäste) */
 .calendar-panel {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
@@ -28,12 +27,12 @@
   height: fit-content;
 }
 
-/* Buchungsbereich */
+/* Buchungsbereich (nur Admin) */
 .bookings-panel {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   backdrop-filter: blur(4px);
-
+  padding: 1rem;
 }
 
 /* Gastansicht (nicht eingeloggt) */
@@ -41,50 +40,28 @@
   max-width: 700px;
   margin: 3rem auto;
   width: 100%;
+  
+  /* Glasfläche statt Vollweiß */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  
+  /* Innenabstand */
+  padding: 2rem;
+  
+  /* Leichter Schatten für Tiefe */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .dashboard-content {
     grid-template-columns: 1fr;
-    height: auto;
   }
-  
   .calendar-panel {
     position: static;
     margin-bottom: 1.5rem;
   }
-  
-  .bookings-panel {
-    max-height: none;
-  }
-}
-
-/* Komponentenanpassungen */
-.calendar-container {
-  background: transparent !important;
-  padding: 0 !important;
-}
-
-.bookings-container {
-  background: transparent !important;
-}
-
-/* Scrollbar Styling */
-.bookings-panel::-webkit-scrollbar {
-  width: 8px;
-}
-
-.bookings-panel::-webkit-scrollbar-track {
-  background: rgba(110, 181, 192, 0.1);
-  border-radius: 4px;
-}
-
-.bookings-panel::-webkit-scrollbar-thumb {
-  background: rgba(110, 181, 192, 0.3);
-  border-radius: 4px;
-}
-
-.bookings-panel::-webkit-scrollbar-thumb:hover {
-  background: rgba(110, 181, 192, 0.5);
 }

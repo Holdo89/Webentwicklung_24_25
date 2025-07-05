@@ -1,0 +1,21 @@
+.contact-section {
+  margin-bottom: 1.5rem;
+}
+
+.contact-company {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #006C84;
+}
+
+.contact-detail {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  margin-left: 0.5rem;
+}
+
+.contact-detail a {
+  color: #006C84;
+  text-decoration: none;
+}
