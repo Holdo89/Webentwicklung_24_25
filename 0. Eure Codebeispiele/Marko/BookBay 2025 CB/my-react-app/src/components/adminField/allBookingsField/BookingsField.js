@@ -43,7 +43,6 @@ const BookingsField = ({ bookings, onDeleteClick }) => {
               <TableCell align="center">Aktion</TableCell>
             </TableRow>
           </TableHead>
-
           <TableBody>
             {paginated.map((b) => (
               <TableRow key={b.id} className="booking-row">
@@ -59,8 +58,15 @@ const BookingsField = ({ bookings, onDeleteClick }) => {
                     size="small"
                     color="error"
                     startIcon={<DeleteOutlineIcon />}
-                    className="cancel-btn"
-                    onClick={() => onDeleteClick(b.id)}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Sind Sie sicher, dass Sie diesen Termin wirklich stornieren möchten?"
+                        )
+                      ) {
+                        onDeleteClick(b.id);
+                      }
+                    }}
                   >
                     Stornieren
                   </Button>
@@ -70,7 +76,6 @@ const BookingsField = ({ bookings, onDeleteClick }) => {
           </TableBody>
         </Table>
       </TableContainer>
-
       <TablePagination
         component="div"
         count={bookings.length}
@@ -79,8 +84,6 @@ const BookingsField = ({ bookings, onDeleteClick }) => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[rowsPerPage]}
         labelRowsPerPage="Einträge pro Seite"
-        backIconButtonProps={{ "aria-label": "vorherige Seite" }}
-        nextIconButtonProps={{ "aria-label": "nächste Seite" }}
       />
     </Paper>
   );

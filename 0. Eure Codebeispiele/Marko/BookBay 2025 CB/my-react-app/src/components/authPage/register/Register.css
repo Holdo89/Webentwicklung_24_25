@@ -1,47 +1,58 @@
-/* Container für das Registrierungsformular */
+/* src/pages/RegisterPage.css */
+
+/* Card-Container im Stil der Welcome-Page */
 .register-container {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
+  background-color: #ffffff;
+  border-radius: 32px;
+  padding: 3rem 2.5rem;
   max-width: 500px;
   margin: 4rem auto 2rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  font-family: "Segoe UI", sans-serif;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.10);
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
 }
 
-/* Überschrift */
+/* Überschrift mit hellem Pastell-Gradient */
 .register-container h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
-  color: #006C84;
-  font-size: 1.8rem;
 }
 
-/* Formular */
+/* Formularaufbau */
 .register-container form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-/* Formularfeld mit Label */
+/* Label */
 .register-container label {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   font-weight: 600;
-  color: #444;
+  color: #412f2a;
   font-size: 0.95rem;
 }
 
-/* Eingabefelder und Dropdown */
+/* Inputs & Select im sanften Glas-Look */
 .register-container input,
 .register-container select {
   padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  color: #412f2a;
+  background: rgba(255, 255, 255, 0.8);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .register-container input:focus,
@@ -51,35 +62,36 @@
   box-shadow: 0 0 0 2px rgba(110, 181, 192, 0.2);
 }
 
-/* Registrieren-Button */
+/* Submit-Button mit demselben Gradient wie „Einloggen“ */
 .register-container button[type="submit"] {
-  padding: 0.8rem 1.5rem;
-  background-color: #006C84;
-  color: white;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-weight: 600;
-  cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .register-container button[type="submit"]:hover {
-  background-color: #5DA4B3;
+  background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
+  transform: translateY(-2px);
 }
 
 /* Feedback-Nachricht */
 .message {
-  color: #006C84;
   text-align: center;
   margin-bottom: 1rem;
   font-weight: 500;
+  color: #3d2c28;
 }
 
 /* Responsive Anpassungen */
 @media (max-width: 600px) {
   .register-container {
-    padding: 1.5rem;
+    padding: 2rem;
     margin: 2rem 1rem;
   }
 }

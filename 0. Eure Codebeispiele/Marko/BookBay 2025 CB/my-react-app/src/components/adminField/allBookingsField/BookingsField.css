@@ -1,36 +1,30 @@
-/* 1) Container: komplett clippen, damit keine Ecken überstehen */
-.bookings-container {
+/* src/components/adminField/allBookingsField/BookingsField.css */
+
+/* Container: transparentes Paper, abgerundete Ecken */
+.bookings-container.MuiPaper-root {
+  background-color: transparent !important;
+  border-radius: 16px !important;
   overflow: hidden;
-  scrollbar-width: none;   /* clip horizontal & vertical */
 }
 
-/* 2) Tabelle: separate borders und keine Zwischenräume */
-.bookings-table {
-  border-collapse: separate;
-  border-spacing: 0;
+/* TableContainer: weißer Hintergrund, Ecken clippen */
+.bookings-container .MuiTableContainer-root {
+  background-color: #ffffff !important;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-/* 3) Obere Ecken abrunden */
-.bookings-table thead th:first-child {
-  border-top-left-radius: 16px !important;
-}
-.bookings-table thead th:last-child {
-  border-top-right-radius: 16px !important;
+/* Tabelle: transparentes Grund-Layout */
+.bookings-table,
+.bookings-table th,
+.bookings-table td {
+  background-color: transparent !important;
 }
 
-/* 4) Untere Ecken abrunden */
-.bookings-table tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 16px !important;
-}
-.bookings-table tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 16px !important;
-}
-/* kompletten Header-Row mit Gradient füllen */
+/* Header: Gradient, Sticky & abgerundete obere Ecken */
 .bookings-table thead {
   background: linear-gradient(90deg, #FFCCBB, #6EB5C0);
 }
-
-/* Zellen transparent, damit der Hintergrund durchscheint */
 .bookings-table thead th {
   background: transparent !important;
   color: #ffffff;
@@ -39,4 +33,31 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.bookings-table thead th:first-child {
+  border-top-left-radius: 16px !important;
+}
+.bookings-table thead th:last-child {
+  border-top-right-radius: 16px !important;
+}
+
+/* Body: weißer Hintergrund für Zeilen, abgerundete untere Ecken */
+.bookings-table tbody tr td {
+  background-color: #ffffff !important;
+}
+.bookings-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 16px !important;
+}
+.bookings-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 16px !important;
+}
+
+/* Pagination: weißer Hintergrund, abgerundete untere Ecken, Padding */
+.bookings-container .MuiTablePagination-root {
+  background-color: #ffffff !important;
+  padding: 0.5rem 1rem;
+}
+.bookings-container .MuiTablePagination-root .MuiToolbar-root {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 }

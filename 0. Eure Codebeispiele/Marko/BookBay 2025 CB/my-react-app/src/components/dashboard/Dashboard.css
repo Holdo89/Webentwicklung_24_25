@@ -1,11 +1,17 @@
-/* Dashboard Hauptcontainer */
+/* src/pages/Dashboard.css */
+
+/* Gleicher Pastell-Gradient wie Welcome */
 .dashboard {
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(135deg, #e8f4f8, #f0f9fb);
+  background: linear-gradient(
+    135deg,
+    rgba(110, 181, 192, 0.2),  /* #6EB5C0 @ 20% */
+    rgba(255, 204, 187, 0.2)   /* #FFCCBB @ 20% */
+  );
 }
 
-/* Inhaltscontainer */
+/* Grid-Layout */
 .dashboard-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -14,54 +20,36 @@
   margin: 0 auto;
 }
 
-/* Kalenderbereich (auch für Gäste) */
-.calendar-panel {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 108, 132, 0.08);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(110, 181, 192, 0.15);
-  position: sticky;
-  top: 2rem;
-  height: fit-content;
-}
-
-/* Buchungsbereich (nur Admin) */
-.bookings-panel {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  padding: 1rem;
-}
-
-/* Gastansicht (nicht eingeloggt) */
+/* Glass-Panels */
+.calendar-panel,
+.bookings-panel,
 .guest-view {
-  max-width: 700px;
-  margin: 3rem auto;
-  width: 100%;
-  
-  /* Glasfläche statt Vollweiß */
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(226, 232, 228, 0.8); /* #E2E8E4 @ 80% */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(110, 181, 192, 0.4);
   border-radius: 16px;
-  
-  /* Innenabstand */
-  padding: 2rem;
-  
-  /* Leichter Schatten für Tiefe */
+  padding: 1.5rem;
+  box-shadow:
+    0 12px 30px rgba(30, 139, 155, 0.1),
+    0 8px 16px rgba(42, 26, 87, 0.08);
+}
+
+/* Sticky-Kalender */
+.calendar-panel {
+  position: sticky;
+  top: 2rem;
+}
+
+/* Guest-View: stärkerer Blur */
+.guest-view {
+  background: rgba(226, 232, 228, 0.6); /* #E2E8E4 @ 60% */
+  backdrop-filter: blur(16px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1024px) {
-  .dashboard-content {
-    grid-template-columns: 1fr;
-  }
-  .calendar-panel {
-    position: static;
-    margin-bottom: 1.5rem;
-  }
+  .dashboard-content { grid-template-columns: 1fr; }
+  .calendar-panel { position: static; margin-bottom: 1.5rem; }
 }

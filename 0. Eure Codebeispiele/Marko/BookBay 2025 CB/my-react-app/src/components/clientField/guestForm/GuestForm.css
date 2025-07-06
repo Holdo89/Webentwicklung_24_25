@@ -1,115 +1,147 @@
 /* src/components/clientField/guestForm/GuestForm.css */
 
-/* Container im Glass-Look */
-.guest-form-container {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 500px;
-  margin: 0 auto;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+/* 1. Dialog-Close-Icon (X) ausblenden */
+.MuiDialog-root .MuiDialogTitle-root .MuiIconButton-root {
+  display: none !important;
 }
 
-/* Formularaufbau */
+/* 2. Kompakter Glass-Container */
+.guest-form-container {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 204, 187, 0.15),
+    rgba(110, 181, 192, 0.15)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  padding: 1rem;
+  max-width: 360px;       /* noch schmaler */
+  margin: 1rem auto;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 16px rgba(30, 139, 155, 0.1);
+  overflow: visible;      /* verhindert Scrollbars */
+}
+
+/* 3. Formularaufbau */
 .guest-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.8rem;
 }
 
-/* Überschrift */
+/* 4. Überschrift */
 .guest-form h2 {
-  text-align: center;
-  color: #006c84;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+  color: #006C84;
+  position: relative;
+}
+.guest-form h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.4rem;
+  transform: translateX(-50%);
+  width: 2.5rem;
+  height: 3px;
+  background: #006C84;
+  border-radius: 2px;
 }
 
-/* Feld-Container */
+/* 5. Eingabefelder */
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
-
 .form-field label {
-  font-weight: 600;
-  color: #005a70;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: #006C84;
 }
-
-/* Inputs & Selects */
 .form-field input,
 .form-field select {
-  padding: 0.8rem;
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.85);
-  font-size: 1rem;
+  padding: 0.6rem;
+  border: 1px solid rgba(110, 181, 192, 0.6);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  color: #2a1a17;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-
 .form-field input:focus,
 .form-field select:focus {
   outline: none;
-  border-color: #6eb5c0;
-  box-shadow: 0 0 0 2px rgba(110,181,192,0.3);
+  border-color: #6EB5C0;
+  box-shadow: 0 0 0 2px rgba(110, 181, 192, 0.3);
 }
 
-/* Button-Container */
+/* 6. Buttons kompakt nebeneinander */
 .guest-form-buttons {
   display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
-
-/* Gemeinsame Button-Stile */
 .guest-form-buttons button {
   flex: 1;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
+  border: none;           /* Rahmen entfernt */
+  border-radius: 12px;    /* weichere Rundung */
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* Primär-Button */
+/* Primär-Button „Buchen“ */
 .guest-form-buttons button[type="submit"] {
-  background: #006c84;
-  color: #fff;
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(42, 26, 87, 0.1);
 }
-
 .guest-form-buttons button[type="submit"]:hover {
-  background: #004f60;
+  background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
   transform: translateY(-2px);
 }
 
-/* Sekundär-Button */
+/* Sekundär-Button „Abbrechen“ */
 .guest-form-buttons button[type="button"] {
-  background: rgba(255,255,255,0.3);
-  color: #333;
-  border: 1px solid rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.6);
+  color: #006C84;
+  border: 1px solid rgba(110, 181, 192, 0.6);
 }
-
 .guest-form-buttons button[type="button"]:hover {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.85);
   transform: translateY(-2px);
 }
 
-/* Responsive */
+/* 7. Responsive */
 @media (max-width: 480px) {
-  .guest-form-container { padding: 1rem; }
-  .guest-form h2 { font-size: 1.4rem; }
-  .form-field label { font-size: 0.85rem; }
+  .guest-form-container {
+    padding: 0.75rem;
+    margin: 0.5rem auto;
+  }
+  .guest-form h2 {
+    font-size: 1.4rem;
+  }
+  .form-field label,
   .form-field input,
-  .form-field select { padding: 0.6rem; font-size: 0.85rem; }
-  .guest-form-buttons button { font-size: 0.85rem; padding: 0.5rem 1rem; }
+  .form-field select {
+    font-size: 0.85rem;
+  }
+  .form-field input,
+  .form-field select {
+    padding: 0.5rem;
+  }
+  .guest-form-buttons button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+button.css-1uent87-MuiButtonBase-root-MuiButton-root {
+  display: none !important;
 }

@@ -53,7 +53,7 @@ const Login = ({ onLoginSuccess, onSwitchToRegister }) => {
       </form>
 
       <p className="switch-text">
-        Noch kein Account?{' '}
+        Noch kein Book-account?{' '}
         <span className="switch-link" onClick={onSwitchToRegister}>
           Jetzt registrieren
         </span>

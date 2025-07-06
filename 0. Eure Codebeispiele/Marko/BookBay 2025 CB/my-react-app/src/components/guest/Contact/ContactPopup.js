@@ -20,13 +20,6 @@ const CONTACTS = [
       { label: "E-Mail", value: "mail@farmerland.at", isLink: true, href: "mailto:mail@farmerland.at" },
     ],
   },
-  {
-    name: "Feedcube",
-    items: [
-      { label: "Allgemeine Anfragen", value: "office@feedcube.net", isLink: true, href: "mailto:office@feedcube.net" },
-      { label: "Technische Fragen", value: "support@feedcube.net", isLink: true, href: "mailto:support@feedcube.net" },
-    ],
-  },
 ];
 
 export default function ContactPopup({ open, onClose }) {

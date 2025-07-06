@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import Dashboard from "./components/dashboard/Dashboard";
 import BookingDetails from "./components/clientField/email/bookingDetails/BookingDetails";
+import Impressum from "./components/impressum/Impressum";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,6 +28,7 @@ function App() {
     >
       <Router>
         <Header user={user} setUser={setUser} />
+        <Impressum/>
         <div className="background-container">
           <Routes>
             <Route path="/" element={<WelcomePage />} />

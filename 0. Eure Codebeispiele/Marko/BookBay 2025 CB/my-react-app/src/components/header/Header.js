@@ -14,7 +14,7 @@ import {
   Tooltip
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../assets/BookLogo.png';
+import logo from '../../assets/BookLogoCut.png';
 import './Header.css';
 
 const Header = ({ user, setUser }) => {

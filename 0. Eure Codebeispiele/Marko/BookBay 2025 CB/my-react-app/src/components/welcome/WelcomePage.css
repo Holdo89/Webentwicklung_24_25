@@ -1,6 +1,6 @@
 /* src/pages/WelcomePage.css */
 
-/* Fullscreen-Container mit sehr dezentem Pastell-Gradient und abgerundeten Ecken */
+/* Fullscreen-Container */
 .welcome-root {
   position: relative;
   min-height: 100vh;
@@ -8,88 +8,86 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  box-sizing: border-box;
   background: linear-gradient(
     135deg,
-    rgba(110, 181, 192, 0.08),
-    rgba(255, 204, 187, 0.08)
+    rgba(110, 181, 192, 0.2),  /* #6EB5C0 @ 20% */
+    rgba(255, 204, 187, 0.2)   /* #FFCCBB @ 20% */
   );
-  border-radius: 32px;
   overflow: hidden;
-  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
-/* Logo-Overlay dezent, etwas sichtbarer */
+/* Logo-Overlay */
 .welcome-root::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
   background: url('../../assets/BookLogoCut.png') center/contain no-repeat;
   opacity: 0.15;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
-/* Glass-Card zentriert mit stärkerem Blur & runden Ecken */
+/* Haupt-Glass-Card */
 .glass-card {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 204, 187, 0.3), /* #FFCCBB @ 30% */
+    rgba(110, 181, 192, 0.3)  /* #6EB5C0 @ 30% */
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 32px;
   padding: 3rem 2.5rem;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 16px 32px rgba(30, 139, 155, 0.2),  /* #6EB5C0 @ 20% */
+    0 8px 16px rgba(42, 26, 87, 0.15);    /* dunkler Akzent */
   text-align: center;
   animation: fadeIn 0.6s ease-out;
 }
 
-/* Keyframe für sanftes Einblenden */
+/* Einblend-Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Haupttitel */
+/* Titel & Untertitel */
 .welcome-title {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #080000;
-  line-height: 1.1;
+  color: #006C84;   /* dunkles Teal */
 }
 
-/* Gradient-Text für „BookBay“ */
 .gradient-text {
-  background: linear-gradient(90deg, #FFCCBB, #6EB5C0);
-   background-clip: text; 
+  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Untertitel */
 .welcome-subtitle {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: rgba(13, 0, 0, 0.9);
+  color: #006C84;
 }
 
-/* Fließtext */
 .welcome-text {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #006C84;
 }
 
-/* Button-Container */
+/* Buttons */
 .welcome-buttons {
   display: flex;
   justify-content: center;
@@ -97,7 +95,6 @@
   flex-wrap: wrap;
 }
 
-/* Gemeinsame Button-Stile */
 .welcome-button,
 .profile-button {
   font-family: 'Inter', sans-serif;
@@ -105,11 +102,9 @@
   font-size: 1rem;
   padding: 0.85rem 2rem;
   border-radius: 12px;
-  text-transform: none;
   transition: all 0.3s ease;
 }
 
-/* Primär-Button mit Gradient */
 .welcome-button {
   background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
   color: #ffffff;
@@ -120,32 +115,21 @@
   transform: translateY(-2px);
 }
 
-/* Sekundär-Button in hellem Glas-Look */
 .profile-button {
-  background: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(226, 232, 228, 0.5); /* #E2E8E4 @ 50% */
+  color: #006C84;
+  border: 1px solid rgba(110, 181, 192, 0.6);
 }
 .profile-button:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(226, 232, 228, 0.7);
   transform: translateY(-2px);
 }
 
-/* Responsive Anpassungen */
+/* Responsive */
 @media (max-width: 768px) {
-  .glass-card {
-    padding: 2rem 1.5rem;
-  }
-  .welcome-title {
-    font-size: 2.6rem;
-  }
-  .welcome-subtitle {
-    font-size: 1.4rem;
-  }
-  .welcome-text {
-    font-size: 1rem;
-  }
-  .welcome-buttons {
-    gap: 1rem;
-  }
+  .glass-card { padding: 2rem 1.5rem; }
+  .welcome-title { font-size: 2.6rem; }
+  .welcome-subtitle { font-size: 1.4rem; }
+  .welcome-text { font-size: 1rem; }
+  .welcome-buttons { gap: 1rem; }
 }
