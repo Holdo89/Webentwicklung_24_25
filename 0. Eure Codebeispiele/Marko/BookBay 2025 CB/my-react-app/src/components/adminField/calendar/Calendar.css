@@ -1,22 +1,26 @@
+/* Container im Glassmorphism-Stil */
 .calendar-container {
   background: white;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+/* Kalender-Grundlayout transparent halten */
 .MuiPickersLayout-root {
   background: transparent !important;
 }
 
+/* Fade-In-Animation für Container */
 @keyframes fadeInContainer {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Tag-Animationen: Hover & Puls */
 .animated-day {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -24,35 +28,38 @@
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 .MuiPickersDay-root.Mui-selected.animated-day {
   animation: pulse 1.5s infinite;
 }
 
+/* Puls-Animation */
 @keyframes pulse {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.07); }
   100% { transform: scale(1); }
 }
 
+/* Kalender-Einblendung */
 .animated-calendar {
   animation: slideIn 0.5s ease-out both;
 }
 
+/* Slide-In-Animation */
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(-30px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
+/* Button-Pop-In */
 .animated-button {
   animation: popIn 0.4s ease-out both;
 }
-
 @keyframes popIn {
   from { opacity: 0; transform: scale(0.5); }
   to   { opacity: 1; transform: scale(1); }
 }
 
+/* Header-Styling im Kalender */
 .MuiPickersCalendarHeader-root {
   display: flex;
   justify-content: space-between;
@@ -62,19 +69,14 @@
   background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
   border-radius: 12px;
 }
-
 .MuiPickersCalendarHeader-label {
   font-family: 'Inter', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  -webkit-text-fill-color: unset !important;
   color: #ffffff !important;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   animation-play-state: paused;
 }
-
 .MuiPickersCalendarHeader-iconButton {
   color: #006C84;
   transition: transform 0.2s, color 0.2s;
@@ -84,52 +86,53 @@
   color: #FFAB91;
 }
 
+/* Monatstitel-Glow (optional) */
 @keyframes monthGlow {
-  0%, 100% {
-    text-shadow: 0 0 8px rgba(255,171,145,0.7),
-                 0 0 16px rgba(255, 255, 255);
+  0%,100% {
+    text-shadow:
+      0 0 8px rgba(255,171,145,0.7),
+      0 0 16px rgba(255,255,255);
   }
   50% {
-    text-shadow: 0 0 16px rgba(255,171,145,1),
-                 0 0 24px rgb(255, 255, 255);
+    text-shadow:
+      0 0 16px rgba(255,171,145,1),
+      0 0 24px rgb(255,255,255);
   }
 }
 
-
+/* Zusätzliche Kalender-Anpassungen */
 .MuiCalendarPicker-root {
-  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 4px 12px rgba(0,0,0,0.05);
 }
-/* unselektierte Tage weiß hinterlegen */
 .MuiPickersDay-root {
   background-color: transparent;
 }
-
-/* selektierten Tag farbig belassen oder nach Wunsch anpassen */
 .MuiPickersDay-root.Mui-selected {
   background-color: #ffab91 !important;
   color: #ffffff !important;
 }
-/* Zeitwahl‐Dialog im Glassmorphism-Look */
+
+/* Dialog im Glassmorphism-Look */
 .MuiDialog-paper {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 16px;
   padding: 1rem;
 }
 
-/* Grid der Zeit-Buttons */
+/* Grid für Zeit-Slots */
 .time-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
 
-/* Zeit-Buttons – Standard */
+/* Standard-Style der Zeit-Buttons */
 .time-slot-btn {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.6);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: none;
@@ -138,35 +141,26 @@
   font-weight: 600;
   transition: background 0.3s ease, transform 0.2s ease;
 }
-
-/* Zeit-Buttons – Hover */
 .time-slot-btn:hover {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255,255,255,0.85);
   transform: scale(1.05);
 }
-
-/* Zeit-Buttons – ausgewählt */
 .time-slot-btn.MuiButton-contained {
   background: linear-gradient(90deg, #6EB5C0, #FFCCBB) !important;
   color: #ffffff !important;
 }
 
-/* Abbrechen- und Bestätigungs-Button */
+/* Abbrechen-/Bestätigungs-Button */
 .confirm-button {
   background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
-  color: white !important;
+  color: #ffffff !important;
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1.25rem;
   font-weight: 600;
-  cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
-
 .confirm-button:hover {
   background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
   transform: translateY(-2px);
 }
-
-
-

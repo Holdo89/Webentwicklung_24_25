@@ -1,7 +1,9 @@
+/* Abstand zwischen Firmenabschnitten */
 .contact-section {
   margin-bottom: 1.5rem;
 }
 
+/* Firmenname: Schriftart, -größe und Farbe */
 .contact-company {
   font-family: 'Inter', sans-serif;
   font-size: 1.2rem;
@@ -9,12 +11,14 @@
   color: #006C84;
 }
 
+/* Kontaktdetail: Einrückung und Lesbarkeit */
 .contact-detail {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   margin-left: 0.5rem;
 }
 
+/* Link im Detail: Farbe und kein Unterstrich */
 .contact-detail a {
   color: #006C84;
   text-decoration: none;

@@ -1,38 +1,36 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useSnackbar } from "notistack";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
 import './Register.css';
 
-const Register = ({ onSwitchToLogin }) => {
+/**
+ * Registrierungsformular
+ * @param onSwitchToLogin Callback zum Wechseln zurück zum Login
+ */
+export default function Register({ onSwitchToLogin }) {
   const [formData, setFormData] = useState({
-    title: "Herr",
-    name: "",
-    last_name: "",
-    email: "",
-    password: "",
+    title: 'Herr',
+    name: '',
+    last_name: '',
+    email: '',
+    password: '',
   });
-
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // Eingaben in State übernehmen
+  const handleChange = ({ target: { name, value } }) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  // Formular absenden
+  const handleSubmit = async e => {
     e.preventDefault();
-
     try {
-      const res = await axios.post("http://localhost:3001/register", formData);
-      enqueueSnackbar(res.data.message || "Registrierung erfolgreich", {
-        variant: "success",
-        autoHideDuration: 3000,
-      });
+      const res = await axios.post('http://localhost:3001/register', formData);
+      enqueueSnackbar(res.data.message || 'Registrierung erfolgreich', { variant: 'success' });
       onSwitchToLogin();
     } catch (err) {
-      enqueueSnackbar(
-        err.response?.data?.message || "Registrierung fehlgeschlagen",
-        { variant: "error" }
-      );
+      enqueueSnackbar(err.response?.data?.message || 'Registrierung fehlgeschlagen', { variant: 'error' });
     }
   };
 
@@ -41,18 +39,11 @@ const Register = ({ onSwitchToLogin }) => {
       <h2>Registrierung</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Anrede:
-          <select 
-            name="title" 
-            value={formData.title} 
-
-            
-            onChange={handleChange}
-            required
-          >
-            <option value="Herr">Herr</option>
-            <option value="Frau">Frau</option>
-            <option value="Divers">Divers</option>
+          Anrede
+          <select name="title" value={formData.title} onChange={handleChange} required>
+            <option>Herr</option>
+            <option>Frau</option>
+            <option>Divers</option>
           </select>
         </label>
 
@@ -60,30 +51,31 @@ const Register = ({ onSwitchToLogin }) => {
           name="name"
           type="text"
           placeholder="Vorname"
+          value={formData.name}
           onChange={handleChange}
           required
         />
-
         <input
           name="last_name"
           type="text"
           placeholder="Nachname"
+          value={formData.last_name}
           onChange={handleChange}
           required
         />
-
         <input
           name="email"
           type="email"
           placeholder="E-Mail"
+          value={formData.email}
           onChange={handleChange}
           required
         />
-
         <input
           name="password"
           type="password"
           placeholder="Passwort"
+          value={formData.password}
           onChange={handleChange}
           required
         />
@@ -91,7 +83,5 @@ const Register = ({ onSwitchToLogin }) => {
         <button type="submit">Registrieren</button>
       </form>
     </div>
-  );
-};
-
-export default Register;
+);
+}

@@ -1,23 +1,25 @@
+/* Header background with blur */
 .header {
-  background: rgba(110, 181, 192, 0.2) !important; /* dein Primary-Ton mit 20% Deckkraft */
+  background: rgba(110, 181, 192, 0.2) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-
-
+/* Logo layout */
 .header-logo {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* Logo image size */
 .logo-img {
   height: 40px;
   width: auto;
 }
 
+/* Logo text gradient */
 .logo-text {
   font-size: 1.6rem;
   font-weight: 700;
@@ -28,6 +30,7 @@
   text-decoration: none !important;
 }
 
+/* Desktop navigation */
 .desktop-nav {
   display: flex;
   gap: 16px;
@@ -35,56 +38,52 @@
   justify-content: center;
 }
 
+/* Nav buttons (default, hover, active) */
 .nav-button {
   color: #006C84 !important;
 }
-
 .nav-button:hover {
   background: rgba(0, 108, 132, 0.15) !important;
   color: #006C84 !important;
 }
-
 .nav-button.active {
   background: #006C84 !important;
   color: #ffffff !important;
 }
 
+/* User section */
 .user-section {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
 .user-avatar {
   background-color: #006C84 !important;
   color: #ffffff !important;
 }
 
-/* Login-Button auf hellblauem Header */
+/* Login button (default, hover, focus) */
 .login-button {
   color: #006C84 !important;
   background: transparent !important;
   border: 2px solid #006C84 !important;
 }
-
-/* Hover-Zustand */
 .login-button:hover {
   background: #006C84 !important;
   color: #ffffff !important;
 }
-
-/* Aktiver/fokussierter Zustand */
 .login-button:active,
 .login-button:focus {
   background: #005a70 !important;
   color: #ffffff !important;
 }
 
-
+/* Mobile menu icon visibility */
 .mobile-menu {
   display: none;
 }
 
+/* Menu item styles (mobile & user menus) */
 .mobile-menu-list .MuiMenuItem-root,
 .user-menu-list .MuiMenuItem-root {
   font-family: 'Inter', sans-serif;
@@ -92,12 +91,12 @@
   padding: 10px 20px !important;
   transition: background 0.2s ease;
 }
-
 .mobile-menu-list .MuiMenuItem-root:hover,
 .user-menu-list .MuiMenuItem-root:hover {
   background: rgba(255, 255, 255, 0.2) !important;
 }
 
+/* Responsive adjustments */
 @media (max-width: 900px) {
   .desktop-nav {
     display: none;

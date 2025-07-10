@@ -21,8 +21,8 @@ mongoose.connect("mongodb://localhost:27017/bookbay", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-mongoose.connection.on("connected", () => console.log("✅ Verbunden mit MongoDB"));
-mongoose.connection.on("error", (err) => console.error("❌ MongoDB Fehler:", err));
+mongoose.connection.on("connected", () => console.log("Verbunden mit MongoDB"));
+mongoose.connection.on("error", (err) => console.error("MongoDB Fehler:", err));
 
 // Nodemailer Transport
 const transporter = nodemailer.createTransport({
@@ -30,7 +30,7 @@ const transporter = nodemailer.createTransport({
   port: 465,
   auth: {
     user: "bookbaycb@gmail.com",
-    pass: "qzut mzrp vype gczb", // Hinweis: Nutze Umgebungsvariablen im Produktivbetrieb!
+    pass: "qzut mzrp vype gczb", 
   },
 });
 
@@ -193,6 +193,29 @@ app.delete("/bookings/:id", async (req, res) => {
   }
 });
 
+// BUCHUNG BEARBEITEN
+app.put("/bookings/:id", async (req, res) => {
+  const { title, guest_title, firstName, lastName, date, time } = req.body;
+  try {
+    const b = await Booking.findById(req.params.id);
+    if (!b) return res.status(404).send("Buchung nicht gefunden");
+
+    if (title) b.title = title;
+    if (guest_title) b.guest_title = guest_title;
+    if (firstName) b.guest_name = firstName;
+    if (lastName) b.guest_lastname = lastName;
+    if (date) b.date = date;
+    if (time) b.time = time;
+    
+
+    await b.save();
+    res.json({ message: "Buchung aktualisiert", id: b._id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Fehler beim Aktualisieren");
+  }
+});
+
 // LOGIN
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -323,5 +346,5 @@ app.get("/bookingsEntriesCount", async (req, res) => {
 
 // Start
 app.listen(port, () => {
-  console.log(`🚀 Server läuft auf http://localhost:${port}`);
+  console.log(`Server läuft auf http://localhost:${port}`);
 });

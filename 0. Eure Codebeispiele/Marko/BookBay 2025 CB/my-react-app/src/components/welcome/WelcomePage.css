@@ -1,6 +1,7 @@
-/* src/pages/WelcomePage.css */
+/* src/pages/WelcomePage.css
+   Stile für die Willkommensseite mit Glas-Effekt und Animation */
 
-/* Fullscreen-Container */
+/* Layout */
 .welcome-root {
   position: relative;
   min-height: 100vh;
@@ -10,84 +11,73 @@
   padding: 2rem;
   background: linear-gradient(
     135deg,
-    rgba(110, 181, 192, 0.2),  /* #6EB5C0 @ 20% */
-    rgba(255, 204, 187, 0.2)   /* #FFCCBB @ 20% */
+    rgba(110, 181, 192, 0.2),
+    rgba(255, 204, 187, 0.2)
   );
   overflow: hidden;
   box-sizing: border-box;
 }
 
-/* Logo-Overlay */
+/* Hintergrund-Logo */
 .welcome-root::before {
   content: "";
   position: absolute;
-  top: 50%; left: 50%;
-  width: 600px; height: 600px;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
   background: url('../../assets/BookLogoCut.png') center/contain no-repeat;
   opacity: 0.15;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
-/* Haupt-Glass-Card */
+/* Glas-Karte mit Fade-In-Animation */
 .glass-card {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 900px;
+  padding: 3rem 2.5rem;
+  text-align: center;
   background: linear-gradient(
     135deg,
-    rgba(255, 204, 187, 0.3), /* #FFCCBB @ 30% */
-    rgba(110, 181, 192, 0.3)  /* #6EB5C0 @ 30% */
+    rgba(255, 204, 187, 0.45),
+    rgba(110, 181, 192, 0.45)
   );
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 32px;
-  padding: 3rem 2.5rem;
   box-shadow:
-    0 16px 32px rgba(30, 139, 155, 0.2),  /* #6EB5C0 @ 20% */
-    0 8px 16px rgba(42, 26, 87, 0.15);    /* dunkler Akzent */
-  text-align: center;
+    0 16px 32px rgba(30, 139, 155, 0.2),
+    0 8px 16px rgba(42, 26, 87, 0.15);
   animation: fadeIn 0.6s ease-out;
 }
 
-/* Einblend-Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Titel & Untertitel */
+/* Typography */
 .welcome-title {
   font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  color: #006C84;   /* dunkles Teal */
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #006c84;
 }
 
 .welcome-subtitle {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #006C84;
+  color: #006c84;
 }
 
 .welcome-text {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
-  color: #006C84;
+  color: #006c84;
 }
 
-/* Buttons */
+/* Buttons (mit dauerhaftem Hover-Verlauf) */
 .welcome-buttons {
   display: flex;
   justify-content: center;
@@ -95,37 +85,54 @@
   flex-wrap: wrap;
 }
 
-.welcome-button,
-.profile-button {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.85rem 2rem;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
+/* Primärer Button: Pink-Blauer Hover-Verlauf permanent */
 .welcome-button {
-  background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
-  color: #ffffff;
+  background: linear-gradient(90deg, #6EB5C0) !important;
+  color: #fff;
   border: none;
 }
 .welcome-button:hover {
-  background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
+  background: linear-gradient(90deg, #E6B3A1, #5DA4B3) !important;
   transform: translateY(-2px);
 }
 
+/* Sekundärer Button: angepasster Hover-Hintergrund permanent */
 .profile-button {
-  background: rgba(226, 232, 228, 0.5); /* #E2E8E4 @ 50% */
+  background: rgba(226, 232, 228, 0.5);
   color: #006C84;
-  border: 1px solid rgba(110, 181, 192, 0.6);
+  border: solid rgba(110, 181, 192, 0.6);
 }
 .profile-button:hover {
-  background: rgba(226, 232, 228, 0.7);
+  background: linear-gradient(90deg, #5DA4B3, #E6B3A1) !important;
+  color: white;
   transform: translateY(-2px);
 }
 
-/* Responsive */
+/* Gradient-animierter Text */
+.gradient-text {
+  background: linear-gradient(90deg, #6eb5c0 0%, #ffccbb 50%, #6eb5c0 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive Anpassungen */
 @media (max-width: 768px) {
   .glass-card { padding: 2rem 1.5rem; }
   .welcome-title { font-size: 2.6rem; }

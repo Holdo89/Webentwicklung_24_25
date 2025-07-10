@@ -1,13 +1,10 @@
-/* src/pages/LoginPage.css */
-
-/* Auffälligeres Card-Design mit stärkerem Schatten */
+/* Container für das Login-Formular */
 .login-container {
   background-color: #ffffff;
   border-radius: 16px;
-  padding: 2rem;
   max-width: 400px;
   margin: 100px auto 20px;
-  /* kräftigerer Doppel-Schatten für mehr Tiefe */
+  padding: 2rem;
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.15),
     0 8px 16px rgba(0, 0, 0, 0.10);
@@ -16,20 +13,18 @@
 
 /* Überschrift mit Gradient-Füllung */
 .login-container h2 {
+  text-align: center;
   font-size: 2.25rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  /* kräftiger Verlauf statt Grau */
-  background: linear-gradient(90deg,  #5DA4B3, #E6B3A1);
+  background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* leichter Schatten für besseren Kontrast */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-  text-align: center;
 }
 
-/* Formularaufbau */
+/* Formular-Layout */
 .login-container form {
   display: flex;
   flex-direction: column;
@@ -43,24 +38,22 @@
   border-radius: 8px;
   font-size: 1rem;
 }
-
 .login-container input:focus {
   border-color: #6EB5C0;
   outline: none;
 }
 
-/* „Einloggen“-Button mit Gradient-Hintergrund */
+/* Einloggen-Button */
 .login-container button {
   padding: 12px;
   background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
-
 .login-container button:hover {
   background: linear-gradient(90deg, #4a98a1, #d39f8a);
   transform: translateY(-2px);
@@ -74,13 +67,13 @@
   color: #006C84;
 }
 
+/* Link zum Registrieren */
 .switch-link {
   color: #FFCCBB;
   font-weight: bold;
   cursor: pointer;
   margin-left: 5px;
 }
-
 .switch-link:hover {
   text-decoration: underline;
 }

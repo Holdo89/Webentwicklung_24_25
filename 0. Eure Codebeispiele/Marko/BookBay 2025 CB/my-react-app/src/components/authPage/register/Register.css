@@ -1,97 +1,84 @@
-/* src/pages/RegisterPage.css */
-
-/* Card-Container im Stil der Welcome-Page */
+/* Container: zentriert, abgerundet, Schatten */
 .register-container {
-  background-color: #ffffff;
-  border-radius: 32px;
-  padding: 3rem 2.5rem;
   max-width: 500px;
   margin: 4rem auto 2rem;
+  padding: 3rem 2.5rem;
+  background: #fff;
+  border-radius: 32px;
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.10);
+    0 20px 40px rgba(0,0,0,0.15),
+    0 8px 16px rgba(0,0,0,0.10);
   font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
 }
 
-/* Überschrift mit hellem Pastell-Gradient */
+/* Überschrift: Gradient-Text */
 .register-container h2 {
+  text-align: center;
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
   background: linear-gradient(90deg, #6EB5C0, #FFCCBB);
+  color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
 }
 
-/* Formularaufbau */
+/* Formular: vertikale Ausrichtung mit Lücken */
 .register-container form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-/* Label */
+/* Label und Select: klare Beschriftung */
 .register-container label {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
   font-weight: 600;
-  color: #412f2a;
   font-size: 0.95rem;
+  color: #412f2a;
 }
 
-/* Inputs & Select im sanften Glas-Look */
+/* Inputs & Select: sanfter Glass-Look */
 .register-container input,
 .register-container select {
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 12px;
   font-size: 1rem;
+  background: rgba(255,255,255,0.8);
   color: #412f2a;
-  background: rgba(255, 255, 255, 0.8);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-
 .register-container input:focus,
 .register-container select:focus {
-  outline: none;
   border-color: #6EB5C0;
-  box-shadow: 0 0 0 2px rgba(110, 181, 192, 0.2);
+  box-shadow: 0 0 0 2px rgba(110,181,192,0.2);
+  outline: none;
 }
 
-/* Submit-Button mit demselben Gradient wie „Einloggen“ */
+/* Submit-Button: Gradient und Hover-Effekt */
 .register-container button[type="submit"] {
   padding: 0.85rem 2rem;
   background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
-  color: #ffffff;
+  color: #fff;
   border: none;
   border-radius: 12px;
-  font-weight: 600;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
 }
-
 .register-container button[type="submit"]:hover {
   background: linear-gradient(90deg, #5DA4B3, #E6B3A1);
   transform: translateY(-2px);
 }
 
-/* Feedback-Nachricht */
-.message {
-  text-align: center;
-  margin-bottom: 1rem;
-  font-weight: 500;
-  color: #3d2c28;
-}
-
-/* Responsive Anpassungen */
+/* Responsive Anpassung */
 @media (max-width: 600px) {
   .register-container {
-    padding: 2rem;
     margin: 2rem 1rem;
+    padding: 2rem;
   }
 }

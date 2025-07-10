@@ -1,40 +1,44 @@
+/* Hauptcontainer mit Farbverlauf, abgerundeten Ecken und Schatten */
 .hero {
-  width: 100%;
-  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 300px;
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
   background: linear-gradient(135deg, #6eb5c0, #ffccbb);
-  color: #ffffff;
+  color: #fff;
   text-align: center;
   border-radius: 16px;
-  margin-bottom: 2rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  margin-top: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+/* Überschrift: Schriftart und -größe */
 .hero-content h1 {
   font-family: 'Inter', sans-serif;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
+/* Beschreibungstext: Lesbarkeit und Abstand */
 .hero-content p {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
 
+/* Button-Grundstil: Farbe, Padding, Übergänge */
 .hero-btn {
-  background: #ffffff;
-  color: #006c84;
-  border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
   font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  color: #006c84;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
+/* Hover-Effekt für Button: leichte Hebung */
 .hero-btn:hover {
   background: #f0f0f0;
   transform: translateY(-2px);

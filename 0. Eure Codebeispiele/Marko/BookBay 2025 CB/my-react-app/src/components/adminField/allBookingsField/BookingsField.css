@@ -1,27 +1,32 @@
-/* src/components/adminField/allBookingsField/BookingsField.css */
-
-/* Container: transparentes Paper, abgerundete Ecken */
+/* Paper-Container: Flexbox, volle Höhe, zentriert */
 .bookings-container.MuiPaper-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
   background-color: transparent !important;
   border-radius: 16px !important;
   overflow: hidden;
 }
 
-/* TableContainer: weißer Hintergrund, Ecken clippen */
+/* TableContainer: wächst flexibel, scrollt bei Überlauf */
 .bookings-container .MuiTableContainer-root {
+  flex: 1;
   background-color: #ffffff !important;
-  border-radius: 16px;
-  overflow: hidden;
+  overflow: auto;
 }
 
-/* Tabelle: transparentes Grund-Layout */
+/* Tabellen-Layout: transparent bis auf Zeilenhintergrund */
 .bookings-table,
 .bookings-table th,
 .bookings-table td {
   background-color: transparent !important;
 }
 
-/* Header: Gradient, Sticky & abgerundete obere Ecken */
+/* Kopfzeile: Farbverlauf, sticky und abgerundete obere Ecken */
 .bookings-table thead {
   background: linear-gradient(90deg, #FFCCBB, #6EB5C0);
 }
@@ -35,29 +40,46 @@
   z-index: 1;
 }
 .bookings-table thead th:first-child {
-  border-top-left-radius: 16px !important;
+  border-top-left-radius: 16px;
 }
 .bookings-table thead th:last-child {
-  border-top-right-radius: 16px !important;
+  border-top-right-radius: 16px;
 }
 
-/* Body: weißer Hintergrund für Zeilen, abgerundete untere Ecken */
-.bookings-table tbody tr td {
+/* Tabellenkörper: weiße Zeilen und abgerundete untere Ecken */
+.bookings-table tbody td {
   background-color: #ffffff !important;
 }
 .bookings-table tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 16px !important;
+  border-bottom-left-radius: 16px;
 }
 .bookings-table tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 16px !important;
+  border-bottom-right-radius: 16px;
 }
 
-/* Pagination: weißer Hintergrund, abgerundete untere Ecken, Padding */
+/* Pagination: kompakt, nur notwendige Höhe */
 .bookings-container .MuiTablePagination-root {
+  flex-shrink: 0;
   background-color: #ffffff !important;
-  padding: 0.5rem 1rem;
+  padding: 0 !important;
+  min-height: 36px;
 }
 .bookings-container .MuiTablePagination-root .MuiToolbar-root {
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  padding: 0 8px !important;
+  min-height: 36px !important;
+}
+.bookings-container .MuiTablePagination-root .MuiSelect-root,
+.bookings-container .MuiTablePagination-root .MuiIconButton-root,
+.bookings-container .MuiTablePagination-root .MuiTypography-root {
+  font-size: 0.875rem !important;
+  padding: 4px !important;
+}
+
+/* Dialog: abgerundete Ecken und konsistentes Innenabstand */
+.edit-dialog .MuiDialog-paper {
+  border-radius: 16px;
+  padding: 1rem;
+}
+.edit-dialog .MuiTextField-root {
+  margin-bottom: 1rem;
 }

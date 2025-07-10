@@ -17,21 +17,33 @@ import MenuIcon from '@mui/icons-material/Menu';
 import logo from '../../assets/BookLogoCut.png';
 import './Header.css';
 
-const Header = ({ user, setUser }) => {
-  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
-  const [userMenuAnchor, setUserMenuAnchor] = useState(null);
+/**
+ * Header-Komponente:
+ * Responsives Navigationsmenü mit Nutzer-Avatar und Mobile-Drawer.
+ *
+ * @param {{ name?: string } | null} user - Aktuell angemeldeter Nutzer oder null.
+ * @param {function} setUser - Funktion zum Setzen des Nutzer-Status.
+ * @returns {JSX.Element}
+ */
+export default function Header({ user, setUser }) {
+  const [mobileAnchor, setMobileAnchor] = useState(null);
+  const [userAnchor, setUserAnchor] = useState(null);
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
+  /** Seitenlinks für die Hauptnavigation */
   const pages = [
     { name: 'Home', path: '/' },
     { name: 'Kalender', path: '/dashboard' }
   ];
 
-  const userMenuItems = [
+  /** Einträge im Nutzer-Dropdown-Menü */
+  const userItems = [
     { label: 'Profil', path: '/profile' },
     { label: 'Buchungen', path: '/dashboard' },
-    { label: 'Logout', action: () => {
+    {
+      label: 'Logout',
+      action: () => {
         localStorage.removeItem('user');
         setUser(null);
         navigate('/');
@@ -39,61 +51,60 @@ const Header = ({ user, setUser }) => {
     }
   ];
 
+  /**
+   * Schließt alle geöffneten Menüs.
+   * @function
+   */
+  const closeMenus = () => {
+    setMobileAnchor(null);
+    setUserAnchor(null);
+  };
+
   return (
     <AppBar position="sticky" elevation={0} className="header">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* Logo und Titel */}
           <Box className="header-logo">
             <img src={logo} alt="BookBay Logo" className="logo-img" />
-            <Typography
-              variant="h6"
-              component={Link}
-              to="/"
-              className="logo-text"
-            >
+            <Typography component={Link} to="/" variant="h6" className="logo-text">
               BookBay
             </Typography>
           </Box>
 
-          <Box className="mobile-menu">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              onClick={(e) => setMobileMenuAnchor(e.currentTarget)}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-
+          {/* Desktop-Navigation */}
           <Box className="desktop-nav">
             {pages.map(({ name, path }) => (
               <Button
                 key={name}
                 component={Link}
                 to={path}
-                className={`nav-button${location.pathname === path ? ' active' : ''}`}
+                className={`nav-button${pathname === path ? ' active' : ''}`}
               >
                 {name}
               </Button>
             ))}
           </Box>
 
+          {/* Mobile-Menü-Icon */}
+          <Box className="mobile-menu">
+            <IconButton onClick={e => setMobileAnchor(e.currentTarget)}>
+              <MenuIcon />
+            </IconButton>
+          </Box>
+
+          {/* User-Bereich */}
           <Box className="user-section">
             {user ? (
               <Tooltip title="Benutzeroptionen">
-                <IconButton onClick={(e) => setUserMenuAnchor(e.currentTarget)}>
+                <IconButton onClick={e => setUserAnchor(e.currentTarget)}>
                   <Avatar className="user-avatar">
-                    {user.name?.[0]?.toUpperCase() || 'U'}
+                    {user.name?.charAt(0).toUpperCase() || 'U'}
                   </Avatar>
                 </IconButton>
               </Tooltip>
             ) : (
-              <Button
-                component={Link}
-                to="/login"
-                className="login-button"
-              >
+              <Button component={Link} to="/login" className="login-button">
                 Login
               </Button>
             )}
@@ -101,46 +112,41 @@ const Header = ({ user, setUser }) => {
         </Toolbar>
       </Container>
 
+      {/* Mobile-Menü */}
       <Menu
-        anchorEl={mobileMenuAnchor}
-        open={Boolean(mobileMenuAnchor)}
-        onClose={() => setMobileMenuAnchor(null)}
+        anchorEl={mobileAnchor}
+        open={Boolean(mobileAnchor)}
+        onClose={closeMenus}
         className="mobile-menu-list"
       >
         {pages.map(({ name, path }) => (
-          <MenuItem
-            key={name}
-            component={Link}
-            to={path}
-            onClick={() => setMobileMenuAnchor(null)}
-          >
+          <MenuItem key={name} component={Link} to={path} onClick={closeMenus}>
             {name}
           </MenuItem>
         ))}
       </Menu>
 
+      {/* Nutzer-Dropdown */}
       <Menu
-        anchorEl={userMenuAnchor}
-        open={Boolean(userMenuAnchor)}
-        onClose={() => setUserMenuAnchor(null)}
+        anchorEl={userAnchor}
+        open={Boolean(userAnchor)}
+        onClose={closeMenus}
         className="user-menu-list"
       >
-        {userMenuItems.map((item) => (
+        {userItems.map(({ label, path, action }) => (
           <MenuItem
-            key={item.label}
-            component={item.path ? Link : 'div'}
-            to={item.path}
+            key={label}
+            component={path ? Link : 'div'}
+            to={path}
             onClick={() => {
-              setUserMenuAnchor(null);
-              item.action?.();
+              closeMenus();
+              action?.();
             }}
           >
-            {item.label}
+            {label}
           </MenuItem>
         ))}
       </Menu>
     </AppBar>
   );
-};
-
-export default Header;
+}
