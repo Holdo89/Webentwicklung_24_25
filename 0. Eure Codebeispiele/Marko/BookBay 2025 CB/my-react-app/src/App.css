@@ -1,15 +1,17 @@
-/* Basis: Reset und Schrift */
-body,
-html,
-#root {
+/* ================================
+   Global Reset & Base Styles
+   ================================ */
+html, body, #root {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
-  background: #E2E8E4;
+  background: #E2E8E4 !important;
   color: #006C84;
 }
 
-/* Hintergrund-Wrapper */
+/* =====================================
+   Background Wrapper (Blur + Overlay)
+   ===================================== */
 .background-container {
   backdrop-filter: blur(12px);
   background: rgba(226, 232, 228, 0.7);
@@ -20,26 +22,72 @@ html,
   align-items: center;
 }
 
-/* Weiße Hintergründe für Dialoge & Popovers */
+/* ===========================================
+   MUI Paper Overrides (Dialog, Popover, Menu)
+   =========================================== */
 .MuiDialog-paper,
 .MuiPopover-paper,
 .MuiMenu-paper,
 .MuiPaper-root {
-  background: #fff !important;
+  background-color: #ffffff !important;
   border-radius: 8px !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Snackbar-Styling */
+/* Override all elevation variants just in case */
+.MuiPaper-elevation0,
+.MuiPaper-elevation1,
+.MuiPaper-elevation2,
+.MuiPaper-elevation3,
+.MuiPaper-elevation4,
+.MuiPaper-elevation5,
+.MuiPaper-elevation6,
+.MuiPaper-elevation7,
+.MuiPaper-elevation8,
+.MuiPaper-elevation9,
+.MuiPaper-elevation10,
+.MuiPaper-elevation11,
+.MuiPaper-elevation12,
+.MuiPaper-elevation13,
+.MuiPaper-elevation14,
+.MuiPaper-elevation15,
+.MuiPaper-elevation16,
+.MuiPaper-elevation17,
+.MuiPaper-elevation18,
+.MuiPaper-elevation19,
+.MuiPaper-elevation20,
+.MuiPaper-elevation21,
+.MuiPaper-elevation22,
+.MuiPaper-elevation23,
+.MuiPaper-elevation24 {
+  background-color: #ffffff !important;
+}
+
+/* ====================================
+   Snackbar (notistack) Styling
+   ==================================== */
 .notistack-snackbar {
-  background: #fff !important;
+  background-color: #ffffff !important;
   color: #006C84 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Tooltip-Hintergrund */
+/* ===========================
+   Tooltip Styling
+   =========================== */
 .MuiTooltip-tooltip {
-  background: #fff !important;
+  background-color: #ffffff !important;
   color: #006C84 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  font-size: 0.875rem; /* optional tweak */
+}
+
+/* ================================
+   Utility: Force-Override Guard
+   ================================ */
+body .MuiPaper-root,
+body .MuiDialog-paper,
+body .MuiPopover-paper,
+body .MuiMenu-paper {
+  background-color: #ffffff !important;
 }

@@ -86,29 +86,98 @@ app.post("/bookings", async (req, res) => {
 
     const adminLink = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/dashboard/bookings/${booking._id}`;
 
-    const mailOptions = {
-      from: process.env.EMAIL_FROM || '"BookBay Service" <noreply@bookbay.de>',
-      to: guestEmail,
-      subject: "🎉 Deine Buchung bei BookBay ist bestätigt!",
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 20px; border-radius: 8px;">
-          <h2 style="color: #006c84;">✔️ Buchung bestätigt!</h2>
-          <p>Hallo <strong>${guest_title} ${guestLastName}</strong>,</p>
-          <p>Dein Termin wurde erfolgreich gebucht:</p>
-          <ul>
-            <li><strong>Datum:</strong> ${day}</li>
-            <li><strong>Uhrzeit:</strong> ${time}</li>
-            <li><strong>Personenanzahl:</strong> ${groupSize}</li>
-          </ul>
-          <p>
-            Du kannst deinen Termin jederzeit hier verwalten:<br />
-            <a href="${adminLink}" style="color: #006c84; font-weight: bold;">Termin ansehen</a>
-          </p>
-          <hr />
-          <p style="font-size: 12px; color: #666;">Diese E-Mail wurde automatisch generiert. Bitte nicht antworten.</p>
-        </div>
-      `,
-    };
+const mailOptions = {
+  from: process.env.EMAIL_FROM || '"BookBay Service" <noreply@bookbay.de>',
+  to: guestEmail,
+  subject: "🎉 Deine Buchung bei BookBay ist bestätigt!",
+  html: `
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#e6e8e4; padding:20px; font-family:Arial,sans-serif;">
+      <tr>
+        <td align="center">
+          <!-- Container -->
+          <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+            
+            <!-- Header mit Farbverlauf -->
+            <tr>
+              <td align="center" style="
+                background: linear-gradient(135deg, #6EB5C0, #FFCCBB);
+                padding: 24px 0;
+              ">
+                <h1 style="
+                  margin:0;
+                  font-size:24px;
+                  color:#ffffff;
+                  letter-spacing:1px;
+                ">
+                  ✔️ Buchung bestätigt!
+                </h1>
+              </td>
+            </tr>
+            
+            <!-- Body -->
+            <tr>
+              <td style="padding:24px; color:#333333; line-height:1.6; font-size:16px;">
+                <p style="margin:0 0 12px;">
+                  Hallo <strong>${guest_title} ${guestLastName}</strong>,
+                </p>
+                <p style="margin:0 0 16px;">
+                  Dein Termin bei <strong>Tagaluba</strong> steht und wir freuen uns auf dich:
+                </p>
+                
+                <!-- Details als Tabelle -->
+                <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%; margin-bottom:24px;">
+                  <tr>
+                    <td style="padding:8px 0; font-weight:600; color:#006C84; width:30%;">Datum:</td>
+                    <td style="padding:8px 0;">${day}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0; font-weight:600; color:#006C84;">Uhrzeit:</td>
+                    <td style="padding:8px 0;">${time}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0; font-weight:600; color:#006C84;">Personen:</td>
+                    <td style="padding:8px 0;">${groupSize}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0; font-weight:600; color:#006C84;">Adresse:</td>
+                    <td style="padding:8px 0;">Poststraße 4a, 4063 Hörsching</td>
+                  </tr>
+                </table>
+                
+                <!-- Button -->
+                <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 16px;">
+                  <tr>
+                    <td align="center" bgcolor="#006C84" style="border-radius:6px;">
+                      <a href="${adminLink}" style="
+                        display:inline-block;
+                        padding:14px 28px;
+                        font-size:16px;
+                        color:#ffffff;
+                        text-decoration:none;
+                        font-weight:600;
+                        text-transform:uppercase;
+                      ">
+                        Termin ansehen
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            
+            <!-- Footer -->
+            <tr>
+              <td style="background:#f1f1f1; padding:12px 24px; font-size:12px; color:#888888; text-align:center;">
+                Diese E-Mail wurde automatisch generiert. Bitte nicht antworten.
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  `,
+};
+
 
     transporter.sendMail(mailOptions)
       .then(info => console.log("📧 E-Mail versendet:", info.messageId))
@@ -310,7 +379,7 @@ app.post("/update-profile", async (req, res) => {
   }
 });
 
-// 📊 SUMME ALLER GÄSTE PRO TAG
+// SUMME ALLER GÄSTE PRO TAG
 app.get("/bookingsCount", async (req, res) => {
   try {
     const stats = await Booking.aggregate([
@@ -327,7 +396,7 @@ app.get("/bookingsCount", async (req, res) => {
   }
 });
 
-// 📊 ANZAHL DER BUCHUNGEN PRO TAG
+// ANZAHL DER BUCHUNGEN PRO TAG
 app.get("/bookingsEntriesCount", async (req, res) => {
   try {
     const stats = await Booking.aggregate([

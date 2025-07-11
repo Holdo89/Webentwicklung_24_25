@@ -9,12 +9,18 @@
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   font-family: 'Inter', sans-serif;
   color: #2a1a17;
+  /* sicherstellen, dass Padding in Breite eingerechnet wird */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Überschrift */
-.profile-page h4 {
+.profile-page .MuiTypography-h4 {
   color: #6EB5C0;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 /* Profildaten-Panel */
@@ -24,8 +30,11 @@
   padding: 1.5rem;
   border-radius: 12px;
   margin-bottom: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.profile-info p,
 .profile-info .MuiTypography-root {
   margin: 0.5rem 0;
 }
@@ -35,6 +44,9 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 /* Outlined-Button */
@@ -53,4 +65,19 @@
 .MuiDialog-paper {
   background: rgba(226, 232, 228, 0.4) !important;
   backdrop-filter: blur(16px) !important;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+  .profile-page {
+    margin: 2rem 1rem;
+    padding: 2rem 1.5rem;
+  }
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .button-group .MuiButton-root {
+    width: 100%;
+  }
 }
